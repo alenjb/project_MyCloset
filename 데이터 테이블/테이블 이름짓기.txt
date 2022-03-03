@@ -1,0 +1,44 @@
+Member
+	member_id
+	member_password
+	member_name
+	member_sex
+	member_birth_date
+	member_height
+	member_top_size
+	member_bottom_size
+	member_shoes_size
+	member_face
+	member_reg_date
+
+Clothes
+	clothes_type
+	clothes_color
+	clothes_size
+	clothes_brand
+	clothes_season
+	clothes_purchase_year
+	clothes_purchase_price
+	clothes_image
+	clothes_material
+	clothes_location
+Fitting
+	fitting_top_id
+	fitting_bottom_id
+	fitting_shoes_id
+	fitting_save_date
+	fitting_info
+	
+QNA
+	question_title
+	question_content
+	question_date
+	answer_content
+	answer_date
+	qna_satisfaction
+	qna_file
+Notice
+	notice_title
+	notice_content
+	notice_file
+	notice_date
