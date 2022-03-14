@@ -1,0 +1,14 @@
+package com.webjjang.board.mapper;
+
+public interface BoardMapper {
+
+	//dao에서 작성한 메서드 형식으로 만들어준다.
+	
+	//1-1. 리스트
+	//1-2. 전체 데이터 개수
+	//2-1. 보기
+	//2-2. 조회수 1 증가
+	//3 글쓰기
+	//4. 수정
+	//5. 삭제
+}
