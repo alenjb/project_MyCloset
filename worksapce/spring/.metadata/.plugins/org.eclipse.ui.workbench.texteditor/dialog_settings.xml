@@ -6,8 +6,10 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="Context"/>
+		<item key="selection" value="xe"/>
 		<list key="findhistory">
+			<item value="XE"/>
+			<item value="xe"/>
 			<item value="context"/>
 			<item value="page"/>
 			<item value="lombok"/>

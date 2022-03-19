@@ -4007,3 +4007,15 @@ java.net.UnknownHostException: 알려진 호스트가 없습니다 (dist.springs
 	at org.eclipse.ecf.provider.filetransfer.httpclient45.HttpClientRetrieveFileTransfer$1.performFileTransfer(HttpClientRetrieveFileTransfer.java:991)
 	at org.eclipse.ecf.filetransfer.FileTransferJob.run(FileTransferJob.java:76)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2022-03-19 23:30:13.502
+!MESSAGE ClasspathListenerHandler removeClasspathListener sts4.classpath.WelRrmEj
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2022-03-19 23:30:13.502
+!MESSAGE unsubscribing from classpath changes: sts4.classpath.WelRrmEj
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2022-03-19 23:30:13.503
+!MESSAGE subsribers = {}
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2022-03-19 23:30:13.503
+!MESSAGE ClasspathListenerHandler removeClasspathListener sts4.classpath.WelRrmEj => OK
