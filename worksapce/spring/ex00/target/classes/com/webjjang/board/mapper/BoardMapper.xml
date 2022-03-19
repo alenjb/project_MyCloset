@@ -23,22 +23,34 @@
 			
 	<!-- 	//2-1. 보기 -->
 	<select id="view" resultType="com.webjjang.board.vo.BoardVO">
+		select no, title, content, writer, writeDate, hit
+		from board
+		where no = #{no}
 	</select>
 	
 	<!-- 	//2-2. 조회수 1 증가 -->
 	<update id="increase" >
-
+		update board
+		set hit = hit +1
+		where no =#{no}
+		
 	</update>
 	
 	<!-- 	//3 글쓰기 -->
 	<insert id="write">
+		insert into board(no, title, content, writer)
+		values(board_seq.nextval, #{title}, #{content}, #{writer})
 	</insert>
 	
 	<!-- 	//4. 수정 -->
 	<update id="update">
+		update board set title= #{title}, content =#{content}, writer=#{writer}
+		where no = #{no}
 	</update>
 	
 	<!-- 	//5. 삭제 -->
 	<delete id="delete">
+		delete from board
+		where no= #{no}
 	</delete>
 </mapper>
