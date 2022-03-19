@@ -1,0 +1,5 @@
+package com.webjjang.board.service;
+
+public class BoardService {
+
+}

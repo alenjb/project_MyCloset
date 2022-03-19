@@ -1,0 +1,10 @@
+package com.webjjang.board.service;
+
+import org.springframework.stereotype.Service;
+
+// @Controller , @Service, @Repository, @Component, @RestController
+//-> root-context.xml, servlet-context.xml에 scan 패키지 안쪽에 존재
+@Service
+public class BoardService {
+
+}

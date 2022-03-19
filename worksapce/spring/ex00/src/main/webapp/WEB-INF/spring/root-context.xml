@@ -12,8 +12,8 @@
 		<!-- property : setter를 이용한 DI 적용 -->
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
 		<property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:xe" />
-		<property name="username" value="java00" />
-		<property name="password" value="java00" />
+		<property name="username" value="oracle" />
+		<property name="password" value="1234" />
 	</bean>
 	
 	<!-- HikariCP로 데이터 가져오기(DataSource) 객체 생성 -->
