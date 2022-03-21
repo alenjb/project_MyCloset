@@ -9,6 +9,14 @@ public class LoginVO {
 	private String id;
 	private String pw;
 	private String name;
+	private String photo;
+	public String getPhoto() {
+		return photo;
+	}
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
+
 	private int gradeNo;
 	private String gradeName;
 	
@@ -43,12 +51,12 @@ public class LoginVO {
 	public void setGradeName(String gradeName) {
 		this.gradeName = gradeName;
 	}
-	
 	// 데이터 확인용
 	@Override
 	public String toString() {
-		return "LoginVO [id=" + id + ", pw=" + pw + ", name=" + name + ", gradeNo=" + gradeNo + ", gradeName="
-				+ gradeName + "]";
+		return "LoginVO [id=" + id + ", pw=" + pw + ", name=" + name + ", photo=" + photo + ", gradeNo=" + gradeNo
+				+ ", gradeName=" + gradeName + "]";
 	}
 	
+
 }

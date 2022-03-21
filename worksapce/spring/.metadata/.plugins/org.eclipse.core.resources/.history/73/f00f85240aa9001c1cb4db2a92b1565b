@@ -1,0 +1,18 @@
+package com.webjjang.member.service;
+
+import javax.inject.Inject;
+
+import com.webjjang.member.mapper.MemberMapper;
+import com.webjjang.member.vo.LoginVO;
+
+public class MemberService {
+	
+	//자동 DI
+	@Inject
+	private MemberMapper mapper;
+	
+	//로그인
+	public LoginVO login(LoginVO invo) throws Exception {
+		return mapper.login(invo);
+	}
+}

@@ -1,0 +1,5 @@
+package com.webjjang.member.controller;
+
+public class MemberController {
+
+}
