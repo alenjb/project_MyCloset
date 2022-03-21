@@ -16,11 +16,15 @@ import com.webjjang.notice.service.NoticeService;
 import com.webjjang.notice.vo.NoticeVO;
 import com.webjjang.util.PageObject;
 
+import lombok.extern.log4j.Log4j;
+
 @Controller
 @RequestMapping("/notice")
+// log객체를 자동으로 만들어준다.
+@Log4j
 public class NoticeController {
 
-	private static final Logger log = LoggerFactory.getLogger(NoticeController.class);
+	//	private static final Logger log = LoggerFactory.getLogger(NoticeController.class);
 	
 	//의존성 자동 주입Dependency Inject) -> 자동으로 하도록 지정하는 어노테이션 : @Autowired, @Inject
 	@Autowired
@@ -39,9 +43,9 @@ public class NoticeController {
 		//로그 정보 출력
 		log.info("log info 출력 - pageObject : "+ pageObject);
 		//로그 경고 출력
-		log.warn("log warn 출력 - pageObject : "+ pageObject);
+//		log.warn("log warn 출력 - pageObject : "+ pageObject);
 		//로그 에러 출력
-		log.error("log error 출력 - pageObject : "+ pageObject);
+//		log.error("log error 출력 - pageObject : "+ pageObject);
 		
 		model.addAttribute("list", service.list(pageObject));
 		return "notice/list";

@@ -68,12 +68,12 @@
 			<version>${org.springframework-version}</version>
 		</dependency>
 
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.projectlombok</groupId> -->
-<!-- 			<artifactId>lombok</artifactId> -->
-<!-- 			<version>1.18.0</version> -->
-<!-- 			<scope>provided</scope> -->
-<!-- 		</dependency> -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.0</version>
+			<scope>provided</scope>
+		</dependency>
 
 		<dependency>
 			<groupId>log4j</groupId>
@@ -113,6 +113,13 @@
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
 			<scope>test</scope>
+		</dependency>
+
+		<!-- sitemesh : 전체 레이아웃 잡기 -->
+		<dependency>
+		<groupId>opensymphony</groupId>
+		<artifactId>sitemesh</artifactId>
+		<version>2.4.2</version>
 		</dependency>
 
 		<!-- ===== DB 관련 =========== -->

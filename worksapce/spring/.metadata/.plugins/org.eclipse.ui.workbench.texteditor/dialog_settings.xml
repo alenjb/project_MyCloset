@@ -6,8 +6,11 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value=""/>
+		<item key="selection" value="lom"/>
 		<list key="findhistory">
+			<item value="lom"/>
+			<item value="sitemesh"/>
+			<item value="sitemash"/>
 			<item value="hit"/>
 			<item value="board"/>
 			<item value="Board"/>
