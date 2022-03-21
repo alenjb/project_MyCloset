@@ -1,5 +1,7 @@
 package com.webjjang.notice.controller;
 
+import java.net.URLEncoder;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,7 @@ public class NoticeController {
 	//	1. list
 	// 처리 결과를 request에 담아야 하는데 Spring에서는 Model에 존재한다. 
 	// model에 넣어주면 request에 담기도록 프로그래밍 되어있다. 파라미터로 모델 객체를 전달 받아서 사용한다.
+	// period - 현재공지: pre, 지난공지: old, 예약공지: res, 전체공지: all
 	@GetMapping("/list.do")
 	public String list(@ModelAttribute PageObject pageObject, Model model) throws Exception{
 		//페이지가 1보다 작으면 1페이지로 세팅한다/.
@@ -88,7 +91,9 @@ public class NoticeController {
 		System.out.println("NoticeController.update().vo - "+ vo);
 		service.update(vo);		
 		return "redirect:view.do?no="+vo.getNo()
-		+"&page="+pageObject.getPage()+"&perPageNum="+pageObject.getPerPageNum();
+		+"&page="+pageObject.getPage()+"&perPageNum="+pageObject.getPerPageNum()
+		//자바 부분의 한글코드와 운영 한글코드가 다르므로 자바에서 꺼내서 넣으면 깨진다. -> 인코딩을 해야한다.
+		+"&key="+pageObject.getKey()+"&word="+URLEncoder.encode(pageObject.getWord(), "utf-8");
 	}
 	
 	

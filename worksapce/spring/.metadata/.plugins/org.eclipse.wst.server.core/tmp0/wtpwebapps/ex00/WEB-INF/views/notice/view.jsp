@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>게시판 글보기</title>
+<title>공지 글보기</title>
 </head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -24,7 +24,7 @@
   </script>
 <body>
 <div class="container">
-<h2>게시판 글보기</h2>
+<h2>공지 글보기</h2>
 <table class="table">
 	<tr>
 		<th>번호</th>
@@ -39,23 +39,27 @@
 		<td>${vo.content }
 	</tr>
 	<tr>
-		<th>작성자</th>
-		<td>${vo.writer }
+		<th>공지시작일</th>
+		<td><fmt:formatDate value="${vo.startDate }" pattern="yyyy-MM-dd"/></td>
 	</tr>
 	<tr>
-		<th>작성일</th>
+		<th>공지종료일</th>
+		<td><fmt:formatDate value="${vo.endDate }" pattern="yyyy-MM-dd"/></td>
+	</tr>
+	<tr>
+		<th>공지수정일</th>
+		<td><fmt:formatDate value="${vo.updateDate }" pattern="yyyy-MM-dd"/></td>
+	</tr>
+		<tr>
+		<th>공지등록일</th>
 		<td><fmt:formatDate value="${vo.writeDate }" pattern="yyyy-MM-dd"/></td>
 	</tr>
-	<tr>
-		<th>조회수</th>
-		<td>${vo.hit }
-	</tr>
-			
+				
 	<tr>
 		<td colspan="2">
-			<a href="update.do?no=${vo.no }&inc=0&page=${param.page }&perPageNum=${param.perPageNum}" class="btn btn-default">수정</a>
+			<a href="update.do?no=${vo.no }&inc=0&page=${param.page }&perPageNum=${param.perPageNum}&key=${param.key }&word=${param.word}" class="btn btn-default">수정</a>
 			<a href="delete.do?no=${vo.no }&perPageNum=${param.perPageNum}" class="btn btn-default">삭제</a>
-			<a href="list.do?page=${param.page }&perPageNum=${param.perPageNum}" class="btn btn-default">리스트</a>
+			<a href="list.do?page=${param.page }&perPageNum=${param.perPageNum}&key=${param.key }&word=${param.word}" class="btn btn-default">리스트</a>
 			
 		</td>
 	</tr>

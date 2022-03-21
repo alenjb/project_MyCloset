@@ -2,6 +2,8 @@ package com.webjjang.notice.vo;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class NoticeVO {
 	
 	private long no;
@@ -34,9 +36,13 @@ public class NoticeVO {
 	public Date getStartDate() {
 		return startDate;
 	}
+	//날짜형을 입력할 때 -> 형태에 맞는 문자열로 만들어주면 날짜형 데이터로 변환해서 받아온다.
+	//400번 오류가 나면 데이터가 제대로 전달되지 않고 있다. 
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	public Date getEndDate() {
 		return endDate;
 	}

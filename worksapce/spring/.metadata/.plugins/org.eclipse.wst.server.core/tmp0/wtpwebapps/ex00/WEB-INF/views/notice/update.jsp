@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>게시판 수정 폼</title>
+<title>공지 수정 폼</title>
 </head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -23,10 +23,12 @@
   </script>
 <body>
 <div class="container">
-<h2>게시판 수정 폼</h2>
+<h2>공지 수정 폼</h2>
 <form action="update.do" method="post">
 <input type="hidden" name="page" value="${param.page }">
 <input type="hidden" name="perPageNum" value="${param.perPageNum }">
+<input type="hidden" name="key" value="${param.key }">
+<input type="hidden" name="word" value="${param.word }">
 <div class="form-group">
 	<label>번호</label>
 	<input name="no" id="no" class="form-control" value="${vo.no }" readonly="readonly">
@@ -41,8 +43,14 @@
 	<textarea name="content" id="content" class="form-control" rows="7">${vo.content}</textarea>
 </div>
 <div class="form-group">
-	<label>작성자</label>
-	<input name="writer" id="writer" class="form-control" value="${vo.writer}">
+	<label>공지시작일</label>
+	<input name="startDate" id="startDate" class="form-control" 
+	value="<fmt:formatDate value="${vo.startDate }" pattern="yyyy-MM-dd"/>">
+</div>
+<div class="form-group">
+	<label>공지종료일</label>
+	<input name="endDate" id="endDate" class="form-control" 
+	value="<fmt:formatDate value="${vo.endDate }" pattern="yyyy-MM-dd"/>">
 </div>
 
 <button>수정</button>

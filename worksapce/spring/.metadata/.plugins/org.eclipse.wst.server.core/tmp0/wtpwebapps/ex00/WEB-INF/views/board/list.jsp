@@ -19,6 +19,7 @@
   		background: #eee;
   		cursor:pointer;
   }
+
   </style>
   <script type="text/javascript">
   	$(function() {
@@ -40,7 +41,6 @@
 <h2>게시판 리스트</h2>
 <div class="row" style="margin-bottom: 5px;">
 
-<!-- 	검색에 대한 div -->
 	<div class="col-md-8">
 		<form class="form-inline">
 		<input type="hidden" name="perPageNum" value="${pageObject.perPageNum }">

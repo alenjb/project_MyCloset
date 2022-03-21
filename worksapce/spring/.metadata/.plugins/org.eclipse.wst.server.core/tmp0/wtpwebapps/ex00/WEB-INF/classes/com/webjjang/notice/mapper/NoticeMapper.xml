@@ -10,7 +10,9 @@
 			from(
 				select no, title, startDate, endDate, updateDate
 				from notice
+				where 1=1
 				<include refid="search"/>
+				<include refid="searchPeriod"/>
 				order by updateDate desc
 				)
 			)
@@ -20,13 +22,15 @@
 	<!-- 	//1-2. 전체 데이터 개수 -->
 	<select id="getTotalRow" resultType="long">
 		select count(*) from notice
+		where 1 = 1
 		<include refid="search"/>
+		<include refid="searchPeriod"/>
 	</select>
 
 	<!-- 	검색조건 처리를 위한 태그 - 부분태그 :sql :: 동적쿼리 작성 -->
 	<sql id="search">
 		<if test="word != null and word!= ''.toString()">
-			where 
+			and(
 			<if test="key =='t'.toString()">
 				title like '%' || #{word} || '%'
 			</if>
@@ -37,10 +41,37 @@
 				title like '%' || #{word} || '%'
 				or content like '%' || #{word} || '%'
 			</if>			
-
+			)
 		</if>
 	</sql>
 
+	<sql id="searchPeriod">
+		and(
+		<if test="period =='pre'">
+		<![CDATA[
+			startDate <= sysdate and endDate >= trunc(sysDate)
+		 ]]>
+		</if>
+
+		<if test="period =='old'">
+		<![CDATA[
+			endDate < trunc(sysDate)
+		 ]]>
+		</if>
+
+		<if test="period =='res'">
+		<![CDATA[
+			startDate > sysdate
+		 ]]>
+		</if>
+
+		<if test="period =='all'">
+		<![CDATA[
+			1=1
+		 ]]>
+		</if>
+		)
+	</sql>
 			
 	<!-- 	//2-1. 보기 -->
 	<select id="view" resultType="com.webjjang.notice.vo.NoticeVO">

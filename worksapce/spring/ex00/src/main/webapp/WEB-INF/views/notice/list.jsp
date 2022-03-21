@@ -24,7 +24,8 @@
   	$(function() {
   		$(".dataRow").click(function(){
   			var no =$(this).find(".no").text();
-  			location = "view.do?no=" + no +"&inc=1&page=${pageObject.page}&perPageNum=${pageObject.perPageNum}";
+  			location = "view.do?no=" + no 
+  					+"&inc=1&page=${pageObject.page}&perPageNum=${pageObject.perPageNum}&key=${pageObject.key}&word=${pageObject.word}";
   		});
 		//perPageNum 데이터ㅢ 변경 이벤트 처리 ->jQuery에 대한 이벤트
 		$("#perPageNumSelect").change(function(){
@@ -39,6 +40,17 @@
 <div class="container">
 <h2>공지 리스트</h2>
 <div class="row" style="margin-bottom: 5px;">
+
+<!-- 기간 검색에 대한 div -->
+	<div style= "margin :5px 15px">
+		<a href="list.do?page=${pageObject.page }&perPageNum=${pageObject.perPageNum }&key=${pageObject.key }&word=${pageObject.word }&period=pre" class='btn btn-${(pageObject.period == "pre")?"primary":"default" }'>현재</a>
+		<a href="list.do?page=${pageObject.page }&perPageNum=${pageObject.perPageNum }&key=${pageObject.key }&word=${pageObject.word }&period=old" class='btn btn-${(pageObject.period == "old")?"primary":"default" }'>지난</a>
+		<a href="list.do?page=${pageObject.page }&perPageNum=${pageObject.perPageNum }&key=${pageObject.key }&word=${pageObject.word }&period=res" class='btn btn-${(pageObject.period == "res")?"primary":"default" }'>예약</a>
+		<a href="list.do?page=${pageObject.page }&perPageNum=${pageObject.perPageNum }&key=${pageObject.key }&word=${pageObject.word }&period=all" class='btn btn-${(pageObject.period == "all")?"primary":"default" }'>모든</a>
+
+	</div>
+<!-- 	검색에 대한 div -->
+
 
 <!-- 	검색에 대한 div -->
 	<div class="col-md-8">
