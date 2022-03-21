@@ -33,9 +33,16 @@ public class NoticeController {
 	public String list(@ModelAttribute PageObject pageObject, Model model) throws Exception{
 		//페이지가 1보다 작으면 1페이지로 세팅한다/.
 		if (pageObject.getPage()<1) pageObject.setPage(1);
-		
+		//콘솔에 출력
 		System.out.println("Noticecontroller.list().pageObject  -"+pageObject);
-
+		
+		//로그 정보 출력
+		log.info("log info 출력 - pageObject : "+ pageObject);
+		//로그 경고 출력
+		log.warn("log warn 출력 - pageObject : "+ pageObject);
+		//로그 에러 출력
+		log.error("log error 출력 - pageObject : "+ pageObject);
+		
 		model.addAttribute("list", service.list(pageObject));
 		return "notice/list";
 		
