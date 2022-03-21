@@ -10,6 +10,7 @@
 			from(
 				select no, title, writer, writeDate, hit
 				from board
+				<include refid="search"/>
 				order by no desc
 				)
 			)
@@ -19,6 +20,7 @@
 	<!-- 	//1-2. 전체 데이터 개수 -->
 	<select id="getTotalRow" resultType="long">
 		select count(*) from board
+		<include refid="search"/>
 	</select>
 			
 	<!-- 	//2-1. 보기 -->
@@ -27,6 +29,41 @@
 		from board
 		where no = #{no}
 	</select>
+	
+	<!-- 	검색조건 처리를 위한 태그 - 부분태그 :sql :: 동적쿼리 작성 -->
+	<sql id="search">
+		<if test="word != null and word!= ''.toString()">
+			where 
+			<if test="key =='t'.toString()">
+				title like '%' || #{word} || '%'
+			</if>
+			<if test="key =='c'.toString()">
+				content like '%' || #{word} || '%'
+			</if>
+			<if test="key =='w'.toString()">
+				writer like '%' || #{word} || '%'
+			</if>
+			<if test="key =='tc'.toString()">
+				title like '%' || #{word} || '%'
+				or content like '%' || #{word} || '%'
+			</if>			
+			<if test="key =='tw'.toString()">
+				title like '%' || #{word} || '%'
+				or writer like '%' || #{word} || '%'
+			</if>			
+			<if test="key =='cw'.toString()">
+				content like '%' || #{word} || '%'
+				or writer like '%' || #{word} || '%'
+			</if>			
+			<if test="key =='tcw'.toString()">
+				title like '%' || #{word} || '%'
+				or content like '%' || #{word} || '%'
+				or writer like '%' || #{word} || '%'
+				
+			</if>			
+
+		</if>
+	</sql>
 	
 	<!-- 	//2-2. 조회수 1 증가 -->
 	<update id="increase" >

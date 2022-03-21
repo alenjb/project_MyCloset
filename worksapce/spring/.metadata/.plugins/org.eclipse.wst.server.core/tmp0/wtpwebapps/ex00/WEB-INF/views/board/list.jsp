@@ -43,24 +43,25 @@
 <!-- 	검색에 대한 div -->
 	<div class="col-md-8">
 		<form class="form-inline">
-		<div class="input=group">
+		<input type="hidden" name="perPageNum" value="${pageObject.perPageNum }">
 		  <div class="input-group">
 				  <select name="key" class="form-control">
-				  	<option>제목</option>
-				  	<option>내용</option>
-				  	<option>작성자</option>
-				  	<option>제목/내용</option>
-				  	<option>제목/작성자</option>
-				  	<option>내용/작성자</option>		  	
-				  	<option>전체</option>  	
+				  	<option value="t" ${(pageObject.key == "t")?"selected":"" }>제목</option>
+				  	<option value="c" ${(pageObject.key == "c")?"selected":"" }>내용</option>
+				  	<option value="w" ${(pageObject.key == "w")?"selected":"" }>작성자</option>
+				  	<option value="tc" ${(pageObject.key == "tc")?"selected":"" }>제목/내용</option>
+				  	<option value="tw" ${(pageObject.key == "tw")?"selected":"" }>제목/작성자</option>
+				  	<option value="cw" ${(pageObject.key == "tw")?"selected":"" }>내용/작성자</option>		  	
+				  	<option value="tcw" ${(pageObject.key == "tcw")?"selected":"" }>전체</option>  	
 				  </select>
 			</div>
-		    <input type="text" class="form-control" placeholder="Search" name="word">
-		    <div class="input-group-btn">
-		      <button class="btn btn-default" type="submit">
-		        <i class="glyphicon glyphicon-search"></i>
-		      </button>
-		    </div>
+			<div class="input-group">
+			    <input type="text" class="form-control" placeholder="Search" name="word" value="${pageObject.word }">
+			    <div class="input-group-btn">
+			      <button class="btn btn-default" type="submit">
+			        <i class="glyphicon glyphicon-search"></i>
+			      </button>
+		  	</div>
 		  </div>
 		</form>
 	</div>	
@@ -103,11 +104,12 @@
 	</c:forEach>
 	<tr>
 		<td colspan="5">
-			<pageNav:pageNav listURI="list.do" pageObject="${pageObject }" />
+			<pageNav:pageNav listURI="list.do" pageObject="${pageObject }" 
+			query="&key=${pageObject.key}&word=${pageOnject.word }" />
 		</td>
 	<tr>
 		<td colspan="5">
-			<a href="write.do" class="btn btn-default">쓰기</a>
+			<a href="write.do?perPageNum=${pageObject.perPageNum }" class="btn btn-default">쓰기</a>
 		</td>
 	</tr>
 </table>

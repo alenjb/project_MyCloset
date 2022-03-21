@@ -1,0 +1,16 @@
+package com.webjjang.notice.vo;
+
+import java.util.Date;
+
+public class NoticeVO {
+	
+	private long no;
+	private String title;
+	private String content;
+	private Date startDate;
+	private Date endDate;
+	private Date writeDate;
+	private Date updateDate;
+	
+
+}
