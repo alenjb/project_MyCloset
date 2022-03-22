@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.webjjang.member.service.MemberService;
 import com.webjjang.member.vo.LoginVO;
+import com.webjjang.member.vo.MemberVO;
 
 import lombok.extern.log4j.Log4j;
 
@@ -22,14 +23,14 @@ public class MemberController {
 	@Autowired
 	private MemberService service;
 	
-	
+	//로그인 폼
 	@GetMapping("/login.do")
 	public String loginForm() throws Exception{
 		log.info("로그인 폼으로 이동");
 		return "member/login";
 		
 	}
-	
+	//로그인 처리
 	@PostMapping("/login.do")
 	//사용자가 아이디와 비밀번호를 입력해서 보낸다 -> 받는다.
 	public String login(LoginVO invo, HttpSession session) throws Exception{
@@ -40,7 +41,7 @@ public class MemberController {
 		//원래는 main으로 보내야하나 main을 안만들어서 만들어진 게시판으로 임시로 보낸다.
 		return "redirect:/board/list.do";
 	}
-	
+	//로그아웃
 	@GetMapping("/logout.do")
 	public String logout(HttpSession session) throws Exception{
 		//로그아웃 처리 - session의 정보를 지운다.
@@ -52,4 +53,17 @@ public class MemberController {
 
 	}
 	
+	
+	//회원가입 폼
+	@GetMapping("/write.do")
+	public String writeForm() throws Exception{
+		return "member/write";
+	}
+	
+	//회원가입 처리
+	public String write(MemberVO vo) throws Exception {
+		
+		service.write(vo);
+		return "redirect:/member/login.do";
+	}
 }

@@ -1,5 +1,0 @@
-package com.webjjang.board.mapper;
-
-public interface BoardMapper {
-
-}

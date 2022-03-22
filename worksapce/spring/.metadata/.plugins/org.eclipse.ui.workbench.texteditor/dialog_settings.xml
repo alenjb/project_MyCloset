@@ -6,14 +6,14 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="lom"/>
+		<item key="selection" value="Member"/>
 		<list key="findhistory">
+			<item value="Board"/>
+			<item value="board"/>
 			<item value="lom"/>
 			<item value="sitemesh"/>
 			<item value="sitemash"/>
 			<item value="hit"/>
-			<item value="board"/>
-			<item value="Board"/>
 			<item value="notice"/>
 			<item value="&quot;%&quot;"/>
 			<item value="hot"/>
@@ -24,6 +24,8 @@
 			<item value="lombok"/>
 		</list>
 		<list key="replacehistory">
+			<item value="Member"/>
+			<item value="member"/>
 			<item value="notice"/>
 			<item value="Notice"/>
 			<item value="&apos;%&apos;"/>
