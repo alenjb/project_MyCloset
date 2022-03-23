@@ -35,4 +35,7 @@ public interface MemberMapper {
 
 	//6.로그인
 	public LoginVO login(LoginVO invo) throws Exception;
+	
+	//7. 아이디 중복체크
+		public String idCheck(String id) throws Exception;
 }

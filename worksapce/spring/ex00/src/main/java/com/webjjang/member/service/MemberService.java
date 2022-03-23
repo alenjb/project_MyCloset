@@ -23,4 +23,9 @@ public class MemberService {
 	public LoginVO login(LoginVO invo) throws Exception {
 		return mapper.login(invo);
 	}
+	
+	//아이디 중복 체크 -> 아이디를 가져오자
+	public String idCheck(String id) throws Exception{
+		return mapper.idCheck(id);
+	}
 }

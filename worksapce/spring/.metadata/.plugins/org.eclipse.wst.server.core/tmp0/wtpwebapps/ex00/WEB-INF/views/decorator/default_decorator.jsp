@@ -82,6 +82,11 @@ article {
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('[data-toggle="tooltip"]').tooltip();
+		//취소 버튼 처리 -> 이전페이지 이동
+		$(".cancelBtn").click(function() {
+			history.back();
+		});
+	
 	});
 </script>
 <decorator:head/>
