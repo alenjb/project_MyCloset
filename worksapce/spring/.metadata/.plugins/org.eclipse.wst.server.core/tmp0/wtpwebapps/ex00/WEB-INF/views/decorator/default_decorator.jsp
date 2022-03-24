@@ -125,6 +125,7 @@ article {
 				      	<li><a href="/member/login.do">로그인</a></li>
 				      <% } else { %>
 				      	<li><a href="/member/view.do">
+				      	<img src="${login.photo }" style="width: 30px" class=img-circle"/> 
 				      			<%= loginVO.getName() %>(<%= loginVO.getGradeName() %>)
 				      		</a></li>
 				      	<li><a href="/member/logout.do">로그아웃</a></li>

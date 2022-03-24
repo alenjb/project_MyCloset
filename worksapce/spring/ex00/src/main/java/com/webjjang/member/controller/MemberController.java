@@ -1,5 +1,6 @@
 package com.webjjang.member.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.webjjang.member.service.MemberService;
 import com.webjjang.member.vo.LoginVO;
 import com.webjjang.member.vo.MemberVO;
+import com.webjjang.util.file.FileUtil;
 
 import lombok.extern.log4j.Log4j;
 
@@ -57,12 +59,21 @@ public class MemberController {
 	
 	//회원가입 폼
 	@GetMapping("/write.do")
-	public String writeForm() throws Exception{
+	public String writeForm(MemberVO vo) throws Exception{
 		return "member/write";
 	}
 	
+	
 	//회원가입 처리
-	public String write(MemberVO vo) throws Exception {
+	@PostMapping("/write.do")
+	public String write(MemberVO vo, HttpServletRequest request) throws Exception {
+
+		//회원 사진을 저장할 위치
+		String path="/upload/member";
+		
+		//서버에 파일 저장하기 ->서버에 저장된 파일명을 받아서 PHOTO에 넣는다.
+		vo.setPhoto(FileUtil.upload(path, vo.getPhotoFile(), request));
+
 		
 		service.write(vo);
 		return "redirect:/member/login.do";

@@ -68,7 +68,7 @@
 	<!-- 	//3 회원가입 -->
 	<insert id="write">
 		insert into member(id, pw, name, gender, birth, tel, email, photo)
-		values(#{id}, #{pw}, #{name}, #{birth}, #{tel}, #{email}, #{photo})
+		values(#{id}, #{pw}, #{name}, #{gender}, #{birth}, #{tel}, #{email}, #{photo})
 	</insert>
 	
 	<!-- 	//4. 수정 -->

@@ -6,8 +6,9 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="script"/>
+		<item key="selection" value="idCheck"/>
 		<list key="findhistory">
+			<item value="idCheck"/>
 			<item value="script"/>
 			<item value="Board"/>
 			<item value="board"/>
@@ -22,7 +23,6 @@
 			<item value="xe"/>
 			<item value="context"/>
 			<item value="page"/>
-			<item value="lombok"/>
 		</list>
 		<list key="replacehistory">
 			<item value="Member"/>
