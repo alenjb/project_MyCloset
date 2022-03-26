@@ -1,10 +1,8 @@
 package com.webjjang.myapp;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.List;
 
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

@@ -19,7 +19,7 @@
 $(function() {
 	$(".dataRow").click(function() {
 		var id= $(this).find(".id").text();
-		location = "view.do?id="+id +"&page=${pageObject.page}&perPageNum${pageObject.perPageNum}";
+		location = "view.do?id="+id +"&page=${pageObject.page}&perPageNum=${pageObject.perPageNum}";
 	})
 })
 </script>

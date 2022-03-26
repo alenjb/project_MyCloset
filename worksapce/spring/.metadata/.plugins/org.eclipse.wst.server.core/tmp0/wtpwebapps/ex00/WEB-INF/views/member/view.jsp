@@ -74,7 +74,7 @@
 								</div>
 							</div>
 						</form>
-						<a href="changeStatus.do" class="btn btn-default">상태변경</a>
+					<a href="changeStatus.do" class="btn btn-default">상태변경</a>
 					<a href="changeGradeNo.do" class="btn btn-default">등급변경</a>
 				</c:if>
 				</td>
