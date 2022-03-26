@@ -66,6 +66,18 @@ public class MemberController {
 		return "member/list";
 	}
 	
+	//회원 정보 보기 /내정보 보기
+	@GetMapping("/view.do")
+	public String view(String id, Model model, HttpSession session) throws Exception{
+		if(id==null) {
+			model.addAttribute("title","내 정보 보기");
+			id=((LoginVO) session.getAttribute("login")).getId();
+		}else {
+			model.addAttribute("title","회원 정보 보기");
+		}
+		model.addAttribute("vo", service.view(id));
+		return "member/view";
+	}
 	
 	//회원가입 폼
 	@GetMapping("/write.do")
@@ -95,5 +107,14 @@ public class MemberController {
 		model.addAttribute("id", service.idCheck(id));
 		
 		return "member/idCheck";
+	}
+	
+	//상태변경
+	@PostMapping("/changeStatus.do")
+	public String changeStatus(PageObject pageObject, MemberVO vo) throws Exception{
+		//DB에서 상태변경을 시킨다.
+		service.changeStatus(vo);
+		log.info("안녕");
+		return "redirect:view.do?id="+vo.getId()+"&page="+pageObject.getPage()+"&perPageNum"+pageObject.getPerPageNum();
 	}
 }

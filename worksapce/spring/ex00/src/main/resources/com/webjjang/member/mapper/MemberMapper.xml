@@ -28,9 +28,10 @@
 			
 	<!-- 	//2-1. 보기 -->
 	<select id="view" resultType="com.webjjang.member.vo.MemberVO">
-		select no, title, content, writer, writeDate, hit
-		from member
-		where no = #{no}
+		select m.id, m.name, m.birth, m.gender, m.tel, m.email, m.status,
+		m.gradeNo, g.gradeName, m.photo, m.regDate
+		from member m, grade g
+		where (id = #{id}) and (m.gradeNo = g.gradeNo)
 	</select>
 	
 	<!-- 	검색조건 처리를 위한 태그 - 부분태그 :sql :: 동적쿼리 작성 -->
@@ -94,9 +95,16 @@
 		where( m.id = #{id} and m.pw = #{pw})  and (g.gradeNo = m.gradeNo)
 	</select>
 	
-	<!-- 아이디 중복체크 -->
+	<!--  7. 아이디 중복체크 -->
 	<select id="idCheck" resultType="java.lang.String">
 		select id from member
 		where id= #{id}
 	</select>
+	
+	<!-- 8. 상태 변경 -->
+	<update id="changeStatus">
+		update member
+		set status = #{status}
+		where id= #{id}
+	</update>
 </mapper>

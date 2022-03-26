@@ -20,7 +20,7 @@ public interface MemberMapper {
 	public long getTotalRow(PageObject pageObject) throws Exception;
 	
 	//2-1. 보기
-	public MemberVO view(long no) throws Exception;
+	public MemberVO view(String id) throws Exception;
 	
 	
 	//3 회원가입
@@ -37,5 +37,8 @@ public interface MemberMapper {
 	public LoginVO login(LoginVO invo) throws Exception;
 	
 	//7. 아이디 중복체크
-		public String idCheck(String id) throws Exception;
+	public String idCheck(String id) throws Exception;
+
+	//8. 상태변경
+	public int changeStatus(MemberVO vo) throws Exception;
 }

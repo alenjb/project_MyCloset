@@ -1,0 +1,64 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>${title }</title>
+</head>
+<body>
+	<div class="container">
+		<h2>${title }</h2>
+		<table class="table">
+			<tr>
+				<th>아이디</th>
+				<td>${vo.id }</td>
+			</tr>
+			<tr>
+				<th>이름</th>
+				<td>${vo.name }</td>
+			</tr>
+			<tr>
+				<th>성별</th>
+				<td>${vo.gender }</td>
+			</tr>
+			<tr>
+				<th>생년월일</th>
+				<td><fmt:formatDate value="${vo.birth }" pattern="yyy-MM-dd"/></td>
+			</tr>
+			<tr>
+				<th>연락처</th>
+				<td>${vo.tel }</td>
+			</tr>
+			<tr>
+				<th>이메일</th>
+				<td>${vo.email }</td>
+			</tr>
+			<tr>
+				<th>가입일</th>
+				<td><fmt:formatDate value="${vo.regDate }" pattern="yyy-MM-dd"/></td>
+			</tr>
+			<tr>
+				<th>사진</th>
+				<td><img alt="${vo.photo }" src="${vo.photo }" style="width: 100px; height: 100px"></td>
+			</tr>
+			<tr>
+				<th>등급</th>
+				<td>${vo.gradeName }</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+				<c:if test="${! empty param.id}>
+					<a href="update.do?page=${param.page }&perPageNum=${param.perPageNum}" class="btn btn-default">정보 수정</a>
+					<a href="delete.do" class="btn btn-default">회원 탈퇴</a>
+				</c:if>
+				</td>
+				
+			</tr>
+
+		</table>
+	</div>
+</body>
+</html>
