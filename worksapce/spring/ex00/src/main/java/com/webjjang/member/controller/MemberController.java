@@ -7,12 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.webjjang.member.service.MemberService;
 import com.webjjang.member.vo.LoginVO;
 import com.webjjang.member.vo.MemberVO;
+import com.webjjang.util.PageObject;
 import com.webjjang.util.file.FileUtil;
 
 import lombok.extern.log4j.Log4j;
@@ -54,6 +56,14 @@ public class MemberController {
 		//원래는 main으로 보내야하나 main을 안만들어서 만들어진 게시판으로 임시로 보낸다.
 		return "redirect:/board/list.do";
 
+	}
+	@GetMapping("/list.do")
+	//회원 리스트 - 관리자만 가능
+	// @ModelAttribute 변수 - model에 담긴 변수로 처리해준다 ->jsp까지 전달이 된다.
+	public String list(@ModelAttribute PageObject pageObject, Model model) throws Exception{
+		model.addAttribute("list", service.list(pageObject));
+		
+		return "member/list";
 	}
 	
 	
