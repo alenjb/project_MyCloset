@@ -48,4 +48,9 @@ public class MemberService {
 	public int changeStatus(MemberVO vo) throws Exception{
 		return mapper.changeStatus(vo);
 	}
+	
+	//등급변경
+	public int changeGradeNo(MemberVO vo) throws Exception{
+		return mapper.changeGradeNo(vo);
+	}
 }

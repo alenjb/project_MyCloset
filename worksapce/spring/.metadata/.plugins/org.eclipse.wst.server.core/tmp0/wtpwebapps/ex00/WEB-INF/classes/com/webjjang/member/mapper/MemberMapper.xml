@@ -107,4 +107,11 @@
 		set status = #{status}
 		where id= #{id}
 	</update>
+	
+		<!-- 9. 등급 변경 -->
+	<update id="changeGradeNo">
+		update member
+		set gradeNo = #{gradeNo}
+		where id= #{id}
+	</update>
 </mapper>

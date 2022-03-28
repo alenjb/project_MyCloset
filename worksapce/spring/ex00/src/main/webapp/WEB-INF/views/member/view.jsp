@@ -58,6 +58,7 @@
 				</c:if>
 				<c:if test= "${login.gradeNo == 9 &&  ! empty param.id && login.id != vo.id}">
 					<!--관리자 메뉴: 관리자 && 넘어오는 아이디가 있다 && 넘어오는 아이디가 관리자가 아니다.  -->
+					<!-- 상태 변경 -->
 						<form action="changeStatus.do" method="post">
 							<input type="hidden" name="id" value="${vo.id }"> 
 							<input type="hidden" name="page" value="${param.page }"> 
@@ -74,8 +75,21 @@
 								</div>
 							</div>
 						</form>
-					<a href="changeStatus.do" class="btn btn-default">상태변경</a>
-					<a href="changeGradeNo.do" class="btn btn-default">등급변경</a>
+					<!-- 등급변경 -->
+					<form action="changeGradeNo.do" method="post">
+							<input type="hidden" name="id" value="${vo.id }"> 
+							<input type="hidden" name="page" value="${param.page }"> 
+							<input type="hidden" name="perPageNum" value="${param.perPageNum }">
+							<div class="input-group">
+								<select name="gradeNo" class="form-control">
+									<option ${(vo.gradeNo == 1) ? "selected" : "" } value= "1">일반회원</option>
+									<option ${(vo.gradeNo == 9) ? "selected" : "" } value= "9">관리자</option>
+								</select>
+								<div class="input-group-btn">
+									<button class="btn btn-default">변경</button>
+								</div>
+							</div>
+						</form>
 				</c:if>
 				</td>
 				

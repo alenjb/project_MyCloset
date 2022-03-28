@@ -117,4 +117,13 @@ public class MemberController {
 		service.changeStatus(vo);
 		return "redirect:view.do?id="+vo.getId()+"&page="+pageObject.getPage()+"&perPageNum="+pageObject.getPerPageNum();
 	}
+	
+	//등급변경
+	@PostMapping("/changeGradeNo")
+	public String changeGradeNo(PageObject pageObject, MemberVO vo) throws Exception{
+		
+		//DB에서 등급을 변경 시킨다.
+		service.changeGradeNo(vo);
+		return "redirect:view.do?id="+vo.getId()+"&page="+pageObject.getPage()+"&perPageNum="+pageObject.getPerPageNum();
+	}
 }
