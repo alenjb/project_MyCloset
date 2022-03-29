@@ -6,8 +6,10 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value=""/>
+		<item key="selection" value="multi"/>
 		<list key="findhistory">
+			<item value="multi"/>
+			<item value="file"/>
 			<item value="param"/>
 			<item value="prarm"/>
 			<item value="cha"/>
@@ -21,8 +23,6 @@
 			<item value="board"/>
 			<item value="lom"/>
 			<item value="sitemesh"/>
-			<item value="sitemash"/>
-			<item value="hit"/>
 		</list>
 		<list key="replacehistory">
 			<item value="changeStatus"/>

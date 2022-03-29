@@ -1,6 +1,7 @@
 package com.webjjang.myapp;
 
 import java.io.File;
+
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.multipart.MultipartFile;
 import lombok.extern.log4j.Log4j;
+//자동 생성 어노테이션 -@ControllerL url mapping
 @Controller
 @Log4j
 public class UploadController {
@@ -21,7 +23,7 @@ public class UploadController {
 	}
 
 	@PostMapping("/uploadFormAction")
-
+	//MultipartFile 변수 이름은 uploadForm.jsp의 첨부파일 name과 맞추어서 적어야함
 	public void uploadFormAction(MultipartFile uploadFile, HttpServletRequest request, Model model) throws Exception {
 	// 메인 메모리(ram)이나 임시 폴더에 저장된 상태 - 아직 저장은 하지 않았다.
 	log.info(uploadFile);
@@ -31,7 +33,7 @@ public class UploadController {
 
 	String path = "/upload";
 
-	// request를 이용해서 절대 위히를 구한다. > request는 파라미터로 받는다.
+	// request를 이용해서 절대 위치를 구한다. > request는 파라미터로 받는다.
 	
 	String savePath = request.getServletContext().getRealPath(path);
 	log.info(savePath);
@@ -41,7 +43,7 @@ public class UploadController {
 	
 	//DB에 저장될 파일 정보
 	String fileName= path+"/"+uploadFile.getOriginalFilename();
-	log.info("fileName");
+	log.info(fileName);
 	model.addAttribute("fileName", fileName);}
 	
 	
@@ -54,14 +56,37 @@ public class UploadController {
 	
 	@PostMapping("/uploadFormActions")
 	public void uploadFormActions(List<MultipartFile> uploadFiles, HttpServletRequest request, Model model) throws Exception {
+//		// 메인 메모리(ram)이나 임시 폴더에 저장된 상태 - 아직 저장은 하지 않았다.
+//		log.info(uploadFiles);
+//		
+//		//들어오는 모든 파일 이름 출력해보기
+//		for(MultipartFile uploadFile: uploadFiles) {
+//			log.info(uploadFile.getOriginalFilename());
+//		}
 		// 메인 메모리(ram)이나 임시 폴더에 저장된 상태 - 아직 저장은 하지 않았다.
 		log.info(uploadFiles);
-		
+
 		//들어오는 모든 파일 이름 출력해보기
-		for(MultipartFile uploadFile: uploadFiles) {
+		for (MultipartFile uploadFile: uploadFiles) {
 			log.info(uploadFile.getOriginalFilename());
 		}
-	}
+		// 저장위치 - 서버 기준의 상대 위치 -> 실제적으로 저장할 때는 절대위치가 필요하다/
+
+		String path = "/upload";
+
+		// request를 이용해서 절대 위치를 구한다. > request는 파라미터로 받는다.
+		
+		String savePath = request.getServletContext().getRealPath(path);
+		log.info(savePath);
+		
+		//파일을 저정해보자. -원래 파일명을 저장한다. 파일명이 같으면 덮어쓰기가 된다.
+//		uploadFiles.transferTo(new File(savePath, uploadFiles.getOriginalFilename()));
+		
+		//DB에 저장될 파일 정보
+//		String fileName= path+"/"+uploadFiles.getOriginalFilename();
+//		log.info(fileName);
+//		model.addAttribute("fileName", fileName);
+		}
 
 
 

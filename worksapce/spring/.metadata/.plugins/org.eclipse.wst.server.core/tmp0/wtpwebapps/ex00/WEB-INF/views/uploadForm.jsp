@@ -20,9 +20,7 @@
 
 <!-- multiple="multiple" : 여러개 선택. 없으면 한개 선택 -->
 
-첨부파일 <input type="file" name="uploadFile" multiple="multiple"><br>
-
-<button>전송</button>
+첨부파일 <input type="file" name="uploadFile" multiple="multiple"> <button>전송</button>
 
 </form>
 
