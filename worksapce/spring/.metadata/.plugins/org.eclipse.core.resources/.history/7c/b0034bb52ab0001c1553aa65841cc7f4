@@ -1,0 +1,5 @@
+package com.webjjang.image.service;
+
+public class ImageService {
+
+}

@@ -6,8 +6,10 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="multi"/>
+		<item key="selection" value="Image"/>
 		<list key="findhistory">
+			<item value="Board"/>
+			<item value="board"/>
 			<item value="multi"/>
 			<item value="file"/>
 			<item value="param"/>
@@ -19,12 +21,12 @@
 			<item value="reg"/>
 			<item value="idCheck"/>
 			<item value="script"/>
-			<item value="Board"/>
-			<item value="board"/>
 			<item value="lom"/>
 			<item value="sitemesh"/>
 		</list>
 		<list key="replacehistory">
+			<item value="Image"/>
+			<item value="image"/>
 			<item value="changeStatus"/>
 			<item value="Member"/>
 			<item value="member"/>

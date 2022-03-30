@@ -1,0 +1,17 @@
+package com.webjjang.image.service;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.webjjang.image.vo.ImageVO;
+import com.webjjang.util.PageObject;
+
+@Service
+public class ImageService {
+	public List<ImageVO> list (PageObject pageObject) throws Exception{
+		
+		return null;
+		
+	}
+}
