@@ -22,6 +22,13 @@
 		select count(*) from image
 	</select>	
 
+	<!-- 2. 이미지 보기 -->
+	<select id="view" resultType="com.webjjang.image.vo.ImageVO">
+		select i.no, i.title, i.content, i.id, m.name, i.writeDate, i.fileName
+		from image i, member m
+		where (no=#{no}) and (m.id= i.id)
+	</select>
+	
 	<!-- 3. 이미지 등록 -->
 	<insert id="write">
 		insert into image(no, title, content, id, fileName)

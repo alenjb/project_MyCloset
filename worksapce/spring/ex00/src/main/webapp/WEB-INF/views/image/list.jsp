@@ -25,7 +25,7 @@
 		<c:forEach items="${list }" var="vo" varStatus="vs">
 					<div class="col-md-3">
 			<div class="thumbnail dataRow" 
-			onclick="location='view.jsp?no=${vo.no}&page=${pageObject.page }&perPageNum=${pageObject.perPageNum }&key=${pageObject.key}&word=${pageObject.word}'">
+			onclick="location='view.do?no=${vo.no}&page=${pageObject.page }&perPageNum=${pageObject.perPageNum }&key=${pageObject.key}&word=${pageObject.word}'">
 				<img src="${vo.fileName }" alt="Photo Lists" style="width:100%;height: 300px;">
 				<div class="caption">
 					<p>[${vo.no }] ${vo.title }</p>
