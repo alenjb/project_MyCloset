@@ -1,5 +1,8 @@
 package com.webjjang.image.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,10 +11,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.webjjang.image.mapper.ImageMapper;
+
 import com.webjjang.image.service.ImageService;
 import com.webjjang.image.vo.ImageVO;
+import com.webjjang.member.vo.LoginVO;
 import com.webjjang.util.PageObject;
+import com.webjjang.util.file.FileUtil;
 
 import lombok.extern.log4j.Log4j;
 
@@ -25,6 +30,10 @@ public class ImageController {
 	
 	@GetMapping("/list.do")
 	public String list(PageObject pageObject, Model model) throws Exception{
+		
+		//페이지가 음수 값이면 1로 세팅한다.
+		if(pageObject.getPage() < 1) pageObject.setPage(1);
+		
 		log.info("list()");
 		
 		model.addAttribute("list", service.list(pageObject));
@@ -43,8 +52,22 @@ public class ImageController {
 		return "image/write";
 	}
 	@PostMapping("/write.do")
-	public String write(PageObject pageObject, ImageVO imageVO ) throws Exception{
-		return "redirect:list.do";
+	public String write(PageObject pageObject, ImageVO imageVO, HttpSession session, HttpServletRequest request) throws Exception{
+		log.info(pageObject);
+		
+		//작성자 아이디 세팅
+		imageVO.setId(((LoginVO)session.getAttribute("login")).getId());
+
+		//파일명을 세팅한다.
+		 String path="/upload/image";
+		 String fileName= FileUtil.upload(path, imageVO.getImage(), request);
+		 imageVO.setFileName(fileName);
+				
+		log.info(imageVO);
+		
+		//db 정보 저장
+		service.write(imageVO);
+		return "redirect:list.do?page=1&perPageNum="+pageObject.getPerPageNum();
 	}
 	@GetMapping("/update.do")
 	public String updateForm(PageObject pageObject, long no, Model model) throws Exception{

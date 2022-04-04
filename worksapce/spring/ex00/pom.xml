@@ -176,6 +176,16 @@
 			<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/pageObject.jar</systemPath>
 		</dependency>
 
+
+		<!-- 파일 처리 -->
+		<dependency>
+			<groupId>com.webjjang</groupId>
+			<artifactId>util.file.fileUtil</artifactId>
+			<version>1.0</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/fileUtil.jar</systemPath>
+		</dependency>
+		
 	<!-- 파일 업로드 -->
 
 	<dependency>

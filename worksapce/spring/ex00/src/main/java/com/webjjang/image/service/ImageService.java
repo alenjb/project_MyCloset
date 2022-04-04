@@ -25,4 +25,9 @@ public class ImageService {
 		return mapper.list(pageObject);
 		
 	}
+	
+	public int write(ImageVO vo) throws Exception{
+		log.info(vo);
+		return mapper.write(vo);
+	}
 }

@@ -10,4 +10,6 @@ public interface ImageMapper {
 	public List<ImageVO> list (PageObject pageObject) throws Exception;
 	
 	public long getTotalRow(PageObject pageObject) throws Exception;
+	
+	public int write(ImageVO vo) throws Exception;
 }

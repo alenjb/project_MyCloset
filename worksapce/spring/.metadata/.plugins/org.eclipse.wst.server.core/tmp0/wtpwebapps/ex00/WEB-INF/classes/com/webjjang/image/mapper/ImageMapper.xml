@@ -22,4 +22,9 @@
 		select count(*) from image
 	</select>	
 
+	<!-- 3. 이미지 등록 -->
+	<insert id="write">
+		insert into image(no, title, content, id, fileName)
+		values(image_seq.nextval, #{title}, #{content}, #{id}, #{fileName})
+	</insert>
 </mapper>
