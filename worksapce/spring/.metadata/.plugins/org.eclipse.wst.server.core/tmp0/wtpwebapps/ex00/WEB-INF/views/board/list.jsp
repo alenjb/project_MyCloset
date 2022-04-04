@@ -27,7 +27,7 @@
   			var no =$(this).find(".no").text();
   			location = "view.do?no=" + no +"&inc=1&page=${pageObject.page}&perPageNum=${pageObject.perPageNum}";
   		});
-		//perPageNum 데이터ㅢ 변경 이벤트 처리 ->jQuery에 대한 이벤트
+		//perPageNum 데이터의 변경 이벤트 처리 ->jQuery에 대한 이벤트
 		$("#perPageNumSelect").change(function(){
 // 			alert("값 변경");
 			$("#perPageNumForm").submit();

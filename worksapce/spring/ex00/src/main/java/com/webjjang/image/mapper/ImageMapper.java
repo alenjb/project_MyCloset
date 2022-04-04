@@ -14,7 +14,7 @@ public interface ImageMapper {
 	//2. view
 	public ImageVO view(long no) throws Exception;
 	
-	//2-1. changeimage
+	//2-1. changeImage
 	public int changeImage(ImageVO vo) throws Exception;
 
 	//3. write
@@ -22,4 +22,7 @@ public interface ImageMapper {
 	
 	//4.update -info
 	public int update(ImageVO vo) throws Exception;
+	
+	//5.delete
+	public int delete(long no) throws Exception;
 }

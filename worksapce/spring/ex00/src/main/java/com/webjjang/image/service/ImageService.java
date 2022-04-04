@@ -49,4 +49,11 @@ public class ImageService {
 		log.info(vo);
 		return mapper.update(vo);
 	}
+	
+	//5. 삭제
+	public int delete(long no) throws Exception{
+		log.info(no);
+		return mapper.delete(no);
+		
+	}
 }

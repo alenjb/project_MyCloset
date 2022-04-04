@@ -10,7 +10,9 @@
 			from(
 				select  i.no, i.title, i.id, m.name, i.writeDate, i.fileName
 				from image i, member m
-				where i.id = m.id
+				where (1=1) 
+				<include refid="search"/>
+				and (i.id = m.id)
 				order by i.no desc
 				)
 			)
@@ -20,7 +22,44 @@
 	<!-- 	//1-2. 전체 데이터 개수 -->
 	<select id="getTotalRow" resultType="long">
 		select count(*) from image
+		where (1=1)
+		<include refid="search"/>
 	</select>	
+
+	<!-- 	검색조건 처리를 위한 태그 - 부분태그 :sql :: 동적쿼리 작성 일반조건 -->
+	<sql id="search">
+		<if test="word != null and word!= ''.toString()">
+			and(
+			<if test="key =='t'.toString()">
+				title like '%' || #{word} || '%'
+			</if>
+			<if test="key =='c'.toString()">
+				content like '%' || #{word} || '%'
+			</if>
+			<if test="key =='f'.toString()">
+				fileName like '%' || #{word} || '%'
+			</if>
+			<if test="key =='tc'.toString()">
+				title like '%' || #{word} || '%'
+				or content like '%' || #{word} || '%'
+			</if>			
+			<if test="key =='tf'.toString()">
+				title like '%' || #{word} || '%'
+				or fileName like '%' || #{word} || '%'
+			</if>			
+			<if test="key =='cf'.toString()">
+				content like '%' || #{word} || '%'
+				or fileName like '%' || #{word} || '%'
+			</if>			
+			<if test="key =='tcf'.toString()">
+				title like '%' || #{word} || '%'
+				or content like '%' || #{word} || '%'
+				or fileName like '%' || #{word} || '%'
+				
+			</if>			
+			)
+		</if>
+	</sql>
 
 	<!-- 2. 이미지 보기 -->
 	<select id="view" resultType="com.webjjang.image.vo.ImageVO">
@@ -46,4 +85,10 @@
 		update image set title = #{title}, content = #{content}
 		where no = #{no}
 	</update>
+	
+	<!-- 5. 이미지 정보 삭제 -->
+	<delete id="delete">
+		delete from image
+		where no = #{no}
+	</delete>
 </mapper>

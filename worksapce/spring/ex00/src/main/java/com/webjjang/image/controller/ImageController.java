@@ -1,5 +1,7 @@
 package com.webjjang.image.controller;
 
+import java.net.URLEncoder;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -32,6 +34,8 @@ public class ImageController {
 		
 		//페이지가 음수 값이면 1로 세팅한다.
 		if(pageObject.getPage() < 1) pageObject.setPage(1);
+		//perPageNum ==10 이면 8로 고치자. perPageNum - 4, 8, 12, 16   -> 기본 한페이지의 데이터 개수는 8로 세팅한다.
+		if(pageObject.getPerPageNum() == 10) pageObject.setPerPageNum(8);
 		
 		log.info("list()");
 		
@@ -51,11 +55,15 @@ public class ImageController {
 		//3. 이전의 파일은 지운다.
 		FileUtil.remove(FileUtil.getRealPath("", vo.getDeleteImage(), request));
 		
+		//파일이 로드되는 중간에 보기로 이동을 해버리면 이미지가 안보인다. 그래서 올리는 동안을 시간을 재워서 보기로 이동 시키지 않도록 한다.
+		Thread.sleep(500);
+		
+		
 		return "redirect:view.do?no="+vo.getNo()
 				+"&page="+pageObject.getPage()
 				+"&perPageNum="+pageObject.getPerPageNum()
 				+"&key="+pageObject.getKey()
-				+"&word="+pageObject.getWord()
+				+"&word="+URLEncoder.encode(pageObject.getWord(), "utf-8")
 				;
 	}
 	//이미지 보기
@@ -90,6 +98,8 @@ public class ImageController {
 		
 		//db 정보 저장
 		service.write(imageVO);
+		//파일이 로드되는 중간에 보기로 이동을 해버리면 이미지가 안보인다. 그래서 올리는 동안을 시간을 재워서 보기로 이동 시키지 않도록 한다.
+		Thread.sleep(500);
 		return "redirect:list.do?page=1&perPageNum="+pageObject.getPerPageNum();
 	}
 	//4.이미지 수정 폼 -정보만 수정
@@ -112,12 +122,22 @@ public class ImageController {
 				+"&page="+pageObject.getPage()
 				+"&perPageNum="+pageObject.getPerPageNum()
 				+"&key="+pageObject.getKey()
-				+"&word="+pageObject.getWord()
+				+"&word="+ URLEncoder.encode(pageObject.getWord(), "utf-8")
 				;
 	}
 	@GetMapping("/delete.do")
-	public String delete(PageObject pageObject, long no, String deleteFile) throws Exception{
-		return "redirect:list.do";
+	public String delete(PageObject pageObject, long no, String deleteImage, HttpServletRequest request) throws Exception{
+		log.info(no);
+		log.info(deleteImage);
+		log.info(pageObject);
+		
+		//1. db의 정보를 지운다. - no
+		service.delete(no);
+
+		//2. 서버에서 파일을 지운다. -deleteImage
+		FileUtil.remove(FileUtil.getRealPath("", deleteImage, request));
+		
+		return "redirect:list.do?perPageNum="+pageObject.getPerPageNum();
 	}
 
 }

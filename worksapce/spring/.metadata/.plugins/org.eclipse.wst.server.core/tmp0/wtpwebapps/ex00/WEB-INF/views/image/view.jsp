@@ -42,6 +42,12 @@
 			$("#changeImageDiv").slideToggle();
 		});
 		
+		//삭제 버튼 경고 이벤트
+		$("#deleteBtn").click(function() {
+			//confirm() -> 사용자에게 확인이나 취소를 누르게 하는 함수  / 확인-> true / 취소 -> false
+			if (!confirm("이미지를 정말 삭제하시겠습니까?")) return false;
+		});
+		
 	});
 </script>
 </head>
@@ -70,7 +76,7 @@
 			</form>
 			</div>
 		</div>
-		<div class="col-sm-9" id="imageDiv"><img src="${vo.fileName}" class="thumbnail" id="image" ></div>
+		<div class="col-sm-9" id="imageDiv"><img src="${vo.fileName}" class="thumbnail" id="image"></div>
 	</div>
 	
 	<div class="well row">
@@ -89,7 +95,7 @@
 	<a href="update.do?no=${vo.no }&page=${param.page}&perPageNum=${param.perPageNum}&key=${param.key}&word=${param.word}"
 	class="btn btn-default" id="updateBtn" data-toggle="tooltip" data-plcaement="top" title="이미지 바꾸기는 이미지 제목 오른쪽의 바꾸기 버튼을 이용하세요.">수정</a>
 		<a href="delete.do?no=${vo.no }&deleteImage=${vo.fileName}"
-	class="btn btn-default">삭제</a>
+	class="btn btn-default" id="deleteBtn">삭제</a>
 		<a href="List.do?page=${param.page}&perPageNum=${param.perPageNum}&key=${param.key}&word=${param.word}"
 	class="btn btn-default">리스트</a>
 	<div class="alert alert-info" id="updateMsgDiv">이미지 바꾸기는 이미지 제목 오른쪽의 바꾸기 버튼을 이용하세요.</div>
