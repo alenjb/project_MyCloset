@@ -37,4 +37,10 @@ public class ImageService {
 		log.info(vo);
 		return mapper.write(vo);
 	}
+	
+	//4. 정보 수정
+	public int update(ImageVO vo) throws Exception{
+		log.info(vo);
+		return mapper.update(vo);
+	}
 }

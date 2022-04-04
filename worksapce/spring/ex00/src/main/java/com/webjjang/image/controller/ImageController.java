@@ -46,8 +46,12 @@ public class ImageController {
 	//이미지 보기
 	@GetMapping("/view.do")
 	public String view(long no, Model model) throws Exception{
-		//DB에서 데이터를 가져와서 model에 담는다. jsp에서 request에서 꺼낼 수 있다.
-		model.addAttribute("vo", service.view(no));
+		//DB에서 데이터를 가져온다.
+		ImageVO vo= service.view(no);
+		//내용 줄바꿈 처리
+		vo.setContent(vo.getContent().replace("\n", "<br>"));
+		//model에 담는다. jsp에서 request에서 꺼낼 수 있다.
+		model.addAttribute("vo", vo);
 		//가져온 데이터를 JSP에 표시하기 위해 JSP 정보를 리턴한다.
 		return "image/view";
 	}
@@ -73,13 +77,28 @@ public class ImageController {
 		service.write(imageVO);
 		return "redirect:list.do?page=1&perPageNum="+pageObject.getPerPageNum();
 	}
+	//4.이미지 수정 폼 -정보만 수정
 	@GetMapping("/update.do")
 	public String updateForm(PageObject pageObject, long no, Model model) throws Exception{
+		log.info(no);
+		
+		model.addAttribute("vo", service.view(no));
+		
 		return "image/update";
 	}
 	@PostMapping("/update.do")
 	public String update(PageObject pageObject, ImageVO vo) throws Exception{
-		return "redirect:view.do";
+		log.info(vo);
+		log.info(pageObject);
+		
+		//db에 수정: Controller -> service ->mapper
+		service.update(vo);
+		return "redirect:view.do?no="+vo.getNo()
+				+"&page="+pageObject.getPage()
+				+"&perPageNum="+pageObject.getPerPageNum()
+				+"&key="+pageObject.getKey()
+				+"&word="+pageObject.getWord()
+				;
 	}
 	@GetMapping("/delete.do")
 	public String delete(PageObject pageObject, long no, String deleteFile) throws Exception{

@@ -34,4 +34,10 @@
 		insert into image(no, title, content, id, fileName)
 		values(image_seq.nextval, #{title}, #{content}, #{id}, #{fileName})
 	</insert>
+	
+	<!-- 4. 이미지 정보 수정 -->
+	<update id="update">
+		update image set title = #{title}, content = #{content}
+		where no = #{no}
+	</update>
 </mapper>
