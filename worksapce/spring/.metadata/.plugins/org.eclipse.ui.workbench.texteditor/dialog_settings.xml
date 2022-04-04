@@ -6,8 +6,14 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="Image"/>
+		<item key="selection" value="width"/>
 		<list key="findhistory">
+			<item value="width"/>
+			<item value="writer"/>
+			<item value="word"/>
+			<item value="pageNav"/>
+			<item value="pagenav"/>
+			<item value="page"/>
 			<item value="Board"/>
 			<item value="board"/>
 			<item value="multi"/>
@@ -17,14 +23,9 @@
 			<item value="cha"/>
 			<item value="changestatus"/>
 			<item value="change"/>
-			<item value="chang"/>
-			<item value="reg"/>
-			<item value="idCheck"/>
-			<item value="script"/>
-			<item value="lom"/>
-			<item value="sitemesh"/>
 		</list>
 		<list key="replacehistory">
+			<item value="fileName"/>
 			<item value="Image"/>
 			<item value="image"/>
 			<item value="changeStatus"/>
