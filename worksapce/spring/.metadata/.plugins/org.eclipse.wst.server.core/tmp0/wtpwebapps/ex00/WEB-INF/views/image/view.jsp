@@ -10,6 +10,9 @@
 	#updateMsgDiv {
 		display: none;
 	}
+	#changeImageDiv{
+		display: none;
+	}
 </style>
 <script type="text/javascript">
 	$(function() {
@@ -33,6 +36,11 @@
 // 		})
 // 		;
 		
+		//이미지 바꾸기 이벤트
+		$("#changeImageBtn").click(function () {
+// 			alert("이미지 바꾸기: ");
+			$("#changeImageDiv").slideToggle();
+		});
 		
 	});
 </script>
@@ -49,7 +57,19 @@
 		<div class="col-sm-9">${vo.title}</div>
 	</div>
 	<div class="well row">
-		<div class="col-sm-3">이미지</div>
+		<div class="col-sm-3">
+		<div>
+			이미지<button class="btn btn-warning btn-sm" id="changeImageBtn">바꾸기</button>
+		</div>
+		<div id="changeImageDiv">
+			<form action="changeImage.do" method="post" enctype="multipart/form-data">
+				<input name="no" type="hidden" value="${vo.no }">
+				<input name="deleteImage" value="${vo.fileName }" type="hidden">
+				<input type="file" name="image" class="form-control">
+				<button class="btn btn-default">바꾸기</button>	
+			</form>
+			</div>
+		</div>
 		<div class="col-sm-9" id="imageDiv"><img src="${vo.fileName}" class="thumbnail" id="image" ></div>
 	</div>
 	

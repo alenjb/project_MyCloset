@@ -32,6 +32,12 @@ public class ImageService {
 		return mapper.view(no);
 	}
 	
+	//2-1. 이미지 변경
+	public int changeImage(ImageVO vo) throws Exception{
+		log.info(vo);
+		return mapper.changeImage(vo);
+	}
+	
 	//3. 이미지 등록
 	public int write(ImageVO vo) throws Exception{
 		log.info(vo);

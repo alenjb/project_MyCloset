@@ -9,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.multipart.MultipartFile;
 
 
 import com.webjjang.image.service.ImageService;
@@ -40,8 +39,24 @@ public class ImageController {
 		return "image/list";
 	}
 	@PostMapping("/changeImage.do")
-	public String changeImage(PageObject pageObject, MultipartFile imageFile) throws Exception{
-		return "redirect:view.do";
+	public String changeImage(PageObject pageObject, ImageVO vo, HttpServletRequest request) throws Exception{
+		String path="/upload/image";
+		//1. 서버에 파일을 업로드 한다 -> DB에 저장할 파일 정보가 나온다.
+		String fileName= FileUtil.upload(path, vo.getImage(), request);
+		vo.setFileName(fileName);
+		
+		//2. DB에 파일 정보를 바꾼다. -> 번호 파일명 ->Controller ->service ->mapper
+		service.changeImage(vo);
+		
+		//3. 이전의 파일은 지운다.
+		FileUtil.remove(FileUtil.getRealPath("", vo.getDeleteImage(), request));
+		
+		return "redirect:view.do?no="+vo.getNo()
+				+"&page="+pageObject.getPage()
+				+"&perPageNum="+pageObject.getPerPageNum()
+				+"&key="+pageObject.getKey()
+				+"&word="+pageObject.getWord()
+				;
 	}
 	//이미지 보기
 	@GetMapping("/view.do")

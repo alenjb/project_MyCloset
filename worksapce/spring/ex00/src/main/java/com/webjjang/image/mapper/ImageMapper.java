@@ -14,6 +14,9 @@ public interface ImageMapper {
 	//2. view
 	public ImageVO view(long no) throws Exception;
 	
+	//2-1. changeimage
+	public int changeImage(ImageVO vo) throws Exception;
+
 	//3. write
 	public int write(ImageVO vo) throws Exception;
 	
