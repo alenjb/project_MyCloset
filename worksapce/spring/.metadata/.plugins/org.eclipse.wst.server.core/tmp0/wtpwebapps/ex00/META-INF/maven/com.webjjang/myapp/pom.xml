@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.webjjang</groupId>
@@ -11,8 +12,9 @@
 	<properties>
 		<java-version>1.8</java-version>
 		<org.springframework-version>5.0.7.RELEASE</org.springframework-version>
-		<org.aspectj-version>1.6.10</org.aspectj-version>
-		<org.slf4j-version>1.6.6</org.slf4j-version>
+		<!-- AOP 효율성을 위해 버젼업 -->
+		<org.aspectj-version>1.9.0</org.aspectj-version>
+		<org.slf4j-version>1.7.25</org.slf4j-version>
 		<!-- 현재 진행하고 있는 프로젝트의 절대 위치로 변경해서 사용하셔야만 합니다. -->
 		<project.basedir>D:\jeongbin\worksapce\spring\ex00</project.basedir>
 	</properties>
@@ -40,6 +42,12 @@
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjrt</artifactId>
+			<version>${org.aspectj-version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
 			<version>${org.aspectj-version}</version>
 		</dependency>
 
@@ -117,9 +125,9 @@
 
 		<!-- sitemesh : 전체 레이아웃 잡기 -->
 		<dependency>
-		<groupId>opensymphony</groupId>
-		<artifactId>sitemesh</artifactId>
-		<version>2.4.2</version>
+			<groupId>opensymphony</groupId>
+			<artifactId>sitemesh</artifactId>
+			<version>2.4.2</version>
 		</dependency>
 
 		<!-- ===== DB 관련 =========== -->
@@ -171,8 +179,7 @@
 			<artifactId>util.PageObject</artifactId>
 			<version>2.5</version>
 			<scope>system</scope>
-			<!-- lombok lib를 설치하면 오류가 난다.
-				해결 : 프로퍼트 등록 해준다. -->
+			<!-- lombok lib를 설치하면 오류가 난다. 해결 : 프로퍼트 등록 해준다. -->
 			<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/pageObject.jar</systemPath>
 		</dependency>
 
@@ -185,14 +192,14 @@
 			<scope>system</scope>
 			<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/fileUtil.jar</systemPath>
 		</dependency>
-		
-	<!-- 파일 업로드 -->
 
-	<dependency>
-		<groupId>commons-fileupload</groupId>
-		<artifactId>commons-fileupload</artifactId>
-		<version>1.3.3</version>
-	</dependency>
+		<!-- 파일 업로드 -->
+
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.3.3</version>
+		</dependency>
 
 	</dependencies>
 	<build>

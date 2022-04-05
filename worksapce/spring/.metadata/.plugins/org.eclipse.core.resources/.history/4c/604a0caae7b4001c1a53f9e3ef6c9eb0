@@ -1,0 +1,12 @@
+package com.webjjang.board.aop;
+
+import org.aspectj.lang.annotation.Aspect;
+import org.springframework.stereotype.Component;
+
+
+//자동 생성 -@Controller, @service @repository, Component @restController, @~Advice
+@Component
+@Aspect
+public class LogAdvice {
+	
+}

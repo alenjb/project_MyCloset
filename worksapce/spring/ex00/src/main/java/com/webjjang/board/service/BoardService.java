@@ -20,7 +20,7 @@ public class BoardService {
 
 	//1.list
 	public List<BoardVO> list(PageObject pageObject) throws Exception{
-		//전체 데이터 개수 가져오기는 처리를 해야 시작줄과 끝 중리 계산이 된다. 없으면 데이터를 안가져온다.
+		//전체 데이터 개수 가져오기는 처리를 해야 시작줄과 끝 줄의 계산이 된다. 없으면 데이터를 안가져온다.
 		pageObject.setTotalRow(mapper.getTotalRow(pageObject));
 		System.out.println("BoardService.list()/pageObject - "+pageObject);
 		return mapper.list(pageObject);

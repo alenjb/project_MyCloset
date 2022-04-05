@@ -6,8 +6,12 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="width"/>
+		<item key="selection" value="Dispatcher"/>
 		<list key="findhistory">
+			<item value="Dispatcher"/>
+			<item value="dispatcher"/>
+			<item value="aspectj"/>
+			<item value="test"/>
 			<item value="width"/>
 			<item value="writer"/>
 			<item value="word"/>
@@ -19,10 +23,6 @@
 			<item value="multi"/>
 			<item value="file"/>
 			<item value="param"/>
-			<item value="prarm"/>
-			<item value="cha"/>
-			<item value="changestatus"/>
-			<item value="change"/>
 		</list>
 		<list key="replacehistory">
 			<item value="fileName"/>

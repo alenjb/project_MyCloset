@@ -1,0 +1,10 @@
+package com.webjjang.board.aop;
+
+import org.springframework.stereotype.Component;
+
+
+//자동 생성 -@Controller, @service @repository, Component @restController, @~Advice
+@Component
+public class LogAdvice {
+	
+}

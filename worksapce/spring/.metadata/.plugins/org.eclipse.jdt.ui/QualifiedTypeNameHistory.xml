@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
     <fullyQualifiedTypeName name="com.webjjang.util.PageObject2"/>
-    <fullyQualifiedTypeName name="com.webjjang.board.mapper.BoardMapper"/>
     <fullyQualifiedTypeName name="com.webjjang.board.service.BoardService"/>
-    <fullyQualifiedTypeName name="com.webjjang.board.vo.BoardVO"/>
     <fullyQualifiedTypeName name="com.webjjang.member.mapper.MemberMapper"/>
     <fullyQualifiedTypeName name="com.webjjang.member.service.MemberService"/>
     <fullyQualifiedTypeName name="java.io.File"/>
@@ -26,20 +24,34 @@
     <fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
     <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="lombok.extern.java.Log"/>
-    <fullyQualifiedTypeName name="lombok.extern.log4j.Log4j"/>
     <fullyQualifiedTypeName name="com.webjjang.image.mapper.ImageMapper"/>
     <fullyQualifiedTypeName name="com.webjjang.image.service.ImageService"/>
     <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
-    <fullyQualifiedTypeName name="javax.inject.Inject"/>
     <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
     <fullyQualifiedTypeName name="com.webjjang.member.vo.LoginVO"/>
     <fullyQualifiedTypeName name="org.springframework.jdbc.support.incrementer.AbstractSequenceMaxValueIncrementer"/>
     <fullyQualifiedTypeName name="java.lang.String"/>
     <fullyQualifiedTypeName name="com.webjjang.image.vo.ImageVO"/>
     <fullyQualifiedTypeName name="java.lang.Thread"/>
-    <fullyQualifiedTypeName name="java.lang.Exception"/>
     <fullyQualifiedTypeName name="com.webjjang.util.file.FileUtil"/>
     <fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
-    <fullyQualifiedTypeName name="com.webjjang.util.PageObject"/>
     <fullyQualifiedTypeName name="java.net.URLEncoder"/>
+    <fullyQualifiedTypeName name="org.junit.runner.RunWith"/>
+    <fullyQualifiedTypeName name="org.springframework.test.context.junit4.SpringJUnit4ClassRunner"/>
+    <fullyQualifiedTypeName name="org.springframework.test.context.ContextConfiguration"/>
+    <fullyQualifiedTypeName name="com.webjjang.board.mapper.BoardMapper"/>
+    <fullyQualifiedTypeName name="javax.inject.Inject"/>
+    <fullyQualifiedTypeName name="com.webjjang.util.PageObject"/>
+    <fullyQualifiedTypeName name="org.junit.Test"/>
+    <fullyQualifiedTypeName name="com.webjjang.board.vo.BoardVO"/>
+    <fullyQualifiedTypeName name="org.springframework.stereotype.Component"/>
+    <fullyQualifiedTypeName name="org.aspectj.lang.annotation.Aspect"/>
+    <fullyQualifiedTypeName name="lombok.extern.log4j.Log4j"/>
+    <fullyQualifiedTypeName name="java.lang.Object"/>
+    <fullyQualifiedTypeName name="org.aspectj.lang.ProceedingJoinPoint"/>
+    <fullyQualifiedTypeName name="java.lang.Exception"/>
+    <fullyQualifiedTypeName name="java.lang.Throwable"/>
+    <fullyQualifiedTypeName name="org.aspectj.lang.annotation.Around"/>
+    <fullyQualifiedTypeName name="java.lang.System"/>
+    <fullyQualifiedTypeName name="java.util.Arrays"/>
 </qualifiedTypeNameHistroy>
