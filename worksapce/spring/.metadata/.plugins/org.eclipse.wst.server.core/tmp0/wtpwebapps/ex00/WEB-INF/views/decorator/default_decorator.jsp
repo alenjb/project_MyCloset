@@ -7,6 +7,7 @@
 <%@taglib prefix="decorator"
 	uri="http://www.opensymphony.com/sitemesh/decorator"%>
 
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <% 
 LoginVO loginVO = (LoginVO) session.getAttribute("login");
 %>
@@ -79,6 +80,8 @@ article {
 	margin: 0 auto;
 }
 </style>
+<script type="text/javascript" src="${contextPath }/js/messageJS.js"></script>
+<script type="text/javascript" src="${contextPath }/js/cookie/cookieUtil.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('[data-toggle="tooltip"]').tooltip();
@@ -86,9 +89,45 @@ article {
 		$(".cancelBtn").click(function() {
 			history.back();
 		});
-	
 	});
 </script>
+
+<%-- <c:if test="${!empty msg }"> --%>
+<script type="text/javascript">
+// 	var msgShow = true;
+// 		if(msgShow){
+// 			alert("${msg}");
+// 			msgShow = false;
+// });
+
+		//다른 페이지로 이동을 했다가 뒤로가기 아이콘을 클릭해서 돌아왔을 때 경고창이 안보여야 한다.
+		//해결 방법 
+		
+		//1. js 자동 새로 고침  -> 비효율적일 수 있다.  
+
+/* 		alert("${msg}");
+		location.reload(); //F5 누른 것과 같다.
+ */
+$(function(){
+		// 서버에서 저장해 놓은 쿠키를 가져 온다.
+		var msgNumberStr = getCookie("msg");
+		if (msgNumberStr){
+			var msgNumber = Number(msgNumberStr);
+			console.log(msgNumberStr + ", type : " + typeof(msgNumberStr));
+			console.log("message : " + MSG_LIST[msgNumber]);
+			// 0.2초 (200) 동안 기다렸다가 시간이 끝나면 function을 실행한다.
+			// 화면에 데이터 보다 alert이 먼저 실행이되면 경고창이 떠있는 뒤에 데이터가 보이지 않고 하얗게 되어 진다.
+			setTimeout(
+				function(){
+					alert(MSG_LIST[msgNumber]);
+				}, 200
+			);
+			delCookie("msg", "/");
+		}
+});
+		
+</script>
+<%-- </c:if> --%>
 <decorator:head/>
 </head>
 <body>
@@ -142,7 +181,7 @@ article {
 		<decorator:body />
 	</article>
 	<footer class="container-fluid text-center navbar navbar-inverse navbar-fixed-bottom">
-		<p>이 홈페이지의 저작권은 이영환에게 있습니다.</p>
+		<p>이 홈페이지는 이정빈 것임</p>
 	</footer>
 </body>
 </html>
