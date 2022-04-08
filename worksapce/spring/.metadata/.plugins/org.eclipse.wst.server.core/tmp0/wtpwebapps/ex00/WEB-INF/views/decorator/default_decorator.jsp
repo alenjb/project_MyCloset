@@ -82,13 +82,27 @@ article {
 </style>
 <script type="text/javascript" src="${contextPath }/js/messageJS.js"></script>
 <script type="text/javascript" src="${contextPath }/js/cookie/cookieUtil.js"></script>
+
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('[data-toggle="tooltip"]').tooltip();
-		//취소 버튼 처리 -> 이전페이지 이동
-		$(".cancelBtn").click(function() {
+		// 삭제 버튼 이벤트 처리
+  		$("#deleteBtn").click(function(){
+  			
+  			// 사용자에게 확인/취소 선택 창 열기 - confirm : 확인 -true, 취소 - false
+  			// alert(confirm("정말 삭제 하시겠습니까?"));
+  			
+  			return confirm("정말 삭제 하시겠습니까?");
+  			
+  			// 페이지 이동을 막는다. -> 나중에 주석처리 꼭 해주셔야 합니다.
+  			// return false;
+  		});
+
+		// 취소 버튼 처리 -> 이전 페이지 이동
+		$(".cancelBtn").click(function(){
 			history.back();
 		});
+		
 	});
 </script>
 

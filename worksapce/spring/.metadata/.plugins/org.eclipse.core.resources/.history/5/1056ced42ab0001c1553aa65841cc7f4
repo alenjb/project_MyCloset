@@ -1,5 +1,0 @@
-package com.webjjang.image.mapper;
-
-public interface ImageMapper {
-
-}
