@@ -1,0 +1,5 @@
+package com.webjjang.exception;
+
+public class CommonExceptionAdvice {
+
+}
