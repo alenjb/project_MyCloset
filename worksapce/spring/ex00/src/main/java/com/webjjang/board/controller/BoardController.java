@@ -80,7 +80,7 @@ public class BoardController {
 		return "redirect:list.do?page=1&perPageNum=" + perPageNum;
 	}
 
-	// 4-1. updateFrom
+	// 4-1. updateForm
 	@GetMapping("update.do")
 	public String updateForm(long no, Model model) throws Exception {
 		System.out.println("BoardController.updateForm().no - " + no);
@@ -92,18 +92,21 @@ public class BoardController {
 
 	// 4-2. update
 	@PostMapping("update.do")
-	public String update(PageObject pageObject, BoardVO vo) throws Exception {
+	public String update(PageObject pageObject, BoardVO vo, RedirectAttributes rttr) throws Exception {
 		System.out.println("BoardController.update().vo - " + vo);
 		service.update(vo);
+		rttr.addFlashAttribute("msg", "정보가 수정되었습니다.");
 		return "redirect:view.do?no=" + vo.getNo() + "&inc=0" + "&page=" + pageObject.getPage() + "&perPageNum="
 				+ pageObject.getPerPageNum();
 	}
 
 	// 5. delete
 	@GetMapping("delete.do")
-	public String delete(long no, int perPageNum) throws Exception {
+	public String delete(long no, int perPageNum, RedirectAttributes rttr) throws Exception {
 		System.out.println("BoardController.delete().no - " + no);
 		service.delete(no);
+		
+		rttr.addFlashAttribute("msg", "성공적으로 글 삭제가 되었습니다.");
 		return "redirect:list.do?perPageNum=" + perPageNum;
 	}
 

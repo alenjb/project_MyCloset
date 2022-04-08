@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.webjjang.notice.service.NoticeService;
 import com.webjjang.notice.vo.NoticeVO;
@@ -78,9 +79,10 @@ public class NoticeController {
 	
 	//	3-2.write
 	@PostMapping("/write.do")
-	public String write (NoticeVO vo, int perPageNum) throws Exception{
+	public String write (NoticeVO vo, int perPageNum, RedirectAttributes rttr) throws Exception{
 		System.out.println("NoticeController.write().vo - "+vo);
 		service.write(vo);
+		rttr.addFlashAttribute("msg", "성공적으로 공지글이 등록 되었습니다.");
 		return "redirect:list.do?page=1&perPageNum="+perPageNum;
 	}
 	
@@ -97,9 +99,10 @@ public class NoticeController {
 	
 	//	4-2. update
 	@PostMapping("update.do")
-	public String update(PageObject pageObject, NoticeVO vo) throws Exception{
+	public String update(PageObject pageObject, NoticeVO vo, RedirectAttributes rttr) throws Exception{
 		System.out.println("NoticeController.update().vo - "+ vo);
 		service.update(vo);		
+		rttr.addFlashAttribute("msg", "성공적으로 공지글 수정이 되었습니다.");
 		return "redirect:view.do?no="+vo.getNo()
 		+"&page="+pageObject.getPage()+"&perPageNum="+pageObject.getPerPageNum()
 		//자바 부분의 한글코드와 운영 한글코드가 다르므로 자바에서 꺼내서 넣으면 깨진다. -> 인코딩을 해야한다.
@@ -109,9 +112,10 @@ public class NoticeController {
 	
 	//	5. delete
 	@GetMapping("delete.do")
-	public String delete(long no, int perPageNum) throws Exception{
+	public String delete(long no, int perPageNum, RedirectAttributes rttr) throws Exception{
 		System.out.println("NoticeController.delete().no - "+ no);
 		service.delete(no);		
+		rttr.addFlashAttribute("msg", "성공적으로 글 삭제가 되었습니다.");
 		return "redirect:list.do?perPageNum="+perPageNum;
 	}
 	

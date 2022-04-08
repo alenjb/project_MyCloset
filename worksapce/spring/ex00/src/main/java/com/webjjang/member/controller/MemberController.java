@@ -42,24 +42,25 @@ public class MemberController {
 	//로그인 처리
 	@PostMapping("/login.do")
 	//사용자가 아이디와 비밀번호를 입력해서 보낸다 -> 받는다.
-	public String login(LoginVO invo, HttpSession session, HttpServletResponse response) throws Exception{
+	public String login(LoginVO invo, HttpSession session, HttpServletResponse response, RedirectAttributes rttr) throws Exception{
 		log.info("로그인 처리 - invo: "+ invo);
 		
 		session.setAttribute("login", service.login(invo));
 		LoginVO vo= service.login(invo);
 		// 쿠키는 공백문자를 사용할 수 없다.
 		if(vo != null) CookieUtil.createMessageCookie(MSGUtil.MSG_LOGIN, response);
-		
+		rttr.addFlashAttribute("msg", "로그인 되셨습니다.");
 		//원래는 main으로 보내야하나 main을 안만들어서 만들어진 게시판으로 임시로 보낸다.
 		return "redirect:/board/list.do";
 	}
 	//로그아웃
 	@GetMapping("/logout.do")
-	public String logout(HttpSession session,  HttpServletResponse response) throws Exception{
+	public String logout(HttpSession session,  HttpServletResponse response, RedirectAttributes rttr) throws Exception{
 		//로그아웃 처리 - session의 정보를 지운다.
 		session.removeAttribute("login");
 		// 쿠키는 공백문자를 사용할 수 없다.
 		CookieUtil.createMessageCookie(MSGUtil.MSG_LOGOUT, response);
+		rttr.addFlashAttribute("msg", "로그아웃 되셨습니다.");
 		log.info("로그아웃 처리됨");
 		
 		//원래는 main으로 보내야하나 main을 안만들어서 만들어진 게시판으로 임시로 보낸다.
