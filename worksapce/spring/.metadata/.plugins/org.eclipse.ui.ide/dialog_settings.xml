@@ -109,4 +109,15 @@
 		<item value="org.springframework.ide.eclipse.webflow.feature:3.9.21.202202040945-RELEASE"/>
 		<item value="org.springframework.ide.eclipse.xml.namespaces.feature:4.13.1.202201311654"/>
 	</list>
+	<section name="ExternalProjectImportWizard">
+		<item key="WizardProjectsImportPage.STORE_ARCHIVE_SELECTED" value="true"/>
+		<item key="WizardProjectsImportPage.STORE_CLOSE_CREATED_PROJECTS_ID" value="false"/>
+		<item key="WizardProjectsImportPage.STORE_HIDE_CONFLICTING_PROJECTS_ID" value="false"/>
+		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value=""/>
+		</list>
+		<list key="WizardProjectsImportPage.STORE_ARCHIVES">
+			<item value="C:\Users\이정빈\Downloads\ajaxEx.zip"/>
+		</list>
+	</section>
 </section>
