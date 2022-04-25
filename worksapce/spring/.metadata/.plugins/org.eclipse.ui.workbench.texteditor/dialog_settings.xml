@@ -6,8 +6,10 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="compile"/>
+		<item key="selection" value="runtime"/>
 		<list key="findhistory">
+			<item value="runtime"/>
+			<item value="con"/>
 			<item value="compile"/>
 			<item value="msg"/>
 			<item value="Dispatcher"/>
@@ -21,8 +23,6 @@
 			<item value="pagenav"/>
 			<item value="page"/>
 			<item value="Board"/>
-			<item value="board"/>
-			<item value="multi"/>
 		</list>
 		<list key="replacehistory">
 			<item value="fileName"/>
@@ -37,7 +37,7 @@
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="1461"/>
+		<item key="DIALOG_X_ORIGIN" value="1420"/>
 		<item key="DIALOG_Y_ORIGIN" value="511"/>
 		<item key="DIALOG_WIDTH" value="322"/>
 		<item key="DIALOG_HEIGHT" value="391"/>
