@@ -6,8 +6,10 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="runtime"/>
+		<item key="selection" value=""/>
 		<list key="findhistory">
+			<item value="mysql"/>
+			<item value="maven"/>
 			<item value="runtime"/>
 			<item value="con"/>
 			<item value="compile"/>
@@ -21,8 +23,6 @@
 			<item value="word"/>
 			<item value="pageNav"/>
 			<item value="pagenav"/>
-			<item value="page"/>
-			<item value="Board"/>
 		</list>
 		<list key="replacehistory">
 			<item value="fileName"/>

@@ -8,12 +8,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.mycloset.member.service.MemberService;
 import com.mycloset.member.vo.MemberVO;
 
+import lombok.extern.log4j.Log4j;
+
+
 
 
 
 
 @Controller
 @RequestMapping("/member")
+@Log4j
 public class MemberController {
 
 	//자동 DI
