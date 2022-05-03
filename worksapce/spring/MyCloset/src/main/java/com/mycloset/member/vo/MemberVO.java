@@ -31,5 +31,7 @@ public class MemberVO {
 	//회원가입 폼의 jsp에서 name="photoFile"로 준다.
 	//post이고 enctype="multipart/form-data" 지정해야만한다.
 	private MultipartFile photoFile;
+	
+	
 	}
 	

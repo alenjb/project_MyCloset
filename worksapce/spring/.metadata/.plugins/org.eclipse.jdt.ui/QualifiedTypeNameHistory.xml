@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="com.webjjang.notice.controller.NoticeController"/>
     <fullyQualifiedTypeName name="com.webjjang.notice.service.NoticeService"/>
     <fullyQualifiedTypeName name="com.webjjang.notice.vo.NoticeVO"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.ModelAttribute"/>
@@ -53,11 +52,12 @@
     <fullyQualifiedTypeName name="org.springframework.web.multipart.MultipartFile"/>
     <fullyQualifiedTypeName name="com.mycloset.memberVO.MemberVO"/>
     <fullyQualifiedTypeName name="java.util.logging.Logger"/>
-    <fullyQualifiedTypeName name="lombok.extern.java.Log"/>
     <fullyQualifiedTypeName name="lombok.extern.log4j.Log4j2"/>
-    <fullyQualifiedTypeName name="lombok.extern.log4j.Log4j"/>
     <fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
     <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
     <fullyQualifiedTypeName name="com.mycloset.member.service.MemberService"/>
     <fullyQualifiedTypeName name="java.lang.System"/>
+    <fullyQualifiedTypeName name="lombok.extern.java.Log"/>
+    <fullyQualifiedTypeName name="lombok.extern.log4j.Log4j"/>
+    <fullyQualifiedTypeName name="com.mysql.cj.log.Log"/>
 </qualifiedTypeNameHistroy>
