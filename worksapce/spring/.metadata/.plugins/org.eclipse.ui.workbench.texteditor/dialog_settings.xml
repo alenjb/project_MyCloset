@@ -6,10 +6,11 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="log4j"/>
+		<item key="selection" value=".do"/>
 		<list key="findhistory">
-			<item value="log4j"/>
+			<item value=".do"/>
 			<item value="mysql"/>
+			<item value="log4j"/>
 			<item value="maven"/>
 			<item value="runtime"/>
 			<item value="con"/>
@@ -22,7 +23,6 @@
 			<item value="width"/>
 			<item value="writer"/>
 			<item value="word"/>
-			<item value="pageNav"/>
 		</list>
 		<list key="replacehistory">
 			<item value="fileName"/>
