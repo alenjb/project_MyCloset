@@ -16,6 +16,10 @@ public class BoardService {
 	private BoardMapper mapper;
 	
 	public List<BoardVO> list() throws Exception{
+		System.out.println("BoardService.list()");
+
 		return mapper.list();
 	}
+	
+	
 }

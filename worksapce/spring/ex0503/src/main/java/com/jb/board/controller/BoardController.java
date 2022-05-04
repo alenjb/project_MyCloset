@@ -20,6 +20,7 @@ public class BoardController {
 	// model에 넣어주면 request에 담기도록 프로그래밍 되어있다. 파라미터로 모델 객체를 전달 받아서 사용한다.
 	@GetMapping("/list.do")
 	public String list(Model model) throws Exception{
+		System.out.println("BoardController.list()");
 		model.addAttribute("list", service.list());
 		return "board/list";
 	}
