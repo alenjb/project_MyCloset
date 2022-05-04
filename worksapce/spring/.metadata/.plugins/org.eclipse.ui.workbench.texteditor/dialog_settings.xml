@@ -6,8 +6,11 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value=".do"/>
+		<item key="selection" value="lombok"/>
 		<list key="findhistory">
+			<item value="lombok"/>
+			<item value="jdbc"/>
+			<item value="ㅓ윷"/>
 			<item value=".do"/>
 			<item value="mysql"/>
 			<item value="log4j"/>
@@ -20,9 +23,6 @@
 			<item value="dispatcher"/>
 			<item value="aspectj"/>
 			<item value="test"/>
-			<item value="width"/>
-			<item value="writer"/>
-			<item value="word"/>
 		</list>
 		<list key="replacehistory">
 			<item value="fileName"/>

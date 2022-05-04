@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.ModelAttribute"/>
-    <fullyQualifiedTypeName name="javax.swing.plaf.metal.MetalMenuBarUI"/>
     <fullyQualifiedTypeName name="javax.swing.GroupLayout.ParallelGroup"/>
     <fullyQualifiedTypeName name="com.webjjang.member.vo.MemberVO"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
@@ -55,9 +53,11 @@
     <fullyQualifiedTypeName name="com.mysql.cj.log.Log"/>
     <fullyQualifiedTypeName name="com.mycloset.member.mapper.MemberMapper"/>
     <fullyQualifiedTypeName name="javax.inject.Inject"/>
+    <fullyQualifiedTypeName name="com.mycloset.member.vo.MemberVO"/>
+    <fullyQualifiedTypeName name="org.springframework.ui.Model"/>
+    <fullyQualifiedTypeName name="java.util.Date"/>
     <fullyQualifiedTypeName name="lombok.Data"/>
     <fullyQualifiedTypeName name="java.util.List"/>
-    <fullyQualifiedTypeName name="com.mycloset.member.vo.MemberVO"/>
     <fullyQualifiedTypeName name="java.lang.Exception"/>
-    <fullyQualifiedTypeName name="org.springframework.ui.Model"/>
+    <fullyQualifiedTypeName name="com.jb.board.vo.BoardVO"/>
 </qualifiedTypeNameHistroy>

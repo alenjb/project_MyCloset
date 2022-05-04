@@ -70,12 +70,14 @@
 			<version>${org.springframework-version}</version>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<version>1.18.2</version>
+			<version>1.18.20</version>
 			<scope>provided</scope>
 		</dependency>
+
 
 		<dependency>
 			<groupId>log4j</groupId>
@@ -127,7 +129,7 @@
 
 		<!-- MySQL 관련 -->
 		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
-	<!-- 이게 mybatis랑 연동 되는지 모르겠는데 일단은 해봄 -->
+		<!-- 이게 mybatis랑 연동 되는지 모르겠는데 일단은 해봄 -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
