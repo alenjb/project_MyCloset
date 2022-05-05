@@ -27,12 +27,21 @@
 
 
 	<!-- 글쓰기 -->
-	<insert id="write"></insert>
+	<insert id="write">
+		insert into board(title, content, writer)
+		values(#{title}, #{content}, #{writer})
+	</insert>
 
-	<!-- 수정 -->
-	<insert id="update"></insert>
-
-	<!-- 삭제 -->
-	<delete id="delete"></delete>
+	<!-- 	//4. 수정 -->
+	<update id="update">
+		update board set title= #{title}, content =#{content}, writer=#{writer}
+		where no = #{no}
+	</update>
+	
+	<!-- 	//5. 삭제 -->
+	<delete id="delete">
+		delete from board
+		where no= #{no}
+	</delete>
 
 </mapper>

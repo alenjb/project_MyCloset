@@ -24,6 +24,6 @@ public interface BoardMapper {
 	public int update(BoardVO vo) throws Exception;
 	
 	//삭제
-	public int delete(BoardVO vo) throws Exception;
+	public int delete(int no) throws Exception;
 
 }
