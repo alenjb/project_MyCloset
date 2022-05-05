@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.jb.board.service.BoardService;
+import com.jb.board.vo.BoardVO;
 
 @Controller
 @RequestMapping("/board")
@@ -26,6 +27,17 @@ public class BoardController {
 	}
 	
 	//뷰
+	@GetMapping("/view.do")
+	public String view(long no, int inc, Model model) throws Exception {
+		System.out.println("BoardController.view().no, inc - " + no + ", " + inc);
+
+		// 글 내용 중에서 줄바꿈처리 해야만 한다. \n -> <br>로 바꾼다.
+		BoardVO vo = service.view(no, inc);
+		vo.setContent(vo.getContent().replace("\n", "<br>"));
+		model.addAttribute("vo", vo);
+		return "board/view";
+
+	}
 	
 	//글쓰기
 	

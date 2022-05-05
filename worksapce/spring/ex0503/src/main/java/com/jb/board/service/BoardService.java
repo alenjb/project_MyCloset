@@ -21,5 +21,12 @@ public class BoardService {
 		return mapper.list();
 	}
 	
+	//2. view
+	public BoardVO view (long no, int inc) throws Exception{
+		System.out.println("BoardService.view().no, inc - "+no + ", "+inc);
+		if(inc ==1) mapper.increase(no);
+		return mapper.view(no);
+	}
+	
 	
 }

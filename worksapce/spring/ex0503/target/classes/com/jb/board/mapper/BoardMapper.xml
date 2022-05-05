@@ -3,27 +3,36 @@
 
 <mapper namespace="com.jb.board.mapper.BoardMapper">
 
-<!-- 	리스트 -->
-<select id="list" resultType="com.jb.board.vo.BoardVO">
-	select no, title, writer, writeDate, hit
-			from board
-			order by no desc
-<!-- 	where rnum between 0 and 10 -->
-</select>
-	
-<!-- 	보기 -->
-<select id="view" resultType="com.jb.board.vo.BoardVO"></select>
+	<!-- 리스트 -->
+	<select id="list" resultType="com.jb.board.vo.BoardVO">
+		select no, title, writer, writeDate, hit
+		from board
+		order by no desc
+		<!-- where rnum between 0 and 10 -->
+	</select>
 
-<!-- 	조회수 1 증가 -->
-<update id="increase"></update>
+	<!-- 보기 -->
+	<select id="view" resultType="com.jb.board.vo.BoardVO">
+	select no, title, content, writer, writeDate, hit
+	from board
+	where no =
+	#{no}
+	</select>
+	<!-- 조회수 1 증가 -->
+	<update id="increase">
+		update board
+		set hit = hit +1
+		where no =#{no}
+	</update>
 
-<!-- 	글쓰기 -->
-<insert id="write"></insert>
 
-<!-- 	수정 -->
-<insert id="update"></insert>
-	
-<!-- 	삭제 -->
-<delete id="delete"></delete>
+	<!-- 글쓰기 -->
+	<insert id="write"></insert>
+
+	<!-- 수정 -->
+	<insert id="update"></insert>
+
+	<!-- 삭제 -->
+	<delete id="delete"></delete>
 
 </mapper>

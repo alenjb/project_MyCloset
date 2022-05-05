@@ -6,8 +6,9 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="lombok"/>
+		<item key="selection" value=""/>
 		<list key="findhistory">
+			<item value="//"/>
 			<item value="lombok"/>
 			<item value="jdbc"/>
 			<item value="ㅓ윷"/>
@@ -22,9 +23,9 @@
 			<item value="Dispatcher"/>
 			<item value="dispatcher"/>
 			<item value="aspectj"/>
-			<item value="test"/>
 		</list>
 		<list key="replacehistory">
+			<item value=""/>
 			<item value="fileName"/>
 			<item value="Image"/>
 			<item value="image"/>
