@@ -25,7 +25,8 @@
 <div class="container">
 <h2>게시판 수정 폼</h2>
 <form action="update.do" method="post">
-
+<input type="hidden" name="page" value="${param.page }">
+<input type="hidden" name="perPageNum" value="${param.perPageNum }">
 <div class="form-group">
 	<label>번호</label>
 	<input name="no" id="no" class="form-control" value="${vo.no }" readonly="readonly">

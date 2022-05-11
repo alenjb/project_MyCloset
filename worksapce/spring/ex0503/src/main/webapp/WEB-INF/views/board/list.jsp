@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@taglib prefix="pageNav" tagdir="/WEB-INF/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,14 +25,15 @@
 
 <script type="text/javascript">
 	$(function() {
-		$(".dataRow").click(function() {
-			var no = $(this).find(".no").text();
-			location = "view.do?no=" + no + "&inc=1";
-		});
+		$(".dataRow").click(function(){
+  			var no =$(this).find(".no").text();
+  			location = "view.do?no=" + no +"&inc=1&page=${pageObject.page}&perPageNum=${pageObject.perPageNum}";
+  		});
 	});
 </script>
 </head>
 <body>
+	${pageObject}
 	<div class="container">
 		<h2>게시판 리스트</h2>
 		<table class="table">
@@ -53,7 +55,12 @@
 				</tr>
 			</c:forEach>
 			<tr>
-				<td colspan="5"><a href="write.do" class="btn btn-default">쓰기</a></td>
+				<td colspan="5">
+					<pageNav:pageNav listURI="list.do" pageObject="${pageObject }"/>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="5"><a href="write.do?perPageNum=${pageObject.perPageNum }" class="btn btn-default">쓰기</a></td>
 			</tr>
 
 		</table>
