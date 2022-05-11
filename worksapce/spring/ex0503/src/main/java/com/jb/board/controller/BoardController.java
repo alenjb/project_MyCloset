@@ -7,9 +7,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.jb.board.service.BoardService;
 import com.jb.board.vo.BoardVO;
+
 
 
 @Controller
@@ -72,4 +74,22 @@ public class BoardController {
 		return "board/update";
 	}
 	
+	// 4-2. update
+	@PostMapping("update.do")
+	public String update(BoardVO vo, RedirectAttributes rttr) throws Exception {
+		System.out.println("BoardController.update().vo - " + vo);
+		service.update(vo);
+		rttr.addFlashAttribute("msg", "정보가 수정되었습니다.");
+		return "redirect:view.do?no=" + vo.getNo()+"&inc=0";
+	}
+	
+	// 5. delete
+	@GetMapping("delete.do")
+	public String delete(int no, RedirectAttributes rttr) throws Exception {
+		System.out.println("BoardController.delete().no - " + no);
+		service.delete(no);
+		
+		rttr.addFlashAttribute("msg", "성공적으로 글 삭제가 되었습니다.");
+		return "redirect:list.do";
+	}
 }
