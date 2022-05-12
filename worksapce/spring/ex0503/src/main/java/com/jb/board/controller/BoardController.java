@@ -36,7 +36,7 @@ public class BoardController {
 			pageObject.setPage(1);
 
 		System.out.println("BoardController.list()");
-		model.addAttribute("list", service.list());
+		model.addAttribute("list", service.list(pageObject));
 		return "board/list";
 	}
 	

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.jb.board.mapper.BoardMapper;
 import com.jb.board.vo.BoardVO;
+import com.webjjang.util.PageObject;
 
 @Service
 public class BoardService {
@@ -15,10 +16,10 @@ public class BoardService {
 	@Inject
 	private BoardMapper mapper;
 	
-	public List<BoardVO> list() throws Exception{
-		System.out.println("BoardService.list()");
-
-		return mapper.list();
+	public List<BoardVO> list(PageObject pageObject) throws Exception{
+//		pageObject.setTotalRow(mapper.getTotalRow(pageObject));
+		System.out.println("BoardService.list()/pageObject - "+pageObject);
+		return mapper.list(pageObject);
 	}
 	
 	//2. view

@@ -33,9 +33,12 @@
 </script>
 </head>
 <body>
-	${pageObject}
 	<div class="container">
 		<h2>게시판 리스트</h2>
+		
+		
+		
+		
 		<table class="table">
 			<tr>
 				<th>번호</th>
@@ -60,7 +63,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td colspan="5"><a href="write.do?perPageNum=${pageObject.perPageNum }" class="btn btn-default">쓰기</a></td>
+				<td colspan="5"><a href="write.do" class="btn btn-default">쓰기</a></td>
 			</tr>
 
 		</table>
