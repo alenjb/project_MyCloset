@@ -14,7 +14,7 @@ public interface BoardMapper {
 
 	// 1-2. 전체 데이터 개수
 	// 검색 조건에 맞는 데이터를 가져오기 위해 pageObject를 파라미터로 받음
-//	public long getTotalRow(PageObject pageObject) throws Exception;
+	public long getTotalRow(PageObject pageObject) throws Exception;
 
 	// 보기
 	public BoardVO view(long no) throws Exception;
