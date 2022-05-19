@@ -17,7 +17,7 @@ public class BoardService {
 	private BoardMapper mapper;
 	
 	public List<BoardVO> list(PageObject pageObject) throws Exception{
-//		pageObject.setTotalRow(mapper.getTotalRow(pageObject));
+		pageObject.setTotalRow(mapper.getTotalRow(pageObject));
 		System.out.println("BoardService.list()/pageObject - "+pageObject);
 		return mapper.list(pageObject);
 	}

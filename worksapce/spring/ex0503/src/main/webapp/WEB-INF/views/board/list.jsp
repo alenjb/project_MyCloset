@@ -63,7 +63,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td colspan="5"><a href="write.do" class="btn btn-default">쓰기</a></td>
+				<td colspan="5"><a href="write.do?perPageNum=${pageObject.perPageNum }" class="btn btn-default">쓰기</a></td>
 			</tr>
 
 		</table>
