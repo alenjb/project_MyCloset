@@ -11,6 +11,7 @@
 			from(
 				select no, title, writer, writeDate, hit
 				from board
+				<include refid="search"/>
 				order by no desc
 				) AS A, (SELECT @ROWNUM:=0) AS B
                 
@@ -21,8 +22,55 @@
 	<!-- //1-2. 전체 데이터 개수 -->
 	<select id="getTotalRow" resultType="long">
 		select count(*) from board
-		<!-- <include refid="search" /> -->
+		<include refid="search" />
 	</select>
+<!-- 	검색족던 처리를 위한 태그- 부분태그: sql -->
+	<sql id="search">
+		<if test="word != null and word!= ''.toString()">
+			where 
+			<if test="key =='t'.toString()">
+				title like CONCAT('%',#{word},'%')
+
+			</if>
+			<if test="key =='c'.toString()">
+				content like CONCAT('%',#{word},'%')
+
+			</if>
+			<if test="key =='w'.toString()">
+				writer like CONCAT('%',#{word},'%')
+
+			</if>
+			<if test="key =='tc'.toString()">
+				title like CONCAT('%',#{word},'%')
+
+				or content like CONCAT('%',#{word},'%')
+
+			</if>			
+			<if test="key =='tw'.toString()">
+				title like CONCAT('%',#{word},'%')
+
+				or writer like CONCAT('%',#{word},'%')
+
+			</if>			
+			<if test="key =='cw'.toString()">
+				content like CONCAT('%',#{word},'%')
+
+				or writer like CONCAT('%',#{word},'%')
+
+			</if>			
+			<if test="key =='tcw'.toString()">
+				title like CONCAT('%',#{word},'%')
+
+				or content like CONCAT('%',#{word},'%')
+
+				or writer like CONCAT('%',#{word},'%')
+
+				
+			</if>			
+
+		</if>
+	</sql>
+	
 	<!-- 보기 -->
 	<select id="view" resultType="com.jb.board.vo.BoardVO">
 		select no, title, content, writer,

@@ -50,21 +50,22 @@
 <!-- 		검색에 대한 div -->
 			<div class="col-md-8">
 				<form class="form-inline">
+				<input type="hidden" name="perPageNum" value="${pageObject.perPageNum }">
 					<div class="input-group">
+<!-- 					여기에 이름을 key로 설정하면 pageObject의 key와 자동으로 매칭이 됨 -->
 							<select name="key" class="form-control">
-								<option>제목</option>
-								<option>내용</option>
-								<option>작성자</option>
-								<option>제목/내용</option>
-								<option>제목/작성자</option>
-								<option>내용</option>
-								<option>작성자</option>
-								<option>모두</option>								
+								<option value="t" ${(pageObject.key =="t") ? "seleted":""}>제목</option>
+								<option value="c" ${(pageObject.key =="c") ? "seleted":""}>내용</option>
+								<option value="w" ${(pageObject.key =="w") ? "seleted":""}>작성자</option>
+								<option value="tc" ${(pageObject.key =="tc") ? "seleted":""}>제목/내용</option>
+								<option value="tw" ${(pageObject.key =="tw") ? "seleted":""}>제목/작성자</option>
+								<option value="cw" ${(pageObject.key =="cw") ? "seleted":""}>내용/작성자</option>
+								<option value="tcw" ${(pageObject.key =="tcw") ? "seleted":""}>모두</option>								
 							</select>
 					</div>
 					<div class="input-group">
 						<input type="text" class="form-control" placeholder="Search"
-							name="word">
+							name="word" value="${pageObject.word }">
 						<div class="input-group-btn">
 							<button class="btn btn-default" type="submit">
 								<i class="glyphicon glyphicon-search"></i>
@@ -118,7 +119,7 @@
 			</c:forEach>
 			<tr>
 				<td colspan="5"><pageNav:pageNav listURI="list.do"
-						pageObject="${pageObject }" /></td>
+						pageObject="${pageObject }" query="key=${pageObject.key }&word=${pageObject.word }" /></td>
 			</tr>
 			<tr>
 				<td colspan="5"><a

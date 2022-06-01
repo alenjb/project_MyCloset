@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jb.notice.mapper.NoticeMapper">
+
+	<!-- 리스트 -->
+	<select id="list" resultType="com.jb.notice.vo.NoticeVO">
+		select no, title, startDate, endDate, updateDate
+		from(	
+			select (@ROWNUM:=@ROWNUM+1) AS RNUM, no, title, startDate, endDate, updateDate
+			from(
+				select no, title, startDate, endDate, updateDate
+				from notice
+				where 1=1
+				<include refid="search"/>
+				<include refid="searchPeriod"/>
+				order by updateDate desc
+				) AS A, (SELECT @ROWNUM:=0) AS B
+                
+			) AS C
+            where C.RNUM between #{startRow} and #{endRow}
+
+
+	</select>
+
+	<!-- //1-2. 전체 데이터 개수 -->
+	<select id="getTotalRow" resultType="long">
+		select count(*) 
+		from notice
+		where 1=1 
+		<include refid="search" />
+		<include refid="searchPeriod"/>
+	</select>
+<!-- 	검색족던 처리를 위한 태그- 부분태그: sql -->
+	<sql id="search">
+		<if test="word != null and word!= ''.toString()">
+			and (
+			<if test="key =='t'.toString()">
+				title like CONCAT('%',#{word},'%')
+
+			</if>
+			<if test="key =='c'.toString()">
+				content like CONCAT('%',#{word},'%')
+
+			</if>
+			<if test="key =='tc'.toString()">
+				title like CONCAT('%',#{word},'%')
+
+				or content like CONCAT('%',#{word},'%')
+			</if>			
+			)
+		</if>
+	</sql>
+	
+	<sql id="searchPeriod">
+		and (
+		<if test="period == 'pre'">
+		<![CDATA[ 
+			startDate <= SYSDATE()  and endDate >= DATE(SYSDATE())
+		 ]]>
+		</if>
+		
+		<if test="period == 'old'">
+		<![CDATA[ 
+			endDate < DATE(SYSDATE())
+		 ]]>
+		</if>
+		
+		<if test="period == 'res'">
+		<![CDATA[ 
+			startDate > SYSDATE()
+		 ]]>
+		 </if>
+		 
+		 <if test="period == 'all'">
+		<![CDATA[ 
+			1=1
+		 ]]>
+		</if>
+		)
+	</sql>
+	
+	<!-- 보기 -->
+	<select id="view" resultType="com.jb.notice.vo.NoticeVO">
+		select no, title, startDate, endDate, updateDate
+		from notice
+		where no =
+		#{no}
+	</select>
+
+	<!-- 글쓰기 -->
+	<insert id="write">
+		insert into notice(title, content, startDate, endDate)
+		values(#{title}, #{content}, #{startDate}, #{endDate})
+	</insert>
+
+	<!-- //4. 수정 -->
+	<update id="update">
+		update notice set title= #{title}, content
+		=#{content}, startDate= #{startDate}, endDate=#{endDate}, updateDate= sysDate
+		where no = #{no}
+	</update>
+
+	<!-- //5. 삭제 -->
+	<delete id="delete">
+		delete from notice
+		where no= #{no}
+	</delete>
+
+</mapper>
