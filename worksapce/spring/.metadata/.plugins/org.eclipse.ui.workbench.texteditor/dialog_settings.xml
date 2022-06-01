@@ -6,25 +6,31 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="start"/>
+		<item key="selection" value=""/>
 		<list key="findhistory">
-			<item value="start"/>
-			<item value="//"/>
-			<item value="lombok"/>
-			<item value="jdbc"/>
-			<item value="ㅓ윷"/>
+			<item value="noticeController"/>
+			<item value="perP"/>
+			<item value="per"/>
 			<item value=".do"/>
-			<item value="mysql"/>
-			<item value="log4j"/>
-			<item value="maven"/>
-			<item value="runtime"/>
-			<item value="con"/>
-			<item value="compile"/>
-			<item value="msg"/>
-			<item value="Dispatcher"/>
-			<item value="dispatcher"/>
+			<item value="ex"/>
+			<item value="ㄷㅌ"/>
+			<item value="startDate"/>
+			<item value="do"/>
+			<item value="hit"/>
+			<item value="test"/>
+			<item value="${pageObject.key}"/>
+			<item value="key}&amp;word=${pageObject.word}&amp;period=pre&quot; class=&apos;btn btn-default ${(pageObject.period == &quot;pre&quot;)?&quot;blueBg&quot;:&quot;&quot; }&apos;&gt;현재&lt;/a&gt;"/>
+			<item value="writeDate"/>
+			<item value="write"/>
+			<item value="get"/>
 		</list>
 		<list key="replacehistory">
+			<item value="writeDate"/>
+			<item value="${pageObject.word}"/>
+			<item value="startDate"/>
+			<item value="notice"/>
+			<item value="Notice"/>
+			<item value="like CONCAT(&apos;%&apos;,#{word},&apos;%&apos;)&#x0A;"/>
 			<item value=""/>
 			<item value="fileName"/>
 			<item value="Image"/>
@@ -32,14 +38,12 @@
 			<item value="changeStatus"/>
 			<item value="Member"/>
 			<item value="member"/>
-			<item value="notice"/>
-			<item value="Notice"/>
 			<item value="&apos;%&apos;"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="766"/>
-		<item key="DIALOG_Y_ORIGIN" value="397"/>
+		<item key="DIALOG_X_ORIGIN" value="810"/>
+		<item key="DIALOG_Y_ORIGIN" value="129"/>
 		<item key="DIALOG_WIDTH" value="322"/>
 		<item key="DIALOG_HEIGHT" value="391"/>
 		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>

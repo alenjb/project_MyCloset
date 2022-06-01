@@ -2,6 +2,7 @@ package com.mycloset.notice.controller;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,13 +17,15 @@ import com.webjjang.util.PageObject;
 @Controller
 @RequestMapping("/notice")
 public class NoticeController {
-
+	
+	@Autowired
 	private NoticeService service;
 	
 	//1.리스트(list)
 	@GetMapping("/list")
 	public String list(@ModelAttribute PageObject pageObject, Model model) throws Exception{
 		System.out.println("NoticeController.list()");
+		model.addAttribute("list", service.list(pageObject));
 		return "notice/list";
 	}
 	
@@ -37,6 +40,7 @@ public class NoticeController {
 	//3-1 writeForm
 	@GetMapping("/write")
 	public String writeForm() throws Exception {
+		System.out.println("writeForm()");
 		return "notice/write";
 	}
 	

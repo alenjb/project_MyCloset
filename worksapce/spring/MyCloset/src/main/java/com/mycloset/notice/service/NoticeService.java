@@ -2,13 +2,18 @@ package com.mycloset.notice.service;
 
 import java.util.List;
 
+
 import javax.inject.Inject;
+
+import org.springframework.stereotype.Service;
 
 import com.mycloset.notice.mapper.NoticeMapper;
 import com.mycloset.notice.vo.NoticeVO;
 import com.webjjang.util.PageObject;
 
+@Service
 public class NoticeService {
+	
 	@Inject
 	private NoticeMapper mapper;
 	
