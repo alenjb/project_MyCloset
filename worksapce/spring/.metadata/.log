@@ -6410,3 +6410,69 @@ java.nio.file.FileSystemException: D:\jeongbin\worksapce\spring\ex0503\target\cl
 
 !ENTRY org.eclipse.m2e.logback.appender 2 0 2022-06-01 20:00:25.574
 !MESSAGE Using platform encoding (utf-8 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-06-01 20:04:28.466
+!MESSAGE Using platform encoding (utf-8 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-06-01 20:04:28.470
+!MESSAGE Using platform encoding (utf-8 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2022-06-01 20:04:34.737
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2022-06-01 20:04:34.740
+!MESSAGE classpath=54 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2022-06-01 20:04:34.741
+!MESSAGE buffering callback sts4.classpath.CdhDLOMG ex0503 false 54
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2022-06-01 20:04:34.741
+!MESSAGE executing callback sts4.classpath.CdhDLOMG 1 batched events
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2022-06-01 20:04:34.864
+!MESSAGE executing callback sts4.classpath.CdhDLOMG SUCCESS [done]
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-06-01 20:04:35.467
+!MESSAGE Using platform encoding (utf-8 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-06-01 20:04:35.478
+!MESSAGE Using platform encoding (utf-8 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-06-01 20:04:35.486
+!MESSAGE Using platform encoding (utf-8 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-06-01 20:09:54.772
+!MESSAGE Using platform encoding (utf-8 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-06-01 20:09:54.777
+!MESSAGE Using platform encoding (utf-8 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-06-01 20:16:36.815
+!MESSAGE Using platform encoding (utf-8 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-06-01 20:16:36.820
+!MESSAGE Using platform encoding (utf-8 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-06-01 20:17:25.163
+!MESSAGE Using platform encoding (utf-8 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-06-01 20:17:25.166
+!MESSAGE Using platform encoding (utf-8 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-06-01 20:19:07.199
+!MESSAGE Using platform encoding (utf-8 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-06-01 20:19:07.203
+!MESSAGE Using platform encoding (utf-8 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-06-01 20:19:20.899
+!MESSAGE Using platform encoding (utf-8 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-06-01 20:19:20.904
+!MESSAGE Using platform encoding (utf-8 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-06-01 20:19:39.469
+!MESSAGE Using platform encoding (utf-8 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-06-01 20:19:39.474
+!MESSAGE Using platform encoding (utf-8 actually) to copy filtered resources, i.e. build is platform dependent!

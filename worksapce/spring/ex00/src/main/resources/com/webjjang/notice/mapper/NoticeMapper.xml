@@ -75,7 +75,7 @@
 			
 	<!-- 	//2-1. 보기 -->
 	<select id="view" resultType="com.webjjang.notice.vo.NoticeVO">
-		select no, title, content, startDate, endDate, updateDate, writeDate
+		select no, title, content, startDate, endDate, updateDate
 		from notice
 		where no = #{no}
 	</select>
