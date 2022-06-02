@@ -4,7 +4,7 @@
 <!-- 1.리스트(list) -->
 
 <select id="list" resultType="com.mycloset.notice.vo.NoticeVO">
-			select no, title, writer, writeDate, endDate
+		select no, title, writer, writeDate, endDate
 		from(	
 			select (@ROWNUM:=@ROWNUM+1) AS RNUM, no, title, writer, writeDate, endDate
 			from(
@@ -17,7 +17,8 @@
 				) AS A, (SELECT @ROWNUM:=0) AS B
                 
 			) AS C
-            where C.RNUM between #{startRow} and #{endRow}
+<!-- 			아직 row 처리를 안함 -->
+<!--             where C.RNUM between #{startRow} and #{endRow} -->
 </select>
 <!-- 1-1 전체 데이터 개수(getTotalRow) -->
 <select id="getTotalRow" resultType="long">

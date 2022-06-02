@@ -35,7 +35,6 @@
 <!-- 			왜 이거만 클래스 줌? -->
 				<td class="no">${vo.no}</td>
 				<td>${vo.title}</td>
-				<td>${vo.no}</td>
 				<td>${vo.writer}</td>
 				<td><fmt:formatDate value="${vo.writeDate}" pattern="yyyy-MM-dd"/></td>
 				<td><fmt:formatDate value="${vo.endDate}" pattern="yyyy-MM-dd"/></td>

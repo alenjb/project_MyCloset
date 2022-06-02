@@ -32,8 +32,12 @@
         class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
 <!--         여기가 어떤 데이터베이스 쓸지 설정하는 곳 -->
-        <property name="url"
-            value="jdbc:mysql://127.0.0.1:3306/mycloset?allowPublicKeyRetrieval=true&amp;serverTimezone=UTC">
+        <property name="url" 
+        value="jdbc:mysql://127.0.0.1:3306/mycloset?useSSL=false&amp;allowPublicKeyRetrieval=true&amp;serverTimezone=UTC">
+
+<!-- 원래버젼 -->
+<!--             value="jdbc:mysql://127.0.0.1:3306/mycloset?allowPublicKeyRetrieval=true&amp;serverTimezone=UTC"> -->
+      
         </property>
         <property name="username" value="root"></property>
         <property name="password" value="dlwjdqls15!"></property>
@@ -50,6 +54,7 @@
 <!-- 	추가한부분 -->
 	<mybatis-spring:scan base-package="com.mycloset" />
 <!-- 	ㅁ-->
+
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
  		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"/>
 	</bean>
