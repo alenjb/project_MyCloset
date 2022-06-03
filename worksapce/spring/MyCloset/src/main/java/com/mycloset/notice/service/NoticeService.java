@@ -20,6 +20,7 @@ public class NoticeService {
 	//1.리스트(list)
 	public List<NoticeVO> list(PageObject pageObject) throws Exception{
 		System.out.println("NoticeService.list()/pageObject - "+pageObject);
+		pageObject.setTotalRow(mapper.getTotalRow(pageObject));
 		return mapper.list(pageObject);
 	}
 	//2.글보기(view)

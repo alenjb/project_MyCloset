@@ -29,9 +29,12 @@
 				.click(
 						function() {
 							var no = $(this).find(".no").text();
-							location = "view.do?no="
+							location = "view?no="
 									+ no
-									+ "&inc=1";
+									+ "&inc=1"
+									+"&page=${pageObject.page}&perPageNum=${pageObject.perPageNum}"
+							;
+									
 						});
 			});
 </script>

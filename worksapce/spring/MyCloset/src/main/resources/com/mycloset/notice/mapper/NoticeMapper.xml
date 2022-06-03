@@ -18,7 +18,7 @@
                 
 			) AS C
 <!-- 			아직 row 처리를 안함 -->
-<!--             where C.RNUM between #{startRow} and #{endRow} -->
+            where C.RNUM between #{startRow} and #{endRow}
 </select>
 <!-- 1-1 전체 데이터 개수(getTotalRow) -->
 <select id="getTotalRow" resultType="long">

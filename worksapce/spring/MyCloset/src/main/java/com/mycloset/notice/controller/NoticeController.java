@@ -24,6 +24,12 @@ public class NoticeController {
 	//1.리스트(list)
 	@GetMapping("/list")
 	public String list(@ModelAttribute PageObject pageObject, Model model) throws Exception{
+		
+		//페이지가 1보다 작으면 1페이지로 설정
+		if(pageObject.getPage() < 1) {
+			pageObject.setPage(1);
+		}
+		
 		System.out.println("NoticeController.list()");
 		model.addAttribute("list", service.list(pageObject));
 		return "notice/list";
@@ -37,7 +43,6 @@ public class NoticeController {
 		System.out.println(vo.getContent()+"vo.getContent()");
 		//줄바꿈 처리
 		vo.setContent(vo.getContent().replace("\n", "<br>"));
-		vo.setContent(vo.getContent());
 		model.addAttribute("vo", vo);
 		return "notice/view";
 	}
@@ -52,10 +57,10 @@ public class NoticeController {
 	
 	//3-2 write
 	@PostMapping("/write")
-	public String write(NoticeVO vo, HttpServletResponse response) throws Exception {
+	public String write(NoticeVO vo, PageObject pageObject, HttpServletResponse response) throws Exception {
 		System.out.println("NoticeController.write().vo - " + vo);
 		service.write(vo);
-		return "redirect:list";
+		return "redirect:list?page=1&perPageNum="+pageObject.getPerPageNum();
 	}
 	
 	//4. 수정(update)
@@ -69,19 +74,18 @@ public class NoticeController {
 	}
 	//4-2 update
 	@PostMapping("/update")
-	public String update(NoticeVO vo, HttpServletResponse response) throws Exception {
+	public String update(NoticeVO vo, PageObject pageObject, HttpServletResponse response) throws Exception {
 		System.out.println("NoticeController.update().vo - " + vo);
 		service.update(vo);
-		return "redirect:list";
+		return "redirect:list?page="+pageObject.getPage()+ "&perPageNum="+pageObject.getPerPageNum();
 	}
 	
 	//5. 삭제(delete)
 	@GetMapping("/delete")
-	public String delete(long no) throws Exception {
+	public String delete(long no, PageObject pageObject) throws Exception {
 		System.out.println("delete().no-"+no);
 		service.delete(no);
-		return "redirect:list";
-	}
+		return "redirect:list?page=1&perPageNum="+pageObject.getPerPageNum();	}
 	
 	
 	

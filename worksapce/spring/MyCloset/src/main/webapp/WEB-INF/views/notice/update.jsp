@@ -28,6 +28,9 @@
 	<div class="container">
 		<h2>공지 수정폼</h2>
 		<form action="update" method="post">
+<!-- 		이 부분이 있어야 param의 page와 perPageNum이 그대로 넘어감 -->
+			<input type="hidden" name="page" value="${param.page }"> 
+			<input type="hidden" name="perPageNum" value="${param.perPageNum }">
 			<div class="form-group">
 				<label>제목</label> <input name="title" id="title"
 					class="form-control" value="${vo.title}">
