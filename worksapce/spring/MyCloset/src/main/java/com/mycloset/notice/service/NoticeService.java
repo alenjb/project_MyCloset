@@ -36,10 +36,15 @@ public class NoticeService {
 	}
 	
 	//4. 수정(update)
-	
-	//4-1 updateForm
-	//4-2 update
+	public int update(NoticeVO vo)throws Exception{
+		System.out.println("NoticeService.update().vo - "+vo);
+		return mapper.update(vo);
+	}
 	
 	//5. 삭제(delete)
+	public int delete(long no)throws Exception{
+		System.out.println("NoticeService.delte().no-"+no);
+		return mapper.delete(no);
+	}
 		
 }

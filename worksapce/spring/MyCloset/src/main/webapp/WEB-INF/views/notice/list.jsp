@@ -16,6 +16,25 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<style type="text/css">
+.dataRow:hover {
+	background: #eee;
+	cursor: pointer;
+}
+</style>
+<script type="text/javascript">
+	$(function() {
+		$(".dataRow")
+				.click(
+						function() {
+							var no = $(this).find(".no").text();
+							location = "view.do?no="
+									+ no
+									+ "&inc=1";
+						});
+			});
+</script>
 </head>
 <body>
 	<div class="container">

@@ -33,6 +33,12 @@ public class NoticeController {
 	@GetMapping("/view")
 	public String view(long no, Model model) throws Exception{
 		System.out.println("NoticeController.view()");
+		NoticeVO vo = service.view(no);
+		System.out.println(vo.getContent()+"vo.getContent()");
+		//줄바꿈 처리
+		vo.setContent(vo.getContent().replace("\n", "<br>"));
+		vo.setContent(vo.getContent());
+		model.addAttribute("vo", vo);
 		return "notice/view";
 	}
 	//3.글쓰기(write)
@@ -55,9 +61,27 @@ public class NoticeController {
 	//4. 수정(update)
 	
 	//4-1 updateForm
+	@GetMapping("/update")
+	public String updateForm(long no, Model model) throws Exception {
+		System.out.println("updateForm().no-"+no);
+		model.addAttribute("vo", service.view(no));
+		return "notice/update";
+	}
 	//4-2 update
+	@PostMapping("/update")
+	public String update(NoticeVO vo, HttpServletResponse response) throws Exception {
+		System.out.println("NoticeController.update().vo - " + vo);
+		service.update(vo);
+		return "redirect:list";
+	}
 	
 	//5. 삭제(delete)
+	@GetMapping("/delete")
+	public String delete(long no) throws Exception {
+		System.out.println("delete().no-"+no);
+		service.delete(no);
+		return "redirect:list";
+	}
 	
 	
 	

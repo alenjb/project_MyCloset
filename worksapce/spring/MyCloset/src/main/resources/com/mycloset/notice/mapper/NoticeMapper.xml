@@ -41,7 +41,13 @@
 	values(#{title}, #{content}, #{writer}, #{writeDate}, #{endDate})
 </insert>
 <!-- 4. 수정(update) -->
-
+<update id="update">
+	update notice set title=#{title}, content=#{content}, writer=#{writer}, writeDate=SYSDATE(), endDate=#{endDate}
+	where no = #{no}
+</update>
 <!-- 5. 삭제(delete) -->
-
+<delete id="delete">
+	delete from notice
+	where no =#{no}
+</delete>
 </mapper>

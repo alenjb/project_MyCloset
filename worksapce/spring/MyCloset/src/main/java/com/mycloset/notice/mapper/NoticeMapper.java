@@ -26,6 +26,6 @@ public interface NoticeMapper {
 	
 	//5. 삭제(delete)
 	
-	public int delete(int no) throws Exception;
+	public int delete(long no) throws Exception;
 
 }
