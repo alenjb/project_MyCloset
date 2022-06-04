@@ -11,8 +11,8 @@
 				select no, title, writer, writeDate, endDate
 				from notice
 				where 1=1
-<!-- 				<include refid="search"/> -->
-<!-- 				<include refid="searchPeriod"/> -->
+				<include refid="search"/>
+				<include refid="searchPeriod"/>
 				order by writeDate desc
 				) AS A, (SELECT @ROWNUM:=0) AS B
                 
@@ -20,6 +20,56 @@
 <!-- 			아직 row 처리를 안함 -->
             where C.RNUM between #{startRow} and #{endRow}
 </select>
+<!-- 검색 처리 태그 -->
+<sql id="search">
+	<if test="word !=null and word!= ''.toString()">
+		and (
+		<if test="key == 't'.toString()">
+			title like CONCAT('%', #{word}, '%')
+		</if>
+		<if test="key == 'c'.toString()">
+			content like CONCAT('%', #{word}, '%')
+		</if>
+		<if test="key == 'tc'.toString()">
+			title like CONCAT('%', #{word}, '%')
+			
+			or 	
+			content like CONCAT('%', #{word}, '%')
+		</if>
+		)
+	</if>
+</sql>
+
+
+<!-- 기간검색 태그 -->
+<sql id="searchPeriod">
+	<if test="period == 'pre'">
+	and(
+		<![CDATA[
+			startDate <= DATE(SYSDATE()) and endDate >= DATE(SYSDATE())
+		]]>
+	</if>
+	
+		<if test="period == 'old'">
+		<![CDATA[
+			endDate < DATE(SYSDATE())
+		]]>
+	</if>
+	
+		<if test="period == 'res'">
+		<![CDATA[
+			startDate > DATE(SYSDATE())
+		]]>
+	</if>
+	
+		<if test="period == 'all'">
+		<![CDATA[
+			1=1
+		]]>
+	</if>
+	)
+	
+</sql>
 <!-- 1-1 전체 데이터 개수(getTotalRow) -->
 <select id="getTotalRow" resultType="long">
 	select count(*)

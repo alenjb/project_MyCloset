@@ -1,5 +1,7 @@
 package com.mycloset.notice.controller;
 
+import java.net.URLEncoder;
+
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,7 +79,8 @@ public class NoticeController {
 	public String update(NoticeVO vo, PageObject pageObject, HttpServletResponse response) throws Exception {
 		System.out.println("NoticeController.update().vo - " + vo);
 		service.update(vo);
-		return "redirect:list?page="+pageObject.getPage()+ "&perPageNum="+pageObject.getPerPageNum();
+		return "redirect:list?page="+pageObject.getPage()+ "&perPageNum="+pageObject.getPerPageNum()+"&key="+pageObject.getKey()+
+				"&word="+URLEncoder.encode(pageObject.getKey(), "utf-8");
 	}
 	
 	//5. 삭제(delete)

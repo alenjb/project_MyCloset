@@ -6,8 +6,13 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="update"/>
+		<item key="selection" value="getTo"/>
 		<list key="findhistory">
+			<item value="getTo"/>
+			<item value="get"/>
+			<item value="startRow"/>
+			<item value="startrow"/>
+			<item value="row"/>
 			<item value="update"/>
 			<item value="noticeController"/>
 			<item value="perP"/>
@@ -18,11 +23,6 @@
 			<item value="startDate"/>
 			<item value="do"/>
 			<item value="hit"/>
-			<item value="test"/>
-			<item value="${pageObject.key}"/>
-			<item value="key}&amp;word=${pageObject.word}&amp;period=pre&quot; class=&apos;btn btn-default ${(pageObject.period == &quot;pre&quot;)?&quot;blueBg&quot;:&quot;&quot; }&apos;&gt;현재&lt;/a&gt;"/>
-			<item value="writeDate"/>
-			<item value="write"/>
 		</list>
 		<list key="replacehistory">
 			<item value="writeDate"/>

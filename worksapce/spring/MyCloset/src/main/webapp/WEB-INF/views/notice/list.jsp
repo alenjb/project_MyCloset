@@ -32,7 +32,7 @@
 							location = "view?no="
 									+ no
 									+ "&inc=1"
-									+"&page=${pageObject.page}&perPageNum=${pageObject.perPageNum}"
+									+"&page=${pageObject.page}&perPageNum=${pageObject.perPageNum}&key=${pageObject.key}&word=${pageObject.word}"
 							;
 									
 						});

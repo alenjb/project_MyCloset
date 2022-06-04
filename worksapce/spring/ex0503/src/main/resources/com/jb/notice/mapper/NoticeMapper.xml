@@ -31,7 +31,7 @@
 		<include refid="search" />
 		<include refid="searchPeriod"/>
 	</select>
-<!-- 	검색족던 처리를 위한 태그- 부분태그: sql -->
+<!-- 	검색조건 처리를 위한 태그- 부분태그: sql -->
 	<sql id="search">
 		<if test="word != null and word!= ''.toString()">
 			and (
