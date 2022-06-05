@@ -46,19 +46,19 @@
 	<if test="period == 'pre'">
 	and(
 		<![CDATA[
-			startDate <= DATE(SYSDATE()) and endDate >= DATE(SYSDATE())
+			writeDate <= SYSDATE() and endDate >= SYSDATE()
 		]]>
 	</if>
 	
 		<if test="period == 'old'">
 		<![CDATA[
-			endDate < DATE(SYSDATE())
+			endDate < SYSDATE()
 		]]>
 	</if>
 	
 		<if test="period == 'res'">
 		<![CDATA[
-			startDate > DATE(SYSDATE())
+			writeDate > SYSDATE()
 		]]>
 	</if>
 	

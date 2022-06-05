@@ -41,6 +41,65 @@
 </head>
 <body>
 	<div class="container">
+	
+<!-- 	기간검색  -->
+	<div style="margin: 5px 0px">
+		<a href="list.do?page=${pageObject.page}&perPageNum=${pageObject.perPageNum}&key=${pageObject.key}&word=${pageObject.word}&period=pre" class='btn btn-${(pageObject.period == "pre")?"primary":"default"}'>현재 공지</a>
+		<a href="list.do?page=${pageObject.page}&perPageNum=${pageObject.perPageNum}&key=${pageObject.key}&word=${pageObject.word}&period=old" class='btn btn-${(pageObject.period == "old")?"primary":"default"}'>지난 공지</a>
+		<a href="list.do?page=${pageObject.page}&perPageNum=${pageObject.perPageNum}&key=${pageObject.key}&word=${pageObject.word}&period=res" class='btn btn-${(pageObject.period == "res")?"primary":"default"}'>예약 공지</a>
+		<a href="list.do?page=${pageObject.page}&perPageNum=${pageObject.perPageNum}&key=${pageObject.key}&word=${pageObject.word}&period=all" class='btn btn-${(pageObject.period == "all")?"primary":"default"}'>모든 공지</a>
+	</div>
+
+		<!-- 	단어 검색 -->
+		<div class="row" style="margin-bottom: 5px;">
+			<div class="col-md-8">
+				<form class="form-inline">
+					<input type="hidden" name="perPageNum"
+						value="${pageObject.perPageNum}">
+					<!-- 		어떤 조건으로 검색할 지 고르는 div -->
+					<div class="input-group">
+						<!-- 			여기에 이름을 key로 설정하면 pageObject의 key와 자동으로 매칭이 됨 -->
+						<select name="key" class="form-control">
+							<option value="t" ${(pageObject.key=="t")? "selected":"" }>제목</option>
+							<option value="c" ${(pageObject.key=="c")? "selected":"" }>내용</option>
+							<option value="tc" ${(pageObject.key=="tc")? "selected":"" }>전체</option>
+						</select>
+					</div>
+
+					<!-- 			검색창 div -->
+					<div class="input-group">
+						<input type="text" class="form-control" placeholder="Search"
+							name="word" value="${pageObject.word }">
+						<div class="input-group-btn">
+							<button class="btn btn-default" type="submit">
+								<i class="glyphicon glyphicon-search"></i>
+							</button>
+						</div>
+					</div>
+				</form>
+
+			</div>
+<!-- 			한페이지당 보여주는 데이터 개수 -->
+		<div class="col-md-4 text-right">
+			<form action="lsit.do" class="form-inline" id="perPageNum">
+<!-- 			한페이지에 보이는개수를 바꾸면 1페이지로 이동 -->
+				<input type="hidden" name="page" value="1">
+				<input type="hidden" name="key" value="${pageObject.key }">
+				<input type="hidden" name="word" value="${pageObject.word }">
+					<div class="form-group">
+						<label>페이지당 게시글 개수 <select name="perPageNum"
+							class="form-control" id="perPageNumSelect">
+								<option ${(pageObject.perPageNum==5)?"selected":"" }>5</option>
+								<option ${(pageObject.perPageNum==10)?"selected":"" }>10</option>
+								<option ${(pageObject.perPageNum==15)?"selected":"" }>15</option>
+								<option ${(pageObject.perPageNum==20)?"selected":"" }>20</option>
+
+						</select>
+						</label>
+					</div>
+				</form>
+		</div>
+		</div>
 		<h2>공지 리스트</h2>
 		<table class="table">
 		<tr>
