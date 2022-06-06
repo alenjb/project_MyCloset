@@ -18,6 +18,9 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
+<input type="hidden" name="key" value="${pageObject.key}">
+<input type="hidden" name="word" value="${pageObject.word}">
+<input type="hidden" name="period" value="${pageObject.period}">
 	<div class="container">
 		<h2>공지 글보기</h2>
 		<table class="table">
@@ -49,7 +52,7 @@
 			<td colspan="2">
 			<a href="update?no=${vo.no }&inc=0&page=${param.page}&perPageNum=${param.perPageNum}&key=${param.key}&word=${param.word}" class="btn btn-default">수정</a>
 			<a href="delete?no=${vo.no }" class="btn btn-default" id="deleteBtn">삭제</a>
-			<a href="list?page=${param.page}&perPageNum=${param.perPageNum}&key=${param.key}&word=${param.word}" class="btn btn-default">리스트</a>
+			<a href="list?page=${param.page}&perPageNum=${param.perPageNum}&key=${param.key}&word=${param.word}&period=${param.period}" class="btn btn-default">리스트</a>
 			</td>
 		</table>
 	</div>

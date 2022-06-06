@@ -6,25 +6,29 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="getTo"/>
+		<item key="selection" value=".do"/>
 		<list key="findhistory">
+			<item value=".do"/>
+			<item value="perPageNumF"/>
+			<item value="perPageNumSe"/>
+			<item value="CURDATE()"/>
+			<item value="DATE(SYSDATE())"/>
+			<item value="DATE_FORMAT(SYSDATE(),&apos;%Y-%m-%d&apos;)"/>
+			<item value="SYSDATE()"/>
+			<item value="SYS"/>
+			<item value="startDate"/>
+			<item value="start"/>
 			<item value="getTo"/>
 			<item value="get"/>
 			<item value="startRow"/>
 			<item value="startrow"/>
 			<item value="row"/>
-			<item value="update"/>
-			<item value="noticeController"/>
-			<item value="perP"/>
-			<item value="per"/>
-			<item value=".do"/>
-			<item value="ex"/>
-			<item value="ㄷㅌ"/>
-			<item value="startDate"/>
-			<item value="do"/>
-			<item value="hit"/>
 		</list>
 		<list key="replacehistory">
+			<item value="CURDATE()"/>
+			<item value="DATE(SYSDATE())"/>
+			<item value="DATE_FORMAT(SYSDATE(),&apos;%Y-%m-%d&apos;)"/>
+			<item value="SYSDATE()"/>
 			<item value="writeDate"/>
 			<item value="${pageObject.word}"/>
 			<item value="startDate"/>
@@ -36,16 +40,13 @@
 			<item value="Image"/>
 			<item value="image"/>
 			<item value="changeStatus"/>
-			<item value="Member"/>
-			<item value="member"/>
-			<item value="&apos;%&apos;"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="810"/>
-		<item key="DIALOG_Y_ORIGIN" value="129"/>
+		<item key="DIALOG_X_ORIGIN" value="965"/>
+		<item key="DIALOG_Y_ORIGIN" value="136"/>
 		<item key="DIALOG_WIDTH" value="322"/>
-		<item key="DIALOG_HEIGHT" value="391"/>
+		<item key="DIALOG_HEIGHT" value="414"/>
 		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
 	</section>
 </section>

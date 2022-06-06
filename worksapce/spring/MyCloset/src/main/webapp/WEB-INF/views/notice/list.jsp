@@ -32,11 +32,17 @@
 							location = "view?no="
 									+ no
 									+ "&inc=1"
-									+"&page=${pageObject.page}&perPageNum=${pageObject.perPageNum}&key=${pageObject.key}&word=${pageObject.word}"
+									+"&page=${pageObject.page}&perPageNum=${pageObject.perPageNum}&key=${pageObject.key}&word=${pageObject.word}&period=${pageObject.period}"
 							;
 									
 						});
-			});
+
+	//perPageNum 데이터의 변경 이벤트 처리 ->jQuery에 대한 이벤트
+		$("#perPageNumSelect").change(function() {
+			// 			alert("값 변경");	
+			$("#perPageNumForm").submit();
+		});
+	});
 </script>
 </head>
 <body>
@@ -44,18 +50,19 @@
 	
 <!-- 	기간검색  -->
 	<div style="margin: 5px 0px">
-		<a href="list.do?page=${pageObject.page}&perPageNum=${pageObject.perPageNum}&key=${pageObject.key}&word=${pageObject.word}&period=pre" class='btn btn-${(pageObject.period == "pre")?"primary":"default"}'>현재 공지</a>
-		<a href="list.do?page=${pageObject.page}&perPageNum=${pageObject.perPageNum}&key=${pageObject.key}&word=${pageObject.word}&period=old" class='btn btn-${(pageObject.period == "old")?"primary":"default"}'>지난 공지</a>
-		<a href="list.do?page=${pageObject.page}&perPageNum=${pageObject.perPageNum}&key=${pageObject.key}&word=${pageObject.word}&period=res" class='btn btn-${(pageObject.period == "res")?"primary":"default"}'>예약 공지</a>
-		<a href="list.do?page=${pageObject.page}&perPageNum=${pageObject.perPageNum}&key=${pageObject.key}&word=${pageObject.word}&period=all" class='btn btn-${(pageObject.period == "all")?"primary":"default"}'>모든 공지</a>
+		<a href="list?page=${pageObject.page}&perPageNum=${pageObject.perPageNum}&key=${pageObject.key}&word=${pageObject.word}&period=pre" class='btn btn-${(pageObject.period == "pre")?"primary":"default"}'>현재 공지</a>
+		<a href="list?page=${pageObject.page}&perPageNum=${pageObject.perPageNum}&key=${pageObject.key}&word=${pageObject.word}&period=old" class='btn btn-${(pageObject.period == "old")?"primary":"default"}'>지난 공지</a>
+		<a href="list?page=${pageObject.page}&perPageNum=${pageObject.perPageNum}&key=${pageObject.key}&word=${pageObject.word}&period=res" class='btn btn-${(pageObject.period == "res")?"primary":"default"}'>예약 공지</a>
+		<a href="list?page=${pageObject.page}&perPageNum=${pageObject.perPageNum}&key=${pageObject.key}&word=${pageObject.word}&period=all" class='btn btn-${(pageObject.period == "all")?"primary":"default"}'>모든 공지</a>
 	</div>
 
 		<!-- 	단어 검색 -->
 		<div class="row" style="margin-bottom: 5px;">
 			<div class="col-md-8">
 				<form class="form-inline">
-					<input type="hidden" name="perPageNum"
-						value="${pageObject.perPageNum}">
+					<input type="hidden" name="perPageNum" value="${pageObject.perPageNum}">
+					<input type="hidden" name="period" value="${pageObject.period}">
+
 					<!-- 		어떤 조건으로 검색할 지 고르는 div -->
 					<div class="input-group">
 						<!-- 			여기에 이름을 key로 설정하면 pageObject의 key와 자동으로 매칭이 됨 -->
@@ -81,11 +88,12 @@
 			</div>
 <!-- 			한페이지당 보여주는 데이터 개수 -->
 		<div class="col-md-4 text-right">
-			<form action="lsit.do" class="form-inline" id="perPageNum">
+			<form action="list" class="form-inline" id="perPageNumForm">
 <!-- 			한페이지에 보이는개수를 바꾸면 1페이지로 이동 -->
 				<input type="hidden" name="page" value="1">
 				<input type="hidden" name="key" value="${pageObject.key }">
 				<input type="hidden" name="word" value="${pageObject.word }">
+				<input type="hidden" name="period" value="${pageObject.period }">
 					<div class="form-group">
 						<label>페이지당 게시글 개수 <select name="perPageNum"
 							class="form-control" id="perPageNumSelect">

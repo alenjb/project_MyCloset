@@ -43,32 +43,32 @@
 
 <!-- 기간검색 태그 -->
 <sql id="searchPeriod">
-	<if test="period == 'pre'">
 	and(
+	<if test="period == 'pre'">
 		<![CDATA[
-			writeDate <= SYSDATE() and endDate >= SYSDATE()
+			writeDate <= CURDATE() and endDate >= CURDATE()
 		]]>
 	</if>
-	
-		<if test="period == 'old'">
+
+	<if test="period == 'old'">
 		<![CDATA[
-			endDate < SYSDATE()
+			endDate < CURDATE()
 		]]>
 	</if>
-	
-		<if test="period == 'res'">
+
+	<if test="period == 'res'">
 		<![CDATA[
-			writeDate > SYSDATE()
+			writeDate > CURDATE()
 		]]>
 	</if>
-	
-		<if test="period == 'all'">
+
+	<if test="period == 'all'">
 		<![CDATA[
 			1=1
 		]]>
 	</if>
 	)
-	
+
 </sql>
 <!-- 1-1 전체 데이터 개수(getTotalRow) -->
 <select id="getTotalRow" resultType="long">
@@ -92,7 +92,7 @@
 </insert>
 <!-- 4. 수정(update) -->
 <update id="update">
-	update notice set title=#{title}, content=#{content}, writer=#{writer}, writeDate=SYSDATE(), endDate=#{endDate}
+	update notice set title=#{title}, content=#{content}, writer=#{writer}, writeDate=CURDATE(), endDate=#{endDate}
 	where no = #{no}
 </update>
 <!-- 5. 삭제(delete) -->
