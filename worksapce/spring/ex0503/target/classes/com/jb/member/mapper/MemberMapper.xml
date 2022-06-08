@@ -102,9 +102,9 @@
 	
 <!-- 	로그인처리 -->
 	<select id="login" resultType="com.jb.member.vo.LoginVO">
-		select m.id, m.name, m.photo, m.gradeNo, g.gradeName
+		select m.member_id, m.member_name, m.member_gradeNo, g.gradeName
 		from member m, grade g
-		where (m.id = #{id} and m.pw = #{pw}) and (g.gradeNo = m.gradeNo)
+		where (m.member_id = #{id} and m.member_password = #{pw}) and (g.gradeNo = m.member_gradeNo)
 	</select>
 
 </mapper>
