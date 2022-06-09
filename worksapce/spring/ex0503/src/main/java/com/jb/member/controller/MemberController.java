@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.jb.member.service.MemberService;
 import com.jb.member.vo.LoginVO;
+import com.jb.member.vo.MemberVO;
 
 import lombok.extern.log4j.Log4j;
 
@@ -51,4 +52,20 @@ public class MemberController {
 		return "redirect:/board/list.do";
 		
 	}
-}
+	
+	//회원가입 폼
+	@GetMapping("write.do")
+	public String writeFrom() throws Exception{
+		return "member/write";
+		
+	}
+	
+	//회원가입 처리
+	public String write(MemberVO vo) throws Exception{
+		
+		service.write(vo);
+		
+		return "redirect:/member/login.do";
+		
+	}
+}	

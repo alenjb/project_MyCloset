@@ -6,8 +6,10 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value=".do"/>
+		<item key="selection" value="Member"/>
 		<list key="findhistory">
+			<item value="Board"/>
+			<item value="board"/>
 			<item value=".do"/>
 			<item value="perPageNumF"/>
 			<item value="perPageNumSe"/>
@@ -21,10 +23,10 @@
 			<item value="getTo"/>
 			<item value="get"/>
 			<item value="startRow"/>
-			<item value="startrow"/>
-			<item value="row"/>
 		</list>
 		<list key="replacehistory">
+			<item value="Member"/>
+			<item value="member"/>
 			<item value="CURDATE()"/>
 			<item value="DATE(SYSDATE())"/>
 			<item value="DATE_FORMAT(SYSDATE(),&apos;%Y-%m-%d&apos;)"/>
@@ -38,8 +40,6 @@
 			<item value=""/>
 			<item value="fileName"/>
 			<item value="Image"/>
-			<item value="image"/>
-			<item value="changeStatus"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
