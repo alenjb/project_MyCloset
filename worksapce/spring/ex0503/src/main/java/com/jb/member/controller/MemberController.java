@@ -61,6 +61,7 @@ public class MemberController {
 	}
 	
 	//회원가입 처리
+	@PostMapping("write.do")
 	public String write(MemberVO vo) throws Exception{
 		
 		service.write(vo);

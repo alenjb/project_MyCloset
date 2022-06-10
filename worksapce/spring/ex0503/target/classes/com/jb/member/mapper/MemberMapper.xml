@@ -83,7 +83,7 @@
 
 	<!-- 회원가입 -->
 	<insert id="write">
-		insert into member(id, password, name, sex, birthday, phone, email, height, topsize, bottomsize, shoessize, face)
+		insert into member(member_id, member_password, member_name, member_sex, member_birthday, member_phone, member_email, member_height, member_top_size, member_bottom_size, member_shoes_size, member_face)
 		values(#{id}, #{password}, #{name}, #{sex}, #{birthday}, #{phone}, #{email}, #{height}, #{topsize}, #{bottomsize}, #{shoessize}, #{face})
 	</insert>
 
