@@ -54,14 +54,14 @@ public class MemberController {
 	}
 	
 	//회원가입 폼
-	@GetMapping("write.do")
-	public String writeFrom() throws Exception{
+	@GetMapping("/write.do")
+	public String writeForm(MemberVO vo) throws Exception{
 		return "member/write";
 		
 	}
 	
 	//회원가입 처리
-	@PostMapping("write.do")
+	@PostMapping("/write.do")
 	public String write(MemberVO vo) throws Exception{
 		
 		service.write(vo);
