@@ -5,6 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입 폼</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -39,7 +43,46 @@ $(function() {
 	$("#writeForm").submit(function() {
 		alert("회원 등록 처리");
 		//submit을 무시 시킨다.
-	})
+	});
+	
+	//아이디 중복체크
+	$("#id").keyup(function() {
+		var id= $(this).val();
+		//4글자 미만
+		if(id.length <4){
+			$("#idCheckDiv").removeClass("alert-success");
+			$("#idCheckDiv").addClass("alert-danger");
+			$("#idCheckDiv").text("아이디는 4글자 이상이어야 합니다.");
+			return;
+		}
+		
+		//20자 초과
+		if(id.length >20){
+			$("#idCheckDiv").removeClass("alert-success");
+			$("#idCheckDiv").addClass("alert-danger");
+			$("#idCheckDiv").text("아이디는 20글자 미만이어야 합니다.");
+			return;
+		}
+		
+		//서벌 가서 아이디 중복 체크 -> url과 입력데이터는 바뀌면 안된다. ->Ajax
+		//url /member/idCheck
+		//서버에서 전달받는 데이터를 result로 받음
+		//기져온 데이터가 null이면 사용가능, 있으면 중복
+		$("idCheckDiv").load("/member/idCheck?id="+id, function (result) {
+			if(result.indexOf("가능한") > -1){
+				//중복이 되지 않은 경우
+				$("#idCheckDiv").addClass("alert-success");
+				$("#idCheckDiv").removeClass("alert-danger");
+				$("#idCheckDiv").text("아이디 사용가능");
+			} else{
+				//중복된 경우
+				$("#idCheckDiv").removeClass("alert-success");
+				$("#idCheckDiv").addClass("alert-danger");
+				$("#idCheckDiv").text("중복된 아이디");
+			}
+			
+		});
+	});
 });
 </script>
 </head>
@@ -50,23 +93,24 @@ $(function() {
 			<div class="form-group">
 				<label for ="id">아이디</label>
 <!-- 				autocomplete: 자동완성 -->
-				<input id="id" name="id" required="required" pattern="[A-Za-z0-9]{4, 20}" placeholder="아이디 입력"
-				class="form-control">
+				<input id="id" name="id" required="required" placeholder="아이디 입력" pattern="[A-Za-z0-9]{4,20}"
+				class="form-control" autocomplete="off">
+				<div class="alert alert-danger" id="idCheckDiv">아이디는 4글자 이상 입력하셔야합니다.</div>
 			</div>
 			<div class="form-group">
-				<label for ="pw">비밀번호</label>
-				<input id="password" name="password" required="required" pattern=".{4, 20}" placeholder="비밀번호 입력"
+				<label for ="password">비밀번호</label>
+				<input id="password" name="password" required="required" pattern="[A-Za-z0-9]{4,20}"  placeholder="비밀번호 입력"
 				class="form-control" type="password">
 			</div>
 			<div class="form-group">
 				<label for ="pw2">비밀번호 확인</label>
-				<input id="pw2" name="pw2" required="required" pattern=".{4, 20}" placeholder="비밀번호 확인 입력"
+				<input id="pw2" name="pw2" required="required"  placeholder="비밀번호 확인 입력" pattern="[A-Za-z0-9]{4,20}"
 				class="form-control" type="password">
 			</div>
 			<div class="form-group">
 				<label for ="name">이름</label>
-				<input id="name" name="name" required="required" pattern="[가-힣]{2, 10}" placeholder="이름 입력"
-				class="form-control" >
+				<input id="name" name="name" required="required" placeholder="이름 입력" pattern="[가-힣]{2,20}"
+				class="form-control" > 
 			</div>
 			<div class="form-group">
 				<label for ="sex">성별</label>
@@ -96,10 +140,15 @@ $(function() {
 					<input id="faceFile" name="faceFile" type="file"
 					class="form-control" >
 			</div>
-			<button class="btn btn-default">등록</button>
+			<button class="btn btn-default" id="test">등록</button>
 			<button class="btn btn-default" type="reset">새로입력</button>
 			<button class="btn btn-default cancelBtn" type="button">취소</button>
 		</form>
 	</div>
+	<script>
+		$("#test").on("click", function() {
+			console.log($("#writeForm").val());
+		});
+	</script>
 </body>
 </html>

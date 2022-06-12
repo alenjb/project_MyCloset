@@ -107,4 +107,9 @@
 		where (m.member_id = #{id} and m.member_password = #{pw}) and (g.gradeNo = m.member_gradeNo)
 	</select>
 
+<!-- 아이디 중복체크 -->
+	<select id="idCheck" resultType="java.lang.String">
+		select member_id from member
+		where member_id = #{id}
+	</select>
 </mapper>
