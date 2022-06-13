@@ -40,7 +40,8 @@ $(function() {
 	});
 	
 	//회원가입 전처리 -유효성 검사
-	$("#writeForm").submit(function() {
+	$("#writeForm").submit(function(e) {
+		
 		alert("회원 등록 처리");
 		//submit을 무시 시킨다.
 	});
@@ -53,7 +54,7 @@ $(function() {
 			$("#idCheckDiv").removeClass("alert-success");
 			$("#idCheckDiv").addClass("alert-danger");
 			$("#idCheckDiv").text("아이디는 4글자 이상이어야 합니다.");
-			return;
+			return false;
 		}
 		
 		//20자 초과
@@ -61,14 +62,15 @@ $(function() {
 			$("#idCheckDiv").removeClass("alert-success");
 			$("#idCheckDiv").addClass("alert-danger");
 			$("#idCheckDiv").text("아이디는 20글자 미만이어야 합니다.");
-			return;
+			return false;
 		}
 		
 		//서벌 가서 아이디 중복 체크 -> url과 입력데이터는 바뀌면 안된다. ->Ajax
 		//url /member/idCheck
 		//서버에서 전달받는 데이터를 result로 받음
 		//기져온 데이터가 null이면 사용가능, 있으면 중복
-		$("idCheckDiv").load("/member/idCheck?id="+id, function (result) {
+		$("#idCheckDiv").load("/a/member/idCheck?id="+id, function (result) {
+			console.log(result);
 			if(result.indexOf("가능한") > -1){
 				//중복이 되지 않은 경우
 				$("#idCheckDiv").addClass("alert-success");
