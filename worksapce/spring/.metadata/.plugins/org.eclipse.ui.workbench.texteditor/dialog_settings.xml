@@ -6,8 +6,10 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="&quot;"/>
+		<item key="selection" value="idCheck"/>
 		<list key="findhistory">
+			<item value="idCheck"/>
+			<item value="idCheck+"/>
 			<item value="&apos;"/>
 			<item value="가능"/>
 			<item value="success"/>
@@ -21,8 +23,6 @@
 			<item value="vo"/>
 			<item value="wite"/>
 			<item value="ite"/>
-			<item value="writeForm"/>
-			<item value="Board"/>
 		</list>
 		<list key="replacehistory">
 			<item value="&quot;"/>

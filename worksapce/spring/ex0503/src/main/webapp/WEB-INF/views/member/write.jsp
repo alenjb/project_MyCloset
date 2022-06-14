@@ -84,7 +84,104 @@ $(function() {
 			}
 			
 		});
+		
+
+			
+		});//아이디 처리 끝
+		
+	//비밀번호 처리 이벤트
+	$("#password").keyup(function () {
+		//$(this) == $("#pw")
+		var pw= $(this).val();
+		var pw2=$("#pw2").val();
+		//alert(pw.length);
+		
+		//4글자 미만
+		if(pw.length <4){
+			$("#pwCheckDiv").removeClass("alert-success");
+			$("#pwCheckDiv").addClass("alert-danger");
+			$("#pwCheckDiv").text("비밀번호는 4글자 이상이어야 합니다.");
+			return false;
+		}
+		
+		//20자 초과
+		else if(pw.length >20){
+			$("#pwCheckDiv").removeClass("alert-success");
+			$("#pwCheckDiv").addClass("alert-danger");
+			$("#pwCheckDiv").text("비밀번호는 20글자 미만이어야 합니다.");
+			return false;
+		}
+		
+		else{
+			$("#pwCheckDiv").removeClass("alert-danger");
+			$("#pwCheckDiv").addClass("alert-success");
+			$("#pwCheckDiv").text("사용가능한 비밀번호 입니다.");
+		}
+		
+		//비밀번호와 비밀번호확인이 같은지 처리
+		if(pw== pw2){
+			$("#pw2CheckDiv").removeClass("alert-danger");
+			$("#pw2CheckDiv").addClass("alert-success");
+			$("#pw2CheckDiv").text("비밀번호와 비밀번호 확인이 일치합니다.");
+		}else{
+			$("#pw2CheckDiv").removeClass("alert-success");
+			$("#pw2CheckDiv").addClass("alert-danger");
+			$("#pw2CheckDiv").text("비밀번호와 비밀번호 확인이 일치하지 않습니다.");
+			if(pw2.length <4)
+				$("#pw2CheckDiv").text("비밀번호 확인은 4글자 이상이어야합니다.");
+			else if(pw.length > 20)
+				$("#pw2CheckDiv").text("비밀번호 확인은 20글자 미만이어야합니다.");
+			else
+				$("#pw2CheckDiv").text("비밀번호와 비밀번호 확인이 일치하지 않습니다.");
+
+		}
+		
+
 	});
+
+	//비밀번호 확인 처리 이벤트
+	$("#pw2").keyup(function () {
+		var pw2= $(this).val();
+		var pw=$("#password").val();
+		//alert(pw2.length);
+		//4글자 미만
+		if(pw2.length <4){
+			$("#pw2CheckDiv").removeClass("alert-success");
+			$("#pw2CheckDiv").addClass("alert-danger");
+			$("#pw2CheckDiv").text("비밀번호는 4글자 이상이어야 합니다.");
+			return false;
+		}
+		
+		//20자 초과
+		else if(pw2.length >20){
+			$("#pw2CheckDiv").removeClass("alert-success");
+			$("#pw2CheckDiv").addClass("alert-danger");
+			$("#pw2CheckDiv").text("비밀번호는 20글자 미만이어야 합니다.");
+			return false;
+		}
+		
+		
+		//4~20 사이의 길이가 pw2와 같은지 체크
+		if(pw== pw2){
+			$("#pw2CheckDiv").removeClass("alert-danger");
+			$("#pw2CheckDiv").addClass("alert-success");
+			$("#pw2CheckDiv").text("비밀번호와 비밀번호 확인이 일치합니다.");
+		}else{
+			$("#pw2CheckDiv").removeClass("alert-success");
+			$("#pw2CheckDiv").addClass("alert-danger");
+			$("#pw2CheckDiv").text("비밀번호와 비밀번호 확인이 일치하지 않습니다.");
+			if(pw2.length <4)
+				$("#pw2CheckDiv").text("비밀번호 확인은 4글자 이상이어야합니다.");
+			else if(pw.length > 20)
+				$("#pw2CheckDiv").text("비밀번호 확인은 20글자 미만이어야합니다.");
+			else
+				$("#pw2CheckDiv").text("비밀번호와 비밀번호 확인이 일치하지 않습니다.");
+
+		}
+
+		
+	});//비번 처리 끝
+	
 });
 </script>
 </head>
@@ -103,11 +200,13 @@ $(function() {
 				<label for ="password">비밀번호</label>
 				<input id="password" name="password" required="required" pattern="[A-Za-z0-9]{4,20}"  placeholder="비밀번호 입력"
 				class="form-control" type="password">
+				<div class="alert alert-danger" id="pwCheckDiv">비밀번호는 4글자 이상 입력하셔야합니다.</div>
 			</div>
 			<div class="form-group">
 				<label for ="pw2">비밀번호 확인</label>
 				<input id="pw2" name="pw2" required="required"  placeholder="비밀번호 확인 입력" pattern="[A-Za-z0-9]{4,20}"
 				class="form-control" type="password">
+				<div class="alert alert-danger" id="pw2CheckDiv">비밀번호는 4글자 이상 입력하셔야합니다.</div>
 			</div>
 			<div class="form-group">
 				<label for ="name">이름</label>
