@@ -14,6 +14,11 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript">
 $(function() {
+	
+	//아이디 중복체크 변수, 비밀번호와 비밀번호 확인이 같은지 체크하는 변수
+	var idCheck= false;
+	var pwCheck= false;
+	
 	// datepicker 클래스 이벤트 - 적정한 옵션을 넣어서 초기화 시켜 준다. 기본 datepicker()로 사용 가능
 	   $(".datepicker").datepicker({
 	   changeMonth: true,
@@ -48,6 +53,8 @@ $(function() {
 	
 	//아이디 중복체크
 	$("#id").keyup(function() {
+		
+		idCheck=false;
 		var id= $(this).val();
 		//4글자 미만
 		if(id.length <4){
@@ -76,11 +83,13 @@ $(function() {
 				$("#idCheckDiv").addClass("alert-success");
 				$("#idCheckDiv").removeClass("alert-danger");
 				$("#idCheckDiv").text("아이디 사용가능");
+				idCheck=true;
 			} else{
 				//중복된 경우
 				$("#idCheckDiv").removeClass("alert-success");
 				$("#idCheckDiv").addClass("alert-danger");
 				$("#idCheckDiv").text("중복된 아이디");
+				idCheck=false;
 			}
 			
 		});
@@ -95,7 +104,7 @@ $(function() {
 		var pw= $(this).val();
 		var pw2=$("#pw2").val();
 		//alert(pw.length);
-		
+		pwCheck=false;
 		//4글자 미만
 		if(pw.length <4){
 			$("#pwCheckDiv").removeClass("alert-success");
@@ -123,6 +132,7 @@ $(function() {
 			$("#pw2CheckDiv").removeClass("alert-danger");
 			$("#pw2CheckDiv").addClass("alert-success");
 			$("#pw2CheckDiv").text("비밀번호와 비밀번호 확인이 일치합니다.");
+			pwCheck=true;
 		}else{
 			$("#pw2CheckDiv").removeClass("alert-success");
 			$("#pw2CheckDiv").addClass("alert-danger");
@@ -141,6 +151,7 @@ $(function() {
 
 	//비밀번호 확인 처리 이벤트
 	$("#pw2").keyup(function () {
+		pwCheck=false;
 		var pw2= $(this).val();
 		var pw=$("#password").val();
 		//alert(pw2.length);
@@ -166,6 +177,8 @@ $(function() {
 			$("#pw2CheckDiv").removeClass("alert-danger");
 			$("#pw2CheckDiv").addClass("alert-success");
 			$("#pw2CheckDiv").text("비밀번호와 비밀번호 확인이 일치합니다.");
+			pwCheck=true;
+			
 		}else{
 			$("#pw2CheckDiv").removeClass("alert-success");
 			$("#pw2CheckDiv").addClass("alert-danger");
@@ -181,6 +194,26 @@ $(function() {
 
 		
 	});//비번 처리 끝
+	//회원가입 이벤트
+	$("#writeForm").submit(function () {
+		
+		//alert("아이디체크: "+idCheck+"\n비밀번호 체크: "+pwCheck);
+		//아이디 중복체크
+		if(!idCheck){
+			alert("중복되지 않는 아이디를 사용하셔야합니다.");
+			$("#id").focus();
+			
+		}
+			
+		//비번, 비번확인 체크
+		if(!pwCheck){
+			alert("비밀번호와 비밀번호 확인의 길이가 4~20글자이고, 같아야합니다.");
+			$("#password").focus();
+			
+		}
+		//form 전송을 무시시킨다. -> 내중에 주석처리 해야한다.
+		return false;
+	});
 	
 });
 </script>

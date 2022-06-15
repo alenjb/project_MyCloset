@@ -6,8 +6,9 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="idCheck"/>
+		<item key="selection" value="확인"/>
 		<list key="findhistory">
+			<item value="왁인"/>
 			<item value="idCheck"/>
 			<item value="idCheck+"/>
 			<item value="&apos;"/>
@@ -22,9 +23,9 @@
 			<item value="VO"/>
 			<item value="vo"/>
 			<item value="wite"/>
-			<item value="ite"/>
 		</list>
 		<list key="replacehistory">
+			<item value="확인"/>
 			<item value="&quot;"/>
 			<item value="Member"/>
 			<item value="member"/>
@@ -39,7 +40,6 @@
 			<item value="Notice"/>
 			<item value="like CONCAT(&apos;%&apos;,#{word},&apos;%&apos;)&#x0A;"/>
 			<item value=""/>
-			<item value="fileName"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
