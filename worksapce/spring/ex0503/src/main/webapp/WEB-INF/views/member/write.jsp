@@ -45,7 +45,7 @@ $(function() {
 	});
 	
 	//회원가입 전처리 -유효성 검사
-	$("#writeForm").submit(function(e) {
+	$("#writeForm").submit(function() {
 		
 		alert("회원 등록 처리");
 		//submit을 무시 시킨다.
@@ -76,8 +76,8 @@ $(function() {
 		//url /member/idCheck
 		//서버에서 전달받는 데이터를 result로 받음
 		//기져온 데이터가 null이면 사용가능, 있으면 중복
-		$("#idCheckDiv").load("/a/member/idCheck?id="+id, function (result) {
-			console.log(result);
+		$("#idCheckDiv").load("/member/idCheck?id="+id, function (result) {
+// 			console.log(result);
 			if(result.indexOf("가능한") > -1){
 				//중복이 되지 않은 경우
 				$("#idCheckDiv").addClass("alert-success");
@@ -212,7 +212,7 @@ $(function() {
 			
 		}
 		//form 전송을 무시시킨다. -> 내중에 주석처리 해야한다.
-		return false;
+// 		return false;
 	});
 	
 });
@@ -274,15 +274,10 @@ $(function() {
 					<input id="faceFile" name="faceFile" type="file"
 					class="form-control" >
 			</div>
-			<button class="btn btn-default" id="test">등록</button>
+			<button class="btn btn-default">등록</button>
 			<button class="btn btn-default" type="reset">새로입력</button>
 			<button class="btn btn-default cancelBtn" type="button">취소</button>
 		</form>
 	</div>
-	<script>
-		$("#test").on("click", function() {
-			console.log($("#writeForm").val());
-		});
-	</script>
 </body>
 </html>

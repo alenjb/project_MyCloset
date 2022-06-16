@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="org.aspectj.lang.ProceedingJoinPoint"/>
     <fullyQualifiedTypeName name="java.lang.Throwable"/>
     <fullyQualifiedTypeName name="org.aspectj.lang.annotation.Around"/>
     <fullyQualifiedTypeName name="java.util.Arrays"/>
     <fullyQualifiedTypeName name="com.webjjang.member.vo.LoginVO"/>
-    <fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
     <fullyQualifiedTypeName name="com.webjjang.util.cookieUtil.CookieUtil"/>
     <fullyQualifiedTypeName name="com.webjjang.util.msg.MSGUtil"/>
     <fullyQualifiedTypeName name="javax.servlet.http.HttpServletResponse"/>
@@ -60,4 +58,6 @@
     <fullyQualifiedTypeName name="org.springframework.ui.Model"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
     <fullyQualifiedTypeName name="java.lang.Exception"/>
+    <fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
+    <fullyQualifiedTypeName name="com.webjjang.util.file.FileUtil"/>
 </qualifiedTypeNameHistroy>

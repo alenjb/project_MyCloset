@@ -1,5 +1,8 @@
 package com.jb.member.controller;
 
+import java.io.Console;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.jb.member.service.MemberService;
 import com.jb.member.vo.LoginVO;
 import com.jb.member.vo.MemberVO;
+import com.webjjang.util.file.FileUtil;
 
 import lombok.extern.log4j.Log4j;
 
@@ -58,16 +62,19 @@ public class MemberController {
 	
 	//회원가입 폼
 	@GetMapping("/write.do")
-	public String writeForm(MemberVO vo) throws Exception{
+	public String writeForm() throws Exception{
 		return "member/write";
 		
 	}
 	
 	//회원가입 처리
 	@PostMapping("/write.do")
-	public String write(MemberVO vo) throws Exception{
-		System.out.println(vo);
-		//service.write(vo);
+	public String write(MemberVO vo, HttpServletRequest request) throws Exception{
+		String path= "/upload/member";
+		System.out.println("vo"+vo);
+		vo.setFace(FileUtil.upload(path, vo.getFaceFile(), request));
+		service.write(vo);
+		System.out.println(vo.toString());
 		return "redirect:/member/login.do";
 		
 	}
