@@ -1,6 +1,8 @@
 package com.jb.member.controller;
 
 
+import java.io.File;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.jb.member.service.MemberService;
@@ -69,10 +72,14 @@ public class MemberController {
 	//회원가입 처리
 	@PostMapping("/write.do")
 	public String write(MemberVO vo, HttpServletRequest request) throws Exception{
-		String path= "/upload/member";
-		System.out.println("vo"+vo);
-		String fileName=FileUtil.upload(path, vo.getFaceFile(), request);
-		vo.setFace(fileName);
+		MultipartFile uploadFile=vo.getFaceFile();
+		String uploadFolder = "D:\\jeongbin\\worksapce\\spring\\ex0503\\src\\main\\webapp\\upload\\member";
+		File saveFile = new File(uploadFolder, uploadFile.getOriginalFilename());
+		try {
+			uploadFile.transferTo(saveFile);
+		} catch (Exception e) {
+			log.error(e.getMessage());
+		}
 		service.write(vo);
 		System.out.println(vo.toString());
 		return "redirect:/member/login.do";
