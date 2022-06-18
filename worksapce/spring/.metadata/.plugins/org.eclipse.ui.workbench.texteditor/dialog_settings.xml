@@ -6,8 +6,10 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="확인"/>
+		<item key="selection" value="//return false"/>
 		<list key="findhistory">
+			<item value="return false"/>
+			<item value="name"/>
 			<item value="왁인"/>
 			<item value="idCheck"/>
 			<item value="idCheck+"/>
@@ -21,10 +23,9 @@
 			<item value="From"/>
 			<item value="from"/>
 			<item value="VO"/>
-			<item value="vo"/>
-			<item value="wite"/>
 		</list>
 		<list key="replacehistory">
+			<item value="//return false"/>
 			<item value="확인"/>
 			<item value="&quot;"/>
 			<item value="Member"/>
@@ -39,12 +40,11 @@
 			<item value="notice"/>
 			<item value="Notice"/>
 			<item value="like CONCAT(&apos;%&apos;,#{word},&apos;%&apos;)&#x0A;"/>
-			<item value=""/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="988"/>
-		<item key="DIALOG_Y_ORIGIN" value="138"/>
+		<item key="DIALOG_X_ORIGIN" value="765"/>
+		<item key="DIALOG_Y_ORIGIN" value="151"/>
 		<item key="DIALOG_WIDTH" value="322"/>
 		<item key="DIALOG_HEIGHT" value="413"/>
 		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>

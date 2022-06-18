@@ -1,6 +1,5 @@
 package com.jb.member.controller;
 
-import java.io.Console;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -72,7 +71,8 @@ public class MemberController {
 	public String write(MemberVO vo, HttpServletRequest request) throws Exception{
 		String path= "/upload/member";
 		System.out.println("vo"+vo);
-		vo.setFace(FileUtil.upload(path, vo.getFaceFile(), request));
+		String fileName=FileUtil.upload(path, vo.getFaceFile(), request);
+		vo.setFace(fileName);
 		service.write(vo);
 		System.out.println(vo.toString());
 		return "redirect:/member/login.do";

@@ -20,6 +20,10 @@
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
+
+	<beans:bean id="multipartResolver"
+		class="org.springframework.web.multipart.support.StandardServletMultipartResolver">
+	</beans:bean>
 	
 	<!-- URL과 상관이 있는 객체 
 		 base-package로 설정된 위치의 아래 찾아보기 -->

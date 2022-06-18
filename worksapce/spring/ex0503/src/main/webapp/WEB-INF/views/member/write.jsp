@@ -274,7 +274,7 @@ $(function() {
 					<input id="faceFile" name="faceFile" type="file"
 					class="form-control" >
 			</div>
-			<button class="btn btn-default">등록</button>
+			<button class="btn btn-default" type="submit">등록</button>
 			<button class="btn btn-default" type="reset">새로입력</button>
 			<button class="btn btn-default cancelBtn" type="button">취소</button>
 		</form>
