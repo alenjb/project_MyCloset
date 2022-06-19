@@ -5,14 +5,17 @@
 
 	<!-- 리스트 -->
 	<select id="list" resultType="com.jb.member.vo.MemberVO">
-		select no, title, writer, writeDate, hit
+		select id, name, birthday, phone, email, sex, gradeName, gradeNo, face
 		from(	
-			select (@ROWNUM:=@ROWNUM+1) AS RNUM, no, title, writer, writeDate, hit
+			select (@ROWNUM:=@ROWNUM+1) AS RNUM, id, name, birthday, sex, phone, email, gradeName, gradeNo, face
 			from(
-				select no, title, writer, writeDate, hit
-				from member
+				select m.member_id as id, m.member_password as password, m.member_name as name, m.member_birthday as birthday, m.member_sex as sex, m.member_phone as phone, m.member_email as email, 
+				g.gradeName as gradeName, m.member_gradeNo as gradeNo, m.member_face as face
+				from member m, grade g
+				where 1=1
 				<include refid="search"/>
-				order by no desc
+				and gradeNo = g.gradeNo
+				order by id asc
 				) AS A, (SELECT @ROWNUM:=0) AS B
                 
 			) AS C
@@ -22,12 +25,13 @@
 	<!-- //1-2. 전체 데이터 개수 -->
 	<select id="getTotalRow" resultType="long">
 		select count(*) from member
+		where 1=1 
 		<include refid="search" />
 	</select>
 <!-- 	검색족던 처리를 위한 태그- 부분태그: sql -->
 	<sql id="search">
 		<if test="word != null and word!= ''.toString()">
-			where 
+			and(
 			<if test="key =='t'.toString()">
 				title like CONCAT('%',#{word},'%')
 
@@ -64,7 +68,7 @@
 				or content like CONCAT('%',#{word},'%')
 
 				or writer like CONCAT('%',#{word},'%')
-
+				)
 				
 			</if>			
 
