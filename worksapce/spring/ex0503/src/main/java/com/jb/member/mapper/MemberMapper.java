@@ -18,7 +18,7 @@ public interface MemberMapper {
 	public long getTotalRow(PageObject pageObject) throws Exception;
 
 	// 보기
-	public MemberVO view(long no) throws Exception;
+	public MemberVO view(String id) throws Exception;
 
 	// 회원가입
 	public int write(MemberVO vo) throws Exception;

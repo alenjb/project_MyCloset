@@ -121,12 +121,15 @@
 				<td colspan="5"><pageNav:pageNav listURI="list.do"
 						pageObject="${pageObject }" query="key=${pageObject.key }&word=${pageObject.word }" /></td>
 			</tr>
-			<tr>
-				<td colspan="5"><a
-					href="write.do?perPageNum=${pageObject.perPageNum }"
-					class="btn btn-default">쓰기</a></td>
-			</tr>
-
+<!-- 			<tr> -->
+<!-- 				<td colspan="5"><a -->
+<%-- 					href="write.do?perPageNum=${pageObject.perPageNum }" --%>
+<!-- 					class="btn btn-default">쓰기</a></td> -->
+<!-- 							<td colspan="5"><a -->
+<!-- 					href="/member/list.do" -->
+<!-- 					class="btn btn-default">회원정보리스트</a></td> -->
+			
+<!-- 			</tr> -->
 		</table>
 	</div>
 </body>

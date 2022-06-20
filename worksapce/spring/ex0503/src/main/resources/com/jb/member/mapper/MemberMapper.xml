@@ -4,23 +4,56 @@
 <mapper namespace="com.jb.member.mapper.MemberMapper">
 
 	<!-- 리스트 -->
-	<select id="list" resultType="com.jb.member.vo.MemberVO">
-		select id, name, birthday, phone, email, sex, gradeName, gradeNo, face
+	<resultMap type="com.jb.member.vo.MemberVO" id="result">
+			<result property="id" column="member_id"/>
+			<result property="name" column="member_name"/>
+			<result property="birthday" column="member_birthday"/>
+			<result property="sex" column="member_sex"/>
+			<result property="phone" column="member_phone"/>
+			<result property="email" column="member_email"/>
+<!-- 			member_gradeName에도 값이 들어가 있지만 default값이라서 못가져옴 -->
+<!-- 			<result property="gradeName" column="member_gradeName"/> -->
+			<result property="gradeNo" column="member_gradeNo"/>
+			<result property="regDate" column="member_reg_date"/>
+			<result property="face" column="member_face"/>
+	</resultMap>
+
+	<select id="list" resultType="com.jb.member.vo.MemberVO" resultMap="result">
+		select member_id, member_name, member_birthday, member_phone, member_email, member_sex, gradeName, member_gradeNo, member_face
 		from(	
-			select (@ROWNUM:=@ROWNUM+1) AS RNUM, id, name, birthday, sex, phone, email, gradeName, gradeNo, face
+			select (@ROWNUM:=@ROWNUM+1) AS RNUM, member_id, member_name, member_birthday, member_sex, member_phone, member_email, gradeName, member_gradeNo, member_face
 			from(
-				select m.member_id as id, m.member_password as password, m.member_name as name, m.member_birthday as birthday, m.member_sex as sex, m.member_phone as phone, m.member_email as email, 
-				g.gradeName as gradeName, m.member_gradeNo as gradeNo, m.member_face as face
-				from member m, grade g
+				select member_id, member_password , member_name, member_birthday , member_sex , member_phone, member_email, 
+				gradeName, member_gradeNo, member_face
+				from member, grade
 				where 1=1
 				<include refid="search"/>
-				and gradeNo = g.gradeNo
-				order by id asc
+				and member_gradeNo = gradeNo
+				order by member_id asc
 				) AS A, (SELECT @ROWNUM:=0) AS B
                 
 			) AS C
             where C.RNUM between #{startRow} and #{endRow}
 	</select>
+
+
+<!-- 	<select id="list" resultType="com.jb.member.vo.MemberVO"> -->
+<!-- 		select id, name, birthday, phone, email, sex, gradeName, gradeNo, face -->
+<!-- 		from(	 -->
+<!-- 			select (@ROWNUM:=@ROWNUM+1) AS RNUM, id, name, birthday, sex, phone, email, gradeName, gradeNo, face -->
+<!-- 			from( -->
+<!-- 				select m.member_id as id, m.member_password as password, m.member_name as name, m.member_birthday as birthday, m.member_sex as sex, m.member_phone as phone, m.member_email as email,  -->
+<!-- 				g.gradeName as gradeName, m.member_gradeNo as gradeNo, m.member_face as face -->
+<!-- 				from member m, grade g -->
+<!-- 				where 1=1 -->
+<!-- 				<include refid="search"/> -->
+<!-- 				and gradeNo = g.gradeNo -->
+<!-- 				order by id asc -->
+<!-- 				) AS A, (SELECT @ROWNUM:=0) AS B -->
+                
+<!-- 			) AS C -->
+<!--             where C.RNUM between #{startRow} and #{endRow} -->
+<!-- 	</select> -->
 
 	<!-- //1-2. 전체 데이터 개수 -->
 	<select id="getTotalRow" resultType="long">
@@ -76,12 +109,11 @@
 	</sql>
 	
 	<!-- 보기 -->
-	<select id="view" resultType="com.jb.member.vo.MemberVO">
-		select no, title, content, writer,
-		writeDate, hit
-		from member
-		where no =
-		#{no}
+	<select id="view" resultType="com.jb.member.vo.MemberVO" resultMap="result">
+		select member_id, member_password , member_name, member_birthday , member_sex , member_phone, member_email, 
+		gradeName, member_gradeNo, member_face, member_reg_date
+		from member, grade
+		where (member_id = #{id}) and (member_gradeNo = gradeNo)
 	</select>
 
 

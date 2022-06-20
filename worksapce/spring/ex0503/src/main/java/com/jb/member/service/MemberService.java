@@ -28,6 +28,11 @@ public class MemberService {
 		return mapper.login(invo);
 	}
 	
+	//회원정보 보기 / 내정보 보기
+	public MemberVO view(String id) throws Exception{
+		return mapper.view(id);
+	}
+	
 	//리스트
 	public List<MemberVO> list(PageObject pageObject) throws Exception{
 		//전체 데이터의 갯수를 구해서 pageObject에 넣는다

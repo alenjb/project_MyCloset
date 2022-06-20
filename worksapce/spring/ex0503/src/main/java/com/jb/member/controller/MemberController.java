@@ -73,6 +73,23 @@ public class MemberController {
 		return "member/list";
 	}
 	
+	
+	//회원 정보 보기 / 내 정보 보기
+	@GetMapping("/view.do")
+	public String view(String id, Model model, HttpSession session) throws Exception{
+		if(id == null) {
+			model.addAttribute("title", "내 정보 보기");
+			id= ((LoginVO)session.getAttribute("login")).getId();
+			System.out.println("\n  id: "+id);
+		}else {
+			model.addAttribute("title", "회원 정보 보기");}
+			System.out.println("\n  회원정보보기: 아이디: "+id);
+		model.addAttribute("vo", service.view(id));
+		return "member/view";
+		
+	}
+	
+	
 	//회원가입 폼
 	@GetMapping("/write.do")
 	public String writeForm() throws Exception{
