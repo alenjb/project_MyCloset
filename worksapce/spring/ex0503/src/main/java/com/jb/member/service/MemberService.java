@@ -44,5 +44,10 @@ public class MemberService {
 		return mapper.idCheck(id);
 	}
 	
+	//등급변경
+	public int changeGradeNo(MemberVO vo) throws Exception{
+		return mapper.changeGradeNo(vo);
+	}
+	
 	
 }

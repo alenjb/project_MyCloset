@@ -34,4 +34,7 @@ public interface MemberMapper {
 	
 	//아이디 중복체크
 	public String idCheck(String id) throws Exception;
+	
+	//등급변경
+	public int changeGradeNo(MemberVO vo) throws Exception;
 }

@@ -149,4 +149,11 @@
 		select member_id from member
 		where member_id = #{id}
 	</select>
+	
+<!-- 	등급변경 -->
+	<update id="changeGradeNo">
+		update member
+		set member_gradeNo = #{gradeNo}
+		where member_id= #{id}
+	</update>
 </mapper>

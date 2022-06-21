@@ -14,6 +14,7 @@
 <!-- 			member_gradeName에도 값이 들어가 있지만 default값이라서 못가져옴 -->
 <!-- 			<result property="gradeName" column="member_gradeName"/> -->
 			<result property="gradeNo" column="member_gradeNo"/>
+			<result property="regDate" column="member_reg_date"/>
 			<result property="face" column="member_face"/>
 	</resultMap>
 
@@ -108,12 +109,11 @@
 	</sql>
 	
 	<!-- 보기 -->
-	<select id="view" resultType="com.jb.member.vo.MemberVO">
-		select no, title, content, writer,
-		writeDate, hit
-		from member
-		where no =
-		#{no}
+	<select id="view" resultType="com.jb.member.vo.MemberVO" resultMap="result">
+		select member_id, member_password , member_name, member_birthday , member_sex , member_phone, member_email, 
+		gradeName, member_gradeNo, member_face, member_reg_date
+		from member, grade
+		where (member_id = #{id}) and (member_gradeNo = gradeNo)
 	</select>
 
 
@@ -149,4 +149,11 @@
 		select member_id from member
 		where member_id = #{id}
 	</select>
+	
+<!-- 	등급변경 -->
+	<update id="changeGradeNo">
+		update member
+		set member_gradeNo = #{gradeNo}
+		where member_id= #{id}
+	</update>
 </mapper>

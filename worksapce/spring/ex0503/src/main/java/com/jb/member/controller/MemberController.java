@@ -1,7 +1,11 @@
 package com.jb.member.controller;
 
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
+
 import java.io.File;
+import java.util.Enumeration;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -49,7 +53,7 @@ public class MemberController {
 	public String login(LoginVO invo, HttpSession session) throws Exception{
 		log.info("로그인 처리 - invo: "+invo);
 		session.setAttribute("login", service.login(invo));
-		return "redirect:/board/list.do";
+		return "redirect:/member/list.do";
 	}
 	
 	
@@ -67,7 +71,7 @@ public class MemberController {
 	//회원리스트 - 관리자만 가능
 	@GetMapping("/list.do")
 	//@ModelAttribute  <-이거를 통해 모델에 담을 수 있다, jsp까지 전달한다.
-	public String list(@ModelAttribute PageObject pageObject, Model model) throws Exception{
+	public String list(@ModelAttribute PageObject pageObject, Model model, HttpSession session) throws Exception{
 		model.addAttribute("list", service.list(pageObject));
 		System.out.println("넘어노는 vo   \n"+model.toString());
 		return "member/list";
@@ -122,4 +126,12 @@ public class MemberController {
 		return "member/idCheck";
 		
 	}
+	//등급변경
+	@PostMapping("/changeGradeNo.do")
+public String changeGradeNo(PageObject pageObject, MemberVO vo) throws Exception{
+		//db에서 등급을 변경시킨다.
+		service.changeGradeNo(vo);
+		return "redirect:view.do?id="+vo.getId()+"&page="+pageObject.getPage()+"&perPageNum="+pageObject.getPerPageNum();
+	}
+
 }	
