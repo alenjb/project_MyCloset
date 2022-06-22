@@ -1,11 +1,8 @@
 package com.jb.member.controller;
 
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
 
 import java.io.File;
-import java.util.Enumeration;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -17,15 +14,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.jb.member.service.MemberService;
 import com.jb.member.vo.LoginVO;
 import com.jb.member.vo.MemberVO;
 import com.webjjang.util.PageObject;
-import com.webjjang.util.file.FileUtil;
 
 import lombok.extern.log4j.Log4j;
 
@@ -73,6 +67,7 @@ public class MemberController {
 	//@ModelAttribute  <-이거를 통해 모델에 담을 수 있다, jsp까지 전달한다.
 	public String list(@ModelAttribute PageObject pageObject, Model model, HttpSession session) throws Exception{
 		model.addAttribute("list", service.list(pageObject));
+		System.out.println("로그인:"+session.getAttribute("login"));
 		System.out.println("넘어노는 vo   \n"+model.toString());
 		return "member/list";
 	}
