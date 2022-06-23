@@ -6,11 +6,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.mycloset.member.service.MemberService;
 import com.mycloset.member.vo.MemberVO;
 
+import lombok.extern.log4j.Log4j;
+
 @Controller
+@RequestMapping("/member")
+@Log4j
 public class MemberController {
 	
 	//MemberService 주입
@@ -18,13 +23,13 @@ public class MemberController {
 	private MemberService service;
 	
 	//회원가입 폼
-	@GetMapping("/signup")
+	@GetMapping("/signUp")
 	public String signUpForm() throws Exception{
 		return "member/signUp";	
 	}
 	
 	//회원가입
-	@PostMapping("/signup")
+	@PostMapping("/signUp")
 	public String signUp(MemberVO vo) throws Exception{
 		service.signUp(vo);
 		return "member/list";	
@@ -48,4 +53,10 @@ public class MemberController {
 	//회원정보보기 / 내정보보기
 	
 	//회원등급변경
+	
+	//홈
+	@GetMapping("/signUp2")
+	public String signUp2() throws Exception{
+		return "member/signUp2";
+	}
 }

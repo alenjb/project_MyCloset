@@ -34,6 +34,15 @@
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 
+	<multipart-config>
+		<location>D:\\jeongbin\\upload\\temp</location>
+		<max-file-size>20971520</max-file-size><!-- 1024*1024*20 : 파일 한개의 용량 제한 
+			: 20MB -->
+		<max-request-size>419430400</max-request-size> <!-- 전체 파일 사이즈 -->
+		<file-size-threshold>20971520</file-size-threshold><!-- 20M 이하면 메모리 / 초과하면 
+			파일 -->
+	</multipart-config>
+
 	<!-- 한글처리 : 카페 - Spring 게시판에서 검색 -->
 
 	<filter>
