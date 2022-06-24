@@ -55,8 +55,8 @@ public class MemberController {
 	//회원등급변경
 	
 	//홈
-	@GetMapping("/signUp2")
-	public String signUp2() throws Exception{
-		return "member/signUp2";
+	@GetMapping("/signUp3")
+	public String signUp3() throws Exception{
+		return "member/signUp3";
 	}
 }
