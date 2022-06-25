@@ -33,7 +33,7 @@
     <title>Register Basic - Pages | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
 
     <meta name="description" content="" />
-
+	
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/resources/assets/img/favicon/favicon.ico" />
 
@@ -47,7 +47,8 @@
 
     <!-- Icons. Uncomment required icon fonts -->
     <link rel="stylesheet" href="/resources/assets/vendor/fonts/boxicons.css" />
-
+	
+	
     <!-- Core CSS -->
 <%--     <link rel="stylesheet" href="<c:url value='/resources/assets/vendor/css/core.css?ver=1.1'/>" class="template-customizer-core-css" /> --%>
     <link rel="stylesheet" href="/resources/assets/vendor/css/core.css" class="template-customizer-core-css" />
@@ -66,6 +67,23 @@
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="/resources/assets/js/config.js"></script>
+
+<!-- 	jQuery CDN	 -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+ 
+ <script type="text/javascript" >
+
+ $(function(){
+ 
+// 	 	아이디 중복 확인
+	 $("#name").keyup(function () {
+ 			if($("#id").length <4){
+// 				$("#smallModal").modal("show");
+			}
+		});
+ 		
+ 	});
+ </script>
   </head>
 
   <body>
@@ -152,14 +170,17 @@
                     id="id"
                     name="member_id"
                     placeholder="아이디"
+                    pattern="[A-Za-z0-9]{4,20}"
                     autofocus
+                    title="아이디는 4글자와 20글자 사이만 가능합니다."
+                          required="required"
                   />
                 </div>
                 
-<!--                 비밀번호 -->
+<!--                 이름 -->
                <div class="mb-3">
                   <label for="name" class="form-label">Name</label>
-                  <input class="form-control" id="name" name="member_name" placeholder="이름" />
+                  <input class="form-control" id="name" name="member_name" placeholder="이름" pattern="[A-Za-z가-힣]{1,15}"       required="required" />
                 </div>
                
                
@@ -167,7 +188,7 @@
 <!--                이메일 -->
                 <div class="mb-3">
                   <label for="email" class="form-label">Email</label>
-                  <input class="form-control" id="email" name="member_email" placeholder="이메일" />
+                  <input class="form-control" id="email" name="member_email" placeholder="이메일"  />
                 </div>
                 
 <!--                 비밀번호 -->
@@ -175,12 +196,16 @@
                   <label class="form-label" for="password">Password</label>
                   <div class="input-group input-group-merge">
                     <input
+	                    required="required"
                       type="password"
                       id="password"
                       class="form-control"
                       name="member_password"
+                      pattern="[A-Za-z0-9]{4,20}"
                       placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
                       aria-describedby="password"
+                      title="비밀번호는 영문과 숫자를 조합하여 4글자와 20글자 사이만 가능합니다."
+                      
                     />
                     <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                   </div>
@@ -191,10 +216,11 @@
                   <label class="form-label" for="passwordCheck">Password Check</label>
                   <div class="input-group input-group-merge">
                     <input
+                          required="required"
                       type="password"
                       id="passwordCheck"
                       class="form-control"
-                     
+                      pattern="[A-Za-z0-9]{4,20}"
                       placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
                       aria-describedby="password check"
                     />
@@ -217,8 +243,7 @@
                     <input class="form-check-input" type="checkbox" id="terms-conditions" name="terms" />
                     <label class="form-check-label" for="terms-conditions">
                       
-                      <a href="javascript:void(0);">개인정보처리방침 및 약관</a>
-                      에 동의 합니다.
+                      <a href="javascript:void(0);">개인정보처리방침 및 약관</a>에 동의 합니다.
                     </label>
                   </div>
                 </div>
@@ -240,6 +265,47 @@
       </div>
     </div>
 
+
+     <!-- Small Modal -->
+     <div class="modal fade" id="smallModal" tabindex="-1" aria-hidden="true">
+       <div class="modal-dialog modal-sm" role="document">
+         <div class="modal-content">
+           <div class="modal-header">
+             <h5 class="modal-title" id="exampleModalLabel2">Modal title</h5>
+             <button
+               type="button"
+               class="btn-close"
+               data-bs-dismiss="modal"
+               aria-label="Close"
+             ></button>
+           </div>
+           <div class="modal-body">
+             <div class="row">
+               <div class="col mb-3">
+                 <label for="nameSmall" class="form-label">Name</label>
+                 <input type="text" id="nameSmall" class="form-control" placeholder="Enter Name" />
+               </div>
+             </div>
+             <div class="row g-2">
+               <div class="col mb-0">
+                 <label class="form-label" for="emailSmall">Email</label>
+                 <input type="text" class="form-control" id="emailSmall" placeholder="xxxx@xxx.xx" />
+               </div>
+               <div class="col mb-0">
+                 <label for="dobSmall" class="form-label">DOB</label>
+                 <input id="dobSmall" type="text" class="form-control" placeholder="DD / MM / YY" />
+               </div>
+             </div>
+           </div>
+           <div class="modal-footer">
+             <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+               Close
+             </button>
+             <button type="button" class="btn btn-primary">Save changes</button>
+           </div>
+         </div>
+       </div>
+     </div>
     <!-- / Content -->
 
 
