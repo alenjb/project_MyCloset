@@ -12,11 +12,11 @@ public class MemberService {
 	
 	//MemberMapper 주입
 	@Inject
-	
 	private MemberMapper mapper;
+	
 	//회원가입 폼
 	public int signUp(MemberVO vo) throws Exception{
-		return mapper.signUpForm(vo);
+		return mapper.signUp(vo);
 	}
 	//회원가입 시 아이디 중복체크
 	

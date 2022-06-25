@@ -6,14 +6,14 @@
 <!-- 회원가입 처리 -->
 <insert id="signUp">
 	insert into member(
-	member_id, member_password,  member_name, member_sex, member_birthday, member_phone,
-	member_email, member_height, member_top_size, member_bottom_size, member_shoes_size, member_face, member_reg_date,
+	member_id, member_password,  member_name, member_sex, member_phone,
+	member_email, member_height, member_top_size, member_bottom_size, member_shoes_size, member_face,
 	member_grade, member_status
 	 )
 	values(
-	#{member_id}, #{member_password}, #{member_name}, #{member_sex}, #{member_birthday}, #{member_phone},
+	#{member_id}, #{member_password}, #{member_name}, #{member_sex}, #{member_phone},
 	#{member_email}, #{member_height}, #{member_top_size}, #{member_bottom_size}, #{member_shoes_size}, #{member_face}, 
-	#{member_reg_date}, #{member_grade}, #{member_status}
+	#{member_grade}, #{member_status}
 	)
 </insert>
 </mapper>

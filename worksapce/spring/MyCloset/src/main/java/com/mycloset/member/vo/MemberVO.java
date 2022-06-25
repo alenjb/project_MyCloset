@@ -21,9 +21,9 @@ public class MemberVO {
 	//회원 성별
 	private String member_sex;
 	
-	//회원 생년월일
-	@DateTimeFormat(pattern="yyyy-MM-dd")
-	private Date member_birthday;
+//	//회원 생년월일
+//	@DateTimeFormat(pattern="yyyy-MM-dd")
+//	private Date member_birthday;
 	
 	//회원 전화번호
 	private String member_phone;

@@ -5,7 +5,7 @@ import com.mycloset.member.vo.MemberVO;
 public interface MemberMapper {
 
 	//회원가입
-	public int signUpForm(MemberVO vo) throws Exception;
+	public int signUp(MemberVO vo) throws Exception;
 	
 	//회원가입 시 아이디 중복체크
 	
