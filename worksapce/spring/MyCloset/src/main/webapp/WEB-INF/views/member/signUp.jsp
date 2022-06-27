@@ -76,12 +76,18 @@
  $(function(){
  
 // 	 	아이디 중복 확인
-	 $("#name").keyup(function () {
- 			if($("#id").length <4){
-// 				$("#smallModal").modal("show");
+		$("#idCheck").load("/member/idCheck?id="+id, function (result) {
+// 			console.log(result);
+			if(result.indexOf("가능한") > -1){
+				//중복이 되지 않은 경우
+				$("#smallModal").modal("show");
+				idCheck=true;
+			} else{
+				//중복된 경우
+				idCheck=false;
 			}
-		});
- 		
+			
+		}); 		
  	});
  </script>
   </head>
@@ -175,6 +181,7 @@
                     title="아이디는 4글자와 20글자 사이만 가능합니다."
                           required="required"
                   />
+                  <button type="button" class="btn btn-primary" id="idCheck">중복확인</button>
                 </div>
                 
 <!--                 이름 -->
