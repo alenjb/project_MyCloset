@@ -1,6 +1,7 @@
 package com.mycloset.member.controller;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.mycloset.member.service.MemberService;
+import com.mycloset.member.vo.LoginVO;
 import com.mycloset.member.vo.MemberVO;
 
 import lombok.extern.log4j.Log4j;
@@ -37,15 +39,24 @@ public class MemberController {
 
 	
 	//회원가입 시 아이디 중복체크
+	@GetMapping("/idCheck")
 	public String idCheck(String id, Model model) throws Exception{
 		return "member/idCheck";
 	}
-	//회원가입
 	
 	//로그인 폼
-	
-	//로그인 
-	
+	@GetMapping("/login")
+	public String loginForm() throws Exception{
+		log.info("로그인 폼으로 이동");
+		return "member/login";
+	}
+	//로그인
+	@PostMapping("/login")
+	public String login(LoginVO vo, HttpSession session) throws Exception{
+		session.setAttribute("login",service.login(vo));
+		log.info("로그인처리  vo: "+vo);
+		return "redirect:/member/home";
+	}
 	//로그아웃
 	
 	//회원 리스트
@@ -54,9 +65,9 @@ public class MemberController {
 	
 	//회원등급변경
 	
-//	//홈
-//	@GetMapping("/signUp3")
-//	public String signUp3() throws Exception{
-//		return "member/signUp3";
-//	}
+	//홈
+	@GetMapping("/home")
+	public String home() throws Exception{
+		return "member/home";
+	}
 }

@@ -5,6 +5,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.mycloset.member.mapper.MemberMapper;
+import com.mycloset.member.vo.LoginVO;
 import com.mycloset.member.vo.MemberVO;
 
 @Service
@@ -18,14 +19,14 @@ public class MemberService {
 	public int signUp(MemberVO vo) throws Exception{
 		return mapper.signUp(vo);
 	}
-	//회원가입 시 아이디 중복체크
 	
 	//회원가입
 	
-	//로그인 폼
 	
 	//로그인 
-	
+	public LoginVO login(LoginVO vo) throws Exception{
+		return mapper.login(vo);
+	}
 	//로그아웃
 	
 	//회원 리스트

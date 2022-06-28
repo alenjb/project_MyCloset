@@ -16,4 +16,11 @@
 	#{member_grade}, #{member_status}
 	)
 </insert>
+
+<!-- 로그인 -->
+	<select id="login" resultType="com.mycloset.member.vo.LoginVO">
+		select member_id, member_name, member_grade
+		from member
+		where (member_id = #{member_id} and member_password= #{member_password})
+	</select>
 </mapper>

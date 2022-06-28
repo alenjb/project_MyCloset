@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 
 <!-- =========================================================
@@ -30,10 +29,10 @@
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>Register Basic - Pages | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
+    <title>Login Basic - Pages | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
 
     <meta name="description" content="" />
-	
+
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/resources/assets/img/favicon/favicon.ico" />
 
@@ -47,10 +46,8 @@
 
     <!-- Icons. Uncomment required icon fonts -->
     <link rel="stylesheet" href="/resources/assets/vendor/fonts/boxicons.css" />
-	
-	
+
     <!-- Core CSS -->
-<%--     <link rel="stylesheet" href="<c:url value='/resources/assets/vendor/css/core.css?ver=1.1'/>" class="template-customizer-core-css" /> --%>
     <link rel="stylesheet" href="/resources/assets/vendor/css/core.css" class="template-customizer-core-css" />
     <link rel="stylesheet" href="/resources/assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
     <link rel="stylesheet" href="/resources/assets/css/demo.css" />
@@ -67,29 +64,6 @@
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="/resources/assets/js/config.js"></script>
-
-<!-- 	jQuery CDN	 -->
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
- 
- <script type="text/javascript" >
-
- $(function(){
-	 var idCheck= false;
-// 	 	아이디 중복 확인
-		$("#idCheck").load("/member/idCheck?id="+id, function (result) {
-// 			console.log(result);
-			if(result.indexOf("가능한") > -1){
-				//중복이 되지 않은 경우
-				idCheck=true;
-			} else{
-				//중복된 경우
-				$("#smallModal").modal("show");
-				idCheck=false;
-			}
-			
-		}); 		
- 	});
- </script>
   </head>
 
   <body>
@@ -98,12 +72,12 @@
     <div class="container-xxl">
       <div class="authentication-wrapper authentication-basic container-p-y">
         <div class="authentication-inner">
-          <!-- Register Card -->
+          <!-- Register -->
           <div class="card">
             <div class="card-body">
               <!-- Logo -->
               <div class="app-brand justify-content-center">
-<!--                 <a href="/resources/index.html" class="app-brand-link gap-2"> -->
+                <a href="/resources/index.html" class="app-brand-link gap-2">
                   <span class="app-brand-logo demo">
                     <svg
                       width="25"
@@ -159,162 +133,70 @@
                       </g>
                     </svg>
                   </span>
-                  <span class="app-brand-text demo text-body fw-bolder">MyCloset</span>
+                  <span class="app-brand-text demo text-body fw-bolder">MyClsoet</span>
                 </a>
               </div>
               <!-- /Logo -->
-<!--               <h4 class="mb-2">회원가입</h4> -->
 
-
-              <form id="signUpForm" class="mb-3" action="signUp" method="POST">
-
-<!-- 				아이디 -->
+              <form id="formAuthentication" class="mb-3" action="login" method="POST">
                 <div class="mb-3">
                   <label for="id" class="form-label">ID</label>
                   <input
+                    type="text"
                     class="form-control"
                     id="id"
                     name="member_id"
-                    placeholder="아이디"
-                    pattern="[A-Za-z0-9]{4,20}"
+                    placeholder="아이디를 입력하세요"
                     autofocus
-                    title="아이디는 4글자와 20글자 사이만 가능합니다."
-                          required="required"
                   />
-                  <button type="button" class="btn btn-primary" id="idCheck">중복확인</button>
                 </div>
-                
-<!--                 이름 -->
-               <div class="mb-3">
-                  <label for="name" class="form-label">Name</label>
-                  <input class="form-control" id="name" name="member_name" placeholder="이름" pattern="[A-Za-z가-힣]{1,15}"       required="required" />
-                </div>
-               
-               
-               
-<!--                이메일 -->
-                <div class="mb-3">
-                  <label for="email" class="form-label">Email</label>
-                  <input class="form-control" id="email" name="member_email" placeholder="이메일"  />
-                </div>
-                
-<!--                 비밀번호 -->
                 <div class="mb-3 form-password-toggle">
-                  <label class="form-label" for="password">Password</label>
+                  <div class="d-flex justify-content-between">
+                    <label class="form-label" for="password">Password</label>
+                    <a href="/resources/html/auth-forgot-password-basic.html">
+                      <small>비밀번호를 잊으셨나요?</small>
+                    </a>
+                  </div>
                   <div class="input-group input-group-merge">
                     <input
-	                    required="required"
                       type="password"
                       id="password"
                       class="form-control"
                       name="member_password"
-                      pattern="[A-Za-z0-9]{4,20}"
                       placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
                       aria-describedby="password"
-                      title="비밀번호는 영문과 숫자를 조합하여 4글자와 20글자 사이만 가능합니다."
-                      
                     />
                     <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                   </div>
                 </div>
-                
-<!--                 비밀번호 확인 -->
-                <div class="mb-3 form-password-toggle">
-                  <label class="form-label" for="passwordCheck">Password Check</label>
-                  <div class="input-group input-group-merge">
-                    <input
-                          required="required"
-                      type="password"
-                      id="passwordCheck"
-                      class="form-control"
-                      pattern="[A-Za-z0-9]{4,20}"
-                      placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
-                      aria-describedby="password check"
-                    />
-                    <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
-                  </div>
-                </div>
-
-               <!-- 			성별 -->
-			<div class="mb-1">
-				<label for="sex" class="form-label">gender</label>
-			</div>
-			<div class="mb-3">
-<!-- 			<label for="sex" class="form-label">gender</label> -->
-				<label class="form-check-label"><input id="sex" type="radio" checked value="남자" required="required" name="member_sex" class="form-check-input">남자</label>
-				<label class="form-check-label"><input  type="radio" value="여자" name="member_sex" class="form-check-input">여자</label>
-			</div>	
-
                 <div class="mb-3">
                   <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="terms-conditions" name="terms" />
-                    <label class="form-check-label" for="terms-conditions">
-                      
-                      <a href="javascript:void(0);">개인정보처리방침 및 약관</a>에 동의 합니다.
-                    </label>
+                    <input class="form-check-input" type="checkbox" id="remember-me" />
+                    <label class="form-check-label" for="remember-me"> 아아디 기억하기 </label>
                   </div>
                 </div>
-                <button class="btn btn-primary d-grid w-100">회원가입</button>
+                <div class="mb-3">
+                  <button class="btn btn-primary d-grid w-100" type="submit">로그인</button>
+                </div>
               </form>
 
               <p class="text-center">
-<!--                 <span>Already have an account?</span> -->
-                <span>이미 계정이 있으신가요?</span>
-                <a href="/resources/html/auth-login-basic.html">
-<!--                   <span>Sign in instead</span> -->
-                  <span>로그인</span>
+                <span>계정이 없으신가요?</span>
+                <a href="/resources/html/auth-register-basic.html">
+                  <span>회원가입</span>
                 </a>
               </p>
             </div>
           </div>
-          <!-- Register Card -->
+          <!-- /Register -->
         </div>
       </div>
     </div>
 
-
-     <!-- Small Modal -->
-     <div class="modal fade" id="smallModal" tabindex="-1" aria-hidden="true">
-       <div class="modal-dialog modal-sm" role="document">
-         <div class="modal-content">
-           <div class="modal-header">
-             <h5 class="modal-title" id="exampleModalLabel2">Modal title</h5>
-             <button
-               type="button"
-               class="btn-close"
-               data-bs-dismiss="modal"
-               aria-label="Close"
-             ></button>
-           </div>
-           <div class="modal-body">
-             <div class="row">
-               <div class="col mb-3">
-                 <label for="nameSmall" class="form-label">Name</label>
-                 <input type="text" id="nameSmall" class="form-control" placeholder="Enter Name" />
-               </div>
-             </div>
-             <div class="row g-2">
-               <div class="col mb-0">
-                 <label class="form-label" for="emailSmall">Email</label>
-                 <input type="text" class="form-control" id="emailSmall" placeholder="xxxx@xxx.xx" />
-               </div>
-               <div class="col mb-0">
-                 <label for="dobSmall" class="form-label">DOB</label>
-                 <input id="dobSmall" type="text" class="form-control" placeholder="DD / MM / YY" />
-               </div>
-             </div>
-           </div>
-           <div class="modal-footer">
-             <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-               Close
-             </button>
-             <button type="button" class="btn btn-primary">Save changes</button>
-           </div>
-         </div>
-       </div>
-     </div>
     <!-- / Content -->
 
+
+    </div>
 
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
