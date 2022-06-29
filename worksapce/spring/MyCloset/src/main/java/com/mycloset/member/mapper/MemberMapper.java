@@ -14,7 +14,7 @@ public interface MemberMapper {
 	//로그인 폼
 	
 	//로그인 
-	public LoginVO login (LoginVO vo) throws Exception;
+	public LoginVO login(LoginVO vo) throws Exception;
 	//로그아웃
 	
 	//회원 리스트

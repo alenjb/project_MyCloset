@@ -52,12 +52,24 @@ public class MemberController {
 	}
 	//로그인
 	@PostMapping("/login")
-	public String login(LoginVO vo, HttpSession session) throws Exception{
-		session.setAttribute("login",service.login(vo));
-		log.info("로그인처리  vo: "+service.login(vo));
-		return "redirect:/member/home";
+	public String login(LoginVO vo, HttpSession session, Model model) throws Exception{
+		if(service.login(vo) != null) {
+			session.setAttribute("login",service.login(vo));
+			log.info("로그인처리  vo: "+service.login(vo));
+			model.addAttribute("vo", service.login(vo));
+			return "member/home";}
+		else {
+			log.info("로그인 할 수 없음");
+			return "redirect:/member/login";
+		}
 	}
 	//로그아웃
+	@GetMapping("/logut")
+	public String logut(LoginVO vo, HttpSession session) throws Exception{
+		session.removeAttribute("login");
+		log.info("로그아웃처리  vo: "+service.login(vo));
+		return "member/login";
+	}
 	
 	//회원 리스트
 	

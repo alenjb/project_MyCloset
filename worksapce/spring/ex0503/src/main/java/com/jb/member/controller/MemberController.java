@@ -45,7 +45,7 @@ public class MemberController {
 	@PostMapping("/login.do")
 
 	public String login(LoginVO invo, HttpSession session) throws Exception{
-		log.info("로그인 처리 - invo: "+invo);
+		log.info("로그인 처리 - invo: "+service.login(invo));
 		session.setAttribute("login", service.login(invo));
 		return "redirect:/member/list.do";
 	}
@@ -68,7 +68,7 @@ public class MemberController {
 	public String list(@ModelAttribute PageObject pageObject, Model model, HttpSession session) throws Exception{
 		model.addAttribute("list", service.list(pageObject));
 		System.out.println("로그인:"+session.getAttribute("login"));
-		System.out.println("넘어노는 vo   \n"+model.toString());
+//		System.out.println("넘어노는 vo   \n"+model.toString());
 		return "member/list";
 	}
 	
