@@ -54,7 +54,7 @@ public class MemberController {
 	@PostMapping("/login")
 	public String login(LoginVO vo, HttpSession session) throws Exception{
 		session.setAttribute("login",service.login(vo));
-		log.info("로그인처리  vo: "+vo);
+		log.info("로그인처리  vo: "+service.login(vo));
 		return "redirect:/member/home";
 	}
 	//로그아웃
