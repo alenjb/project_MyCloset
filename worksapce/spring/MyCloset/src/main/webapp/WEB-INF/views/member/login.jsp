@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 
 <!-- =========================================================
@@ -64,6 +65,22 @@
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="/resources/assets/js/config.js"></script>
+    
+<!-- 	jQuery CDN	 -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+<!--     아이디나 비번 오류 시 모달 창 -->
+	<script type="text/javascript">
+	$(function () {
+		$("#submit-btn").click(function () {
+			var id= document.getElementById('id').value;
+			 document.getElementById("id").innerText = id;
+			if( id== "alenjb0826")
+				$("#basicModal").modal("show");
+				return false;
+		});
+	});
+	</script>
   </head>
 
   <body>
@@ -133,7 +150,7 @@
                       </g>
                     </svg>
                   </span>
-                  <span class="app-brand-text demo text-body fw-bolder">MyClsoet</span>
+                  <span class="app-brand-text demo text-body fw-bolder">MyCloset</span>
                 </a>
               </div>
               <!-- /Logo -->
@@ -176,7 +193,7 @@
                   </div>
                 </div>
                 <div class="mb-3">
-                  <button class="btn btn-primary d-grid w-100" type="submit">로그인</button>
+                  <button class="btn btn-primary d-grid w-100"  id ="submit-btn" type="submit">로그인</button>
                 </div>
               </form>
 
@@ -191,6 +208,51 @@
           <!-- /Register -->
         </div>
       </div>
+	<!-- Default Modal -->
+	     <div class="col-lg-4 col-md-6">
+	       <small class="text-light fw-semibold">Default</small>
+	       <div class="mt-3">
+<!-- 	         Button trigger modal -->
+<!-- 	         <button -->
+<!-- 	           type="button" -->
+<!-- 	           class="btn btn-primary" -->
+<!-- 	           data-bs-toggle="modal" -->
+<!-- 	           data-bs-target="#basicModal" -->
+<!-- 	         > -->
+<!-- 	           Launch modal -->
+<!-- 	         </button> -->
+	
+	         <!-- Modal -->
+	         <div class="modal fade" id="basicModal" tabindex="-1" aria-hidden="true">
+	           <div class="modal-dialog" role="document">
+	             <div class="modal-content">
+	               <div class="modal-header" >
+	               
+	                 <h5 class="modal-title" id="exampleModalLabel1">
+	                 
+	                 아이디를 찾을 수 없습니다.</h5>
+	                 <button
+	                   type="button"
+	                   class="btn-close"
+	                   data-bs-dismiss="modal"
+	                   aria-label="Close"
+	                 ></button>
+	               </div>
+	               <div class="modal-body">아이디를 올바르게 입력했는지 다시 확인해주세요.</div>
+	               
+<!-- 	               <div class="modal-body"> -->
+<!-- 	                 <div class="row"> -->
+<!-- 	                   <div class="col mb-3"> -->
+<!-- 	                     <label for="nameBasic" class="form-label">Name</label> -->
+<!-- 	                     <input type="text" id="nameBasic" class="form-control" placeholder="Enter Name" /> -->
+<!-- 	                   </div> -->
+<!-- 	                 </div> -->
+<!-- 	             </div> -->
+	           </div>
+	         </div>
+	       </div>
+	     </div>
+	
     </div>
 
     <!-- / Content -->
