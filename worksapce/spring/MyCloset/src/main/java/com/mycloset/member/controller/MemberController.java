@@ -3,15 +3,18 @@ package com.mycloset.member.controller;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
+import org.apache.taglibs.standard.lang.jstl.test.beans.PublicBean1;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.mycloset.member.service.MemberService;
 import com.mycloset.member.vo.LoginVO;
 import com.mycloset.member.vo.MemberVO;
+import com.webjjang.util.PageObject;
 
 import lombok.extern.log4j.Log4j;
 
@@ -44,6 +47,7 @@ public class MemberController {
 		return "member/idCheck";
 	}
 	
+	
 	//로그인 폼
 	@GetMapping("/login")
 	public String loginForm() throws Exception{
@@ -72,7 +76,13 @@ public class MemberController {
 	}
 	
 	//회원 리스트
-	
+	//관리자만 볼 수 있음
+	@GetMapping("/list")
+	public String list(@ModelAttribute PageObject object, Model model, HttpSession session) throws Exception{
+		model.addAttribute("list",service.list(object));
+		return "member/list";
+		
+	} 
 	//회원정보보기 / 내정보보기
 	
 	//회원등급변경
@@ -82,4 +92,5 @@ public class MemberController {
 	public String home() throws Exception{
 		return "member/home";
 	}
+	
 }

@@ -1,7 +1,10 @@
 package com.mycloset.member.mapper;
 
+import java.util.List;
+
 import com.mycloset.member.vo.LoginVO;
 import com.mycloset.member.vo.MemberVO;
+import com.webjjang.util.PageObject;
 
 public interface MemberMapper {
 
@@ -15,11 +18,13 @@ public interface MemberMapper {
 	
 	//로그인 
 	public LoginVO login(LoginVO vo) throws Exception;
-	//로그아웃
 	
 	//회원 리스트
-	
+	public List<MemberVO> list(PageObject pageObject) throws Exception;
 	//회원정보보기 / 내정보보기
 	
 	//회원등급변경
+	
+	//전체 데이터 개수
+	public long getTotalRow(PageObject pageObject) throws Exception;
 }
