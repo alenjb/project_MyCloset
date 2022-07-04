@@ -69,6 +69,14 @@
     <!-- 	jQuery CDN	 -->
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     
+    <!-- 열에 마우스 오버될 시 손가락 모양 -->
+ <style type="text/css">
+  .dataRow:hover{
+  		background: #eee;
+  		cursor:pointer;
+  }
+  </style>
+    
     <script type="text/javascript">
 	$(function() {
 		$(".dataRow")
@@ -509,13 +517,29 @@
               <!-- Search -->
               <div class="navbar-nav align-items-center">
                 <div class="nav-item d-flex align-items-center">
-                  <i class="bx bx-search fs-4 lh-0"></i>
+                       <div>
+                        <select name="key" id="SearchKey" class="form-select form-select-sm">
+							<option value="t" ${(pageObject.key =="t") ? "seleted":""}>제목</option>
+							<option value="c" ${(pageObject.key =="c") ? "seleted":""}>내용</option>
+							<option value="w" ${(pageObject.key =="w") ? "seleted":""}>작성자</option>
+							<option value="tc" ${(pageObject.key =="tc") ? "seleted":""}>제목/내용</option>
+							<option value="tcw" ${(pageObject.key =="tcw") ? "seleted":""}>전체</option>								
+                        </select>
+                      </div>
+                  <div>
                   <input
                     type="text"
                     class="form-control border-0 shadow-none"
                     placeholder="Search..."
                     aria-label="Search..."
                   />
+                  </div>
+                  
+                      	<div class="input-group-btn">
+							<button class="btn btn-default" type="submit">
+				                  <i class="bx bx-search fs-4 lh-0"></i>                  
+							</button>
+						</div>
                 </div>
               </div>
               <!-- /Search -->
@@ -592,20 +616,20 @@
             <!-- Content -->
 
             <div class="container-xxl flex-grow-1 container-p-y">
-              <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Tables /</span> Basic Tables</h4>
+              <h4 class="fw-bold py-3 mb-4">공지사항</h4>
 
               <!-- Hoverable Table rows -->
               <div class="card">
-                <h5 class="card-header">공지 리스트</h5>
+<!--                 <h5 class="card-header">공지 리스트</h5> -->
                 <div class="table-responsive text-nowrap">
                   <table class="table table-hover">
                     <thead>
 						<tr>
-						<th>공지 번호</th>
-						<th>공지 제목</th>
-						<th>공지 작성자</th>
-						<th>공지 작성일</th>
-						<th>공지 종료일</th>
+						<th>번호</th>
+						<th>제목</th>
+						<th>작성자</th>
+						<th>작성일</th>
+						<th>종료일</th>
 				
 						</tr>                      
                     </thead>
