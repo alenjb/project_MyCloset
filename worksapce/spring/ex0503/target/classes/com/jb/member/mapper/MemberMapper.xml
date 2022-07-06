@@ -31,7 +31,7 @@
 				and member_gradeNo = gradeNo
 				order by member_id asc
 				) AS A, (SELECT @ROWNUM:=0) AS B
-                
+                0
 			) AS C
             where C.RNUM between #{startRow} and #{endRow}
 	</select>

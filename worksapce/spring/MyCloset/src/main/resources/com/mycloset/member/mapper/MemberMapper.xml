@@ -31,19 +31,19 @@
 	
 <!-- 	리스트 가져오기 -->
 	<select id="list" resultType="com.mycloset.member.vo.MemberVO">
-	select select member_id, member_name, member_sex, member_phone, member_email, member_height, member_top_size, member_bottom_size,
+	select member_id, member_name, member_sex, member_phone, member_email, member_height, member_top_size, member_bottom_size,
 		member_shoes_size, member_face, member_reg_date, member_grade
 		from(
-	select (@ROWNUM:=@ROWNUM+1) AS RNUM, select member_id, member_name, member_sex, member_phone, member_email, member_height, member_top_size, member_bottom_size,
-		member_shoes_size, member_face, member_reg_date, member_grade
-	from(
-		select member_id, member_name, member_sex, member_phone, member_email, member_height, member_top_size, member_bottom_size,
-		member_shoes_size, member_face, member_reg_date, member_grade
-		from member
-		order by member_id asc
-		)AS A, (SELECT @ROWNUM:=0) AS B
-		)AS C
-		where C.RNUM between #{startRow} and #{endRow}
+			select (@ROWNUM:=@ROWNUM+1) AS RNUM, member_id, member_name, member_sex, member_phone, member_email, member_height, member_top_size, member_bottom_size,
+				member_shoes_size, member_face, member_reg_date, member_grade
+			from(
+				select member_id, member_name, member_sex, member_phone, member_email, member_height, member_top_size, member_bottom_size,
+				member_shoes_size, member_face, member_reg_date, member_grade
+				from member
+				order by member_id asc
+				)AS A, (SELECT @ROWNUM:=0) AS B
+				)AS C
+				where C.RNUM between #{startRow} and #{endRow}
 		
 	</select>
 </mapper>

@@ -6,25 +6,32 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="\\"/>
+		<item key="selection" value="Small"/>
 		<list key="findhistory">
-			<item value="/"/>
-			<item value="member_key"/>
-			<item value="return false"/>
-			<item value="name"/>
-			<item value="왁인"/>
-			<item value="idCheck"/>
-			<item value="idCheck+"/>
-			<item value="&apos;"/>
-			<item value="가능"/>
-			<item value="success"/>
-			<item value="+"/>
-			<item value="write.do"/>
-			<item value="member_id"/>
-			<item value="rom"/>
-			<item value="From"/>
+			<item value="Small"/>
+			<item value="Primary"/>
+			<item value="primary"/>
+			<item value="pri"/>
+			<item value="ㅔ갸ㅡㅁ"/>
+			<item value="btn btn-primary dropdown-toggle"/>
+			<item value="navbar-nav-right d-flex align-items-center"/>
+			<item value="dataRow"/>
+			<item value="he"/>
+			<item value="nav-item nav-link px-0 me-xl-4"/>
+			<item value="git"/>
+			<item value="nav-item"/>
+			<item value="Active"/>
+			<item value="active"/>
+			<item value="STA"/>
 		</list>
 		<list key="replacehistory">
+			<item value="/resources/"/>
+			<item value=""/>
+			<item value="/resources"/>
+			<item value="/"/>
+			<item value="../../resources/assets/"/>
+			<item value="grade"/>
+			<item value="member_birthday"/>
 			<item value="\\"/>
 			<item value="//return false"/>
 			<item value="확인"/>
@@ -33,18 +40,11 @@
 			<item value="member"/>
 			<item value="CURDATE()"/>
 			<item value="DATE(SYSDATE())"/>
-			<item value="DATE_FORMAT(SYSDATE(),&apos;%Y-%m-%d&apos;)"/>
-			<item value="SYSDATE()"/>
-			<item value="writeDate"/>
-			<item value="${pageObject.word}"/>
-			<item value="startDate"/>
-			<item value="notice"/>
-			<item value="Notice"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="1041"/>
-		<item key="DIALOG_Y_ORIGIN" value="144"/>
+		<item key="DIALOG_X_ORIGIN" value="1044"/>
+		<item key="DIALOG_Y_ORIGIN" value="84"/>
 		<item key="DIALOG_WIDTH" value="322"/>
 		<item key="DIALOG_HEIGHT" value="413"/>
 		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>

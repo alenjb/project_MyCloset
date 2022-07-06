@@ -94,7 +94,7 @@
 		<th>작성일</th>
 		<th>조회수</th>
 	</tr>
-	<c:forEach items="${list }" var="vo">
+	<c:forEach items="${list}" var="vo">
 		<tr class="dataRow">
 			<td class= "no">${vo.no }</td>
 			<td>${vo.title }</td>
