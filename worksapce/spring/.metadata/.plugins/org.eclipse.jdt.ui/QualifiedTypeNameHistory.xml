@@ -43,13 +43,11 @@
     <fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
     <fullyQualifiedTypeName name="org.springframework.web.multipart.MultipartFile"/>
     <fullyQualifiedTypeName name="java.util.Date"/>
-    <fullyQualifiedTypeName name="com.mycloset.member.service.MemberService"/>
     <fullyQualifiedTypeName name="com.mycloset.member.mapper.MemberMapper"/>
     <fullyQualifiedTypeName name="javax.inject.Inject"/>
     <fullyQualifiedTypeName name="lombok.extern.log4j.Log4j"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PostMapping"/>
     <fullyQualifiedTypeName name="lombok.Data"/>
-    <fullyQualifiedTypeName name="com.mycloset.member.vo.LoginVO"/>
     <fullyQualifiedTypeName name="org.springframework.web.servlet.mvc.support.RedirectAttributes"/>
     <fullyQualifiedTypeName name="org.apache.taglibs.standard.lang.jstl.test.beans.PublicBean1"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.ModelAttribute"/>
@@ -60,4 +58,6 @@
     <fullyQualifiedTypeName name="com.webjjang.util.PageObject"/>
     <fullyQualifiedTypeName name="java.lang.Exception"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
+    <fullyQualifiedTypeName name="com.mycloset.member.vo.LoginVO"/>
+    <fullyQualifiedTypeName name="com.mycloset.member.service.MemberService"/>
 </qualifiedTypeNameHistroy>

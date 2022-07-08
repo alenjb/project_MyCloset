@@ -1,8 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
 <!DOCTYPE html>
 
 <!-- =========================================================
@@ -66,39 +61,10 @@
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="/resources/assets/js/config.js"></script>
-    <!-- 	jQuery CDN	 -->
+    
+        <!-- 	jQuery CDN	 -->
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     
-    <!-- 열에 마우스 오버될 시 손가락 모양 -->
- <style type="text/css">
-  .dataRow:hover{
-  		background: #eee;
-  		cursor:pointer;
-  }
-  </style>
-    
-    <script type="text/javascript">
-	$(function() {
-		$(".dataRow")
-				.click(
-						function() {
-							var no = $(this).find(".no").text();
-							location = "view?no="
-									+ no
-									+ "&inc=1"
-									+"&page=${pageObject.page}&perPageNum=${pageObject.perPageNum}&key=${pageObject.key}&word=${pageObject.word}&period=${pageObject.period}"
-							;
-									
-						});
-
-	//perPageNum 데이터의 변경 이벤트 처리 ->jQuery에 대한 이벤트
-		$("#perPageNumSelect").change(function() {
-			// 			alert("값 변경");	
-			$("#perPageNumForm").submit();
-		});
-	
-	});
-    </script>
   </head>
 
   <body>
@@ -109,7 +75,7 @@
 
         <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
           <div class="app-brand demo">
-            <a href="index.html" class="app-brand-link">
+            <a href="/resources/index.html" class="app-brand-link">
               <span class="app-brand-logo demo">
                 <svg
                   width="25"
@@ -165,7 +131,7 @@
                   </g>
                 </svg>
               </span>
-              <span class="app-brand-text demo menu-text fw-bolder ms-2">Sneat</span>
+              <span class="app-brand-text demo menu-text fw-bolder ms-2">MyCloset</span>
             </a>
 
             <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
@@ -178,7 +144,7 @@
           <ul class="menu-inner py-1">
             <!-- Dashboard -->
             <li class="menu-item">
-              <a href="index.html" class="menu-link">
+              <a href="/resources/index.html" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Dashboard</div>
               </a>
@@ -193,17 +159,17 @@
 
               <ul class="menu-sub">
                 <li class="menu-item">
-                  <a href="layouts-without-menu.html" class="menu-link">
+                  <a href="/resources/html/layouts-without-menu.html" class="menu-link">
                     <div data-i18n="Without menu">Without menu</div>
                   </a>
                 </li>
                 <li class="menu-item">
-                  <a href="layouts-without-navbar.html" class="menu-link">
+                  <a href="/resources/html/layouts-without-navbar.html" class="menu-link">
                     <div data-i18n="Without navbar">Without navbar</div>
                   </a>
                 </li>
                 <li class="menu-item">
-                  <a href="layouts-container.html" class="menu-link">
+                  <a href="/resources/html/layouts-container.html" class="menu-link">
                     <div data-i18n="Container">Container</div>
                   </a>
                 </li>
@@ -509,7 +475,7 @@
             id="layout-navbar"
           >
             <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
-              <a class="nav-item nav-link px-0 me-xl-4" href="/kkk">
+              <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
                 <i class="bx bx-menu bx-sm"></i>
               </a>
             </div>
@@ -518,36 +484,32 @@
               <!-- Search -->
               <div class="navbar-nav align-items-center">
                 <div class="nav-item d-flex align-items-center">
-                       <div>
-                        <select name="key" id="SearchKey" class="form-select form-select-sm">
-							<option value="t" ${(pageObject.key =="t") ? "seleted":""}>제목</option>
-							<option value="c" ${(pageObject.key =="c") ? "seleted":""}>내용</option>
-							<option value="w" ${(pageObject.key =="w") ? "seleted":""}>작성자</option>
-							<option value="tc" ${(pageObject.key =="tc") ? "seleted":""}>제목/내용</option>
-							<option value="tcw" ${(pageObject.key =="tcw") ? "seleted":""}>전체</option>								
-                        </select>
-                      </div>
-                  <div>
-<!--                   검색 창 -->
-                <form>
-                  <input type="text" class="form-control border-0 shadow-none"
-                    placeholder="Search..." aria-label="Search..." name="searchWord"
-                    value="${pageObject.word }"
+                  <i class="bx bx-search fs-4 lh-0"></i>
+                  <input
+                    type="text"
+                    class="form-control border-0 shadow-none"
+                    placeholder="Search..."
+                    aria-label="Search..."
                   />
-                  </div>
-                <div class="input-group-btn">
-					<button class="btn btn-default" type="submit">
-	                  <i class="bx bx-search fs-4 lh-0"></i>                  
-					</button>
-				</div>
-				</form>
                 </div>
               </div>
               <!-- /Search -->
 
               <ul class="navbar-nav flex-row align-items-center ms-auto">
                 <!-- Place this tag where you want the button to render. -->
-                <!-- User(내정보 보기) -->
+                <li class="nav-item lh-1 me-3">
+                  <a
+                    class="github-button"
+                    href="https://github.com/themeselection/sneat-html-admin-template-free"
+                    data-icon="octicon-star"
+                    data-size="large"
+                    data-show-count="true"
+                    aria-label="Star themeselection/sneat-html-admin-template-free on GitHub"
+                    >Star</a
+                  >
+                </li>
+
+                <!-- User -->
                 <li class="nav-item navbar-dropdown dropdown-user dropdown">
                   <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                     <div class="avatar avatar-online">
@@ -564,8 +526,8 @@
                             </div>
                           </div>
                           <div class="flex-grow-1">
-                            <span class="fw-semibold d-block">${vo.member_id}</span>
-                            <small class="text-muted">${vo.member_grade}</small>
+                            <span class="fw-semibold d-block">John Doe</span>
+                            <small class="text-muted">Admin</small>
                           </div>
                         </div>
                       </a>
@@ -574,22 +536,31 @@
                       <div class="dropdown-divider"></div>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="/member/myPage">
+                      <a class="dropdown-item" href="#">
                         <i class="bx bx-user me-2"></i>
                         <span class="align-middle">My Profile</span>
                       </a>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="setting">
+                      <a class="dropdown-item" href="#">
                         <i class="bx bx-cog me-2"></i>
                         <span class="align-middle">Settings</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="#">
+                        <span class="d-flex align-items-center align-middle">
+                          <i class="flex-shrink-0 bx bx-credit-card me-2"></i>
+                          <span class="flex-grow-1 align-middle">Billing</span>
+                          <span class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
+                        </span>
                       </a>
                     </li>
                     <li>
                       <div class="dropdown-divider"></div>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="/member/login">
+                      <a class="dropdown-item" href="auth-login-basic.html">
                         <i class="bx bx-power-off me-2"></i>
                         <span class="align-middle">Log Out</span>
                       </a>
@@ -608,60 +579,61 @@
             <!-- Content -->
 
             <div class="container-xxl flex-grow-1 container-p-y">
-              <h4 class="fw-bold py-3 mb-4">공지사항</h4>
+              <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Tables /</span> Basic Tables</h4>
+
 
               <!-- Hoverable Table rows -->
               <div class="card">
-<!--                 <h5 class="card-header">공지 리스트</h5> -->
+                <h5 class="card-header">Hoverable rows</h5>
                 <div class="table-responsive text-nowrap">
                   <table class="table table-hover">
-                    <thead>
-						<tr>
-						<th>번호</th>
-						<th>제목</th>
-						<th>작성자</th>
-						<th>작성일</th>
-						<th>종료일</th>
-				
-						</tr>                      
-                    </thead>
                     <tbody class="table-border-bottom-0">
-                      <c:forEach items="${list }" var="vo">
-                      <tr class="dataRow">
-						<td class="no">${vo.no}</td>
-						<td>${vo.title}</td>
-						<td>${vo.writer}</td>
-						<td><fmt:formatDate value="${vo.writeDate}" pattern="yyyy-MM-dd"/></td>
-						<td><fmt:formatDate value="${vo.endDate}" pattern="yyyy-MM-dd"/></td>
+                      <tr>
+                        <td>제목</strong></td>
+                        <td>${vo.title}</td>
                         <td>
-                          <div class="dropdown">
-                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                              <i class="bx bx-dots-vertical-rounded"></i>
-                            </button>
-                            <div class="dropdown-menu">
-                              <a class="dropdown-item" href="update?no=${vo.no }&inc=0&page=${param.page}&perPageNum=${param.perPageNum}&key=${param.key}&word=${param.word}"
-                                ><i class="bx bx-edit-alt me-1"></i> 수정</a
-                              >
-                              <a class="dropdown-item" href="javascript:void(0);"
-                                ><i class="bx bx-trash me-1"></i> 삭제</a
-                              >
-                            </div>
-                          </div>
                         </td>
-                      </tr>                        
-                     </c:forEach>
+                      </tr>
+                      <tr>
+                        <td> <strong>번호</strong></td>
+                        <td>${vo.no}</td>
+                        <td>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td> <strong>작성일</strong></td>
+                        <td>${vo.writeDate}</td>
+                        <td>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td> <strong>작성자</strong></td>
+                        <td>${vo.writer}</td>
+                        <td>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                           <strong>조회수</strong>
+                        </td>
+                        <td>${vo.hit}</td>
+                        <td>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <strong>내용</strong>
+                        </td>
+                        <td>${vo.content}</td>
+                        <td>
+                        </td>
+                      </tr>
                     </tbody>
                   </table>
                 </div>
               </div>
               <!--/ Hoverable Table rows -->
 
-              <hr class="my-5" />
-
-
-
-
- 
             </div>
             <!-- / Content -->
 
@@ -701,6 +673,7 @@
       <div class="layout-overlay layout-menu-toggle"></div>
     </div>
     <!-- / Layout wrapper -->
+
 
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->

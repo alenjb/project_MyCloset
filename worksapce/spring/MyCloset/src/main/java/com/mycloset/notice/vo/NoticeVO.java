@@ -20,6 +20,9 @@ public class NoticeVO {
 	//공지 작성자
 	private String writer;
 	
+	//공지 조회수
+	private long hit;
+	
 	//공지 작성일
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date writeDate;

@@ -6,23 +6,23 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="Small"/>
+		<item key="selection" value="Font"/>
 		<list key="findhistory">
+			<item value="Font"/>
+			<item value="래ㅜㅅ"/>
+			<item value="hover"/>
+			<item value="href"/>
+			<item value="../"/>
+			<item value="mb-2 mb-md-0"/>
+			<item value="search"/>
+			<item value="&lt;form"/>
+			<item value="form"/>
+			<item value="flex-grow-1"/>
+			<item value="flex-grow"/>
+			<item value="dropdown-menu-end"/>
+			<item value="&lt;!-- Nav"/>
+			<item value="Nav"/>
 			<item value="Small"/>
-			<item value="Primary"/>
-			<item value="primary"/>
-			<item value="pri"/>
-			<item value="ㅔ갸ㅡㅁ"/>
-			<item value="btn btn-primary dropdown-toggle"/>
-			<item value="navbar-nav-right d-flex align-items-center"/>
-			<item value="dataRow"/>
-			<item value="he"/>
-			<item value="nav-item nav-link px-0 me-xl-4"/>
-			<item value="git"/>
-			<item value="nav-item"/>
-			<item value="Active"/>
-			<item value="active"/>
-			<item value="STA"/>
 		</list>
 		<list key="replacehistory">
 			<item value="/resources/"/>
@@ -43,8 +43,8 @@
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="1044"/>
-		<item key="DIALOG_Y_ORIGIN" value="84"/>
+		<item key="DIALOG_X_ORIGIN" value="1004"/>
+		<item key="DIALOG_Y_ORIGIN" value="134"/>
 		<item key="DIALOG_WIDTH" value="322"/>
 		<item key="DIALOG_HEIGHT" value="413"/>
 		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>

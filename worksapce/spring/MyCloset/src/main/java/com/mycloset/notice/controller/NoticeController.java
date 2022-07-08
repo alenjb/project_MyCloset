@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.mycloset.member.service.MemberService;
+import com.mycloset.member.vo.LoginVO;
 import com.mycloset.notice.service.NoticeService;
 import com.mycloset.notice.vo.NoticeVO;
 import com.webjjang.util.PageObject;
@@ -34,6 +36,7 @@ public class NoticeController {
 		
 		System.out.println("NoticeController.list()");
 		model.addAttribute("list", service.list(pageObject));
+		System.out.println(model);
 		return "notice/list";
 	}
 	
@@ -47,6 +50,17 @@ public class NoticeController {
 		vo.setContent(vo.getContent().replace("\n", "<br>"));
 		model.addAttribute("vo", vo);
 		return "notice/view";
+	}
+	
+	@GetMapping("/view_bs")
+	public String view_bs(long no, Model model) throws Exception{
+		System.out.println("NoticeController.view()");
+		NoticeVO vo = service.view(no);
+		System.out.println(vo.getContent()+"vo.getContent()");
+		//줄바꿈 처리
+		vo.setContent(vo.getContent().replace("\n", "<br>"));
+		model.addAttribute("vo", vo);
+		return "notice/view_bs";
 	}
 	//3.글쓰기(write)
 	
