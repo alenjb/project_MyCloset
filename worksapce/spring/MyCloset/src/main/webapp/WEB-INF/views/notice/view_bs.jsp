@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 
 <!-- =========================================================
@@ -579,7 +583,7 @@
             <!-- Content -->
 
             <div class="container-xxl flex-grow-1 container-p-y">
-              <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Tables /</span> Basic Tables</h4>
+              <h4 class="fw-bold py-3 mb-4">Basic Tables</h4>
 
 
               <!-- Hoverable Table rows -->
@@ -589,20 +593,18 @@
                   <table class="table table-hover">
                     <tbody class="table-border-bottom-0">
                       <tr>
-                        <td>제목</strong></td>
+                        <td>제목</td>
                         <td>${vo.title}</td>
                         <td>
                         </td>
                       </tr>
                       <tr>
-                        <td> <strong>번호</strong></td>
+                        <td>번호</td>
                         <td>${vo.no}</td>
-                        <td>
-                        </td>
                       </tr>
                       <tr>
                         <td> <strong>작성일</strong></td>
-                        <td>${vo.writeDate}</td>
+                        <td><fmt:formatDate value="${vo.writeDate}" pattern="yyyy-MM-dd"/></td>
                         <td>
                         </td>
                       </tr>
@@ -631,6 +633,12 @@
                     </tbody>
                   </table>
                 </div>
+              </div>
+              
+              <div class="card-body">
+                  <button type="button" class="btn btn-primary" onclick="location.href='list?page=${param.page}&perPageNum=${param.perPageNum}&key=${param.key}&word=${param.word}&period=${param.period}'">리스트</button>
+                  <button type="button" class="btn btn-secondary" onclick="location.href='update?no=${vo.no }&inc=0&page=${param.page}&perPageNum=${param.perPageNum}&key=${param.key}&word=${param.word}'">수정</button>
+                  <button type="button" class="btn btn-success" onclick="location.href='delete?no=${vo.no }'">삭제</button>
               </div>
               <!--/ Hoverable Table rows -->
 
