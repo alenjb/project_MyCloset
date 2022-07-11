@@ -611,7 +611,7 @@
               <h4 class="fw-bold py-3 mb-4">공지사항</h4>
 <!-- 		글쓰기 버튼 -->
                  <div class="demo-inline-spacing">
-                   <button type="button" class="btn btn-primary" onclick="location.href='write.do?perPageNum=${pageObject.perPageNum }'">글쓰기</button>
+                   <button type="button" class="btn btn-primary" onclick="location.href='write?perPageNum=${pageObject.perPageNum }'">글쓰기</button>
                  </div>
 <!-- 		!글쓰기 버튼 -->
 

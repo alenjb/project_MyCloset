@@ -40,7 +40,18 @@ public class NoticeController {
 		return "notice/list";
 	}
 	
-	//2.글보기(view)
+//	//2.글보기(view)
+//	@GetMapping("/view")
+//	public String view(long no, Model model) throws Exception{
+//		System.out.println("NoticeController.view()");
+//		NoticeVO vo = service.view(no);
+//		System.out.println(vo.getContent()+"vo.getContent()");
+//		//줄바꿈 처리
+//		vo.setContent(vo.getContent().replace("\n", "<br>"));
+//		model.addAttribute("vo", vo);
+//		return "notice/view";
+//	}
+	
 	@GetMapping("/view")
 	public String view(long no, Model model) throws Exception{
 		System.out.println("NoticeController.view()");
@@ -50,17 +61,6 @@ public class NoticeController {
 		vo.setContent(vo.getContent().replace("\n", "<br>"));
 		model.addAttribute("vo", vo);
 		return "notice/view";
-	}
-	
-	@GetMapping("/view_bs")
-	public String view_bs(long no, Model model) throws Exception{
-		System.out.println("NoticeController.view()");
-		NoticeVO vo = service.view(no);
-		System.out.println(vo.getContent()+"vo.getContent()");
-		//줄바꿈 처리
-		vo.setContent(vo.getContent().replace("\n", "<br>"));
-		model.addAttribute("vo", vo);
-		return "notice/view_bs";
 	}
 	//3.글쓰기(write)
 	
@@ -81,21 +81,43 @@ public class NoticeController {
 	
 	//4. 수정(update)
 	
-	//4-1 updateForm
-	@GetMapping("/update")
-	public String updateForm(long no, Model model) throws Exception {
-		System.out.println("updateForm().no-"+no);
-		model.addAttribute("vo", service.view(no));
-		return "notice/update";
-	}
+//	// 4-1 updateForm
+//	@GetMapping("/update")
+//	public String updateForm(long no, Model model) throws Exception {
+//		System.out.println("updateForm().no-" + no);
+//		model.addAttribute("vo", service.view(no));
+//		return "notice/update";
+//	}
+	
+	//4-1 updateForm2
+		@GetMapping("/update")
+		public String updateForm(long no, Model model) throws Exception {
+			System.out.println("updateForm().no-"+no);
+			model.addAttribute("vo", service.view(no));
+			return "notice/update";
+		}
+	
+//	//4-2 update
+//	@PostMapping("/update")
+//	public String update(NoticeVO vo, PageObject pageObject, HttpServletResponse response) throws Exception {
+//		System.out.println("NoticeController.update().vo - " + vo);
+//		service.update(vo);
+//		return "redirect:list?page="+pageObject.getPage()+ "&perPageNum="+pageObject.getPerPageNum()+"&key="+pageObject.getKey()+
+//				"&word="+URLEncoder.encode(pageObject.getKey(), "utf-8");
+//	}
+	
 	//4-2 update
-	@PostMapping("/update")
-	public String update(NoticeVO vo, PageObject pageObject, HttpServletResponse response) throws Exception {
-		System.out.println("NoticeController.update().vo - " + vo);
-		service.update(vo);
-		return "redirect:list?page="+pageObject.getPage()+ "&perPageNum="+pageObject.getPerPageNum()+"&key="+pageObject.getKey()+
-				"&word="+URLEncoder.encode(pageObject.getKey(), "utf-8");
-	}
+		@PostMapping("/update")
+		public String update(NoticeVO vo, PageObject pageObject, HttpServletResponse response) throws Exception {
+			System.out.println("NoticeController.update().vo - " + vo);
+			service.update(vo);
+			return "redirect:list?page="+pageObject.getPage()+ "&perPageNum="+pageObject.getPerPageNum()+"&key="+pageObject.getKey()+
+					"&word="+URLEncoder.encode(pageObject.getKey(), "utf-8");
+		}
+	
+	
+	
+	
 	
 	//5. 삭제(delete)
 	@GetMapping("/delete")

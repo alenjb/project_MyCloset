@@ -6,8 +6,11 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="Font"/>
+		<item key="selection" value="공지"/>
 		<list key="findhistory">
+			<item value="공지"/>
+			<item value="btn btn-xl btn-primary"/>
+			<item value="demo-inline-spacing"/>
 			<item value="Font"/>
 			<item value="래ㅜㅅ"/>
 			<item value="hover"/>
@@ -20,9 +23,6 @@
 			<item value="flex-grow-1"/>
 			<item value="flex-grow"/>
 			<item value="dropdown-menu-end"/>
-			<item value="&lt;!-- Nav"/>
-			<item value="Nav"/>
-			<item value="Small"/>
 		</list>
 		<list key="replacehistory">
 			<item value="/resources/"/>
