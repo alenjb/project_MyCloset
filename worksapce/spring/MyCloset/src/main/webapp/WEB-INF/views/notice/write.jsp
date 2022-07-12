@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html>
 
 <!-- =========================================================
@@ -609,6 +610,17 @@
                           <label class="col-sm-2 col-form-label" for="content">내용</label>
                             <textarea name="content" id="content" class="form-control" rows="7"></textarea>
                         </div>
+                        <div class="row mb-3">
+                        <label for="endDate" class="col-md-0 col-form-label">공지 종료일</label>
+                        <div class="col-md-3">
+                          <input
+                            class="form-control"
+                            type="date"
+                            id="endDate"
+                            name="endDate"
+                          />
+                        </div>
+                      </div>
 						<input type="hidden" name="writer" value="${vo.writer }">
                         <div class="row justify-content-end">
                           <div class="col-sm-10">

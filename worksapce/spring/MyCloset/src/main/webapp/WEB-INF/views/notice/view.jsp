@@ -588,16 +588,16 @@
               <!-- Hoverable Table rows -->
               <div class="card">
                 <div class="table-responsive text-nowrap">
-                  <table class="table table-hover">
+                  <table class="table">
                     <tbody class="table-border-bottom-0">
                       <tr>
-                        <td>제목</td>
+                        <td><strong>제목</strong></td>
                         <td>${vo.title}</td>
                         <td>
                         </td>
                       </tr>
                       <tr>
-                        <td>번호</td>
+                        <td><strong>번호</strong></td>
                         <td>${vo.no}</td>
                       </tr>
                       <tr>

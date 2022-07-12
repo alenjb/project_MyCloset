@@ -12,7 +12,6 @@
 				from notice
 				where 1=1
 				<include refid="search"/>
-				<include refid="searchPeriod"/>
 				order by writeDate desc
 				) AS A, (SELECT @ROWNUM:=0) AS B
                 
@@ -41,35 +40,6 @@
 </sql>
 
 
-<!-- 기간검색 태그 -->
-<sql id="searchPeriod">
-	and(
-	<if test="period == 'pre'">
-		<![CDATA[
-			writeDate <= CURDATE() and endDate >= CURDATE()
-		]]>
-	</if>
-
-	<if test="period == 'old'">
-		<![CDATA[
-			endDate < CURDATE()
-		]]>
-	</if>
-
-	<if test="period == 'res'">
-		<![CDATA[
-			writeDate > CURDATE()
-		]]>
-	</if>
-
-	<if test="period == 'all'">
-		<![CDATA[
-			1=1
-		]]>
-	</if>
-	)
-
-</sql>
 <!-- 1-1 전체 데이터 개수(getTotalRow) -->
 <select id="getTotalRow" resultType="long">
 	select count(*)
@@ -88,7 +58,7 @@
 <!-- 3.글쓰기(write) -->
 <insert id="write">
 	insert into notice(title, content, writer, writeDate, endDate)
-	values(#{title}, #{content}, #{writer}, #{writeDate}, #{endDate})
+	values(#{title}, #{content}, #{writer}, CURDATE(), #{endDate})
 </insert>
 <!-- 4. 수정(update) -->
 <update id="update">
