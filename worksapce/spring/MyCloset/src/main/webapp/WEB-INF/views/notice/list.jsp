@@ -518,8 +518,9 @@
               <!-- Search -->
               <div class="navbar-nav align-items-center">
                 <div class="nav-item d-flex align-items-center">
-                       <div>
-                        <select name="key" id="SearchKey" class="form-select form-select-sm">
+                   <div>
+                	<form>
+                        <select name="key" id="key" class="form-select form-select-sm">
 							<option value="t" ${(pageObject.key =="t") ? "seleted":""}>제목</option>
 							<option value="c" ${(pageObject.key =="c") ? "seleted":""}>내용</option>
 							<option value="w" ${(pageObject.key =="w") ? "seleted":""}>작성자</option>
@@ -527,19 +528,20 @@
 							<option value="tcw" ${(pageObject.key =="tcw") ? "seleted":""}>전체</option>								
                         </select>
                       </div>
-                  <div>
 <!--                   검색 창 -->
-                <form>
+                  <div class="row">
+                  <div class="col-9">
                   <input type="text" class="form-control border-0 shadow-none"
-                    placeholder="Search..." aria-label="Search..." name="searchWord"
+                    placeholder="검색" name="word"
                     value="${pageObject.word }"
                   />
                   </div>
-                <div class="input-group-btn">
+                <div class="input-group-btn col-3">
 					<button class="btn btn-default" type="submit">
 	                  <i class="bx bx-search fs-4 lh-0"></i>                  
 					</button>
 				</div>
+                  </div>
 				</form>
                 </div>
               </div>

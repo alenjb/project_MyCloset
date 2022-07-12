@@ -127,17 +127,17 @@ public class NoticeController {
 		return "redirect:list?page=1&perPageNum="+pageObject.getPerPageNum();	}
 	
 	
-	//1.리스트(list)
-	@GetMapping("/list2")
-	public String list2(@ModelAttribute PageObject pageObject, Model model) throws Exception{
-		
-		//페이지가 1보다 작으면 1페이지로 설정
-		if(pageObject.getPage() < 1) {
-			pageObject.setPage(1);
-		}
-		
-		System.out.println("NoticeController.list()");
-		model.addAttribute("list", service.list(pageObject));
-		return "notice/list2";
-	}
+//	//1.리스트(list)
+//	@GetMapping("/list2")
+//	public String list2(@ModelAttribute PageObject pageObject, Model model) throws Exception{
+//		
+//		//페이지가 1보다 작으면 1페이지로 설정
+//		if(pageObject.getPage() < 1) {
+//			pageObject.setPage(1);
+//		}
+//		
+//		System.out.println("NoticeController.list()");
+//		model.addAttribute("list", service.list(pageObject));
+//		return "notice/list2";
+//	}
 }
