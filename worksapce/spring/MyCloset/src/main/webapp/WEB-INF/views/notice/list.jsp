@@ -1,3 +1,6 @@
+
+<%@page import="com.mycloset.member.vo.LoginVO"%>
+<%@page import="org.apache.ibatis.reflection.SystemMetaObject"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -102,6 +105,14 @@
   </head>
 
   <body>
+  <%
+	LoginVO value = (LoginVO)session.getAttribute("login");
+	//session.getAttribute()는 object테이터타입이기에 명시적형변환으로 (String)을 해줘야한다.
+	String id=value.getMember_id();
+	String grade=value.getMember_grade();
+%>
+  
+<%--   	<h1> 아이디: <%= id %></h1> --%>
     <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar">
       <div class="layout-container">
@@ -566,8 +577,8 @@
                             </div>
                           </div>
                           <div class="flex-grow-1">
-                            <span class="fw-semibold d-block">${vo.member_id}</span>
-                            <small class="text-muted">${vo.member_grade}</small>
+                            <span class="fw-semibold d-block"><%=id%></span>
+                            <small class="text-muted"><%=grade%></small>
                           </div>
                         </div>
                       </a>
@@ -663,6 +674,64 @@
               </div>
               <!--/ Hoverable Table rows -->
 
+              <!-- Basic Pagination -->
+              <div class="col mt-3">
+              <nav aria-label="Page navigation">
+                <ul class="pagination justify-content-center">
+                  <li class="page-item first">
+                    <a class="page-link" href="javascript:void(0);"
+                      ><i class="tf-icon bx bx-chevrons-left"></i
+                    ></a>
+                  </li>
+                  <li class="page-item prev">
+                    <a class="page-link" href="javascript:void(0);"
+                      ><i class="tf-icon bx bx-chevron-left"></i
+                    ></a>
+                  </li>
+                  <li class="page-item active">
+                    <a class="page-link" href="list?page=1">1</a>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link" href="list?page=2">2</a>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link" href="list?page=3">3</a>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link" href="list?page=4">4</a>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link" href="list?page=5">5</a>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link" href="list?page=6">6</a>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link" href="list?page=7">7</a>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link" href="list?page=8">8</a>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link" href="list?page=9">9</a>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link" href="list?page=10">10</a>
+                  </li>
+                  <li class="page-item next">
+                    <a class="page-link" href="javascript:void(0);"
+                      ><i class="tf-icon bx bx-chevron-right"></i
+                    ></a>
+                  </li>
+                  <li class="page-item last">
+                    <a class="page-link" href="javascript:void(0);"
+                      ><i class="tf-icon bx bx-chevrons-right"></i
+                    ></a>
+                  </li>
+                </ul>
+              </nav>
+              </div>
+              <!--/ Basic Pagination -->
               <hr class="my-5" />
 
 
