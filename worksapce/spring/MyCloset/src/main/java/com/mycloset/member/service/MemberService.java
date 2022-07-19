@@ -37,6 +37,12 @@ public class MemberService {
 		return mapper.list(object);
 	}
 	//회원정보보기 / 내정보보기
+
+	//아이디 찾기
+	public String findId(String name, String email) throws Exception{
+		return mapper.findId(name, email);
+	}
+
 	
 	//회원등급변경
 }

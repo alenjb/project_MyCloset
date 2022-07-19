@@ -3,6 +3,7 @@ package com.mycloset.member.controller;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.annotations.Param;
 import org.apache.taglibs.standard.lang.jstl.test.beans.PublicBean1;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -86,6 +87,33 @@ public class MemberController {
 	//회원정보보기 / 내정보보기
 	
 	//회원등급변경
+	
+	//아이디 찾기 폼
+	@GetMapping("/findId")
+	public String findIdForm() throws Exception{
+		log.info("아이디 찾기 폼으로 이동");
+		return "member/findId";
+	}
+	
+	//아이디 찾기
+	@PostMapping("/findId")
+	public String findId(String name, String email) throws Exception{
+		if(service.findId(name, email) != null) {
+			log.info("아이디 찾기 성공");
+		}
+		log.info(service.findId(name, email));
+
+		return "redirect:/member/login";
+	}
+	
+	//비밀번호 찾기
+
+	//비밀번호 찾기 폼
+	@GetMapping("/findPw")
+	public String findPwForm() throws Exception{
+		log.info("비밀번호 찾기 폼으로 이동");
+		return "member/findPwForm";
+	}
 	
 	//홈
 	@GetMapping("/home")

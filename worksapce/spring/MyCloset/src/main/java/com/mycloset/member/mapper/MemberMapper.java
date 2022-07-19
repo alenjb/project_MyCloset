@@ -2,6 +2,8 @@ package com.mycloset.member.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.mycloset.member.vo.LoginVO;
 import com.mycloset.member.vo.MemberVO;
 import com.webjjang.util.PageObject;
@@ -27,4 +29,8 @@ public interface MemberMapper {
 	
 	//전체 데이터 개수
 	public long getTotalRow(PageObject pageObject) throws Exception;
+	
+	//아이디 찾기
+	public String findId(@Param("name")String name, @Param("email")String email) throws Exception;
+
 }
