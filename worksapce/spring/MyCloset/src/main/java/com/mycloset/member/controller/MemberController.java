@@ -91,18 +91,20 @@ public class MemberController {
 	//아이디 찾기 폼
 	@GetMapping("/findId")
 	public String findIdForm() throws Exception{
+		
 		log.info("아이디 찾기 폼으로 이동");
 		return "member/findId";
 	}
 	
 	//아이디 찾기
 	@PostMapping("/findId")
-	public String findId(String name, String email) throws Exception{
+	public String findId(String name, String email, Model model) throws Exception{
 		if(service.findId(name, email) != null) {
 			log.info("아이디 찾기 성공");
+			model.addAttribute("id", service.findId(name, email));
 		}
 		log.info(service.findId(name, email));
-
+		log.info(model);
 		return "redirect:/member/login";
 	}
 	

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 
 <!-- =========================================================
@@ -71,10 +73,10 @@
 	<script type="text/javascript">
 	$(function () {
 		$("#submit-btn").click(function () {
-			var id= document.getElementById('name').value;
-			 document.getElementById("name").innerText = id;
+// 			var id=$("#name").val();
 			$("#basicModal").modal("show");
-			
+//   			return false;
+		
 			});
 		});
 	</script>
@@ -254,7 +256,9 @@
                   </span>
 	               
 	               
-	               <span>아이디를 올바르게 입력했는지 다시 확인해주세요.</span>
+	               <span>회원님의 아이디는${id}입니다.</span>
+	               <span>회원님의 아이디는${name}입니다.</span>
+
 	               </div>
 	               
 	           </div>
