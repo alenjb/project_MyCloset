@@ -73,11 +73,38 @@
 	<script type="text/javascript">
 	$(function () {
 		$("#submit-btn").click(function () {
+			
 // 			var id=$("#name").val();
-			$("#basicModal").modal("show");
-//   			return false;
+/* 			$("#basicModal").modal("show");
+ *///   			return false;
+			let email = $('#email').val();
+			let name = $('#name').val();
+	            // ajax 통신
+	          $.ajax({
+	              type : "post",            // HTTP method type(GET, POST) 형식이다.
+	              url : "/member/findId",      // 컨트롤러에서 대기중인 URL 주소이다.
+	              data : {
+	            	  email : email,
+	            	  name : name
+	              },            // Json 형식의 데이터이다.
+	              success : function(res){ // 비동기통신의 성공일경우 success콜백으로 들어옵니다. 'res'는 응답받은 데이터이다.
+// 	            	  console.log(res);
+// 	            	  alert(res);
+	                  // 응답코드 > 0000
+// 	                  alert(res.id);
+	                  var id=res.id;
+//  	                  alert("아이디는"+id+"입니다.");
+// 	                  href.location("")
+	       			$("#basicModal").modal("show");
+						
+	              },
+	              error : function(XMLHttpRequest, textStatus, errorThrown){ // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
+	                  alert("통신 실패.")
+	              }
+	          });
 		
 			});
+		
 		});
 	</script>
     
@@ -257,7 +284,6 @@
 	               
 	               
 	               <span>회원님의 아이디는${id}입니다.</span>
-	               <span>회원님의 아이디는${name}입니다.</span>
 
 	               </div>
 	               
@@ -270,14 +296,6 @@
 
     <!-- / Content -->
 
-    <div class="buy-now">
-      <a
-        href="https://themeselection.com/products/sneat-bootstrap-html-admin-template/"
-        target="_blank"
-        class="btn btn-danger btn-buy-now"
-        >Upgrade to Pro</a
-      >
-    </div>
 
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->

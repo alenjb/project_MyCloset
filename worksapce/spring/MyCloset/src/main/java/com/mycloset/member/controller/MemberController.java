@@ -1,16 +1,18 @@
 package com.mycloset.member.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
-import org.apache.ibatis.annotations.Param;
-import org.apache.taglibs.standard.lang.jstl.test.beans.PublicBean1;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mycloset.member.service.MemberService;
 import com.mycloset.member.vo.LoginVO;
@@ -98,14 +100,17 @@ public class MemberController {
 	
 	//아이디 찾기
 	@PostMapping("/findId")
-	public String findId(String name, String email, Model model) throws Exception{
+	@ResponseBody
+	public String findId(String name, String email) throws Exception{
+		Map<String, Object> jsonData = new HashMap<>();
+		String id = service.findId(name, email);
 		if(service.findId(name, email) != null) {
 			log.info("아이디 찾기 성공");
-			model.addAttribute("id", service.findId(name, email));
+			jsonData.put("id", id);
 		}
-		log.info(service.findId(name, email));
-		log.info(model);
-		return "redirect:/member/login";
+		log.info(id);
+		log.info(jsonData);
+		return "member/findid";
 	}
 	
 	//비밀번호 찾기
