@@ -191,7 +191,7 @@
                 <div class="mb-3">
                   <div class="form-check">
                     <input class="form-check-input" type="checkbox" id="remember-me" />
-                    <label class="form-check-label" for="remember-me"> 아아디 기억하기 </label>
+                    <label class="form-check-label" for="remember-me"> 아이디 기억하기 </label>
                   </div>
                 </div>
                 <div class="mb-3">
@@ -201,7 +201,7 @@
 
               <p class="text-center">
                 <span>계정이 없으신가요?</span>
-                <a href="/resources/html/auth-register-basic.html">
+                <a href="/member/signUp">
                   <span>회원가입</span>
                 </a>
               </p>
@@ -301,6 +301,7 @@
 	           </div>
 	         </div>
 	       </div>
+	       <!--modal끝-->
 	     </div>
 	
     </div>

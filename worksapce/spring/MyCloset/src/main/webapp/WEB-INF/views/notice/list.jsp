@@ -78,6 +78,9 @@
   		background: #eee;
   		cursor:pointer;
   }
+  .demo-inline-spacing{
+  	margin-bottom: 5px;
+  }
   </style>
     
     <script type="text/javascript">
@@ -100,7 +103,17 @@
 			$("#perPageNumForm").submit();
 		});
 	
+	
 	});
+	$(document).ready(function () {
+		$(".page-item").click(function () {
+			$('.page-item').addClass('active');
+			alert("안녕");
+		});
+		
+	});
+	
+	
     </script>
   </head>
 
@@ -112,7 +125,6 @@
 	String grade=value.getMember_grade();
 %>
   
-<%--   	<h1> 아이디: <%= id %></h1> --%>
     <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar">
       <div class="layout-container">
@@ -688,7 +700,7 @@
                       ><i class="tf-icon bx bx-chevron-left"></i
                     ></a>
                   </li>
-                  <li class="page-item active">
+                  <li class="page-item">
                     <a class="page-link" href="list?page=1">1</a>
                   </li>
                   <li class="page-item">

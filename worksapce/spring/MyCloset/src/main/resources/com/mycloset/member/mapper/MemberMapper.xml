@@ -52,4 +52,11 @@
 		select member_id from member
 		where member_name = #{name} and member_email =#{email} 
 	</select>
+	
+<!-- 비밀번호 찾기 -->
+	<select id="findPw" resultType="String">
+		select member_password from member
+		where member_id = #{id} and member_name = #{name} and member_email =#{email} 
+	</select>
+
 </mapper>

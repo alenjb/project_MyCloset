@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mycloset.member.service.MemberService;
 import com.mycloset.member.vo.LoginVO;
@@ -101,7 +102,7 @@ public class MemberController {
 	//아이디 찾기
 	@PostMapping("/findId")
 	@ResponseBody
-	public String findId(String name, String email) throws Exception{
+	public Map<String, Object> findId(String name, String email) throws Exception{
 		Map<String, Object> jsonData = new HashMap<>();
 		String id = service.findId(name, email);
 		if(service.findId(name, email) != null) {
@@ -110,16 +111,31 @@ public class MemberController {
 		}
 		log.info(id);
 		log.info(jsonData);
-		return "member/findid";
+		return jsonData;
 	}
 	
-	//비밀번호 찾기
 
 	//비밀번호 찾기 폼
 	@GetMapping("/findPw")
 	public String findPwForm() throws Exception{
 		log.info("비밀번호 찾기 폼으로 이동");
-		return "member/findPwForm";
+		return "member/findPw";
+	}
+
+	//비밀번호 찾기
+	@PostMapping("/findPw")
+	@ResponseBody
+	public Map<String, Object> findPw(String id, String name, String email) throws Exception{
+		Map<String, Object> jsonData = new HashMap<>();
+		String pw = service.findPw(id, name, email);
+		log.info(pw+"이거");
+		
+		if(service.findPw(id, name, email) != null) {
+			log.info("비밀번호 찾기 성공");
+			jsonData.put("pw", pw);
+		}
+		log.info(jsonData);
+		return jsonData;
 	}
 	
 	//홈

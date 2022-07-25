@@ -74,9 +74,6 @@
 	$(function () {
 		$("#submit-btn").click(function () {
 			
-// 			var id=$("#name").val();
-/* 			$("#basicModal").modal("show");
- *///   			return false;
 			let email = $('#email').val();
 			let name = $('#name').val();
 	            // ajax 통신
@@ -88,18 +85,26 @@
 	            	  name : name
 	              },            // Json 형식의 데이터이다.
 	              success : function(res){ // 비동기통신의 성공일경우 success콜백으로 들어옵니다. 'res'는 응답받은 데이터이다.
-// 	            	  console.log(res);
-// 	            	  alert(res);
-	                  // 응답코드 > 0000
-// 	                  alert(res.id);
-	                  var id=res.id;
-//  	                  alert("아이디는"+id+"입니다.");
-// 	                  href.location("")
-	       			$("#basicModal").modal("show");
+	                  if(res.id == null){
+	                	  alert("아이디를 찾을 수 없습니다. 이메일과 이름을 다시 확인해 주세요.")
+		 	                 location.href="/member/findId";
+	                  }
+	                  else{
+		                  alert("회원님의 아이디는 "+res.id+"입니다.");
+	 	                 location.href="/member/login";
+	                	  
+	                  }
+// 이 부분이 모달 창을 띄우는 부분인데 일단은 주석처리해놓음
+	                  // 	                  var id=res.id;
+// //  	                  alert("아이디는"+id+"입니다.");
+// 	       			$("#basicModal").modal("show");
+// 		       		 alert(res.id);
 						
 	              },
 	              error : function(XMLHttpRequest, textStatus, errorThrown){ // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
-	                  alert("통신 실패.")
+	                  alert("통신오류 발생")
+	 	                 location.href="/member/findId";
+
 	              }
 	          });
 		
@@ -181,8 +186,8 @@
                 </a>
               </div>
               <!-- /Logo -->
-              <h4 class="mb-2">Forgot Password? 🔒</h4>
-              <p class="mb-4">Enter your email and we'll send you instructions to reset your password</p>
+              <h4 class="mb-2">아이디를 잊으셨나요? 🔒</h4>
+              <p class="mb-4">이메일과 이름을 입력하세요. 아이디를 찾을 수 있습니다</p>
               <form id="formAuthentication" class="mb-3" action="findId" method="POST">
                 <div class="mb-3">
                   <label for="email" class="form-label">Email</label>
@@ -191,7 +196,7 @@
                     class="form-control"
                     id="email"
                     name="email"
-                    placeholder="Enter your email"
+                    placeholder="이메일"
                     autofocus
                   />
                 </div>
@@ -202,16 +207,16 @@
                     class="form-control"
                     id="name"
                     name="name"
-                    placeholder="Enter your email"
+                    placeholder="이름"
                     autofocus
                   />
                 </div>
-                <button class="btn btn-primary d-grid w-100" id="submit-btn">Send Reset Link</button>
+                <button class="btn btn-primary d-grid w-100" id="submit-btn" data-bs-toggle="modal" data-bs-target="#basicModal">비밀번호 찾기</button>
               </form>
               <div class="text-center">
-                <a href="auth-login-basic.html" class="d-flex align-items-center justify-content-center">
+                <a href="/member/login" class="d-flex align-items-center justify-content-center">
                   <i class="bx bx-chevron-left scaleX-n1-rtl bx-sm"></i>
-                  Back to login
+                  로그인하기
                 </a>
               </div>
             </div>
@@ -283,7 +288,7 @@
                   </span>
 	               
 	               
-	               <span>회원님의 아이디는${id}입니다.</span>
+	               <span>회원님의 아이디는 id 입니다.</span>
 
 	               </div>
 	               

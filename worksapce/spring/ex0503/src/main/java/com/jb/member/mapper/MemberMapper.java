@@ -37,4 +37,5 @@ public interface MemberMapper {
 	
 	//등급변경
 	public int changeGradeNo(MemberVO vo) throws Exception;
+	
 }

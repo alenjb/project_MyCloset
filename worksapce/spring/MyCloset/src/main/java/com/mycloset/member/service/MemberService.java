@@ -42,6 +42,11 @@ public class MemberService {
 	public String findId(String name, String email) throws Exception{
 		return mapper.findId(name, email);
 	}
+	
+	//비밀번호 찾기
+	public String findPw(String id, String name, String email) throws Exception{
+		return mapper.findPw(id, name, email);
+	}
 
 	
 	//회원등급변경

@@ -39,10 +39,6 @@ public class MemberService {
 		pageObject.setTotalRow(mapper.getTotalRow(pageObject));
 		return mapper.list(pageObject);
 	}
-	//아이디 체크
-	public String idCheck(String id) throws Exception{
-		return mapper.idCheck(id);
-	}
 	
 	//등급변경
 	public int changeGradeNo(MemberVO vo) throws Exception{

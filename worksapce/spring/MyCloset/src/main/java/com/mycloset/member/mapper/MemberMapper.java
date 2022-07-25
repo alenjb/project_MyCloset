@@ -32,5 +32,8 @@ public interface MemberMapper {
 	
 	//아이디 찾기
 	public String findId(@Param("name")String name, @Param("email")String email) throws Exception;
+	
+	//비밀번호 찾기
+	public String findPw(@Param("id")String id, @Param("name")String name, @Param("email")String email) throws Exception;
 
 }

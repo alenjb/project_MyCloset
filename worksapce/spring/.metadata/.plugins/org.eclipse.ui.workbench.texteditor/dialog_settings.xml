@@ -6,25 +6,26 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="공지"/>
+		<item key="selection" value="css"/>
 		<list key="findhistory">
-			<item value="공지"/>
-			<item value="btn btn-xl btn-primary"/>
-			<item value="demo-inline-spacing"/>
-			<item value="Font"/>
-			<item value="래ㅜㅅ"/>
-			<item value="hover"/>
-			<item value="href"/>
+			<item value="css"/>
+			<item value="csss"/>
+			<item value="bootstrap"/>
+			<item value="boots"/>
+			<item value="boot"/>
+			<item value="Modal"/>
+			<item value="email"/>
+			<item value="vo"/>
+			<item value="modal"/>
+			<item value="basic-mo"/>
+			<item value="basic-Mo"/>
+			<item value="idFind"/>
 			<item value="../"/>
-			<item value="mb-2 mb-md-0"/>
-			<item value="search"/>
-			<item value="&lt;form"/>
-			<item value="form"/>
-			<item value="flex-grow-1"/>
-			<item value="flex-grow"/>
-			<item value="dropdown-menu-end"/>
+			<item value="pageNa"/>
+			<item value="pagena"/>
 		</list>
 		<list key="replacehistory">
+			<item value="findId"/>
 			<item value="/resources/"/>
 			<item value=""/>
 			<item value="/resources"/>
@@ -39,12 +40,11 @@
 			<item value="Member"/>
 			<item value="member"/>
 			<item value="CURDATE()"/>
-			<item value="DATE(SYSDATE())"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="1004"/>
-		<item key="DIALOG_Y_ORIGIN" value="134"/>
+		<item key="DIALOG_X_ORIGIN" value="1278"/>
+		<item key="DIALOG_Y_ORIGIN" value="138"/>
 		<item key="DIALOG_WIDTH" value="322"/>
 		<item key="DIALOG_HEIGHT" value="413"/>
 		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>

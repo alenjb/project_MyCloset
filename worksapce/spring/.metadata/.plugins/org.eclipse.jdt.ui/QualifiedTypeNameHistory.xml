@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.ExceptionHandler"/>
-    <fullyQualifiedTypeName name="org.springframework.web.servlet.NoHandlerFoundException"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.ResponseStatus"/>
     <fullyQualifiedTypeName name="org.springframework.http.HttpStatus"/>
     <fullyQualifiedTypeName name="com.mycloset.memberVO.MemberVO"/>
@@ -17,7 +15,6 @@
     <fullyQualifiedTypeName name="com.mycloset.home.service.HomeService"/>
     <fullyQualifiedTypeName name="com.jb.notice.service.NoticeService"/>
     <fullyQualifiedTypeName name="com.jb.notice.vo.NoticeVO"/>
-    <fullyQualifiedTypeName name="com.mycloset.notice.service.NoticeService"/>
     <fullyQualifiedTypeName name="com.mycloset.notice.mapper.NoticeMapper"/>
     <fullyQualifiedTypeName name="com.mycloset.notice.vo.NoticeVO"/>
     <fullyQualifiedTypeName name="javax.annotation.PostConstruct"/>
@@ -27,7 +24,6 @@
     <fullyQualifiedTypeName name="com.jb.member.mapper.MemberMapper"/>
     <fullyQualifiedTypeName name="com.jb.member.service.MemberService"/>
     <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
-    <fullyQualifiedTypeName name="com.jb.member.vo.LoginVO"/>
     <fullyQualifiedTypeName name="org.springframework.format.annotation.DateTimeFormat"/>
     <fullyQualifiedTypeName name="com.webjjang.util.file.FileUtil"/>
     <fullyQualifiedTypeName name="java.io.Console"/>
@@ -36,7 +32,6 @@
     <fullyQualifiedTypeName name="java.io.File"/>
     <fullyQualifiedTypeName name="com.jb.member.vo.MemberVO"/>
     <fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
-    <fullyQualifiedTypeName name="java.lang.String"/>
     <fullyQualifiedTypeName name="java.lang.Enum"/>
     <fullyQualifiedTypeName name="java.util.Enumeration"/>
     <fullyQualifiedTypeName name="org.springframework.stereotype.Controller"/>
@@ -50,14 +45,19 @@
     <fullyQualifiedTypeName name="lombok.Data"/>
     <fullyQualifiedTypeName name="org.springframework.web.servlet.mvc.support.RedirectAttributes"/>
     <fullyQualifiedTypeName name="org.apache.taglibs.standard.lang.jstl.test.beans.PublicBean1"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.ModelAttribute"/>
-    <fullyQualifiedTypeName name="org.springframework.ui.Model"/>
-    <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
     <fullyQualifiedTypeName name="com.mycloset.member.vo.MemberVO"/>
     <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="com.webjjang.util.PageObject"/>
-    <fullyQualifiedTypeName name="java.lang.Exception"/>
+    <fullyQualifiedTypeName name="com.mycloset.member.service.MemberService"/>
+    <fullyQualifiedTypeName name="com.mycloset.notice.service.NoticeService"/>
+    <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
     <fullyQualifiedTypeName name="com.mycloset.member.vo.LoginVO"/>
-    <fullyQualifiedTypeName name="com.mycloset.member.service.MemberService"/>
+    <fullyQualifiedTypeName name="java.lang.Exception"/>
+    <fullyQualifiedTypeName name="com.jb.member.vo.LoginVO"/>
+    <fullyQualifiedTypeName name="java.lang.String"/>
+    <fullyQualifiedTypeName name="org.apache.ibatis.annotations.Param"/>
+    <fullyQualifiedTypeName name="org.springframework.ui.Model"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.ModelAttribute"/>
+    <fullyQualifiedTypeName name="org.springframework.remoting.jaxws.AbstractJaxWsServiceExporter"/>
 </qualifiedTypeNameHistroy>
