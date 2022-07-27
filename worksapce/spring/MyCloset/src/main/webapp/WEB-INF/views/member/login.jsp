@@ -159,7 +159,12 @@
 
               <form id="formAuthentication" class="mb-3" action="login" method="POST">
                 <div class="mb-3">
+                <div class="d-flex justify-content-between">
                   <label for="id" class="form-label">ID</label>
+                  <a href="/member/findId">
+                  <small>아이디를 잊으셨나요?</small>
+                  </a>
+                  </div>
                   <input
                     type="text"
                     class="form-control"
@@ -172,7 +177,7 @@
                 <div class="mb-3 form-password-toggle">
                   <div class="d-flex justify-content-between">
                     <label class="form-label" for="password">Password</label>
-                    <a href="/resources/html/auth-forgot-password-basic.html">
+                    <a href="/member/findPw">
                       <small>비밀번호를 잊으셨나요?</small>
                     </a>
                   </div>

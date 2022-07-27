@@ -35,5 +35,8 @@ public interface MemberMapper {
 	
 	//비밀번호 찾기
 	public String findPw(@Param("id")String id, @Param("name")String name, @Param("email")String email) throws Exception;
+	
+	//회원 정보 보여주기
+	public MemberVO myPage(LoginVO vo) throws Exception;
 
 }

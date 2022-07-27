@@ -65,7 +65,8 @@ public class MemberController {
 			session.setAttribute("login",service.login(vo));
 			log.info("로그인처리  vo: "+service.login(vo));
 			model.addAttribute("vo", service.login(vo));
-			return "member/home";}
+			return "member/home";
+			}
 		else {
 			log.info("로그인 할 수 없음");
 			return "redirect:/member/login";
@@ -140,8 +141,18 @@ public class MemberController {
 	
 	//홈
 	@GetMapping("/home")
-	public String home() throws Exception{
+	public String home(Model model) throws Exception{
+		System.out.println("home model"+model);
 		return "member/home";
+	}
+	
+	//마이 페이지
+	@GetMapping("myPage")
+	public String myPage(LoginVO vo, Model model) throws Exception{
+		model.addAttribute("myPage", service.myPage(vo));
+		System.out.println("vo"+vo);
+		System.out.println("model"+model);
+		return "member/myPage";
 	}
 	
 }

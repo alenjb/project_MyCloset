@@ -31,7 +31,7 @@
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>Forgot Password Basic - Pages | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
+    <title>Forgot Password</title>
 
     <meta name="description" content="" />
 
@@ -183,7 +183,7 @@
                       </g>
                     </svg>
                   </span>
-                  <span class="app-brand-text demo text-body fw-bolder">Sneat</span>
+                  <span class="app-brand-text demo text-body fw-bolder">MyCloset</span>
                 </a>
               </div>
               <!-- /Logo -->

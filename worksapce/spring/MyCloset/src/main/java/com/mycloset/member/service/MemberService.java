@@ -50,4 +50,9 @@ public class MemberService {
 
 	
 	//회원등급변경
+	
+	//마이 페이지 개인정보 보여주기(view)
+	public MemberVO myPage(LoginVO vo) throws Exception{
+		return mapper.myPage(vo);
+	}
 }

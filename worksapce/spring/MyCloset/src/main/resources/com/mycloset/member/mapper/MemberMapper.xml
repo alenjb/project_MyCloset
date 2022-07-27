@@ -59,4 +59,11 @@
 		where member_id = #{id} and member_name = #{name} and member_email =#{email} 
 	</select>
 
+<!-- 회원정보 보여주기 -->
+	<select id="myPage" resultType="com.mycloset.member.vo.MemberVO">
+	select member_id, member_name, member_sex, member_phone, member_email, member_height, member_top_size, member_bottom_size,
+		member_shoes_size, member_face, member_reg_date, member_grade
+		from member
+		where member_id = #{member_id}
+	</select>
 </mapper>

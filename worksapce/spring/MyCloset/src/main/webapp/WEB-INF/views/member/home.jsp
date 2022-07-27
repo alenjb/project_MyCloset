@@ -207,8 +207,8 @@
                   </a>
                 </li>
                 <li class="menu-item">
-                  <a href="/resources/html/pages-account-settings-connections.html" class="menu-link">
-                    <div data-i18n="Connections">Connections</div>
+                  <a href="/member/myPage" class="menu-link">
+                    <div data-i18n="Connections">마이페이지</div>
                   </a>
                 </li>
               </ul>
