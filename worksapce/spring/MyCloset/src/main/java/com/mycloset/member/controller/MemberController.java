@@ -1,9 +1,13 @@
 package com.mycloset.member.controller;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
+
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -12,7 +16,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mycloset.member.service.MemberService;
@@ -147,12 +150,37 @@ public class MemberController {
 	}
 	
 	//마이 페이지
-	@GetMapping("myPage")
-	public String myPage(LoginVO vo, Model model) throws Exception{
-		model.addAttribute("myPage", service.myPage(vo));
-		System.out.println("vo"+vo);
+	@GetMapping("/myPage")
+	public String myPage(Model model, HttpServletRequest request) throws Exception{
+		HttpSession session = request.getSession();
+		System.out.println(session.getAttribute("login"));
+		if(session.getAttribute("login") != null) {
+			LoginVO vo = (LoginVO) session.getAttribute("login");
+			model.addAttribute("memberVO", service.myPage(vo));			
+			System.out.println("vo"+vo);
+		}
 		System.out.println("model"+model);
 		return "member/myPage";
 	}
 	
+	//마이 페이지 수정
+		@GetMapping("/myPage/update")
+		public String myPageUpdateForm() throws Exception{
+			return "member/myPage/update";
+		}
+		//마이 페이지 수정
+		@PostMapping("/myPage/update")
+		public String myPageUpdate(Model model, HttpServletRequest request) throws Exception{
+			HttpSession session = request.getSession();
+			System.out.println("여기까지"+session.getAttribute("login"));
+			if(session.getAttribute("login") != null) {
+				LoginVO vo = (LoginVO) session.getAttribute("login");
+				model.addAttribute("memberVO", service.myPage(vo));			
+				System.out.println("vo"+vo);
+			}
+			System.out.println("model"+model);
+			return "member/myPage";
+		}
+
+		
 }
