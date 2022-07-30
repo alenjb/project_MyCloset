@@ -66,4 +66,16 @@
 		from member
 		where member_id = #{member_id}
 	</select>
+<!-- 	회원정보 수정 -->
+	<update id="update">
+		update member 
+		member_name=#{member_name}, 
+		member_sex=#{member_sex}, 
+		member_phone=#{member_phone}, 
+		member_email=#{member_email}, 
+		member_height=#{member_height}, 
+		member_top_size=#{member_top_size}, 
+		member_bottom_size=#{member_bottom_size},
+		member_shoes_size=#{member_shoes_size}
+	</update>
 </mapper>

@@ -714,8 +714,8 @@
                         </div>
                       </form>
                     </div>
-                    <!-- /Account -->
                   </div>
+                    <!-- /Account -->
                   <div class="card">
                     <h5 class="card-header">Delete Account</h5>
                     <div class="card-body">

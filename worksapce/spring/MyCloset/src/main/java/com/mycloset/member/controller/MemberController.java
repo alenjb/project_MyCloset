@@ -1,12 +1,10 @@
 package com.mycloset.member.controller;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.inject.Inject;
-import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -151,36 +149,32 @@ public class MemberController {
 	
 	//마이 페이지
 	@GetMapping("/myPage")
-	public String myPage(Model model, HttpServletRequest request) throws Exception{
+	public String myPage(HttpServletRequest request) throws Exception{
 		HttpSession session = request.getSession();
 		System.out.println(session.getAttribute("login"));
 		if(session.getAttribute("login") != null) {
 			LoginVO vo = (LoginVO) session.getAttribute("login");
-			model.addAttribute("memberVO", service.myPage(vo));			
+			session.setAttribute("memberVO", service.myPage(vo));
 			System.out.println("vo"+vo);
 		}
-		System.out.println("model"+model);
 		return "member/myPage";
 	}
 	
 	//마이 페이지 수정
 		@GetMapping("/myPage/update")
-		public String myPageUpdateForm() throws Exception{
-			return "member/myPage/update";
-		}
-		//마이 페이지 수정
-		@PostMapping("/myPage/update")
-		public String myPageUpdate(Model model, HttpServletRequest request) throws Exception{
+		public String myPageUpdateForm(HttpServletRequest request, MemberVO vo, Model model) throws Exception{
 			HttpSession session = request.getSession();
-			System.out.println("여기까지"+session.getAttribute("login"));
-			if(session.getAttribute("login") != null) {
-				LoginVO vo = (LoginVO) session.getAttribute("login");
-				model.addAttribute("memberVO", service.myPage(vo));			
-				System.out.println("vo"+vo);
-			}
-			System.out.println("model"+model);
-			return "member/myPage";
+			System.out.println("도착함");
+			System.out.println("request임:  "+session.getAttribute("memberVO"));
+			model.addAttribute("memberVO", session.getAttribute("memberVO"));
+//			service.update(vo);
+			return "member/update";
 		}
-
+		  //마이 페이지 수정
+		  
+	  @PostMapping("/myPage/update") public String myPageUpdate(MemberVO vo, HttpServletRequest request) throws Exception{ 
+		  
+		  service.update(vo);
+		  return "member/myPage"; }
 		
 }

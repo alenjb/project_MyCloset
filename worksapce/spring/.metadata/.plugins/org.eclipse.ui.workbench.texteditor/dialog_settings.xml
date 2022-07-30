@@ -6,8 +6,15 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="submit"/>
+		<item key="selection" value="memberVO."/>
 		<list key="findhistory">
+			<item value="myPage."/>
+			<item value="var"/>
+			<item value="/login"/>
+			<item value="../"/>
+			<item value="myView"/>
+			<item value="Snea"/>
+			<item value="snea"/>
 			<item value="submit"/>
 			<item value="modalTop"/>
 			<item value="EngW7tLk6R8&quot;"/>
@@ -16,19 +23,14 @@
 			<item value="css"/>
 			<item value="csss"/>
 			<item value="bootstrap"/>
-			<item value="boots"/>
-			<item value="boot"/>
-			<item value="Modal"/>
-			<item value="email"/>
-			<item value="vo"/>
-			<item value="modal"/>
-			<item value="basic-mo"/>
 		</list>
 		<list key="replacehistory">
-			<item value="findId"/>
+			<item value="memberVO."/>
 			<item value="/resources/"/>
-			<item value=""/>
 			<item value="/resources"/>
+			<item value="myPage"/>
+			<item value="findId"/>
+			<item value=""/>
 			<item value="/"/>
 			<item value="../../resources/assets/"/>
 			<item value="grade"/>
@@ -38,8 +40,6 @@
 			<item value="확인"/>
 			<item value="&quot;"/>
 			<item value="Member"/>
-			<item value="member"/>
-			<item value="CURDATE()"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">

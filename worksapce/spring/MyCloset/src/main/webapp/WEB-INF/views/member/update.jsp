@@ -616,7 +616,7 @@
                         />
                         <div class="button-wrapper">
                           <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
-                            <span class="d-none d-sm-block">Upload new photo</span>
+                            <span class="d-none d-sm-block">사진 업로드</span>
                             <i class="bx bx-upload d-block d-sm-none"></i>
                             <input
                               type="file"
@@ -626,10 +626,6 @@
                               accept="image/png, image/jpeg"
                             />
                           </label>
-                          <button type="button" class="btn btn-outline-secondary account-image-reset mb-4">
-                            <i class="bx bx-reset d-block d-sm-none"></i>
-                            <span class="d-none d-sm-block">Reset</span>
-                          </button>
 
                           <p class="text-muted mb-0">Allowed JPG, GIF or PNG. Max size of 800K</p>
                         </div>
@@ -637,90 +633,90 @@
                     </div>
                     <hr class="my-0" />
                     <div class="card-body">
-                      <form id="formAccountSettings" method="POST" onsubmit="return false">
+                      <form id="update" method="POST" action="update">
                         <div class="row justify-content-center">
-                            <label for="firstName" class="form-label col-md-4">이름</label>
+                            <label for="member_name" class="form-label col-md-4">이름</label>
                           <div class="mb-3 col-md-8" style="float: none; margin:0 auto;">
                             <input
                               class="form-control"
                               type="text"
-                              id="firstName"
-                              name="firstName"
+                              id="member_name"
+                              name="member_name"
                               value="${memberVO.member_name}"
-                              readonly="readonly"
+                              
                               autofocus
                             />
                           </div>
-                            <label for="email" class="form-label col-md-4">이메일</label>
+                            <label for="member_email" class="form-label col-md-4">이메일</label>
                           <div class="mb-3 col-md-8">
                             <input
                               class="form-control"
                               type="text"
-                              id="email"
-                              name="email"
+                              id="member_email"
+                              name="member_email"
                               value="${memberVO.member_email}"
                               placeholder="john.doe@example.com"
-                              readonly="readonly"
+                              
                             />
                           </div>
-                            <label for="organization" class="form-label col-md-4">성별</label>
+                            <label for="member_sex" class="form-label col-md-4">성별</label>
                           <div class="mb-3 col-md-8">
                             <input
                               type="text"
                               class="form-control"
-                              id="organization"
-                              name="organization"
+                              id="member_sex"
+                              name="member_sex"
                               value="${memberVO.member_sex}"
-                              readonly="readonly"
+                              
                             />
                           </div>
-                            <label class="form-label col-md-4" for="phoneNumber">전화번호</label>
+                            <label class="form-label col-md-4" for="member_phone">전화번호</label>
                           <div class="mb-3 col-md-8">
                             <div class="input-group input-group-merge">
                               <span class="input-group-text">KR (+82)</span>
                               <input
                                 type="text"
-                                id="phoneNumber"
-                                name="phoneNumber"
+                                id="member_phone"
+                                name="member_phone"
                                 class="form-control"
                                 value="${memberVO.member_phone}"
-                                readonly="readonly"
+                                
                               />
                             </div>
                           </div>
-                            <label for="height" class="form-label col-md-4">키</label>
+                            <label for="member_height" class="form-label col-md-4">키</label>
                           <div class="mb-3 col-md-8">
-                            <input class="form-control" type="text" id="height" name="height" placeholder="California" value="${memberVO.member_height}" readonly="readonly" />
+                            <input class="form-control" type="text" id="member_height" name="member_height" placeholder="California" value="${memberVO.member_height}"  />
                           </div>
-                            <label for="topSize" class="form-label col-md-4">상체 사이즈</label>
+                            <label for="member_top_size" class="form-label col-md-4">상체 사이즈</label>
                           <div class="mb-3 col-md-8">
-                            <input class="form-control" type="text" id="topSize" name="topSize" placeholder="California" value="${memberVO.member_top_size}" readonly="readonly" />
+                            <input class="form-control" type="text" id="member_top_size" name="member_top_size" placeholder="California" value="${memberVO.member_top_size}"  />
                           </div>
-                            <label for="bottomSize" class="form-label col-md-4">하체 사이즈</label>
+                            <label for="member_bottom_size" class="form-label col-md-4">하체 사이즈</label>
                           <div class="mb-3 col-md-8">
-                            <input class="form-control" type="text" id="bottomSize" name="bottomSize" placeholder="California" value="${memberVO.member_bottom_size}" readonly="readonly" />
+                            <input class="form-control" type="text" id="member_bottom_size" name="member_bottom_size" placeholder="California" value="${memberVO.member_bottom_size}"  />
                           </div>
-                            <label for="shoesSize" class="form-label col-md-4">신발 사이즈</label>
+                            <label for="member_shoes_size" class="form-label col-md-4">신발 사이즈</label>
                           <div class="mb-3 col-md-8">
                           <div class="input-group input-group-merge">
-                            <input class="form-control" type="text" id="shoesSize" name="shoesSize" placeholder="California" value="${memberVO.member_shoes_size}" readonly="readonly" />
+                            <input class="form-control" type="text" id="member_shoes_size" name="member_shoes_size" placeholder="California" value="${memberVO.member_shoes_size}"  />
                             <span class="input-group-text">mm</span>
                             </div>
                           </div>
-                            <label for="regDate" class="form-label col-md-4">가입 날짜</label>
+                            <label for="member_reg_date" class="form-label col-md-4">가입 날짜</label>
                           <div class="mb-3 col-md-8">
-                            <input class="form-control" type="date" id="regDate" name="regDate" placeholder="California" value=<fmt:formatDate value="${memberVO.member_reg_date}" pattern="yyyy-MM-dd"/> readonly="readonly" />
+                            <input class="form-control" type="date" id="member_reg_date" name="member_reg_date" placeholder="California" value=<fmt:formatDate value="${memberVO.member_reg_date}" pattern="yyyy-MM-dd"/>  />
                           </div>
                           
                         </div>
                         <div class="mt-2">
-                          <button type="submit" class="btn btn-primary me-2">Save changes</button>
-                          <button type="reset" class="btn btn-outline-secondary">Cancel</button>
+<!--                           <a href="/member/myPage"><button type="submit" class="btn btn-primary me-2" >수정완료</button></a> -->
+                          <button type="submit" class="btn btn-primary me-2" >수정완료</button>
                         </div>
                       </form>
                     </div>
-                    <!-- /Account -->
                   </div>
+                    <!-- /Account -->
                   <div class="card">
                     <h5 class="card-header">Delete Account</h5>
                     <div class="card-body">

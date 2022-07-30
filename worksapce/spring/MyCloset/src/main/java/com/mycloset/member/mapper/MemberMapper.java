@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.mycloset.member.vo.LoginVO;
 import com.mycloset.member.vo.MemberVO;
+import com.mycloset.notice.vo.NoticeVO;
 import com.webjjang.util.PageObject;
 
 public interface MemberMapper {
@@ -38,5 +39,8 @@ public interface MemberMapper {
 	
 	//회원 정보 보여주기
 	public MemberVO myPage(LoginVO vo) throws Exception;
+
+	//회원정보 수정(update)
+	public int update(MemberVO vo) throws Exception;
 
 }

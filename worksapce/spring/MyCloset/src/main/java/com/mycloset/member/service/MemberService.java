@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.mycloset.member.mapper.MemberMapper;
 import com.mycloset.member.vo.LoginVO;
 import com.mycloset.member.vo.MemberVO;
+import com.mycloset.notice.vo.NoticeVO;
 import com.webjjang.util.PageObject;
 
 @Service
@@ -54,5 +55,11 @@ public class MemberService {
 	//마이 페이지 개인정보 보여주기(view)
 	public MemberVO myPage(LoginVO vo) throws Exception{
 		return mapper.myPage(vo);
+	}
+	
+	//마이페이지 개인정보 수정
+	public int update(MemberVO vo)throws Exception{
+		System.out.println("NoticeService.update().vo - "+vo);
+		return mapper.update(vo);
 	}
 }
