@@ -69,6 +69,7 @@
 <!-- 	회원정보 수정 -->
 	<update id="update">
 		update member 
+		set
 		member_name=#{member_name}, 
 		member_sex=#{member_sex}, 
 		member_phone=#{member_phone}, 
@@ -77,5 +78,6 @@
 		member_top_size=#{member_top_size}, 
 		member_bottom_size=#{member_bottom_size},
 		member_shoes_size=#{member_shoes_size}
+		where member_id = #{member_id}
 	</update>
 </mapper>
