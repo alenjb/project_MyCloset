@@ -705,7 +705,7 @@
                           </div>
                             <label for="member_reg_date" class="form-label col-md-4">가입 날짜</label>
                           <div class="mb-3 col-md-8">
-                            <input class="form-control" type="date" id="member_reg_date" name="member_reg_date" placeholder="California" value=<fmt:formatDate value="${memberVO.member_reg_date}" pattern="yyyy-MM-dd"/>  />
+                            <input class="form-control" type="date" id="member_reg_date" name="member_reg_date" readonly="readonly" placeholder="California" value=<fmt:formatDate value="${memberVO.member_reg_date}" pattern="yyyy-MM-dd" />  />
                           </div>
                           
                         </div>
@@ -726,7 +726,7 @@
                           <p class="mb-0">Once you delete your account, there is no going back. Please be certain.</p>
                         </div>
                       </div>
-                      <form id="formAccountDeactivation" onsubmit="return false">
+                      <form id="formAccountDeactivation" action="delete">
                         <div class="form-check mb-3">
                           <input
                             class="form-check-input"
@@ -738,7 +738,7 @@
                             >I confirm my account deactivation</label
                           >
                         </div>
-                        <button type="submit" class="btn btn-danger deactivate-account">Deactivate Account</button>
+                        <button type="submit" class="btn btn-danger deactivate-account" >Deactivate Account</button>
                       </form>
                     </div>
                   </div>

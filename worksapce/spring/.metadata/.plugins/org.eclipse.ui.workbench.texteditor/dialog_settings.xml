@@ -6,10 +6,14 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="memberVO."/>
+		<item key="selection" value="&lt;form"/>
 		<list key="findhistory">
-			<item value="myPage."/>
+			<item value="&lt;form"/>
+			<item value="form"/>
+			<item value="readonly=&quot;readonly&quot;"/>
+			<item value="readonly"/>
 			<item value="var"/>
+			<item value="myPage."/>
 			<item value="/login"/>
 			<item value="../"/>
 			<item value="myView"/>
@@ -19,18 +23,14 @@
 			<item value="modalTop"/>
 			<item value="EngW7tLk6R8&quot;"/>
 			<item value="&lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot; data-bs-toggle=&quot;modal&quot; data-bs-target=&quot;#youTubeModal&quot; data-thevideo=&quot;https://www.youtube.com/embed/EngW7tLk6R8&quot;"/>
-			<item value="&lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot; data-bs-toggle=&quot;modal&quot; data-bs-target=&quot;#youTubeModal&quot; data-thevideo=&quot;https://www.youtube.com/embed/EngW7tLk6R8&quot;&gt;"/>
-			<item value="css"/>
-			<item value="csss"/>
-			<item value="bootstrap"/>
 		</list>
 		<list key="replacehistory">
+			<item value=""/>
 			<item value="memberVO."/>
 			<item value="/resources/"/>
 			<item value="/resources"/>
 			<item value="myPage"/>
 			<item value="findId"/>
-			<item value=""/>
 			<item value="/"/>
 			<item value="../../resources/assets/"/>
 			<item value="grade"/>

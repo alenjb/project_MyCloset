@@ -59,7 +59,13 @@ public class MemberService {
 	
 	//마이페이지 개인정보 수정
 	public int update(MemberVO vo)throws Exception{
-		System.out.println("NoticeService.update().vo - "+vo);
+		System.out.println("MemberService.update().vo - "+vo);
 		return mapper.update(vo);
+	}
+	
+	//마이페이지 회원 탈퇴
+	public int delete(MemberVO vo) throws Exception{
+		System.out.println("MemberService.delete().vo - "+vo);
+		return mapper.delete(vo);
 	}
 }

@@ -725,7 +725,7 @@
                           <p class="mb-0">Once you delete your account, there is no going back. Please be certain.</p>
                         </div>
                       </div>
-                      <form id="formAccountDeactivation" onsubmit="return false">
+                      <form id="formAccountDeactivation" action="myPage/delete">
                         <div class="form-check mb-3">
                           <input
                             class="form-check-input"

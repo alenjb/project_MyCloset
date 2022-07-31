@@ -42,7 +42,7 @@ public class MemberController {
 	@PostMapping("/signUp")
 	public String signUp(MemberVO vo) throws Exception{
 		service.signUp(vo);
-		return "member/list";	
+		return "member/login";	
 	}
 
 	
@@ -161,20 +161,33 @@ public class MemberController {
 	}
 	
 	//마이 페이지 수정
-		@GetMapping("/myPage/update")
-		public String myPageUpdateForm(HttpServletRequest request, MemberVO vo, Model model) throws Exception{
-			HttpSession session = request.getSession();
-			System.out.println("도착함");
-			System.out.println("request임:  "+session.getAttribute("memberVO"));
-			model.addAttribute("memberVO", session.getAttribute("memberVO"));
+	@GetMapping("/myPage/update")
+	public String myPageUpdateForm(HttpServletRequest request, MemberVO vo, Model model) throws Exception{
+		HttpSession session = request.getSession();
+		System.out.println("도착함");
+		System.out.println("request임:  "+session.getAttribute("memberVO"));
+		model.addAttribute("memberVO", session.getAttribute("memberVO"));
 //			service.update(vo);
-			return "member/update";
-		}
-		  //마이 페이지 수정
-		  
-	  @PostMapping("/myPage/update") public String myPageUpdate(MemberVO vo, HttpServletRequest request) throws Exception{ 
-		  
-		  service.update(vo);
-		  return "member/myPage"; }
+		return "member/update";
+	}
+	  //마이 페이지 수정
+	  
+  @PostMapping("/myPage/update") 
+  public String myPageUpdate(MemberVO vo, HttpServletRequest request) throws Exception{   
+	  service.update(vo);
+	  return "member/myPage"; 
+	  }
+  
+  @GetMapping("/myPage/delete")
+  public String myPageDelete(HttpServletRequest request) throws Exception{
+	  MemberVO vo = (MemberVO)request.getSession().getAttribute("memberVO");
+	  service.delete(vo);
+	  request.getSession().removeAttribute("login");
+	  System.out.println("제거한 후 세션 "+request.getSession());
+
+	  return "redirect:/member/login";
+  }
+  
+  
 		
 }

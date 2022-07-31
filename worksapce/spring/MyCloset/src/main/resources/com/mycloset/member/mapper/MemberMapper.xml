@@ -80,4 +80,9 @@
 		member_shoes_size=#{member_shoes_size}
 		where member_id = #{member_id}
 	</update>
+<!-- 회원탈퇴 -->
+	<delete id="delete">
+	delete from member
+	where member_id = #{member_id}
+	</delete>
 </mapper>

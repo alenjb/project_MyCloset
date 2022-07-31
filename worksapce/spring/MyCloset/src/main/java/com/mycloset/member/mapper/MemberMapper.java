@@ -43,4 +43,7 @@ public interface MemberMapper {
 	//회원정보 수정(update)
 	public int update(MemberVO vo) throws Exception;
 
+	//회원정보 수정(update)
+	public int delete(MemberVO vo) throws Exception;
+
 }
