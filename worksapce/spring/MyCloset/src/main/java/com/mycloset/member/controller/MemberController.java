@@ -16,7 +16,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.mycloset.member.service.MemberService;
+import com.mycloset.closet.service.MemberService;
+import com.mycloset.member.service.ClosetService;
 import com.mycloset.member.vo.LoginVO;
 import com.mycloset.member.vo.MemberVO;
 import com.webjjang.util.PageObject;

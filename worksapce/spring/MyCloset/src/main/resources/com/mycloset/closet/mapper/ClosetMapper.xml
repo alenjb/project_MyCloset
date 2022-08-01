@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mycloset.closet.mapper.ClosetMapper">
+<!-- 옷 등록 -->
+<insert id="enroll">
+	insert into closet(
+	clothes_id, clothes_name, clothes_info, clothes_size, clothes_photo, clothes_purchase_year, clothes_purchase_price, clothes_season
+	 )
+	values(
+	#{clothes_id}, #{clothes_name}, #{clothes_info}, #{clothes_size}, #{clothes_photo}, #{clothes_purchase_year}, #{clothes_purchase_price}, #{clothes_season}
+	)
+</insert>
+</mapper>

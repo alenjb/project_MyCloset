@@ -1,4 +1,4 @@
-package com.mycloset.member.service;
+package com.mycloset.closet.service;
 
 import java.util.List;
 
