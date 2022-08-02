@@ -601,7 +601,7 @@
                     </li>
                   </ul>
                   <div class="card mb-4">
-                    <h5 class="card-header">회원정보</h5>
+                    <h5 class="card-header">옷 정보</h5>
 <%--                     </c:forEach> --%>
                     <!-- Account -->
                     <div class="card-body">
@@ -615,12 +615,13 @@
                           id="uploadedAvatar"
                         />
                         <div class="button-wrapper">
-                          <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
-                            <span class="d-none d-sm-block">사진 업로드</span>
+                          <label for="clothes_photo" class="btn btn-primary me-2 mb-4" tabindex="0">
+                            <span class="d-none d-sm-block">사진 선택</span>
                             <i class="bx bx-upload d-block d-sm-none"></i>
                             <input
                               type="file"
-                              id="upload"
+                              id="clothes_photo"
+                              name="clothes_photo"
                               class="account-file-input"
                               hidden
                               accept="image/png, image/jpeg"
@@ -633,115 +634,134 @@
                     </div>
                     <hr class="my-0" />
                     <div class="card-body">
-                      <form id="update" method="POST" action="update">
+                      <form id="enroll" method="POST" action="enroll">
                         <div class="row justify-content-center">
-                            <label for="member_name" class="form-label col-md-4">이름</label>
+                         
+                         <label for="clothes_season1" class="form-label col-md-4">옷 계절</label>
+							<div class="mb-3 col-md-8">
+                          <div class="form-check form-check-inline">
+                            <input
+                              name="clothes_type"
+                              class="form-check-input"
+                              type="radio"
+                              value="상의"
+                              id="clothes_type1"
+                            />
+                            <label class="radio-inline" for="clothes_type1"> 상의 </label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                            <input
+                              name="clothes_type"
+                              class="form-check-input"
+                              type="radio"
+                              value="하의"
+                              id="clothes_type2"
+                            />
+                            <label class="radio-inline" for="clothes_type2"> 하의 </label>
+                          </div>
+                          </div>
+                         
+                         
+                            <label for="clothes_name" class="form-label col-md-4">옷 이름</label>
                           <div class="mb-3 col-md-8" style="float: none; margin:0 auto;">
                             <input
                               class="form-control"
                               type="text"
-                              id="member_name"
-                              name="member_name"
-                              value="${memberVO.member_name}"
+                              id="clothes_name"
+                              name="clothes_name"
                               
                               autofocus
                             />
                           </div>
-                            <label for="member_email" class="form-label col-md-4">이메일</label>
+                          
+                        <label for="clothes_info" class="form-label col-md-4">옷 설명</label>
+                         <div class="mb-3 col-md-8" style="float: none; margin:0 auto;">
+                         	<textarea class="form-control" id="clothes_info" name="clothes_info" rows="5"></textarea>                         
+                         </div>
+                         
+						<label for="clothes_type" class="form-label col-md-4">옷 사이즈</label>
                           <div class="mb-3 col-md-8">
+                        <select id="clothes_type" name="clothes_type" class="form-select">
+                          <option value="80">80</option>
+                          <option value="85">85</option>
+                          <option value="90">90</option>
+                          <option value="95">95</option>
+                          <option value="100">100</option>
+                          <option value="105">105</option>
+                          <option value="110">110</option>
+                          <option value="115">115</option>
+                          <option value="120">120</option>
+                        </select>
+                          </div>
+					<label for="clothes_purchase_price" class="form-label col-md-4">구입 가격</label>
+					<div class="mb-3 col-md-8">
+					<div class="input-group">
+                        <span class="input-group-text">￦</span>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="clothes_purchase_price"
+                          name="clothes_purchase_price"
+                        />
+                        <span class="input-group-text">원</span>
+					</div>
+                      </div>
+
+							<label for="clothes_season1" class="form-label col-md-4">옷 계절</label>
+							<div class="mb-3 col-md-8">
+                          <div class="form-check form-check-inline">
                             <input
-                              class="form-control"
-                              type="text"
-                              id="member_email"
-                              name="member_email"
-                              value="${memberVO.member_email}"
-                              placeholder="john.doe@example.com"
-                              
+                              name="clothes_season"
+                              class="form-check-input"
+                              type="radio"
+                              value="봄"
+                              id="clothes_season1"
                             />
+                            <label class="radio-inline" for="clothes_season1"> 봄 </label>
                           </div>
-                            <label for="member_sex" class="form-label col-md-4">성별</label>
-                          <div class="mb-3 col-md-8">
+                          <div class="form-check form-check-inline">
                             <input
-                              type="text"
-                              class="form-control"
-                              id="member_sex"
-                              name="member_sex"
-                              value="${memberVO.member_sex}"
-                              
+                              name="clothes_season"
+                              class="form-check-input"
+                              type="radio"
+                              value="여름"
+                              id="clothes_season2"
                             />
+                            <label class="radio-inline" for="clothes_season2"> 여름 </label>
                           </div>
-                            <label class="form-label col-md-4" for="member_phone">전화번호</label>
-                          <div class="mb-3 col-md-8">
-                            <div class="input-group input-group-merge">
-                              <span class="input-group-text">KR (+82)</span>
-                              <input
-                                type="text"
-                                id="member_phone"
-                                name="member_phone"
-                                class="form-control"
-                                value="${memberVO.member_phone}"
-                                
-                              />
-                            </div>
+                          <div class="form-check form-check-inline">
+                            <input
+                              name="clothes_season"
+                              class="form-check-input"
+                              type="radio"
+                              value="가을"
+                              id="clothes_season3"
+                            />
+                            <label class="radio-inline" for="clothes_season3"> 가을 </label>
                           </div>
-                            <label for="member_height" class="form-label col-md-4">키</label>
-                          <div class="mb-3 col-md-8">
-                            <input class="form-control" type="text" id="member_height" name="member_height" placeholder="California" value="${memberVO.member_height}"  />
+                          <div class="form-check form-check-inline">
+                            <input
+                              name="clothes_season"
+                              class="form-check-input"
+                              type="radio"
+                              value="겨울"
+                              id="clothes_season4"
+                            />
+                            <label class="radio-inline" for="clothes_season4"> 겨울 </label>
                           </div>
-                            <label for="member_top_size" class="form-label col-md-4">상체 사이즈</label>
-                          <div class="mb-3 col-md-8">
-                            <input class="form-control" type="text" id="member_top_size" name="member_top_size" placeholder="California" value="${memberVO.member_top_size}"  />
                           </div>
-                            <label for="member_bottom_size" class="form-label col-md-4">하체 사이즈</label>
-                          <div class="mb-3 col-md-8">
-                            <input class="form-control" type="text" id="member_bottom_size" name="member_bottom_size" placeholder="California" value="${memberVO.member_bottom_size}"  />
-                          </div>
-                            <label for="member_shoes_size" class="form-label col-md-4">신발 사이즈</label>
-                          <div class="mb-3 col-md-8">
-                          <div class="input-group input-group-merge">
-                            <input class="form-control" type="text" id="member_shoes_size" name="member_shoes_size" placeholder="California" value="${memberVO.member_shoes_size}"  />
-                            <span class="input-group-text">mm</span>
-                            </div>
-                          </div>
-                            <label for="member_reg_date" class="form-label col-md-4">가입 날짜</label>
-                          <div class="mb-3 col-md-8">
-                            <input class="form-control" type="date" id="member_reg_date" name="member_reg_date" readonly="readonly" placeholder="California" value=<fmt:formatDate value="${memberVO.member_reg_date}" pattern="yyyy-MM-dd" />  />
-                          </div>
+
+
                           
                         </div>
                         <div class="mt-2">
 <!--                           <a href="/member/myPage"><button type="submit" class="btn btn-primary me-2" >수정완료</button></a> -->
-                          <button type="submit" class="btn btn-primary me-2" >수정완료</button>
+                          <button type="submit" class="btn btn-primary me-2" >등록</button>
                         </div>
                       </form>
                     </div>
                   </div>
-                    <!-- /Account -->
-                  <div class="card">
-                    <h5 class="card-header">Delete Account</h5>
-                    <div class="card-body">
-                      <div class="mb-3 col-12 mb-0">
-                        <div class="alert alert-warning">
-                          <h6 class="alert-heading fw-bold mb-1">Are you sure you want to delete your account?</h6>
-                          <p class="mb-0">Once you delete your account, there is no going back. Please be certain.</p>
-                        </div>
-                      </div>
-                      <form id="formAccountDeactivation" action="delete">
-                        <div class="form-check mb-3">
-                          <input
-                            class="form-check-input"
-                            type="checkbox"
-                            name="accountActivation"
-                            id="accountActivation"
-                          />
-                          <label class="form-check-label" for="accountActivation"
-                            >I confirm my account deactivation</label
-                          >
-                        </div>
-                        <button type="submit" class="btn btn-danger deactivate-account" >Deactivate Account</button>
-                      </form>
-                    </div>
-                  </div>
+
                 </div>
               </div>
             </div>

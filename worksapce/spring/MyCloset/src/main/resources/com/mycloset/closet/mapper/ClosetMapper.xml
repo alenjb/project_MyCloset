@@ -5,10 +5,10 @@
 <!-- 옷 등록 -->
 <insert id="enroll">
 	insert into closet(
-	clothes_id, clothes_name, clothes_info, clothes_size, clothes_photo, clothes_purchase_year, clothes_purchase_price, clothes_season
+	clothes_id, clothes_type, clothes_name, clothes_info, clothes_size, clothes_photo, clothes_purchase_year, clothes_purchase_price, clothes_season
 	 )
 	values(
-	#{clothes_id}, #{clothes_name}, #{clothes_info}, #{clothes_size}, #{clothes_photo}, #{clothes_purchase_year}, #{clothes_purchase_price}, #{clothes_season}
+	#{clothes_id}, #{clothes_type}, #{clothes_name}, #{clothes_info}, #{clothes_size}, #{clothes_photo}, #{clothes_purchase_year}, #{clothes_purchase_price}, #{clothes_season}
 	)
 </insert>
 </mapper>

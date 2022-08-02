@@ -9,6 +9,8 @@ public class ClosetVO {
 
 // 옷 아이디
 	private String clothes_id;
+// 상,하의 구분
+	private String clothes_type;
 //	이름
 	private String clothes_name;
 //	설명

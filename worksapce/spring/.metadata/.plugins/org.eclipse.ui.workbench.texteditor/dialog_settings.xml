@@ -6,8 +6,10 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="&lt;form"/>
+		<item key="selection" value=""/>
 		<list key="findhistory">
+			<item value="삭제"/>
+			<item value="delete"/>
 			<item value="&lt;form"/>
 			<item value="form"/>
 			<item value="readonly=&quot;readonly&quot;"/>
@@ -21,8 +23,6 @@
 			<item value="snea"/>
 			<item value="submit"/>
 			<item value="modalTop"/>
-			<item value="EngW7tLk6R8&quot;"/>
-			<item value="&lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot; data-bs-toggle=&quot;modal&quot; data-bs-target=&quot;#youTubeModal&quot; data-thevideo=&quot;https://www.youtube.com/embed/EngW7tLk6R8&quot;"/>
 		</list>
 		<list key="replacehistory">
 			<item value=""/>
