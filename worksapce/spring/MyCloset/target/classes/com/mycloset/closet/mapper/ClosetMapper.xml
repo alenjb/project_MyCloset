@@ -11,4 +11,12 @@
 	#{clothes_id}, #{clothes_type}, #{clothes_name}, #{clothes_info}, #{clothes_size}, #{clothes_photo}, #{clothes_purchase_year}, #{clothes_purchase_price}, #{clothes_season}
 	)
 </insert>
+
+<!-- 옷 보기 -->
+	<select id="view" resultType="com.mycloset.closet.vo.ClosetVO">
+	select
+	clothes_id, clothes_type, clothes_name, clothes_info, clothes_size, clothes_photo, clothes_purchase_year, clothes_purchase_price, clothes_season
+	from closet
+<!-- 	where #{id} == clothes_id -->
+	</select>
 </mapper>

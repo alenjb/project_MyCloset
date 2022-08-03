@@ -1,5 +1,6 @@
 package com.mycloset.member.service;
 
+
 import java.util.List;
 
 import javax.inject.Inject;
@@ -27,16 +28,16 @@ public class ClosetService {
 //		return mapper.list(object);
 //	}
 //	
-//	//마이 페이지 개인정보 보여주기(view)
-//	public MemberVO myPage(LoginVO vo) throws Exception{
-//		return mapper.myPage(vo);
-//	}
+	//마이 페이지 개인정보 보여주기(view)
+	public List<ClosetVO> view(String id) throws Exception{
+		return mapper.view(id);
+	}
 //	
-//	//마이페이지 개인정보 수정
-//	public int update(MemberVO vo)throws Exception{
-//		System.out.println("MemberService.update().vo - "+vo);
-//		return mapper.update(vo);
-//	}
+	//마이페이지 개인정보 수정
+	public int update(ClosetVO vo)throws Exception{
+		System.out.println("MemberService.update().vo - "+vo);
+		return mapper.update(vo);
+	}
 //	
 //	//마이페이지 회원 탈퇴
 //	public int delete(MemberVO vo) throws Exception{

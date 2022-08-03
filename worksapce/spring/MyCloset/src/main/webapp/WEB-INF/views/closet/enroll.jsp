@@ -624,7 +624,7 @@
                               name="clothes_photo_file"
                               class="account-file-input"
                               hidden
-                              accept="image/png, image/jpeg"
+                              accept="image/png, image/jpeg, image/jpg, image/gif"
                             />
                           </label>
 
@@ -637,7 +637,7 @@
                       
                         <div class="row justify-content-center">
                          
-                         <label for="clothes_season1" class="form-label col-md-4">옷 계절</label>
+                         <label for="clothes_season1" class="form-label col-md-4">옷 종류</label>
 							<div class="mb-3 col-md-8">
                           <div class="form-check form-check-inline">
                             <input

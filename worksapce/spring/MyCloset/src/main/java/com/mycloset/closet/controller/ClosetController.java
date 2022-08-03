@@ -49,9 +49,9 @@ public class ClosetController {
 		} catch (Exception e) {
 			log.error(e.getMessage());
 		}
-		vo.setClothes_photo(uploadFolder+"\\"+file.getOriginalFilename());
+		vo.setClothes_photo("\\upload\\closet\\"+file.getOriginalFilename());
 		service.enroll(vo);
-		return "closet/list";	
+		return "closet/view";	
 	}
 
 		
@@ -69,25 +69,22 @@ public class ClosetController {
 //	
 //	//회원등급변경
 //	
-//	//아이디 찾기 폼
-//	@GetMapping("/findId")
-//	public String findIdForm() throws Exception{
-//		
-//		log.info("아이디 찾기 폼으로 이동");
-//		return "member/findId";
-//	}
+	//view
+	@GetMapping("/view")
+	public String view(Model model, ClosetVO vo) throws Exception{
+		model.addAttribute("vo", vo);
+		model.addAttribute("list", service.view(""));
+		return "closet/view";
+	}
 //	
 //	
-//	//마이 페이지 수정
-//	@GetMapping("/myPage/update")
-//	public String myPageUpdateForm(HttpServletRequest request, MemberVO vo, Model model) throws Exception{
-//		HttpSession session = request.getSession();
-//		System.out.println("도착함");
-//		System.out.println("request임:  "+session.getAttribute("memberVO"));
-//		model.addAttribute("memberVO", session.getAttribute("memberVO"));
-////			service.update(vo);
-//		return "member/update";
-//	}
+	//마이 페이지 수정
+	@GetMapping("/update")
+	public String UpdateForm(HttpServletRequest request, ClosetVO vo, Model model) throws Exception{
+		HttpSession session = request.getSession();
+//			service.update(vo);
+		return "closet/update";
+	}
 //	  //마이 페이지 수정
 //	  
 //  @PostMapping("/myPage/update") 

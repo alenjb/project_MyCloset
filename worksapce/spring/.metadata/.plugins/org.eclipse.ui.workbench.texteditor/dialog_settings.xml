@@ -6,25 +6,26 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="update"/>
+		<item key="selection" value="var"/>
 		<list key="findhistory">
+			<item value="var"/>
+			<item value="vo"/>
+			<item value="text-light fw-semibold d-block"/>
+			<item value="Allow"/>
+			<item value="2021-06-18"/>
+			<item value="enroll"/>
+			<item value="face"/>
+			<item value="file"/>
+			<item value="File"/>
+			<item value="Filer"/>
 			<item value="update"/>
 			<item value="Radio"/>
 			<item value="Amount (to the nearest dollar)"/>
 			<item value="formFile"/>
 			<item value="largeSele"/>
-			<item value="textarea"/>
-			<item value="area"/>
-			<item value="이름"/>
-			<item value="삭제"/>
-			<item value="delete"/>
-			<item value="&lt;form"/>
-			<item value="form"/>
-			<item value="readonly=&quot;readonly&quot;"/>
-			<item value="readonly"/>
-			<item value="var"/>
 		</list>
 		<list key="replacehistory">
+			<item value="ClosetVO"/>
 			<item value=""/>
 			<item value="memberVO."/>
 			<item value="/resources/"/>
@@ -39,12 +40,11 @@
 			<item value="//return false"/>
 			<item value="확인"/>
 			<item value="&quot;"/>
-			<item value="Member"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="1418"/>
-		<item key="DIALOG_Y_ORIGIN" value="162"/>
+		<item key="DIALOG_X_ORIGIN" value="1433"/>
+		<item key="DIALOG_Y_ORIGIN" value="102"/>
 		<item key="DIALOG_WIDTH" value="322"/>
 		<item key="DIALOG_HEIGHT" value="413"/>
 		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
