@@ -107,6 +107,7 @@ public class MemberController {
 		} catch (Exception e) {
 			log.error(e.getMessage());
 		}
+		
 		service.write(vo);
 		System.out.println(vo.toString());
 		return "redirect:/member/login.do";
@@ -117,7 +118,7 @@ public class MemberController {
 	@GetMapping("/idCheck")
 	public String idCheck(String id, Model model) throws Exception{
 		
-		model.addAttribute("id", service.idCheck(id));
+//		model.addAttribute("id", service.idCheck(id));
 		return "member/idCheck";
 		
 	}

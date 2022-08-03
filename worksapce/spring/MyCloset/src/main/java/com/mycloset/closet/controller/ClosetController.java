@@ -2,6 +2,8 @@ package com.mycloset.closet.controller;
 
 
 
+import java.io.File;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.mycloset.closet.vo.ClosetVO;
 import com.mycloset.member.service.ClosetService;
@@ -38,6 +41,15 @@ public class ClosetController {
 	//옷등록 페이지
 	@PostMapping("/enroll")
 	public String enroll(ClosetVO vo) throws Exception{
+		MultipartFile file =vo.getClothes_photo_file();
+		String uploadFolder = "D:\\jeongbin\\worksapce\\spring\\MyCloset\\src\\main\\webapp\\upload\\closet";
+		File saveFile = new File(uploadFolder, file.getOriginalFilename());
+		try {
+			file.transferTo(saveFile);
+		} catch (Exception e) {
+			log.error(e.getMessage());
+		}
+		vo.setClothes_photo(uploadFolder+"\\"+file.getOriginalFilename());
 		service.enroll(vo);
 		return "closet/list";	
 	}

@@ -6,8 +6,16 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value=""/>
+		<item key="selection" value="update"/>
 		<list key="findhistory">
+			<item value="update"/>
+			<item value="Radio"/>
+			<item value="Amount (to the nearest dollar)"/>
+			<item value="formFile"/>
+			<item value="largeSele"/>
+			<item value="textarea"/>
+			<item value="area"/>
+			<item value="이름"/>
 			<item value="삭제"/>
 			<item value="delete"/>
 			<item value="&lt;form"/>
@@ -15,14 +23,6 @@
 			<item value="readonly=&quot;readonly&quot;"/>
 			<item value="readonly"/>
 			<item value="var"/>
-			<item value="myPage."/>
-			<item value="/login"/>
-			<item value="../"/>
-			<item value="myView"/>
-			<item value="Snea"/>
-			<item value="snea"/>
-			<item value="submit"/>
-			<item value="modalTop"/>
 		</list>
 		<list key="replacehistory">
 			<item value=""/>

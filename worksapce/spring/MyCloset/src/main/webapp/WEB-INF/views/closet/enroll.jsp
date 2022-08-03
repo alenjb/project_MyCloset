@@ -602,8 +602,8 @@
                   </ul>
                   <div class="card mb-4">
                     <h5 class="card-header">옷 정보</h5>
-<%--                     </c:forEach> --%>
                     <!-- Account -->
+                    <form id="enroll" method="POST" action="enroll" enctype="multiPart/form-data">
                     <div class="card-body">
                       <div class="d-flex align-items-start align-items-sm-center gap-4">
                         <img
@@ -615,26 +615,26 @@
                           id="uploadedAvatar"
                         />
                         <div class="button-wrapper">
-                          <label for="clothes_photo" class="btn btn-primary me-2 mb-4" tabindex="0">
+                          <label for="clothes_photo_file" class="btn btn-primary me-2 mb-4" tabindex="0">
                             <span class="d-none d-sm-block">사진 선택</span>
                             <i class="bx bx-upload d-block d-sm-none"></i>
                             <input
                               type="file"
-                              id="clothes_photo"
-                              name="clothes_photo"
+                              id="clothes_photo_file"
+                              name="clothes_photo_file"
                               class="account-file-input"
                               hidden
                               accept="image/png, image/jpeg"
                             />
                           </label>
 
-                          <p class="text-muted mb-0">Allowed JPG, GIF or PNG. Max size of 800K</p>
+                          <p class="text-muted mb-0">JPG, GIF, JPEG, PNG 등 사진 파일만 등록 가능합니다.</p>
                         </div>
                       </div>
                     </div>
                     <hr class="my-0" />
                     <div class="card-body">
-                      <form id="enroll" method="POST" action="enroll">
+                      
                         <div class="row justify-content-center">
                          
                          <label for="clothes_season1" class="form-label col-md-4">옷 계절</label>
@@ -679,9 +679,9 @@
                          	<textarea class="form-control" id="clothes_info" name="clothes_info" rows="5"></textarea>                         
                          </div>
                          
-						<label for="clothes_type" class="form-label col-md-4">옷 사이즈</label>
+						<label for="clothes_size" class="form-label col-md-4">옷 사이즈</label>
                           <div class="mb-3 col-md-8">
-                        <select id="clothes_type" name="clothes_type" class="form-select">
+                        <select id="clothes_size" name="clothes_size" class="form-select">
                           <option value="80">80</option>
                           <option value="85">85</option>
                           <option value="90">90</option>
@@ -706,57 +706,69 @@
                         <span class="input-group-text">원</span>
 					</div>
                       </div>
-
-							<label for="clothes_season1" class="form-label col-md-4">옷 계절</label>
-							<div class="mb-3 col-md-8">
+                     
+                     <label for="clothes_purchase_year" class="form-label col-md-4">구입년도</label>
+                        <div class="mb-3 col-md-8">
+                          <input class="form-control" type="date" id="clothes_purchase_year" name="clothes_purchase_year" />
+                        </div>
+                      
+                      
+					<label for="clothes_season1" class="form-label col-md-4">옷 계절</label>                      
+                     <div class="mb-3 col-md-8">
                           <div class="form-check form-check-inline">
-                            <input
+                           <input
                               name="clothes_season"
                               class="form-check-input"
-                              type="radio"
+                              type="checkbox"
                               value="봄"
                               id="clothes_season1"
                             />
-                            <label class="radio-inline" for="clothes_season1"> 봄 </label>
-                          </div>
-                          <div class="form-check form-check-inline">
-                            <input
+                            <label class="form-check-label" for="clothes_season1"> 봄 </label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                           <input
                               name="clothes_season"
                               class="form-check-input"
-                              type="radio"
+                              type="checkbox"
                               value="여름"
                               id="clothes_season2"
                             />
-                            <label class="radio-inline" for="clothes_season2"> 여름 </label>
+                            <label class="form-check-label" for="clothes_season2"> 여름 </label>
                           </div>
-                          <div class="form-check form-check-inline">
-                            <input
+                       <div class="form-check form-check-inline">
+                           <input
                               name="clothes_season"
                               class="form-check-input"
-                              type="radio"
+                              type="checkbox"
                               value="가을"
                               id="clothes_season3"
                             />
-                            <label class="radio-inline" for="clothes_season3"> 가을 </label>
+                            <label class="form-check-label" for="clothes_season3"> 가을 </label>
                           </div>
-                          <div class="form-check form-check-inline">
-                            <input
+                          
+                        <div class="form-check form-check-inline">
+                           <input
                               name="clothes_season"
                               class="form-check-input"
-                              type="radio"
+                              type="checkbox"
                               value="겨울"
                               id="clothes_season4"
                             />
-                            <label class="radio-inline" for="clothes_season4"> 겨울 </label>
+                            <label class="form-check-label" for="clothes_season4"> 겨울 </label>
                           </div>
+                        
+                          
+                         
                           </div>
-
+                        </div>
+                 
 
                           
                         </div>
                         <div class="mt-2">
 <!--                           <a href="/member/myPage"><button type="submit" class="btn btn-primary me-2" >수정완료</button></a> -->
                           <button type="submit" class="btn btn-primary me-2" >등록</button>
+                        </div>
                         </div>
                       </form>
                     </div>
