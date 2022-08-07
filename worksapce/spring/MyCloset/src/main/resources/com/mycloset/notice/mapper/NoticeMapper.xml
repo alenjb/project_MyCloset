@@ -3,6 +3,7 @@
 <mapper namespace="com.mycloset.notice.mapper.NoticeMapper">
 <!-- 1.리스트(list) -->
 
+<!-- pageObject 버전 -->
 <select id="list" resultType="com.mycloset.notice.vo.NoticeVO">
 		select no, title, writer, writeDate, endDate
 		from(	
@@ -16,9 +17,30 @@
 				) AS A, (SELECT @ROWNUM:=0) AS B
                 
 			) AS C
-<!-- 			아직 row 처리를 안함 -->
+<!--  			아직 row 처리를 안함  -->
             where C.RNUM between #{startRow} and #{endRow}
 </select>
+
+<!-- <select id="list" resultType="com.mycloset.notice.vo.NoticeVO"> -->
+<!-- <![CDATA[ -->
+<!-- 		select no, title, writer, writeDate, endDate -->
+<!-- 		from(	 -->
+<!-- 			select (@ROWNUM:=@ROWNUM+1) AS RNUM, no, title, writer, writeDate, endDate -->
+<!-- 			from( -->
+<!-- 				select no, title, writer, writeDate, endDate -->
+<!-- 				from notice -->
+<!-- 				where 1=1]]> -->
+<!-- 				<include refid="search"/> -->
+<!-- 				<![CDATA[ -->
+<!-- 				order by writeDate desc -->
+<!-- 				) AS A, (SELECT @ROWNUM:=0) AS B -->
+                
+<!-- 			) AS C -->
+<!--             WHERE C.RNUM  <= #{pageNum} * #{amount} AND C.RNUM > (#{pageNum} - 1) * #{amount}  -->
+<!-- ]]> -->
+<!-- </select> -->
+
+
 <!-- 검색 처리 태그 -->
 <sql id="search">
 	<if test="word !=null and word!= ''.toString()">

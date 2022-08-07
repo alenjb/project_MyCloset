@@ -16,10 +16,15 @@ import com.mycloset.member.service.ClosetService;
 import com.mycloset.member.vo.LoginVO;
 import com.mycloset.notice.service.NoticeService;
 import com.mycloset.notice.vo.NoticeVO;
+import com.mycloset.util.Critera;
+import com.mycloset.util.PageDTO;
 import com.webjjang.util.PageObject;
+
+import lombok.extern.log4j.Log4j;
 
 @Controller
 @RequestMapping("/notice")
+@Log4j
 public class NoticeController {
 	
 	@Autowired
@@ -27,8 +32,10 @@ public class NoticeController {
 	
 	//1.리스트(list)
 	@GetMapping("/list")
-	public String list(@ModelAttribute PageObject pageObject, Model model) throws Exception{
+	public String list(@ModelAttribute PageObject pageObject, Model model, Critera cri) throws Exception{
 		
+		
+//		pageObject를 사용하는 경우
 		//페이지가 1보다 작으면 1페이지로 설정
 		if(pageObject.getPage() < 1) {
 			pageObject.setPage(1);
@@ -36,6 +43,12 @@ public class NoticeController {
 		
 		System.out.println("NoticeController.list()");
 		model.addAttribute("list", service.list(pageObject));
+		
+		
+//		log.info("list: " +cri);
+//		model.addAttribute("list", service.list(cri));
+//		//임시로 123이라고 함
+//		model.addAttribute("pageMaker", new PageDTO(cri, 123));		
 		System.out.println(model);
 		return "notice/list";
 	}

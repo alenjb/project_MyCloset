@@ -105,14 +105,7 @@
 	
 	
 	});
-	$(document).ready(function () {
-		$(".page-item").click(function () {
-			$('.page-item').addClass('active');
-			alert("안녕");
-		});
 		
-	});
-	
 	
     </script>
   </head>
@@ -686,68 +679,45 @@
               </div>
               <!--/ Hoverable Table rows -->
 
-              <!-- Basic Pagination -->
+              <!-- 페이지네이션 -->
               <div class="col mt-3">
               <nav aria-label="Page navigation">
                 <ul class="pagination justify-content-center">
                   <li class="page-item first">
-                    <a class="page-link" href="javascript:void(0);"
+                    <a class="page-link" href="list?page=1"
                       ><i class="tf-icon bx bx-chevrons-left"></i
                     ></a>
                   </li>
+                  <c:if test="${pageMaker.prev}">
                   <li class="page-item prev">
-                    <a class="page-link" href="javascript:void(0);"
+                    <a class="page-link" href="list?page=${pageMaker.startPage +1} ;"
                       ><i class="tf-icon bx bx-chevron-left"></i
                     ></a>
                   </li>
-                  <li class="page-item">
-                    <a class="page-link" href="list?page=1">1</a>
+                  </c:if>
+                  <c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
+                  <li class="page-item ${pageMaker.cri.pageNum== num ? "active":""}">
+                    <a class="page-link" href="list?page=${num}">${num}</a>
                   </li>
-                  <li class="page-item">
-                    <a class="page-link" href="list?page=2">2</a>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link" href="list?page=3">3</a>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link" href="list?page=4">4</a>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link" href="list?page=5">5</a>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link" href="list?page=6">6</a>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link" href="list?page=7">7</a>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link" href="list?page=8">8</a>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link" href="list?page=9">9</a>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link" href="list?page=10">10</a>
-                  </li>
+                  </c:forEach>
+                  <c:if test="${pageMaker.next }">
                   <li class="page-item next">
-                    <a class="page-link" href="javascript:void(0);"
+                    <a class="page-link" href="list?page=${pageMaker.endPage +1 }"
                       ><i class="tf-icon bx bx-chevron-right"></i
                     ></a>
                   </li>
+                  </c:if>
                   <li class="page-item last">
-                    <a class="page-link" href="javascript:void(0);"
+                    <a class="page-link" href="list?page=${pageMaker.endPage}"
                       ><i class="tf-icon bx bx-chevrons-right"></i
                     ></a>
                   </li>
                 </ul>
               </nav>
               </div>
+              
               <!--/ Basic Pagination -->
               <hr class="my-5" />
-
-
-
 
  
             </div>
