@@ -5,10 +5,12 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
 import com.mycloset.closet.mapper.ClosetMapper;
 import com.mycloset.closet.vo.ClosetVO;
+import com.mycloset.util.Critera;
 
 @Service
 public class ClosetService {
@@ -22,15 +24,22 @@ public class ClosetService {
 		return mapper.enroll(vo);
 	}
 	
-//	//회원 리스트
-//	public List<MemberVO> list(PageObject object) throws Exception{
-//		object.setTotalRow(mapper.getTotalRow(object));
-//		return mapper.list(object);
-//	}
-//	
+//	옷 리스트
+	public List<ClosetVO> list(String id) throws Exception{
+		return mapper.list(id);
+	}
+
+	public List<ClosetVO> getListWithPaging(@Param("cri")Critera cri, @Param("limitMax")int limitMax) throws Exception{
+		int pageNum = cri.getPageNum();
+		int amount = cri.getAmount();
+		limitMax= pageNum * amount; 
+		return mapper.getListWithPaging(cri, limitMax);
+	}
+	
+	
 	//마이 페이지 개인정보 보여주기(view)
-	public List<ClosetVO> view(String id) throws Exception{
-		return mapper.view(id);
+	public List<ClosetVO> view(String id, int num) throws Exception{
+		return mapper.view(id, num);
 	}
 //	
 	//마이페이지 개인정보 수정
