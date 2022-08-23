@@ -28,7 +28,7 @@ public class ClosetService {
 	public List<ClosetVO> list(String id) throws Exception{
 		return mapper.list(id);
 	}
-
+//페이징을 적용해 리스트 가져오기
 	public List<ClosetVO> getListWithPaging(@Param("cri")Critera cri, @Param("limitMax")int limitMax) throws Exception{
 		int pageNum = cri.getPageNum();
 		int amount = cri.getAmount();
@@ -53,4 +53,9 @@ public class ClosetService {
 //		System.out.println("MemberService.delete().vo - "+vo);
 //		return mapper.delete(vo);
 //	}
+	
+	//총 옷 개수 세기
+	public int getTotalNum() throws Exception {
+		return mapper.getTotalNum();
+	}
 }

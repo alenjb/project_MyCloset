@@ -23,6 +23,7 @@ import com.mycloset.member.service.ClosetService;
 import com.mycloset.member.vo.LoginVO;
 import com.mycloset.member.vo.MemberVO;
 import com.mycloset.util.Critera;
+import com.mycloset.util.PageDTO;
 
 import lombok.extern.log4j.Log4j;
 
@@ -67,15 +68,20 @@ public class ClosetController {
 		//아이디 추출
 		String memberId= loginVO.getMember_id();
 		// 옷 리스트 가져오는 작업을 통해 closets에 리스트 형태로 저장(일단 임시로 0을 보냄)
+		//0 자리는 아무 값이나 보내면 되서 0을 보냄
 		List<ClosetVO> closets= service.getListWithPaging(cri, 0);
 		closets.forEach(b -> log.info(b));
 		//모델에 옷 리스트 담기
 		model.addAttribute("closets", closets);
+		//옷 총 개수 세기
+		int totalNum= service.getTotalNum();
+		//페이지 관련 정보 담기
+		model.addAttribute("pageMaker", new PageDTO(cri, totalNum));
 	}
 	
 	//옷 상세 보기
 	@GetMapping("/view")
-	public String view(Model model, @RequestParam("clotehs_id") String clotehs_id) throws Exception{
+	public String view(Model model, @RequestParam("clothes_id") String clothes_id) throws Exception{
 		model.addAttribute("vo", vo);
 		model.addAttribute("list", service.view(""));
 		return "closet/view";

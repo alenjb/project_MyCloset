@@ -39,4 +39,9 @@
 	from closet
 <!-- 	where #{id} == clothes_id and #{num] == clothes-->
 	</select>
+	
+<!-- 옷 총 개수 세기 -->
+	<select id="getTotalNum" resultType="Integer">
+	select count(clothes_id) from closet
+	</select>
 </mapper>

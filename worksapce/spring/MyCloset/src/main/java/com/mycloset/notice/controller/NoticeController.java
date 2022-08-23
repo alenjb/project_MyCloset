@@ -1,6 +1,7 @@
 package com.mycloset.notice.controller;
 
 import java.net.URLEncoder;
+import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.mycloset.closet.vo.ClosetVO;
 import com.mycloset.member.service.ClosetService;
 import com.mycloset.member.vo.LoginVO;
 import com.mycloset.notice.service.NoticeService;
@@ -26,33 +28,29 @@ import lombok.extern.log4j.Log4j;
 @RequestMapping("/notice")
 @Log4j
 public class NoticeController {
-	
+
 	@Autowired
 	private NoticeService service;
-	
-	//1.리스트(list)
+
+	// 1.리스트(list)
 	@GetMapping("/list")
-	public String list(@ModelAttribute PageObject pageObject, Model model, Critera cri) throws Exception{
-		
-		
-//		pageObject를 사용하는 경우
-		//페이지가 1보다 작으면 1페이지로 설정
-		if(pageObject.getPage() < 1) {
-			pageObject.setPage(1);
-		}
-		
+	public String list(@ModelAttribute Critera cri, Model model) throws Exception {
+
 		System.out.println("NoticeController.list()");
-		model.addAttribute("list", service.list(pageObject));
-		
-		
-//		log.info("list: " +cri);
-//		model.addAttribute("list", service.list(cri));
-//		//임시로 123이라고 함
-//		model.addAttribute("pageMaker", new PageDTO(cri, 123));		
+		// 공지 리스트 가져오는 작업을 통해 notices에 리스트 형태로 저장(일단 임시로 0을 보냄)
+		// 0 자리는 아무 값이나 보내면 되서 0을 보냄
+		List<NoticeVO> notices = service.getListWithPaging(cri, 0);
+		//모델에 공지 리스트 담기
+		model.addAttribute("list", notices);
+		//옷 총 개수 세기
+		int totalNum= service.getTotalNum();
+		//페이지 관련 정보 담기
+		model.addAttribute("pageMaker", new PageDTO(cri, totalNum));
+
 		System.out.println(model);
 		return "notice/list";
 	}
-	
+
 //	//2.글보기(view)
 //	@GetMapping("/view")
 //	public String view(long no, Model model) throws Exception{
@@ -64,36 +62,36 @@ public class NoticeController {
 //		model.addAttribute("vo", vo);
 //		return "notice/view";
 //	}
-	
+
 	@GetMapping("/view")
-	public String view(long no, Model model) throws Exception{
+	public String view(long no, Model model) throws Exception {
 		System.out.println("NoticeController.view()");
 		NoticeVO vo = service.view(no);
-		System.out.println(vo.getContent()+"vo.getContent()");
-		//줄바꿈 처리
+		System.out.println(vo.getContent() + "vo.getContent()");
+		// 줄바꿈 처리
 		vo.setContent(vo.getContent().replace("\n", "<br>"));
 		model.addAttribute("vo", vo);
 		return "notice/view";
 	}
-	//3.글쓰기(write)
-	
-	//3-1 writeForm
+	// 3.글쓰기(write)
+
+	// 3-1 writeForm
 	@GetMapping("/write")
 	public String writeForm() throws Exception {
 		System.out.println("writeForm()");
 		return "notice/write";
 	}
-	
-	//3-2 write
+
+	// 3-2 write
 	@PostMapping("/write")
 	public String write(NoticeVO vo, PageObject pageObject, HttpServletResponse response) throws Exception {
 		System.out.println("NoticeController.write().vo - " + vo);
 		service.write(vo);
-		return "redirect:list?page=1&perPageNum="+pageObject.getPerPageNum();
+		return "redirect:list?page=1&perPageNum=" + pageObject.getPerPageNum();
 	}
-	
-	//4. 수정(update)
-	
+
+	// 4. 수정(update)
+
 //	// 4-1 updateForm
 //	@GetMapping("/update")
 //	public String updateForm(long no, Model model) throws Exception {
@@ -101,15 +99,15 @@ public class NoticeController {
 //		model.addAttribute("vo", service.view(no));
 //		return "notice/update";
 //	}
-	
-	//4-1 updateForm2
-		@GetMapping("/update")
-		public String updateForm(long no, Model model) throws Exception {
-			System.out.println("updateForm().no-"+no);
-			model.addAttribute("vo", service.view(no));
-			return "notice/update";
-		}
-	
+
+	// 4-1 updateForm2
+	@GetMapping("/update")
+	public String updateForm(long no, Model model) throws Exception {
+		System.out.println("updateForm().no-" + no);
+		model.addAttribute("vo", service.view(no));
+		return "notice/update";
+	}
+
 //	//4-2 update
 //	@PostMapping("/update")
 //	public String update(NoticeVO vo, PageObject pageObject, HttpServletResponse response) throws Exception {
@@ -118,28 +116,24 @@ public class NoticeController {
 //		return "redirect:list?page="+pageObject.getPage()+ "&perPageNum="+pageObject.getPerPageNum()+"&key="+pageObject.getKey()+
 //				"&word="+URLEncoder.encode(pageObject.getKey(), "utf-8");
 //	}
-	
-	//4-2 update
-		@PostMapping("/update")
-		public String update(NoticeVO vo, PageObject pageObject, HttpServletResponse response) throws Exception {
-			System.out.println("NoticeController.update().vo - " + vo);
-			service.update(vo);
-			return "redirect:list?page="+pageObject.getPage()+ "&perPageNum="+pageObject.getPerPageNum()+"&key="+pageObject.getKey()+
-					"&word="+URLEncoder.encode(pageObject.getKey(), "utf-8");
-		}
-	
-	
-	
-	
-	
-	//5. 삭제(delete)
+
+	// 4-2 update
+	@PostMapping("/update")
+	public String update(NoticeVO vo, PageObject pageObject, HttpServletResponse response) throws Exception {
+		System.out.println("NoticeController.update().vo - " + vo);
+		service.update(vo);
+		return "redirect:list?page=" + pageObject.getPage() + "&perPageNum=" + pageObject.getPerPageNum() + "&key="
+				+ pageObject.getKey() + "&word=" + URLEncoder.encode(pageObject.getKey(), "utf-8");
+	}
+
+	// 5. 삭제(delete)
 	@GetMapping("/delete")
 	public String delete(long no, PageObject pageObject) throws Exception {
-		System.out.println("delete().no-"+no);
+		System.out.println("delete().no-" + no);
 		service.delete(no);
-		return "redirect:list?page=1&perPageNum="+pageObject.getPerPageNum();	}
-	
-	
+		return "redirect:list?page=1&perPageNum=" + pageObject.getPerPageNum();
+	}
+
 //	//1.리스트(list)
 //	@GetMapping("/list2")
 //	public String list2(@ModelAttribute PageObject pageObject, Model model) throws Exception{

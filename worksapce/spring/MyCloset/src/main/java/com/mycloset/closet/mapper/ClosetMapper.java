@@ -23,5 +23,7 @@ public interface ClosetMapper {
 	
 	//옷 보기
 	public List<ClosetVO> view(String id, int num) throws Exception;
-
+	
+	//총 옷 개수 세기
+	public int getTotalNum() throws Exception;
 }

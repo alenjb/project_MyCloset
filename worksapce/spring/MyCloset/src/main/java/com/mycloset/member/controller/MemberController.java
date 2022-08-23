@@ -65,7 +65,7 @@ public class MemberController {
 			session.setAttribute("login", service.login(vo));
 			log.info("로그인처리  vo: " + service.login(vo));
 			model.addAttribute("vo", service.login(vo));
-			return "member/home";
+			return "redirect:/member/home";
 		} else {
 			log.info("로그인 할 수 없음");
 			return "redirect:/member/login";
