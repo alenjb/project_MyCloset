@@ -5,10 +5,10 @@
 <!-- 옷 등록 -->
 <insert id="enroll">
 	insert into closet(
-	clothes_id, clothes_type, clothes_name, clothes_info, clothes_size, clothes_photo, clothes_purchase_year, clothes_purchase_price, clothes_season
+	clothes_id, clothes_type, clothes_name, clothes_info, clothes_size, clothes_photo, clothes_purchase_year, clothes_purchase_price, clothes_season, member_id
 	 )
 	values(
-	#{clothes_id}, #{clothes_type}, #{clothes_name}, #{clothes_info}, #{clothes_size}, #{clothes_photo}, #{clothes_purchase_year}, #{clothes_purchase_price}, #{clothes_season}
+	#{clothes_id}, #{clothes_type}, #{clothes_name}, #{clothes_info}, #{clothes_size}, #{clothes_photo}, #{clothes_purchase_year}, #{clothes_purchase_price}, #{clothes_season}, #{member_id}
 	)
 </insert>
 <!-- 옷 리스트 -->
@@ -37,7 +37,7 @@
 	select
 	clothes_id, clothes_type, clothes_name, clothes_info, clothes_size, clothes_photo, clothes_purchase_year, clothes_purchase_price, clothes_season
 	from closet
-<!-- 	where #{id} == clothes_id and #{num] == clothes-->
+	where #{clothes_id} = clothes_id and #{member_id} = member_id
 	</select>
 	
 <!-- 옷 총 개수 세기 -->

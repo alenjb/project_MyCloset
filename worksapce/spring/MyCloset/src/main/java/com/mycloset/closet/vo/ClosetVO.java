@@ -32,4 +32,6 @@ public class ClosetVO {
 	private int clothes_purchase_price;
 //	계절
 	private String clothes_season;
+//	사용자 아이디
+	private String member_id;
 }

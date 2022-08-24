@@ -42,7 +42,15 @@ public class ClosetController {
 
 	// 옷등록
 	@PostMapping("/enroll")
-	public String enroll(ClosetVO vo) throws Exception {
+	public String enroll(HttpServletRequest request, ClosetVO vo, Model model) throws Exception {
+		// 로그인 정보를 받기
+		HttpSession session = request.getSession();
+		LoginVO loginVO = (LoginVO) session.getAttribute("login");
+		// 아이디 추출
+		String memberId = loginVO.getMember_id();
+		// 모델에 옷 리스트 담기
+		model.addAttribute("member_id", memberId);
+		
 		MultipartFile file = vo.getClothes_photo_file();
 		String uploadFolder = "D:\\jeongbin\\worksapce\\spring\\MyCloset\\src\\main\\webapp\\upload\\closet";
 		File saveFile = new File(uploadFolder, file.getOriginalFilename());
@@ -52,6 +60,7 @@ public class ClosetController {
 			log.error(e.getMessage());
 		}
 		vo.setClothes_photo("\\upload\\closet\\" + file.getOriginalFilename());
+		vo.setMember_id(memberId);
 		// 옷 등록 작업
 		service.enroll(vo);
 		return "closet/list";
@@ -79,7 +88,7 @@ public class ClosetController {
 
 	// 옷 상세 보기
 	@GetMapping("/view")
-	public String view(HttpServletRequest request, Model model, @RequestParam("clothes_id") String clothes_id) throws Exception{
+	public String view(HttpServletRequest request, Model model, @RequestParam("clothes_id")String clothes_id) throws Exception{
 		//로그인 정보를 받기
 		HttpSession session = request.getSession();
 		LoginVO loginVO = (LoginVO)session.getAttribute("login");
@@ -89,7 +98,8 @@ public class ClosetController {
 		model.addAttribute("clothes_id", clothes_id);
 		int cId = Integer.parseInt(clothes_id);
 		//서비스에서 view 메서드 호출
-		service.view(memberId, cId);
+		List<ClosetVO> list= service.view(memberId, cId);
+		model.addAttribute("list", list);
 		return "closet/view";
 	}
 
@@ -102,7 +112,7 @@ public class ClosetController {
 		LoginVO LVO = (LoginVO) session.getAttribute("login");
 		// 사용자 아이디를 추춣
 		String id = LVO.getMember_id();
-		service.view(id);
+//		service.view(id);
 //		model.addAttribute("VOs", ClosetVOs);
 //		System.out.println("세션 "+session.getAttribute("memberVO"));
 //		System.out.println("모델"+model);
