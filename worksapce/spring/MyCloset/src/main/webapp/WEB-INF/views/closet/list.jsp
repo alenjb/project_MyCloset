@@ -90,10 +90,10 @@
 		$(".dataRow")
 				.click(
 						function() {
-							var no = $(this).find(".no").text();
-							location = "view?no="
-									+ "&inc=1"
-									+ "&page=${pageObject.page}&perPageNum=${pageObject.perPageNum}&key=${pageObject.key}&word=${pageObject.word}&period=${pageObject.period}";
+// 							var no = $(this).find(".no").text();
+							location = "view?clothes_id=${clothes_id}";
+// 									+ "&inc=1"
+// 									+ "&page=${pageObject.page}&perPageNum=${pageObject.perPageNum}&key=${pageObject.key}&word=${pageObject.word}&period=${pageObject.period}";
 
 						});
 

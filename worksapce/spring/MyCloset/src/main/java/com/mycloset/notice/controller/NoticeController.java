@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.mycloset.closet.vo.ClosetVO;
-import com.mycloset.member.service.ClosetService;
 import com.mycloset.member.vo.LoginVO;
 import com.mycloset.notice.service.NoticeService;
 import com.mycloset.notice.vo.NoticeVO;

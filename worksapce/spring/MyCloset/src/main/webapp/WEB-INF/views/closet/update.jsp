@@ -638,7 +638,7 @@
                         <div class="row justify-content-center">
                          
                          <label for="clothes_season1" class="form-label col-md-4">옷 계절</label>
-							<div class="mb-3 col-md-8">
+						<div class="mb-3 col-md-8">
                           <div class="form-check form-check-inline">
                             <input
                               name="clothes_type"
@@ -669,7 +669,6 @@
                               type="text"
                               id="clothes_name"
                               name="clothes_name"
-                              
                               autofocus
                             />
                           </div>
