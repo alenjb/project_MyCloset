@@ -91,17 +91,17 @@
 				.click(
 						function() {
 // 							var no = $(this).find(".no").text();
-							location = "view?clothes_id=${clothes_id}";
+							location = "view?clothes_id="+$(this).find(".id").text();
 // 									+ "&inc=1"
 // 									+ "&page=${pageObject.page}&perPageNum=${pageObject.perPageNum}&key=${pageObject.key}&word=${pageObject.word}&period=${pageObject.period}";
 
 						});
 
-		//perPageNum 데이터의 변경 이벤트 처리 ->jQuery에 대한 이벤트
-		$("#perPageNumSelect").change(function() {
-			// 			alert("값 변경");	
-			$("#perPageNumForm").submit();
-		});
+// 		//perPageNum 데이터의 변경 이벤트 처리 ->jQuery에 대한 이벤트
+// 		$("#perPageNumSelect").change(function() {
+// 			// 			alert("값 변경");	
+// 			$("#perPageNumForm").submit();
+// 		});
 
 		var actionForm = $("#actionForm");
 		$(".page-link").on("click", function(e) {

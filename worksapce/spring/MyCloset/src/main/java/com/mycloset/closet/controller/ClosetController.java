@@ -77,7 +77,8 @@ public class ClosetController {
 		// 옷 리스트 가져오는 작업을 통해 closets에 리스트 형태로 저장(일단 임시로 0을 보냄)
 		// 0 자리는 아무 값이나 보내면 되서 0을 보냄
 		List<ClosetVO> closets = service.getListWithPaging(cri, 0);
-		closets.forEach(b -> log.info(b));
+//		closets.forEach(b -> log.info(b));
+		log.info(closets);
 		// 모델에 옷 리스트 담기
 		model.addAttribute("closets", closets);
 		// 옷 총 개수 세기
