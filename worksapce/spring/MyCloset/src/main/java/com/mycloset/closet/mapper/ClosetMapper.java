@@ -22,7 +22,7 @@ public interface ClosetMapper {
 	public int update(ClosetVO vo) throws Exception;
 	
 	//옷 보기
-	public List<ClosetVO> view(@Param("member_id")String id, @Param("clothes_id")int num) throws Exception;
+	public ClosetVO view(@Param("member_id")String id, @Param("clothes_id")int num) throws Exception;
 	
 	//총 옷 개수 세기
 	public int getTotalNum() throws Exception;

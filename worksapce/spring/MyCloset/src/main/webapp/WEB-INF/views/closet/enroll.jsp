@@ -663,8 +663,8 @@
 											<!--                           <a href="/member/myPage"><button type="submit" class="btn btn-primary me-2" >수정완료</button></a> -->
 											<button type="submit" class="btn btn-primary me-2">등록</button>
 										</div>
-								</div>
 								</form>
+								</div>
 							</div>
 						</div>
 

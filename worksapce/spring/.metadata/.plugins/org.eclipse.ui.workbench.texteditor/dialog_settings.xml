@@ -6,23 +6,23 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="startP"/>
+		<item key="selection" value="photo"/>
 		<list key="findhistory">
-			<item value="startP"/>
-			<item value="start"/>
-			<item value="numPage"/>
-			<item value="pagNum"/>
-			<item value="Page navigation"/>
-			<item value="var"/>
-			<item value="vo"/>
-			<item value="text-light fw-semibold d-block"/>
-			<item value="Allow"/>
-			<item value="2021-06-18"/>
+			<item value="photo"/>
+			<item value="lothes_photo"/>
 			<item value="enroll"/>
-			<item value="face"/>
-			<item value="file"/>
-			<item value="File"/>
-			<item value="Filer"/>
+			<item value="account-settings-acc"/>
+			<item value="account-se"/>
+			<item value="forEa"/>
+			<item value="forea"/>
+			<item value="Account Settings"/>
+			<item value="maxPostSize"/>
+			<item value="word"/>
+			<item value="clotehs_id"/>
+			<item value="clothe"/>
+			<item value="active"/>
+			<item value="layout-page"/>
+			<item value="tf-icon bx bx-chevrons-left"/>
 		</list>
 		<list key="replacehistory">
 			<item value="perPageNum"/>
@@ -43,10 +43,10 @@
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="1014"/>
-		<item key="DIALOG_Y_ORIGIN" value="88"/>
-		<item key="DIALOG_WIDTH" value="860"/>
-		<item key="DIALOG_HEIGHT" value="576"/>
+		<item key="DIALOG_X_ORIGIN" value="-66"/>
+		<item key="DIALOG_Y_ORIGIN" value="21"/>
+		<item key="DIALOG_WIDTH" value="1094"/>
+		<item key="DIALOG_HEIGHT" value="1040"/>
 		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
 	</section>
 </section>

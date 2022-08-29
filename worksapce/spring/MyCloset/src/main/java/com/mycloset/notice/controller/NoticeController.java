@@ -91,14 +91,6 @@ public class NoticeController {
 
 	// 4. 수정(update)
 
-//	// 4-1 updateForm
-//	@GetMapping("/update")
-//	public String updateForm(long no, Model model) throws Exception {
-//		System.out.println("updateForm().no-" + no);
-//		model.addAttribute("vo", service.view(no));
-//		return "notice/update";
-//	}
-
 	// 4-1 updateForm2
 	@GetMapping("/update")
 	public String updateForm(long no, Model model) throws Exception {
@@ -106,15 +98,6 @@ public class NoticeController {
 		model.addAttribute("vo", service.view(no));
 		return "notice/update";
 	}
-
-//	//4-2 update
-//	@PostMapping("/update")
-//	public String update(NoticeVO vo, PageObject pageObject, HttpServletResponse response) throws Exception {
-//		System.out.println("NoticeController.update().vo - " + vo);
-//		service.update(vo);
-//		return "redirect:list?page="+pageObject.getPage()+ "&perPageNum="+pageObject.getPerPageNum()+"&key="+pageObject.getKey()+
-//				"&word="+URLEncoder.encode(pageObject.getKey(), "utf-8");
-//	}
 
 	// 4-2 update
 	@PostMapping("/update")

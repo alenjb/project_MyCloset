@@ -63,7 +63,7 @@ public class ClosetController {
 		vo.setMember_id(memberId);
 		// 옷 등록 작업
 		service.enroll(vo);
-		return "closet/list";
+		return "redirect:list";
 	}
 
 	// 옷 리스트
@@ -78,7 +78,7 @@ public class ClosetController {
 		// 0 자리는 아무 값이나 보내면 되서 0을 보냄
 		List<ClosetVO> closets = service.getListWithPaging(cri, 0);
 //		closets.forEach(b -> log.info(b));
-		log.info(closets);
+//		log.info(closets);
 		// 모델에 옷 리스트 담기
 		model.addAttribute("closets", closets);
 		// 옷 총 개수 세기
@@ -99,28 +99,48 @@ public class ClosetController {
 		model.addAttribute("clothes_id", clothes_id);
 		int cId = Integer.parseInt(clothes_id);
 		//서비스에서 view 메서드 호출
-		List<ClosetVO> list= service.view(memberId, cId);
-		model.addAttribute("list", list);
+		ClosetVO vo= service.view(memberId, cId);
+		model.addAttribute("vo", vo);
 		return "closet/view";
 	}
 
-	// 옷 수정 페이지
+	// 옷 수정폼
 	@GetMapping("/update")
-	public String UpdateForm(HttpServletRequest request, Model model) throws Exception {
+	public String UpdateForm(HttpServletRequest request, Model model, @RequestParam("clothes_id")String clothes_id) throws Exception {
 		// 세션을 받기: 로그인 정보
 		HttpSession session = request.getSession();
 		// 세션에서 로그인 정보를 빼서 LVO에 저장
 		LoginVO LVO = (LoginVO) session.getAttribute("login");
 		// 사용자 아이디를 추춣
 		String id = LVO.getMember_id();
-//		service.view(id);
-//		model.addAttribute("VOs", ClosetVOs);
-//		System.out.println("세션 "+session.getAttribute("memberVO"));
-//		System.out.println("모델"+model);
-//		System.out.println("closetVOs "+ClosetVOs);
-//
-//		//			service.update(vo);
+		//url에서 옷 아이디를 가져와서 정수형으로 변환
+		int cId = Integer.parseInt(clothes_id);
+		//view로 내용 불러오기
+		ClosetVO vo = service.view(id,cId);
+		model.addAttribute("vo", vo);
 		return "closet/update";
+	}
+	
+	// 옷 수정 페이지
+	@PostMapping("/update")
+	public String Update(ClosetVO closetVO) throws Exception {
+		MultipartFile file = closetVO.getClothes_photo_file();
+		if(file != null) {
+			String uploadFolder = "D:\\jeongbin\\worksapce\\spring\\MyCloset\\src\\main\\webapp\\upload\\closet";
+			File saveFile = new File(uploadFolder, file.getOriginalFilename());
+			try {
+				file.transferTo(saveFile);
+			} catch (Exception e) {
+				log.error(e.getMessage());
+			}
+			closetVO.setClothes_photo("\\upload\\closet\\" + file.getOriginalFilename());			
+		}
+		else {
+			
+		}
+		System.out.println("이게 넘어곰 " + closetVO);
+		service.update(closetVO);
+		return "redirect:list";
 	}
 
 }

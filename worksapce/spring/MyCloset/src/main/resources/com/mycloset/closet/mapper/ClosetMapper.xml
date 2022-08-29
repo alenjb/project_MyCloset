@@ -39,6 +39,22 @@
 	from closet
 	where #{clothes_id} = clothes_id and #{member_id} = member_id
 	</select>
+
+<!-- 옷 수정 -->
+	<update id="update">
+		update closet
+		set
+		clothes_id = #{clothes_id}, 
+		clothes_type = #{clothes_type}, 
+		clothes_name = #{clothes_name}, 
+		clothes_info = #{clothes_info}, 
+		clothes_size = #{clothes_size}, 
+		clothes_photo = #{clothes_photo}, 
+		clothes_purchase_year = #{clothes_purchase_year}, 
+		clothes_purchase_price = #{clothes_purchase_price}, 
+		clothes_season = #{clothes_season}
+		where member_id= #{member_id}
+	</update>
 	
 <!-- 옷 총 개수 세기 -->
 	<select id="getTotalNum" resultType="Integer">
