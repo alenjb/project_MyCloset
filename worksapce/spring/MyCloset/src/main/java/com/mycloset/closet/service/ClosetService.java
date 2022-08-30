@@ -44,15 +44,17 @@ public class ClosetService {
 //	
 	//옷 수정
 	public int update(ClosetVO vo)throws Exception{
-		System.out.println("ClosetService.update().vo - "+vo);
+//		System.out.println("ClosetService.update().vo - "+vo);
 		return mapper.update(vo);
 	}
 //	
-//	//마이페이지 회원 탈퇴
-//	public int delete(MemberVO vo) throws Exception{
-//		System.out.println("MemberService.delete().vo - "+vo);
-//		return mapper.delete(vo);
-//	}
+	//옷 삭제
+	public int delete(ClosetVO vo) throws Exception{
+		System.out.println(vo);
+		return mapper.delete(vo);
+	}
+	
+	
 	
 	//총 옷 개수 세기
 	public int getTotalNum() throws Exception {

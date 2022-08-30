@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.mycloset.closet.vo.ClosetVO;
 import com.mycloset.util.Critera;
+import com.mysql.cj.x.protobuf.MysqlxConnection.Close;
 
 public interface ClosetMapper {
 
@@ -23,6 +24,9 @@ public interface ClosetMapper {
 	
 	//옷 보기
 	public ClosetVO view(@Param("member_id")String id, @Param("clothes_id")int num) throws Exception;
+	
+	//옷 삭제
+	public int delete(ClosetVO vo) throws Exception;
 	
 	//총 옷 개수 세기
 	public int getTotalNum() throws Exception;

@@ -55,6 +55,12 @@
 		clothes_season = #{clothes_season}
 		where member_id= #{member_id}
 	</update>
+
+<!-- 옷 삭제 -->
+	<delete id="delete">
+		delete from closet
+		where clothes_id = #{clothes_id} and member_id = #{member_id}
+	</delete>
 	
 <!-- 옷 총 개수 세기 -->
 	<select id="getTotalNum" resultType="Integer">
