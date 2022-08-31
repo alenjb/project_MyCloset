@@ -254,8 +254,8 @@
 
 					<div class="container-xxl flex-grow-1 container-p-y">
 						<h4 class="fw-bold py-3 mb-4">
-							<span class="text-muted fw-light">Account Settings /</span>
-							Account
+							<span class="text-muted fw-light">내 옷장 /</span>
+							옷 정보
 						</h4>
 
 						<div class="row">
@@ -272,7 +272,7 @@
 											class="bx bx-link-alt me-1"></i> Connections</a></li>
 								</ul>
 								<div class="card mb-4">
-									<h5 class="card-header">옷 정보</h5>
+									<h5 class="card-header">${vo.clothes_name}</h5>
 									<!-- Account -->
 									<form id="update" method="POST" action="update"
 										enctype="multiPart/form-data">
@@ -385,7 +385,9 @@
 												<div class="mb-3 col-md-8">
 													<input class="form-control" type="date"
 														id="clothes_purchase_year" name="clothes_purchase_year"
-														value="${vo.clothes_purchase_year}" />
+														value="<fmt:formatDate value='${vo.clothes_purchase_year}'
+ 														pattern='yyyy-MM-dd'/>">
+<%-- 														value="${vo.clothes_purchase_year}"> --%>
 												</div>
 
 
@@ -484,5 +486,27 @@
 
 	<!-- Place this tag in your head or just before your close body tag. -->
 	<script async defer src="https://buttons.github.io/buttons.js"></script>
+	<script>
+	//사진 파일을 바꿨을 때
+	$('#clothes_photo_file').on('change', function(e) {
+		e.toString
+	});
+	
+	function readImage(input) {
+	    // 인풋 태그에 파일이 있는 경우
+	    if(input.files && input.files[0]) {
+	        // 이미지 파일인지 검사 (생략)
+	        // FileReader 인스턴스 생성
+	        const reader = new FileReader()
+	        // 이미지가 로드가 된 경우
+	        reader.onload = e => {
+	            const previewImage = document.getElementById("uploadedAvatar")
+	            previewImage.src = e.target.result
+	        }
+	        // reader가 이미지 읽도록 하기
+	        reader.readAsDataURL(input.files[0])
+	    }
+	}
+	</script>
 </body>
 </html>
