@@ -73,16 +73,7 @@
 	$(function() {
 		$("#cancelBtn").click(function() {
 			history.back();
-		});
-		$("#updateBtn").click(function() {
-			if ($("#clothes_photo_file") == null) {
-				$("#clothes_photo") = $
-				{
-					vo.clothes_photo
-				}
-				;
-			}
-		});
+		});	
 	});
 </script>
 </head>
@@ -257,7 +248,7 @@
 							<span class="text-muted fw-light">내 옷장 /</span>
 							옷 정보
 						</h4>
-
+						<h4>${vo.member_id } </h4>
 						<div class="row">
 							<div class="col-md-12">
 								<ul class="nav nav-pills flex-column flex-md-row mb-3">
@@ -287,7 +278,7 @@
 														class="btn btn-primary me-2 mb-4" tabindex="0"> <span
 														class="d-none d-sm-block">사진 선택</span> <i
 														class="bx bx-upload d-block d-sm-none"></i> <input
-														type="file" id="clothes_photo_file"
+														type="file"
 														name="clothes_photo_file" class="account-file-input"
 														id="clothes_photo_file" hidden
 														accept="image/png, image/jpeg, image/jpg, image/gif" />
@@ -489,7 +480,7 @@
 	<script>
 	//사진 파일을 바꿨을 때
 	$('#clothes_photo_file').on('change', function(e) {
-		e.toString
+		 readImage(e.target)
 	});
 	
 	function readImage(input) {

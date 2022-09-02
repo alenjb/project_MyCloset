@@ -245,8 +245,8 @@
 
 					<div class="container-xxl flex-grow-1 container-p-y">
 						<h4 class="fw-bold py-3 mb-4">
-							<span class="text-muted fw-light">Account Settings /</span>
-							Account
+							<span class="text-muted fw-light">내 옷장 /</span>
+							옷 정보
 						</h4>
 
 						<div class="row">
@@ -264,7 +264,7 @@
 								</ul>
 								<%-- 					<c:forEach items="${list }" var="vo"> --%>
 								<div class="card mb-4">
-									<h5 class="card-header">옷 정보</h5>
+									<h5 class="card-header">${vo.clothes_name}</h5>
 									<!-- Account -->
 									<form id="enroll" method="POST" action="enroll"
 										enctype="multiPart/form-data">
@@ -332,7 +332,6 @@
 												<label for="clothes_purchase_year"
 													class="form-label col-md-4">구입년도</label>
 												<div class="mb-3 col-md-8">
-													<%--                           <input class="form-control" id="clothes_purchase_year" name="clothes_purchase_year" <fmt:formatDate value="${vo.clothes_purchase_year}" pattern="yyyy-MM-dd"/> readonly="readonly"/> --%>
 													<fmt:formatDate value="${vo.clothes_purchase_year}"
 														pattern="yyyy-MM-dd" />
 												</div>
@@ -382,21 +381,21 @@
 															disabled="disabled" /> <label class="form-check-label"
 															for="clothes_season4"> 겨울 </label>
 													</div>
-
-
-
 												</div>
 											</div>
 
 										</div>
 										<div class="mt-2">
 											<!--                           <a href="/member/myPage"><button type="submit" class="btn btn-primary me-2" >수정완료</button></a> -->
-											<button type="button" class="btn btn-primary me-2"
+											<button type="button" class="btn btn-primary"
+												onclick="location.href='list'">리스트</button>
+											<button type="button" class="btn btn-secondary me-2"
 												id="updateBtn">수정</button>
-											<button type="button" class="btn btn-success" onclick="location.href='delete?clothes_id=${vo.clothes_id}'">삭제</button>
+											<button type="button" class="btn btn-success"
+												onclick="location.href='delete?clothes_id=${vo.clothes_id}'">삭제</button>
 										</div>
+									</form>
 								</div>
-								</form>
 								<%--                       </c:forEach> --%>
 							</div>
 						</div>

@@ -6,7 +6,6 @@ import org.apache.ibatis.annotations.Param;
 
 import com.mycloset.closet.vo.ClosetVO;
 import com.mycloset.util.Critera;
-import com.mysql.cj.x.protobuf.MysqlxConnection.Close;
 
 public interface ClosetMapper {
 

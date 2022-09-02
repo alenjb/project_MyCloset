@@ -44,17 +44,31 @@
 	<update id="update">
 		update closet
 		set
-		clothes_id = #{clothes_id}, 
-		clothes_type = #{clothes_type}, 
-		clothes_name = #{clothes_name}, 
-		clothes_info = #{clothes_info}, 
-		clothes_size = #{clothes_size}, 
-		clothes_photo = #{clothes_photo}, 
-		clothes_purchase_year = #{clothes_purchase_year}, 
-		clothes_purchase_price = #{clothes_purchase_price}, 
-		clothes_season = #{clothes_season}
-		where member_id= #{member_id}
+			clothes_type = #{clothes_type}, 
+			clothes_name = #{clothes_name}, 
+			clothes_info = #{clothes_info}, 
+			clothes_size = #{clothes_size},
+<!-- 			<![CDATA[ -->
+<!-- 			<if test="clothes_photo neq '\\upload\\closet\\'"> -->
+			<if test="clothes_photo != null">
+				clothes_photo = #{clothes_photo}, 
+			</if>
+<!-- 			]]> -->
+			
+<!-- 			<if test="clothes_purchase_year neq STR_TO_DATE(#{clothes_purchase_year}, '%Y-%m-%d')"> -->
+				clothes_purchase_year = #{clothes_purchase_year}, 
+<!-- 			</if> -->
+			clothes_purchase_price = #{clothes_purchase_price}, 
+			clothes_season = #{clothes_season}
+		where clothes_id = #{clothes_id}
+<!-- 		where member_id= #{member_id} -->
 	</update>
+
+<!-- 옷 삭제 -->
+	<delete id="delete">
+		delete from closet
+		where clothes_id = #{clothes_id} and member_id = #{member_id}
+	</delete>
 	
 <!-- 옷 총 개수 세기 -->
 	<select id="getTotalNum" resultType="Integer">

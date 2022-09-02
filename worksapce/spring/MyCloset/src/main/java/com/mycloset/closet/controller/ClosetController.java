@@ -1,6 +1,8 @@
 package com.mycloset.closet.controller;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -119,7 +121,10 @@ public class ClosetController {
 		int cId = Integer.parseInt(clothes_id);
 		//view로 내용 불러오기
 		ClosetVO vo = service.view(id,cId);
+//		vo.setMember_id(id);
+		model.addAttribute("member_id", id);
 		model.addAttribute("vo", vo);
+		log.info(vo);
 		return "closet/update";
 	}
 	
@@ -127,7 +132,8 @@ public class ClosetController {
 	@PostMapping("/update")
 	public String Update(ClosetVO closetVO) throws Exception {
 		MultipartFile file = closetVO.getClothes_photo_file();
-		if(file != null) {
+		log.info(closetVO.getClothes_photo_file().getOriginalFilename());
+		if(!closetVO.getClothes_photo_file().getOriginalFilename().equals("")) {
 			String uploadFolder = "D:\\jeongbin\\worksapce\\spring\\MyCloset\\src\\main\\webapp\\upload\\closet";
 			File saveFile = new File(uploadFolder, file.getOriginalFilename());
 			try {
@@ -140,7 +146,6 @@ public class ClosetController {
 		else {
 			
 		}
-		System.out.println("이게 넘어곰 " + closetVO);
 		service.update(closetVO);
 		return "redirect:list";
 	}
