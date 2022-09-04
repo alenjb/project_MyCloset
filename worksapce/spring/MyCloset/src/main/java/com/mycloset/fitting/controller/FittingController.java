@@ -21,7 +21,8 @@ import lombok.extern.log4j.Log4j;
 @RequestMapping("/fitting")
 @Log4j
 public class FittingController {
-	
+	@Inject
+	FittingService service;
 	//	1. 피팅 등록
 		//1-1. 피팅 등록 폼
 	@GetMapping("/enroll")

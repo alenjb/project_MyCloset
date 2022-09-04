@@ -77,7 +77,7 @@
 	String id = value.getMember_id();
 	String grade = value.getMember_grade();
 	%>
-	
+
 	<!-- Layout wrapper -->
 	<div class="layout-wrapper layout-content-navbar">
 		<div class="layout-container">
@@ -256,7 +256,7 @@
 											class="bx bx-link-alt me-1"></i> Connections</a></li>
 								</ul>
 								<div class="card mb-4">
-									<h5 class="card-header">옷 정보</h5>
+									<h5 class="card-header">피팅 정보</h5>
 									<!-- Account -->
 									<form id="enroll" method="POST" action="enroll"
 										enctype="multiPart/form-data">
@@ -265,13 +265,53 @@
 												class="d-flex align-items-start align-items-sm-center gap-4">
 												<img src="/resources/assets/img/avatars/1.png"
 													alt="user-avatar" class="d-block rounded" height="100"
-													width="100" id="uploadedAvatar" />
+													width="100" id="uploadedAvatar1" />
 												<div class="button-wrapper">
-													<label for="clothes_photo_file"
+													<label for="clothes_photo_file1"
 														class="btn btn-primary me-2 mb-4" tabindex="0"> <span
-														class="d-none d-sm-block">사진 선택</span> <i
+														class="d-none d-sm-block">아우터 사진 선택</span> <i
 														class="bx bx-upload d-block d-sm-none"></i> <input
-														type="file" id="clothes_photo_file"
+														type="file" id="clothes_photo_file1"
+														name="clothes_photo_file" class="account-file-input"
+														hidden
+														accept="image/png, image/jpeg, image/jpg, image/gif" />
+													</label>
+
+													<p class="text-muted mb-0">JPG, GIF, JPEG, PNG 등 사진 파일만
+														등록 가능합니다.</p>
+												</div>
+											</div>
+											<div
+												class="d-flex align-items-start align-items-sm-center gap-4">
+												<img src="/resources/assets/img/avatars/1.png"
+													alt="user-avatar" class="d-block rounded" height="100"
+													width="100" id="uploadedAvatar2" />
+												<div class="button-wrapper">
+													<label for="clothes_photo_file2"
+														class="btn btn-primary me-2 mb-4" tabindex="0"> <span
+														class="d-none d-sm-block">상의 사진 선택</span> <i
+														class="bx bx-upload d-block d-sm-none"></i> <input
+														type="file" id="clothes_photo_file2"
+														name="clothes_photo_file" class="account-file-input"
+														hidden
+														accept="image/png, image/jpeg, image/jpg, image/gif" />
+													</label>
+
+													<p class="text-muted mb-0">JPG, GIF, JPEG, PNG 등 사진 파일만
+														등록 가능합니다.</p>
+												</div>
+											</div>
+											<div
+												class="d-flex align-items-start align-items-sm-center gap-4">
+												<img src="/resources/assets/img/avatars/1.png"
+													alt="user-avatar" class="d-block rounded" height="100"
+													width="100" id="uploadedAvatar3" />
+												<div class="button-wrapper">
+													<label for="clothes_photo_file3"
+														class="btn btn-primary me-2 mb-4" tabindex="0"> <span
+														class="d-none d-sm-block">하의 사진 선택</span> <i
+														class="bx bx-upload d-block d-sm-none"></i> <input
+														type="file" id="clothes_photo_file3"
 														name="clothes_photo_file" class="account-file-input"
 														hidden
 														accept="image/png, image/jpeg, image/jpg, image/gif" />
@@ -286,117 +326,79 @@
 										<div class="card-body">
 
 											<div class="row justify-content-center">
-
-												<label for="clothes_season1" class="form-label col-md-4">옷
-													종류</label>
-												<div class="mb-3 col-md-8">
-													<div class="form-check form-check-inline">
-														<input name="clothes_type" class="form-check-input"
-															type="radio" value="상의" id="clothes_type1" />
-														<label class="radio-inline" for="clothes_type1">
-															상의 </label>
-													</div>
-													<div class="form-check form-check-inline">
-														<input name="clothes_type" class="form-check-input"
-															type="radio" value="하의" id="clothes_type2" />
-														<label class="radio-inline" for="clothes_type2">
-															하의 </label>
-													</div>
-												</div>
-
-
-												<label for="clothes_name" class="form-label col-md-4">옷
+												<label for="fitting_name" class="form-label col-md-4">피팅
 													이름</label>
 												<div class="mb-3 col-md-8"
 													style="float: none; margin: 0 auto;">
-													<input class="form-control" type="text" id="clothes_name"
-														name="clothes_name" autofocus />
+													<input class="form-control" type="text" id="fitting_name"
+														name="fitting_name" autofocus />
 												</div>
 
-												<label for="clothes_info" class="form-label col-md-4">옷
+												<label for="fitting_info" class="form-label col-md-4">피팅
 													설명</label>
 												<div class="mb-3 col-md-8"
 													style="float: none; margin: 0 auto;">
-													<textarea class="form-control" id="clothes_info"
-														name="clothes_info" rows="5"></textarea>
+													<textarea class="form-control" id="fitting_info"
+														name="fitting_info" rows="5"></textarea>
 												</div>
 
-												<label for="clothes_size" class="form-label col-md-4">옷
-													사이즈</label>
-												<div class="mb-3 col-md-8">
-													<select id="clothes_size" name="clothes_size"
-														class="form-select">
-														<option value="80">80</option>
-														<option value="85">85</option>
-														<option value="90">90</option>
-														<option value="95">95</option>
-														<option value="100">100</option>
-														<option value="105">105</option>
-														<option value="110">110</option>
-														<option value="115">115</option>
-														<option value="120">120</option>
-													</select>
-												</div>
-												<label for="clothes_purchase_price"
-													class="form-label col-md-4">구입 가격</label>
-												<div class="mb-3 col-md-8">
-													<div class="input-group">
-														<span class="input-group-text">￦</span> <input type="text"
-															class="form-control" id="clothes_purchase_price"
-															name="clothes_purchase_price" />
-														<span class="input-group-text">원</span>
-													</div>
-												</div>
-
-												<label for="clothes_purchase_year"
-													class="form-label col-md-4">구입년도</label>
-												<div class="mb-3 col-md-8">
-													<input class="form-control" type="date"
-														id="clothes_purchase_year" name="clothes_purchase_year" />
-												</div>
-
-
-												<label for="clothes_season1" class="form-label col-md-4">옷
+												<label for="fitting_season1" class="form-label col-md-4">옷
 													계절</label>
 												<div class="mb-3 col-md-8">
 													<div class="form-check form-check-inline">
-														<input name="clothes_season" class="form-check-input"
-															type="checkbox" value="봄" id="clothes_season1" />
-														<label class="form-check-label" for="clothes_season1">
-															봄 </label>
+														<input name="fitting_season" class="form-check-input"
+															type="checkbox" value="봄" id="fitting_season1" /> <label
+															class="form-check-label" for="fitting_season1"> 봄
+														</label>
 													</div>
 													<div class="form-check form-check-inline">
-														<input name="clothes_season" class="form-check-input"
-															type="checkbox" value="여름" id="clothes_season2" />
-														<label class="form-check-label" for="clothes_season2">
+														<input name="fitting_season" class="form-check-input"
+															type="checkbox" value="여름" id="fitting_season2" /> <label
+															class="form-check-label" for="fitting_season2">
 															여름 </label>
 													</div>
 													<div class="form-check form-check-inline">
-														<input name="clothes_season" class="form-check-input"
-															type="checkbox" value="가을" id="clothes_season3" />
-														<label class="form-check-label" for="clothes_season3">
+														<input name="fitting_season" class="form-check-input"
+															type="checkbox" value="가을" id="fitting_season3" /> <label
+															class="form-check-label" for="fitting_season3">
 															가을 </label>
 													</div>
 
 													<div class="form-check form-check-inline">
-														<input name="clothes_season" class="form-check-input"
-															type="checkbox" value="겨울" id="clothes_season4" />
-														<label class="form-check-label" for="clothes_season4">
+														<input name="fitting_season" class="form-check-input"
+															type="checkbox" value="겨울" id="fitting_season4" /> <label
+															class="form-check-label" for="fitting_season4">
 															겨울 </label>
 													</div>
 
 
 
 												</div>
-											</div>
 
-											<input type="hidden" name="member_id" value="${member_id}"> 
-										</div>
-										<div class="mt-2">
-											<!--                           <a href="/member/myPage"><button type="submit" class="btn btn-primary me-2" >수정완료</button></a> -->
-											<button type="submit" class="btn btn-primary me-2">등록</button>
-										</div>
-								</form>
+												<label for="fitting_open_range" class="form-label col-md-4">공개범위
+												</label>
+												<div class="mb-3 col-md-8">
+													<div class="form-check form-check-inline">
+														<input name="fitting_open_range" class="form-check-input"
+															type="radio" value="public" id="fitting_open_range1" />
+														<label class="radio-inline" for="fitting_open_range1">
+															public </label>
+													</div>
+													<div class="form-check form-check-inline">
+														<input name="fitting_open_range" class="form-check-input"
+															type="radio" value="private" id="fitting_open_range2" />
+														<label class="radio-inline" for="fitting_open_range2">
+															private </label>
+													</div>
+												</div>
+
+												<input type="hidden" name="member_id" value="${member_id}">
+											</div>
+											<div class="mt-2">
+												<!--                           <a href="/member/myPage"><button type="submit" class="btn btn-primary me-2" >수정완료</button></a> -->
+												<button type="submit" class="btn btn-primary me-2">등록</button>
+											</div>
+									</form>
 								</div>
 							</div>
 						</div>
@@ -419,7 +421,30 @@
 	</div>
 	<!-- / Layout wrapper -->
 
-
+	<script>
+	//사진 파일을 바꿨을 때
+	$('#clothes_photo_file').on('change', function(e) {
+		 readImage(e.target)
+	});
+	
+	//이미지 변경 시 바로바로 적용
+	function readImage(input) {
+	    // 인풋 태그에 파일이 있는 경우
+	    if(input.files && input.files[0]) {
+	        // 이미지 파일인지 검사 (생략)
+	        // FileReader 인스턴스 생성
+	        const reader = new FileReader()
+	        // 이미지가 로드가 된 경우
+	        reader.onload = e => {
+	            const previewImage = document.getElementById("uploadedAvatar")
+	            previewImage.src = e.target.result
+	        }
+	        // reader가 이미지 읽도록 하기
+	        reader.readAsDataURL(input.files[0])
+	    }
+	}
+	</script>
+	
 	<!-- Core JS -->
 	<!-- build:js assets/vendor/js/core.js -->
 	<script src="/resources/assets/vendor/libs/jquery/jquery.js"></script>
