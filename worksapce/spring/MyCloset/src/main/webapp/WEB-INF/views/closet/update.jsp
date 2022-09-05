@@ -483,6 +483,7 @@
 		 readImage(e.target)
 	});
 	
+	//이미지 변경 시 바로바로 적용
 	function readImage(input) {
 	    // 인풋 태그에 파일이 있는 경우
 	    if(input.files && input.files[0]) {

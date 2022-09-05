@@ -6,10 +6,12 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="clothes_photo_file"/>
+		<item key="selection" value="uploadedAvatar"/>
 		<list key="findhistory">
-			<item value="clothes_photo_file"/>
 			<item value="uploadedAvatar"/>
+			<item value="clothes_id"/>
+			<item value="member_id"/>
+			<item value="clothes_photo_file"/>
 			<item value="updateBtn"/>
 			<item value="cl"/>
 			<item value="update"/>
@@ -21,8 +23,6 @@
 			<item value="account-settings-acc"/>
 			<item value="account-se"/>
 			<item value="forEa"/>
-			<item value="forea"/>
-			<item value="Account Settings"/>
 		</list>
 		<list key="replacehistory">
 			<item value="perPageNum"/>
