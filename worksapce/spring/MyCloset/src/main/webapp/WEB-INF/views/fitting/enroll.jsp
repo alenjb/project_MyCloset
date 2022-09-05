@@ -265,7 +265,7 @@
 												class="d-flex align-items-start align-items-sm-center gap-4">
 												<img src="/resources/assets/img/avatars/1.png"
 													alt="user-avatar" class="d-block rounded" height="100"
-													width="100" id="uploadedAvatar1" />
+													width="100" id="uploadedAvatar1" class="uploadPhoto1" />
 												<div class="button-wrapper">
 													<label for="clothes_photo_file1"
 														class="btn btn-primary me-2 mb-4" tabindex="0"> <span
@@ -285,7 +285,7 @@
 												class="d-flex align-items-start align-items-sm-center gap-4">
 												<img src="/resources/assets/img/avatars/1.png"
 													alt="user-avatar" class="d-block rounded" height="100"
-													width="100" id="uploadedAvatar2" />
+													width="100" id="uploadedAvatar2" class="uploadPhoto"/>
 												<div class="button-wrapper">
 													<label for="clothes_photo_file2"
 														class="btn btn-primary me-2 mb-4" tabindex="0"> <span
@@ -305,7 +305,7 @@
 												class="d-flex align-items-start align-items-sm-center gap-4">
 												<img src="/resources/assets/img/avatars/1.png"
 													alt="user-avatar" class="d-block rounded" height="100"
-													width="100" id="uploadedAvatar3" />
+													width="100" id="uploadedAvatar3" class="uploadPhoto"/>
 												<div class="button-wrapper">
 													<label for="clothes_photo_file3"
 														class="btn btn-primary me-2 mb-4" tabindex="0"> <span
@@ -423,12 +423,18 @@
 
 	<script>
 	//사진 파일을 바꿨을 때
-	$('#clothes_photo_file').on('change', function(e) {
-		 readImage(e.target)
+	$('#clothes_photo_file1').on('change', function(e) {
+		 readImage(e.target, 1)
+	});
+	$('#clothes_photo_file2').on('change', function(e) {
+		 readImage(e.target, 2)
+	});
+	$('#clothes_photo_file3').on('change', function(e) {
+		 readImage(e.target, 3)
 	});
 	
 	//이미지 변경 시 바로바로 적용
-	function readImage(input) {
+	function readImage(input, num) {
 	    // 인풋 태그에 파일이 있는 경우
 	    if(input.files && input.files[0]) {
 	        // 이미지 파일인지 검사 (생략)
@@ -436,7 +442,7 @@
 	        const reader = new FileReader()
 	        // 이미지가 로드가 된 경우
 	        reader.onload = e => {
-	            const previewImage = document.getElementById("uploadedAvatar")
+	            const previewImage = document.getElementById("uploadedAvatar"+num)
 	            previewImage.src = e.target.result
 	        }
 	        // reader가 이미지 읽도록 하기
