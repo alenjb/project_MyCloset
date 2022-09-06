@@ -71,7 +71,7 @@
 <script type="text/javascript">
 $(function () {
 // 	아우터 선택
-	$("#imgSelect").click(
+	$(".imgSelect").click(
 		function (e) {
 			console.log(e)
 			var src= e.target.getAttribute('src')
@@ -80,7 +80,7 @@ $(function () {
 			console.log(document.getElementById("selectedOuter"))
 	});
 // 	상의 선택
-	$("#imgSelect2").click(
+	$(".imgSelect2").click(
 		function (e) {
 			var src= e.target.getAttribute('src')
 			var top = document.getElementById("selectedTop");
@@ -88,7 +88,7 @@ $(function () {
 			console.log(document.getElementById("selectedTop"))
 		});
 // 	하의 선택
-	$("#imgSelect3").click(
+	$(".imgSelect3").click(
 		function (e) {
 			var src= e.target.getAttribute('src')
 			var bottom = document.getElementById("selectedBottom");
@@ -310,7 +310,7 @@ $(function () {
 <!-- 												db에서 옷 정보를 가져와서 뿌림 -->
 												<c:forEach items="${list}" var="list">
 <!-- 												각 옷을 선택 가능하게 만듬 -->
-												<a id="imgSelect">
+												<a class="imgSelect">
 													<img src="${list.clothes_photo}" alt="이미지"
 														class="d-block rounded me-4 mb-sm-0 mb-2" height="125"
 														width="125" id="uploadedPhoto" />
@@ -324,7 +324,7 @@ $(function () {
 <!-- 												db에서 옷 정보를 가져와서 뿌림 -->
 												<c:forEach items="${list}" var="list">
 <!-- 												각 옷을 선택 가능하게 만듬 -->
-												<a id="imgSelect2">
+												<a class="imgSelect2">
 													<img src="${list.clothes_photo}" alt="이미지"
 														class="d-block rounded me-4 mb-sm-0 mb-2" height="125"
 														width="125" id="uploadedPhoto1" />
@@ -338,7 +338,7 @@ $(function () {
 <!-- 												db에서 옷 정보를 가져와서 뿌림 -->
 												<c:forEach items="${list}" var="list">
 <!-- 												각 옷을 선택 가능하게 만듬 -->
-												<a id="imgSelect3">
+												<a class="imgSelect3">
 													<img src="${list.clothes_photo}" alt="이미지"
 														class="d-block rounded me-4 mb-sm-0 mb-2" height="125"
 														width="125" id="uploadedPhoto2" />
