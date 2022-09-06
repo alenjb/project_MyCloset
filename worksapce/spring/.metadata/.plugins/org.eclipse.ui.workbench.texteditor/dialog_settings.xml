@@ -6,23 +6,23 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="clothes_photo_file"/>
+		<item key="selection" value="d-none d-sm-block"/>
 		<list key="findhistory">
+			<item value="d-none d-sm-block"/>
+			<item value="clothes_photo_file3"/>
+			<item value="uploadPhoto"/>
+			<item value="clothes_photo_file1"/>
 			<item value="clothes_photo_file"/>
+			<item value="account-file-input"/>
+			<item value="fitting"/>
 			<item value="uploadedAvatar"/>
+			<item value="clothes_id"/>
+			<item value="member_id"/>
 			<item value="updateBtn"/>
 			<item value="cl"/>
 			<item value="update"/>
 			<item value="card-body"/>
 			<item value="card"/>
-			<item value="photo"/>
-			<item value="lothes_photo"/>
-			<item value="enroll"/>
-			<item value="account-settings-acc"/>
-			<item value="account-se"/>
-			<item value="forEa"/>
-			<item value="forea"/>
-			<item value="Account Settings"/>
 		</list>
 		<list key="replacehistory">
 			<item value="perPageNum"/>

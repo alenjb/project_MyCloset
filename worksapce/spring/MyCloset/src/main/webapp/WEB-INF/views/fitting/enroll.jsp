@@ -68,6 +68,36 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
 	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
 	crossorigin="anonymous"></script>
+<script type="text/javascript">
+$(function () {
+// 	아우터 선택
+	$("#imgSelect").click(
+		function (e) {
+			console.log(e)
+			var src= e.target.getAttribute('src')
+			var outer = document.getElementById("selectedOuter");
+			outer.value = src
+			console.log(document.getElementById("selectedOuter"))
+	});
+// 	상의 선택
+	$("#imgSelect2").click(
+		function (e) {
+			var src= e.target.getAttribute('src')
+			var top = document.getElementById("selectedTop");
+			top.value = src
+			console.log(document.getElementById("selectedTop"))
+		});
+// 	하의 선택
+	$("#imgSelect3").click(
+		function (e) {
+			var src= e.target.getAttribute('src')
+			var bottom = document.getElementById("selectedBottom");
+			bottom.value = src
+			console.log(document.getElementById("selectedBottom"))
+		});
+
+});
+</script>
 </head>
 
 <body>
@@ -188,7 +218,7 @@
 								<a class="nav-link dropdown-toggle hide-arrow"
 								href="javascript:void(0);" data-bs-toggle="dropdown">
 									<div class="avatar avatar-online">
-										<img src="/resources/assets/img/avatars/1.png" alt
+										<img src="/resources/assets/img/avatars/1.png" alt="이미지"
 											class="w-px-40 h-auto rounded-circle" />
 									</div>
 							</a>
@@ -255,76 +285,77 @@
 										href="pages-account-settings-connections.html"><i
 											class="bx bx-link-alt me-1"></i> Connections</a></li>
 								</ul>
+
+
+
 								<div class="card mb-4">
-									<h5 class="card-header">피팅 정보</h5>
-									<!-- Account -->
-									<form id="enroll" method="POST" action="enroll"
-										enctype="multiPart/form-data">
-										<div class="card-body">
-											<div
-												class="d-flex align-items-start align-items-sm-center gap-4">
-												<img src="/resources/assets/img/avatars/1.png"
-													alt="user-avatar" class="d-block rounded" height="100"
-													width="100" id="uploadedAvatar1" />
-												<div class="button-wrapper">
-													<label for="clothes_photo_file1"
-														class="btn btn-primary me-2 mb-4" tabindex="0"> <span
-														class="d-none d-sm-block">아우터 사진 선택</span> <i
-														class="bx bx-upload d-block d-sm-none"></i> <input
-														type="file" id="clothes_photo_file1"
-														name="clothes_photo_file" class="account-file-input"
-														hidden
-														accept="image/png, image/jpeg, image/jpg, image/gif" />
-													</label>
-
-													<p class="text-muted mb-0">JPG, GIF, JPEG, PNG 등 사진 파일만
-														등록 가능합니다.</p>
-												</div>
-											</div>
-											<div
-												class="d-flex align-items-start align-items-sm-center gap-4">
-												<img src="/resources/assets/img/avatars/1.png"
-													alt="user-avatar" class="d-block rounded" height="100"
-													width="100" id="uploadedAvatar2" />
-												<div class="button-wrapper">
-													<label for="clothes_photo_file2"
-														class="btn btn-primary me-2 mb-4" tabindex="0"> <span
-														class="d-none d-sm-block">상의 사진 선택</span> <i
-														class="bx bx-upload d-block d-sm-none"></i> <input
-														type="file" id="clothes_photo_file2"
-														name="clothes_photo_file" class="account-file-input"
-														hidden
-														accept="image/png, image/jpeg, image/jpg, image/gif" />
-													</label>
-
-													<p class="text-muted mb-0">JPG, GIF, JPEG, PNG 등 사진 파일만
-														등록 가능합니다.</p>
-												</div>
-											</div>
-											<div
-												class="d-flex align-items-start align-items-sm-center gap-4">
-												<img src="/resources/assets/img/avatars/1.png"
-													alt="user-avatar" class="d-block rounded" height="100"
-													width="100" id="uploadedAvatar3" />
-												<div class="button-wrapper">
-													<label for="clothes_photo_file3"
-														class="btn btn-primary me-2 mb-4" tabindex="0"> <span
-														class="d-none d-sm-block">하의 사진 선택</span> <i
-														class="bx bx-upload d-block d-sm-none"></i> <input
-														type="file" id="clothes_photo_file3"
-														name="clothes_photo_file" class="account-file-input"
-														hidden
-														accept="image/png, image/jpeg, image/jpg, image/gif" />
-													</label>
-
-													<p class="text-muted mb-0">JPG, GIF, JPEG, PNG 등 사진 파일만
-														등록 가능합니다.</p>
-												</div>
+									<h3 class="card-header">피팅 정보</h3>
+									<h5 class="card-header">피팅 의류 선택</h5>
+									<div class="card-body">
+										<p class="card-text">나의 옷장에서 원하는 아우터, 상의, 하의를 추가하세요</p>
+										<p class="demo-inline-spacing">
+											<a class="btn btn-primary me-1" data-bs-toggle="collapse"
+												href="#collapseExample" role="button" aria-expanded="false"
+												aria-controls="collapseExample"> 아우터 사진 선택 </a> 
+											<a class="btn btn-primary me-1" data-bs-toggle="collapse"
+												href="#collapseExample2" role="button" aria-expanded="false"
+												aria-controls="collapseExample"> 상의 사진 선택 </a>
+											<a class="btn btn-primary me-1" data-bs-toggle="collapse"
+												href="#collapseExample3" role="button" aria-expanded="false"
+												aria-controls="collapseExample"> 하의 사진 선택 </a>
+										</p>
+										<!-- 아우터 선택 collapse -->
+										<div class="collapse" id="collapseExample">
+											<div class="d-grid d-sm-flex p-3 border">
+<!-- 												db에서 옷 정보를 가져와서 뿌림 -->
+												<c:forEach items="${list}" var="list">
+<!-- 												각 옷을 선택 가능하게 만듬 -->
+												<a id="imgSelect">
+													<img src="${list.clothes_photo}" alt="이미지"
+														class="d-block rounded me-4 mb-sm-0 mb-2" height="125"
+														width="125" id="uploadedPhoto" />
+												</a>
+												</c:forEach>
 											</div>
 										</div>
-										<hr class="my-0" />
-										<div class="card-body">
+										<!-- 상의 선택 collapse -->
+										<div class="collapse" id="collapseExample2">
+											<div class="d-grid d-sm-flex p-3 border">
+<!-- 												db에서 옷 정보를 가져와서 뿌림 -->
+												<c:forEach items="${list}" var="list">
+<!-- 												각 옷을 선택 가능하게 만듬 -->
+												<a id="imgSelect2">
+													<img src="${list.clothes_photo}" alt="이미지"
+														class="d-block rounded me-4 mb-sm-0 mb-2" height="125"
+														width="125" id="uploadedPhoto1" />
+												</a>
+												</c:forEach>
+											</div>
+										</div>
+										<!-- 하의 선택 collapse -->
+										<div class="collapse" id="collapseExample3">
+											<div class="d-grid d-sm-flex p-3 border">
+<!-- 												db에서 옷 정보를 가져와서 뿌림 -->
+												<c:forEach items="${list}" var="list">
+<!-- 												각 옷을 선택 가능하게 만듬 -->
+												<a id="imgSelect3">
+													<img src="${list.clothes_photo}" alt="이미지"
+														class="d-block rounded me-4 mb-sm-0 mb-2" height="125"
+														width="125" id="uploadedPhoto2" />
+												</a>
+												</c:forEach>
+											</div>
+										</div>
 
+
+										<!-- Account -->
+										<form id="enroll" method="POST" action="enroll"
+											enctype="multiPart/form-data">
+											<input type="hidden" value="" id="selectedOuter">
+											<input type="hidden" value="" id="selectedTop">
+											<input type="hidden" value="" id="selectedBottom">
+
+											<hr>
 											<div class="row justify-content-center">
 												<label for="fitting_name" class="form-label col-md-4">피팅
 													이름</label>
@@ -398,7 +429,8 @@
 												<!--                           <a href="/member/myPage"><button type="submit" class="btn btn-primary me-2" >수정완료</button></a> -->
 												<button type="submit" class="btn btn-primary me-2">등록</button>
 											</div>
-									</form>
+										</form>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -444,7 +476,7 @@
 	    }
 	}
 	</script>
-	
+
 	<!-- Core JS -->
 	<!-- build:js assets/vendor/js/core.js -->
 	<script src="/resources/assets/vendor/libs/jquery/jquery.js"></script>
