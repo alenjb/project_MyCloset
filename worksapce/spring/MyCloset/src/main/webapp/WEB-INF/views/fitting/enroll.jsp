@@ -73,11 +73,10 @@ $(function () {
 // 	아우터 선택
 	$(".imgSelect").click(
 		function (e) {
-			console.log(e)
 			var src= e.target.getAttribute('src')
 			var outer = document.getElementById("selectedOuter");
 			outer.value = src
-			console.log(document.getElementById("selectedOuter"))
+			$("#collapseExample").collapse('toggle')
 	});
 // 	상의 선택
 	$(".imgSelect2").click(
@@ -85,7 +84,8 @@ $(function () {
 			var src= e.target.getAttribute('src')
 			var top = document.getElementById("selectedTop");
 			top.value = src
-			console.log(document.getElementById("selectedTop"))
+			$("#collapseExample2").collapse('toggle')
+
 		});
 // 	하의 선택
 	$(".imgSelect3").click(
@@ -93,8 +93,31 @@ $(function () {
 			var src= e.target.getAttribute('src')
 			var bottom = document.getElementById("selectedBottom");
 			bottom.value = src
-			console.log(document.getElementById("selectedBottom"))
+			$("#collapseExample3").collapse('toggle')
+
 		});
+		
+// //버튼 누르면 닫기로 닫기
+// 	$(".collapseBtn").click(
+// 		function (e) {
+//  			var text = e.target.text
+//  			//collapse가 열려있으면 닫기를 표시
+//  			if (text != "닫기"){
+//  				e.target.text = "닫기"}
+//  			else{
+//  				//닫기를 누르면 '아우터 사진 선택' 등으로 원래대로 복구
+//  				if (e.target.getAttribute('id') =="outerA"){
+//  					e.target.text = "아우터 사진 선택"
+//  				}
+//  				else if (e.target.getAttribute('id') =="topA"){
+//  					e.target.text = "상의 사진 선택"
+//  				}
+//  				else if (e.target.getAttribute('id') =="bottomA"){
+//  					e.target.text = "하의 사진 선택"
+//  				}
+//  			}
+// 		});
+	
 
 });
 </script>
@@ -294,15 +317,15 @@ $(function () {
 									<div class="card-body">
 										<p class="card-text">나의 옷장에서 원하는 아우터, 상의, 하의를 추가하세요</p>
 										<p class="demo-inline-spacing">
-											<a class="btn btn-primary me-1" data-bs-toggle="collapse"
+											<a class="btn btn-primary me-1 collapseBtn" data-bs-toggle="collapse"
 												href="#collapseExample" role="button" aria-expanded="false"
-												aria-controls="collapseExample"> 아우터 사진 선택 </a> 
-											<a class="btn btn-primary me-1" data-bs-toggle="collapse"
+												aria-controls="collapseExample" id="outerA"> 아우터 사진 선택 </a> 
+											<a class="btn btn-primary me-1 collapseBtn" data-bs-toggle="collapse"
 												href="#collapseExample2" role="button" aria-expanded="false"
-												aria-controls="collapseExample"> 상의 사진 선택 </a>
-											<a class="btn btn-primary me-1" data-bs-toggle="collapse"
+												aria-controls="collapseExample" id="topA"> 상의 사진 선택 </a>
+											<a class="btn btn-primary me-1 collapseBtn" data-bs-toggle="collapse"
 												href="#collapseExample3" role="button" aria-expanded="false"
-												aria-controls="collapseExample"> 하의 사진 선택 </a>
+												aria-controls="collapseExample" id="bottomA"> 하의 사진 선택 </a>
 										</p>
 										<!-- 아우터 선택 collapse -->
 										<div class="collapse" id="collapseExample">
@@ -313,7 +336,7 @@ $(function () {
 												<a class="imgSelect">
 													<img src="${list.clothes_photo}" alt="이미지"
 														class="d-block rounded me-4 mb-sm-0 mb-2" height="125"
-														width="125" id="uploadedPhoto" />
+														width="125" id="uploadedPhoto" style="cursor:pointer;"/>
 												</a>
 												</c:forEach>
 											</div>
@@ -327,7 +350,7 @@ $(function () {
 												<a class="imgSelect2">
 													<img src="${list.clothes_photo}" alt="이미지"
 														class="d-block rounded me-4 mb-sm-0 mb-2" height="125"
-														width="125" id="uploadedPhoto1" />
+														width="125" id="uploadedPhoto1" style="cursor:pointer;" />
 												</a>
 												</c:forEach>
 											</div>
@@ -341,7 +364,7 @@ $(function () {
 												<a class="imgSelect3">
 													<img src="${list.clothes_photo}" alt="이미지"
 														class="d-block rounded me-4 mb-sm-0 mb-2" height="125"
-														width="125" id="uploadedPhoto2" />
+														width="125" id="uploadedPhoto2" style="cursor:pointer;" />
 												</a>
 												</c:forEach>
 											</div>
@@ -351,9 +374,9 @@ $(function () {
 										<!-- Account -->
 										<form id="enroll" method="POST" action="enroll"
 											enctype="multiPart/form-data">
-											<input type="hidden" value="" id="selectedOuter">
-											<input type="hidden" value="" id="selectedTop">
-											<input type="hidden" value="" id="selectedBottom">
+											<input type="hidden" value="" id="selectedOuter" name="outer_clothes_photo">
+											<input type="hidden" value="" id="selectedTop" name="top_clothes_photo">
+											<input type="hidden" value="" id="selectedBottom" name="bottom_clothes_photo">
 
 											<hr>
 											<div class="row justify-content-center">

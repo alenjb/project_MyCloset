@@ -55,7 +55,8 @@ public class FittingController {
 		String memberId = loginVO.getMember_id();
 		// 모델에 아이디 담기
 		model.addAttribute("member_id", memberId);
-
+		service.enroll(vo);
+		
 		return "redirect:list";
 	}
 

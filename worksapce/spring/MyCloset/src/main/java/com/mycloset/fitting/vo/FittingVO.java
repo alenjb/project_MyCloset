@@ -9,12 +9,12 @@ public class FittingVO {
 
 	// 	피팅 아이디
 		private String fitting_id;
-	// 	아우터 옷 아이디
-		private String outer_clothes_id;
-	// 	아우터 옷 아이디
-		private String top_clothes_id;
-	// 	아우터 옷 아이디
-		private String bottom_clothes_id;
+//	// 	아우터 옷 아이디
+//		private String outer_clothes_id;
+//	// 	아우터 옷 아이디
+//		private String top_clothes_id;
+//	// 	아우터 옷 아이디
+//		private String bottom_clothes_id;
 	//	피팅 이름
 		private String fitting_name;
 	//	피팅 사진 주소
@@ -31,5 +31,16 @@ public class FittingVO {
 		private int fitting_price;
 	//	사용자 아이디
 		private String member_id;
+		
+	//enroll 시 사용하기 위함
+		// 아우터 옷 이미지
+		private String outer_clothes_photo;
+		// 상의 옷 이미지		
+		private String top_clothes_photo;
+		// 하의 옷 이미지
+		private String bottom_clothes_photo;
+		
+		
+	
 
 }
