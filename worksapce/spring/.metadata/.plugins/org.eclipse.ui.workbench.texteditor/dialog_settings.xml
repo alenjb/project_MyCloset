@@ -6,31 +6,32 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="d-none d-sm-block"/>
+		<item key="selection" value="/resources/"/>
 		<list key="findhistory">
+			<item value="../"/>
+			<item value="list"/>
+			<item value="enroll"/>
+			<item value="fitting_image"/>
+			<item value="fitting_photo_file"/>
+			<item value="member_id"/>
+			<item value="myba"/>
+			<item value="top_clothes_photo"/>
+			<item value="collapse"/>
+			<item value="uploadedPhoto"/>
+			<item value="imgSelect2"/>
+			<item value="card-body"/>
+			<item value="ㅊㅁㄱㅇ-ㅠㅐ요"/>
 			<item value="d-none d-sm-block"/>
 			<item value="clothes_photo_file3"/>
-			<item value="uploadPhoto"/>
-			<item value="clothes_photo_file1"/>
-			<item value="clothes_photo_file"/>
-			<item value="account-file-input"/>
-			<item value="fitting"/>
-			<item value="uploadedAvatar"/>
-			<item value="clothes_id"/>
-			<item value="member_id"/>
-			<item value="updateBtn"/>
-			<item value="cl"/>
-			<item value="update"/>
-			<item value="card-body"/>
-			<item value="card"/>
 		</list>
 		<list key="replacehistory">
+			<item value="/resources/"/>
+			<item value="clothes_photo"/>
 			<item value="perPageNum"/>
 			<item value="PageNum"/>
 			<item value="ClosetVO"/>
 			<item value=""/>
 			<item value="memberVO."/>
-			<item value="/resources/"/>
 			<item value="/resources"/>
 			<item value="myPage"/>
 			<item value="findId"/>
@@ -39,12 +40,11 @@
 			<item value="grade"/>
 			<item value="member_birthday"/>
 			<item value="\\"/>
-			<item value="//return false"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="1584"/>
-		<item key="DIALOG_Y_ORIGIN" value="315"/>
+		<item key="DIALOG_X_ORIGIN" value="497"/>
+		<item key="DIALOG_Y_ORIGIN" value="294"/>
 		<item key="DIALOG_WIDTH" value="317"/>
 		<item key="DIALOG_HEIGHT" value="449"/>
 		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>

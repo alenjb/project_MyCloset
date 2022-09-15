@@ -74,15 +74,16 @@ $(function () {
 	$(".imgSelect").click(
 		function (e) {
 			var src= e.target.getAttribute('src')
-			var outer = document.getElementById("selectedOuter");
+			var outer = document.getElementById("selectedOuter")
 			outer.value = src
 			$("#collapseExample").collapse('toggle')
+
 	});
 // 	상의 선택
 	$(".imgSelect2").click(
 		function (e) {
 			var src= e.target.getAttribute('src')
-			var top = document.getElementById("selectedTop");
+			var top = document.getElementById("selectedTop")
 			top.value = src
 			$("#collapseExample2").collapse('toggle')
 
@@ -91,7 +92,7 @@ $(function () {
 	$(".imgSelect3").click(
 		function (e) {
 			var src= e.target.getAttribute('src')
-			var bottom = document.getElementById("selectedBottom");
+			var bottom = document.getElementById("selectedBottom")
 			bottom.value = src
 			$("#collapseExample3").collapse('toggle')
 
@@ -374,9 +375,9 @@ $(function () {
 										<!-- Account -->
 										<form id="enroll" method="POST" action="enroll"
 											enctype="multiPart/form-data">
-											<input type="hidden" value="" id="selectedOuter" name="outer_clothes_photo">
-											<input type="hidden" value="" id="selectedTop" name="top_clothes_photo">
-											<input type="hidden" value="" id="selectedBottom" name="bottom_clothes_photo">
+											<input type="hidden" id="selectedOuter" name="outer_clothes_photo">
+											<input type="hidden" id="selectedTop" name="top_clothes_photo">
+											<input type="hidden" id="selectedBottom" name="bottom_clothes_photo">
 
 											<hr>
 											<div class="row justify-content-center">
@@ -445,6 +446,7 @@ $(function () {
 															private </label>
 													</div>
 												</div>
+												<h2>${member_id}</h2>
 
 												<input type="hidden" name="member_id" value="${member_id}">
 											</div>

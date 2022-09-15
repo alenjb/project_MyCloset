@@ -22,7 +22,7 @@
 			C.clothes_id AS bottom_clothes_id,
 			#{fitting_name} fitting_name,
 			#{outer_clothes_photo} fitting_image,
-			#{top_clothes_photo} fitting_info,
+			#{fitting_info} fitting_info,
 			#{fitting_open_range} fitting_open_range,
 			#{fitting_season} fitting_season,
 			(A.clothes_purchase_price + B.clothes_purchase_price + C.clothes_purchase_price) AS price,
@@ -83,9 +83,9 @@
 
 
 	<!-- 옷 리스트 -->
-	<select id="list" resultType="com.mycloset.closet.vo.ClosetVO">
+	<select id="list" resultType="com.mycloset.fitting.vo.FittingVO">
 		select
-		clothes_id, clothes_type,
+		fitting_id, clothes_type,
 		clothes_name, clothes_info, clothes_size,
 		clothes_photo,
 		clothes_purchase_year, clothes_purchase_price,
@@ -97,11 +97,21 @@
 
 	<!-- 페이지 네이션을 적용한 리스트 가져오기 -->
 	<select id="getListWithPaging"
-		resultType="com.mycloset.closet.vo.ClosetVO">
+		resultType="com.mycloset.fitting.vo.FittingVO">
 	<![CDATA[
 		select 
-		@rownum:= @rownum +1 rownum, clothes_id, clothes_type, clothes_name, clothes_info, clothes_size, clothes_photo, clothes_purchase_year, clothes_purchase_price, clothes_season
-		from closet
+		@rownum:= @rownum +1 rownum, 
+		fitting_id,
+		outer_clothes_id,
+		top_clothes_id,
+		bottom_clothes_id,
+		fitting_name,
+		fitting_image,
+		fitting_info,
+		fitting_open_range,
+		fitting_season,
+		fitting_price
+		from fitting
 		where (@rownum:=0)=0
 		limit 0, #{limitMax}
 

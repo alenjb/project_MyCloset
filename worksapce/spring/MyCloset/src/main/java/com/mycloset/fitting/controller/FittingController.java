@@ -43,6 +43,7 @@ public class FittingController {
 		List<ImageVO> list= service.getImages(memberId);
 		// 모델에 리스트 담기
 		model.addAttribute("list", list);
+		model.addAttribute("member_id", memberId);
 		System.out.println("리스트: "+list);
 		return "fitting/enroll";
 	}
@@ -57,6 +58,13 @@ public class FittingController {
 		String memberId = loginVO.getMember_id();
 		// 모델에 아이디 담기
 		model.addAttribute("member_id", memberId);
+		String outer_clothes_photo = vo.getOuter_clothes_photo().replace("\\", "\\\\\\");
+		String top_clothes_photo = vo.getTop_clothes_photo().replace("\\", "\\\\\\");
+		String bottom_clothes_photo = vo.getBottom_clothes_photo().replace("\\", "\\\\\\");
+		
+		vo.setOuter_clothes_photo(outer_clothes_photo);
+		vo.setTop_clothes_photo(top_clothes_photo);
+		vo.setBottom_clothes_photo(bottom_clothes_photo);
 		System.out.println("vo: "+vo);
 		service.enroll(vo);
 		
@@ -76,6 +84,13 @@ public class FittingController {
 		List<FittingVO> fittings = service.getListWithPaging(cri, 0);
 //		closets.forEach(b -> log.info(b));
 //		log.info(closets);
+		// 경로를 jsp에서 인식할 수 있게 백슬래시를 수정
+		for (int i= 0; i<fittings.size(); i++) {
+			String fitting_image = fittings.get(i).getFitting_image().replace("\\\\\\", "\\");
+			fittings.get(i).setFitting_image(fitting_image);		
+		}
+		
+		
 		// 모델에 피팅 리스트 담기
 		model.addAttribute("fittings", fittings);
 		// 옷 피팅 개수 세기

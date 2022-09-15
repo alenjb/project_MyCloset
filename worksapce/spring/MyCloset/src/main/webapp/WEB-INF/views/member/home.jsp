@@ -117,7 +117,7 @@
             
             <!-- 피팅룸 -->
             <li class="menu-item">
-              <a href=/fitting/list" class="menu-link">
+              <a href="/fitting/list" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-crown"></i>
                 <div>피팅룸</div>
               </a>

@@ -10,11 +10,11 @@ public class FittingVO {
 	// 	피팅 아이디
 		private String fitting_id;
 //	// 	아우터 옷 아이디
-//		private String outer_clothes_id;
+		private String outer_clothes_id;
 //	// 	아우터 옷 아이디
-//		private String top_clothes_id;
+		private String top_clothes_id;
 //	// 	아우터 옷 아이디
-//		private String bottom_clothes_id;
+		private String bottom_clothes_id;
 	//	피팅 이름
 		private String fitting_name;
 	//	피팅 사진 주소
