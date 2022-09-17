@@ -87,9 +87,28 @@
 			//form 전송
 			actionForm.submit();
 		});
-		
-		
+		// public 안보이게 클릭
+		$("#flexSwitchCheckChecked1").click(function() {
+			//체크 되면 public 보임
+			var checked = $("#flexSwitchCheckChecked1").is(':checked');
+			//public을 안보겠다고 하면
+			// 			if (!checked){
 
+			// 				var result = new Array();
+			// 				<c:forEach items="${fittings}" var="vo">
+			// 					var json = new Object();
+			// 					json.name="${vo.fitting_name}";
+			// 					result.push(json);
+
+			// 				</c:forEach>
+			// 				console.log(JSON.stringify(result));
+
+			// 				 if ($('.fitting_open_range').text() =="public"){
+			// 					 console.log("zzz");
+			// 					 var div = document.getElementById('fittingDiv').style="display:none";
+			// 					 }
+			// 				}
+		});
 	});
 </script>
 </head>
@@ -267,12 +286,12 @@
 						<!-- Switches -->
 						<div class="card mb-4">
 							<div class="card-body">
-								<div class="form-check form-switch mb-2">
+								<div class="form-check form-switch mb-2 form-check-inline">
 									<input class="form-check-input" type="checkbox"
 										id="flexSwitchCheckChecked1" checked /> <label
 										class="form-check-label" for="flexSwitchCheckChecked1">public</label>
 								</div>
-								<div class="form-check form-switch mb-2">
+								<div class="form-check form-switch mb-2 form-check-inline">
 									<input class="form-check-input" type="checkbox"
 										id="flexSwitchCheckChecked2" checked /> <label
 										class="form-check-label" for="flexSwitchCheckChecked2">private</label>
@@ -287,17 +306,18 @@
 
 						<div class="row row-cols-1 row-cols-md-3 g-4 mb-5">
 							<c:forEach items="${fittings}" var="fitting">
-								<div class="col">
-									<div class="card h-100 fittingOverView">
-										<img class="card-img-top" src="${fitting.fitting_image}"
-											alt="Card image cap" />
-										<div class="card-body">
-											<h5 class="card-title">${fitting.fitting_name}</h5>
-											<p class="card-text">${fitting.fitting_info}</p>
-											<p class="fitting_id" hidden="hidden">${fitting.fitting_id}</p>
+									<div class="col" id="fittingDiv">
+										<div class="card h-100 fittingOverView">
+											<img class="card-img-top" src="${fitting.fitting_image}"
+												alt="Card image cap" />
+											<div class="card-body">
+												<h5 class="card-title">${fitting.fitting_name}</h5>
+												<p class="card-text">${fitting.fitting_info}</p>
+												<p class="fitting_id" hidden="hidden">${fitting.fitting_id}</p>
+												<p class="fitting_open_range" hidden="hidden">${fitting.fitting_open_range}</p>
+											</div>
 										</div>
 									</div>
-								</div>
 							</c:forEach>
 						</div>
 						<!-- / Content -->
