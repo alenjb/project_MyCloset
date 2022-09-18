@@ -120,16 +120,21 @@
 	</select>
 
 	<!-- 옷 보기 -->
-	<select id="view" resultType="com.mycloset.closet.vo.ClosetVO">
+	<select id="view" resultType="com.mycloset.fitting.vo.FittingVO">
 		select
-		clothes_id, clothes_type,
-		clothes_name, clothes_info, clothes_size,
-		clothes_photo,
-		clothes_purchase_year, clothes_purchase_price,
-		clothes_season
+		fitting_id,
+		outer_clothes_id,
+		top_clothes_id,
+		bottom_clothes_id,
+		fitting_name,
+		fitting_image,
+		fitting_info,
+		fitting_open_range,
+		fitting_season,
+		fitting_price
 		from
-		closet
-		where #{clothes_id} = clothes_id and #{member_id} = member_id
+		fitting
+		where #{fitting_id} = fitting_id and #{member_id} = member_id
 	</select>
 
 	<!-- 옷 수정 -->

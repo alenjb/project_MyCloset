@@ -112,6 +112,9 @@ public class FittingController {
 		int cId = Integer.parseInt(fitting_id);
 		//서비스에서 view 메서드 호출
 		FittingVO vo= service.view(memberId, cId);
+		String FittingImage = vo.getFitting_image().replace("\\\\\\", "\\");
+		System.out.println(FittingImage);
+		vo.setFitting_image(FittingImage);
 		model.addAttribute("vo", vo);
 		return "fitting/view";
 	}
