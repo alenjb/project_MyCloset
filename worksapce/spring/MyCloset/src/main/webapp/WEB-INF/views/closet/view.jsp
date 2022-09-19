@@ -72,7 +72,11 @@
 <script type="text/javascript">
 	$(function() {
 		$("#updateBtn").click(function() {
-			location = "update?clothes_id=" + ${vo.clothes_id};
+			location = "update?clothes_id=" + $
+			{
+				vo.clothes_id
+			}
+			;
 		});
 	});
 </script>
@@ -170,12 +174,15 @@
 											<option value="tcw"
 												${(pageObject.key =="tcw") ? "seleted":""}>전체</option>
 										</select>
+									</form>
 								</div>
 								<!--검색 창 -->
 								<div class="row">
 									<div class="col-9">
-										<input type="text" class="form-control border-0 shadow-none"
-											placeholder="검색" name="word" value="${pageObject.word }" />
+										<form>
+											<input type="text" class="form-control border-0 shadow-none"
+												placeholder="검색" name="word" value="${pageObject.word }" />
+										</form>
 									</div>
 									<div class="input-group-btn col-3">
 										<button class="btn btn-default" type="submit">
@@ -183,7 +190,6 @@
 										</button>
 									</div>
 								</div>
-								</form>
 							</div>
 						</div>
 						<!-- /Search -->
@@ -245,8 +251,7 @@
 
 					<div class="container-xxl flex-grow-1 container-p-y">
 						<h4 class="fw-bold py-3 mb-4">
-							<span class="text-muted fw-light">내 옷장 /</span>
-							옷 정보
+							<span class="text-muted fw-light">내 옷장 /</span> 옷 정보
 						</h4>
 
 						<div class="row">

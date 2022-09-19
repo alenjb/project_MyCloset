@@ -208,8 +208,8 @@ $(function () {
 						<!-- Search -->
 						<div class="navbar-nav align-items-center">
 							<div class="nav-item d-flex align-items-center">
-								<form class="form-inline">
-									<div class="">
+								<div>
+									<form>
 										<select name="key" id="key" class="form-select form-select-sm">
 											<option value="t" ${(pageObject.key =="t") ? "seleted":""}>제목</option>
 											<option value="c" ${(pageObject.key =="c") ? "seleted":""}>내용</option>
@@ -218,20 +218,22 @@ $(function () {
 											<option value="tcw"
 												${(pageObject.key =="tcw") ? "seleted":""}>전체</option>
 										</select>
-									</div>
-									<!--검색 창 -->
-									<div class="row">
-										<div class="col-9">
+									</form>
+								</div>
+								<!--검색 창 -->
+								<div class="row">
+									<div class="col-9">
+										<form>
 											<input type="text" class="form-control border-0 shadow-none"
 												placeholder="검색" name="word" value="${pageObject.word }" />
-										</div>
-										<div class="input-group-btn col-3">
-											<button class="btn btn-default" type="submit">
-												<i class="bx bx-search fs-4 lh-0"></i>
-											</button>
-										</div>
+										</form>
 									</div>
-								</form>
+									<div class="input-group-btn col-3">
+										<button class="btn btn-default" type="submit">
+											<i class="bx bx-search fs-4 lh-0"></i>
+										</button>
+									</div>
+								</div>
 							</div>
 						</div>
 						<!-- /Search -->
@@ -293,8 +295,7 @@ $(function () {
 
 					<div class="container-xxl flex-grow-1 container-p-y">
 						<h4 class="fw-bold py-3 mb-4">
-							<span class="text-muted fw-light">피팅룸 /</span>
-							피팅 정보
+							<span class="text-muted fw-light">피팅룸 /</span> 피팅 정보
 						</h4>
 
 						<div class="row">
@@ -318,9 +319,35 @@ $(function () {
 									<div class="card-body">
 										<div
 											class="d-flex align-items-start align-items-sm-center gap-4">
-											<img src="${vo.fitting_image}" alt="이미지"
-												class="d-block rounded me-4 mb-sm-0 mb-2" height="125"
-												width="125" id="uploadedPhoto" style="cursor: pointer;" />
+											<div class="align-items-sm-center">
+												<img src="${vo.fitting_image}" alt="이미지"
+													class="d-block rounded me-0 mb-sm-0 mb-2" height="300"
+													width="300" id="uploadedPhoto" style="cursor: pointer;" />
+												<p style="text-align: center">피팅</p>
+											</div>
+											<div class="align-items-sm-center">
+												<img src="${vo.outer_clothes_photo}" alt="이미지"
+													class="d-block rounded me-0 mb-sm-0 mb-2" height="125"
+													width="125" id="outer_clothes_photo"
+													style="cursor: pointer;" />
+												<p style="text-align: center">
+													아우터</p>
+											</div>
+											<div class="align-items-sm-center">
+												<img src="${vo.top_clothes_photo}" alt="이미지"
+													class="d-block rounded me-0 mb-sm-0 mb-2" height="125"
+													width="125" id="top_clothes_photo"
+													style="cursor: pointer;" />
+												<p style="text-align: center">
+													상의</p>
+											</div><div class="align-items-sm-center">
+												<img src="${vo.bottom_clothes_photo}" alt="이미지"
+													class="d-block rounded me-0 mb-sm-0 mb-2" height="125"
+													width="125" id="bottom_clothes_photo"
+													style="cursor: pointer;" />
+												<p style="text-align: center">
+													하의</p>
+											</div>
 										</div>
 									</div>
 									<hr class="my-0">
