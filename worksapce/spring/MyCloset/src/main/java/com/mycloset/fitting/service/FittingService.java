@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
+import com.mycloset.closet.vo.ClosetVO;
 import com.mycloset.fitting.mapper.FittingMapper;
 import com.mycloset.fitting.vo.FittingVO;
 import com.mycloset.fitting.vo.ImageVO;
@@ -32,7 +33,12 @@ public class FittingService {
 	public FittingVO view(String id, int num) throws Exception{
 		return mapper.view(id, num);
 	}
-	
+
+// 4. 피팅 수정
+	//옷 수정
+	public int update(FittingVO vo)throws Exception{
+		return mapper.update(vo);
+	}
 //페이징을 적용해 리스트 가져오기
 	public List<FittingVO> getListWithPaging(@Param("cri")Critera cri, @Param("limitMax")int limitMax) throws Exception{
 		int pageNum = cri.getPageNum();

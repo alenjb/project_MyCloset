@@ -193,29 +193,20 @@
 
 	<!-- 옷 수정 -->
 	<update id="update">
-		update closet
+		update fitting
 		set
-		clothes_type = #{clothes_type},
-		clothes_name =
-		#{clothes_name},
-		clothes_info = #{clothes_info},
-		clothes_size =
-		#{clothes_size},
-		<!-- <![CDATA[ -->
-		<!-- <if test="clothes_photo neq '\\upload\\closet\\'"> -->
-		<if test="clothes_photo != null">
-			clothes_photo = #{clothes_photo},
+		outer_clothes_photo =#{outer_clothes_photo},
+		top_clothes_photo =#{top_clothes_photo},
+		bottom_clothes_photo =#{bottom_clothes_photo},
+		fitting_name =#{fitting_name},
+		fitting_info = #{fitting_info},
+		fitting_open_range =#{fitting_open_range},
+		<if test="fitting_image != null">
+			fitting_image =#{fitting_image},
 		</if>
-		<!-- ]]> -->
-
-		<!-- <if test="clothes_purchase_year neq STR_TO_DATE(#{clothes_purchase_year}, 
-			'%Y-%m-%d')"> -->
-		clothes_purchase_year = #{clothes_purchase_year},
-		<!-- </if> -->
-		clothes_purchase_price = #{clothes_purchase_price},
-		clothes_season =
-		#{clothes_season}
-		where clothes_id = #{clothes_id}
+		fitting_season =#{fitting_season},
+		fitting_price =#{fitting_price},
+		where fitting_id = #{fitting_id}
 		<!-- where member_id= #{member_id} -->
 	</update>
 

@@ -1,5 +1,6 @@
 package com.mycloset.fitting.controller;
 
+import java.io.File;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -12,7 +13,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.mycloset.closet.vo.ClosetVO;
 import com.mycloset.fitting.service.FittingService;
 import com.mycloset.fitting.vo.FittingVO;
 import com.mycloset.fitting.vo.ImageVO;
@@ -109,18 +112,54 @@ public class FittingController {
 		String memberId= loginVO.getMember_id();
 		//모델에 피팅 아이디 추가
 		model.addAttribute("fitting_id", fitting_id);
-		int cId = Integer.parseInt(fitting_id);
+		int fId = Integer.parseInt(fitting_id);
 		//서비스에서 view 메서드 호출
-		FittingVO vo= service.view(memberId, cId);
-		String FittingImage = vo.getFitting_image().replace("\\\\\\", "\\");
-		System.out.println(FittingImage);
-		vo.setFitting_image(FittingImage);
+		FittingVO vo= service.view(memberId, fId);
+		
+		//사진 주소 형식들 바꿔주기
+		String fittingImage = vo.getFitting_image().replace("\\\\\\", "\\");
+		String outerImage = vo.getOuter_clothes_photo().replace("\\\\\\", "\\");
+		String topImage = vo.getTop_clothes_photo().replace("\\\\\\", "\\");
+		String bottomImage = vo.getBottom_clothes_photo().replace("\\\\\\", "\\");
+
+		vo.setFitting_image(fittingImage);
+		vo.setOuter_clothes_photo(outerImage);
+		vo.setTop_clothes_photo(topImage);
+		vo.setBottom_clothes_photo(bottomImage);
+
 		model.addAttribute("vo", vo);
 		return "fitting/view";
 	}
 	// 4. 피팅 수정
 	// 4-1. 피팅 수정 폼
+	@GetMapping("/update")
+	public String UpdateForm(HttpServletRequest request, Model model, @RequestParam("fitting_id")String fitting_id) throws Exception {
+		// 세션을 받기: 로그인 정보
+		HttpSession session = request.getSession();
+		// 세션에서 로그인 정보를 빼서 LVO에 저장
+		LoginVO LVO = (LoginVO) session.getAttribute("login");
+		// 사용자 아이디를 추춣
+		String id = LVO.getMember_id();
+		//url에서 옷 아이디를 가져와서 정수형으로 변환
+		int fId = Integer.parseInt(fitting_id);
+		//view로 내용 불러오기
+		FittingVO vo = service.view(id,fId);
+		
+		List<ImageVO> list= service.getImages(id);
+		// 모델에 리스트 담기
+		model.addAttribute("list", list);
+		model.addAttribute("member_id", id);
+		model.addAttribute("vo", vo);
+		log.info(vo);
+		return "fitting/update";
+	}
 	// 4-2. 피팅 수정
-
+	@PostMapping("/update")
+	public String Update(FittingVO fittingVO) throws Exception {
+		System.out.println("피팅 업데이트 VO: "+fittingVO);
+		service.update(fittingVO);
+		return "redirect:list";
+	}
+	
 	// 5. 피팅 삭제
 }

@@ -4,82 +4,71 @@
 <mapper namespace="com.mycloset.fitting.mapper.FittingMapper">
 	<!-- 옷 등록 -->
 	<update id="enroll">
-		
-				insert into fitting (
-			outer_clothes_id,
-			top_clothes_id,
-			bottom_clothes_id,
-			fitting_name,
-			fitting_image,
-			fitting_info,
-			fitting_open_range,
-			fitting_season,
-			fitting_price,
-			member_id
-		) SELECT 
-			A.clothes_id AS outer_clothes_id,
-			B.clothes_id AS top_clothes_id, 
-			C.clothes_id AS bottom_clothes_id,
-			#{fitting_name} fitting_name,
-			#{outer_clothes_photo} fitting_image,
-			#{fitting_info} fitting_info,
-			#{fitting_open_range} fitting_open_range,
-			#{fitting_season} fitting_season,
-			(A.clothes_purchase_price + B.clothes_purchase_price + C.clothes_purchase_price) AS price,
-			#{member_id} member_id
-			FROM 
-				(SELECT clothes_id, clothes_purchase_price 
-				FROM closet
-				WHERE
-				member_id =#{member_id} AND clothes_photo LIKE #{outer_clothes_photo}) A
-				JOIN
-				(SELECT clothes_id, clothes_purchase_price 
-				FROM closet
-				WHERE
-				member_id =#{member_id} AND clothes_photo LIKE #{top_clothes_photo}) B
-				JOIN
-				(SELECT clothes_id, clothes_purchase_price 
-				FROM closet
-				WHERE
-				member_id =#{member_id} AND clothes_photo LIKE #{bottom_clothes_photo}) C	
-	</update>
-		<!-- <selectKey resultType="hashmap" keyColumn="outer_clothes_id,top_clothes_id,bottom_clothes_id,price"
-			keyProperty="outer_clothes_id,top_clothes_id,bottom_clothes_id,price" order="BEFORE">
-			SELECT 
-			A.clothes_id AS outer_clothes_id, B.clothes_id AS top_clothes_id, 
-			C.clothes_id AS bottom_clothes_id, 
-			(A.clothes_purchase_price + B.clothes_purchase_price + C.clothes_purchase_price) AS price
-			FROM 
-				(SELECT clothes_id, clothes_purchase_price 
-				FROM closet
-				WHERE
-				member_id = #{member_id} and clothes_photo = #{outer_clothes_photo}) A
-				JOIN
-				(SELECT clothes_id, clothes_purchase_price 
-				FROM closet
-				WHERE
-				member_id = #{member_id} and clothes_photo =#{top_clothes_photo}) B
-				JOIN
-				(SELECT clothes_id, clothes_purchase_price 
-				FROM closet
-				WHERE
-				member_id = #{member_id} and clothes_photo = #{bottom_clothes_photo}) C	
-		</selectKey>
-		insert into fitting(
-		outer_clothes_id, top_clothes_id,
-		bottom_clothes_id, fitting_name, fitting_image,
+
+		insert into fitting (
+		outer_clothes_id,
+		top_clothes_id,
+		bottom_clothes_id,
+		fitting_name,
+		fitting_image,
 		fitting_info,
-		fitting_open_range, fitting_season, fitting_price,
+		fitting_open_range,
+		fitting_season,
+		fitting_price,
 		member_id
-		)
-		values(
-		#{outer_clothes_id}, #{top_clothes_id}, #{bottom_clothes_id},
-		#{fitting_name}, #{top_clothes_id}, #{fitting_info},
-		#{fitting_open_range},
-		#{fitting_season}, #{price}, #{member_id}
+		) SELECT
+		A.clothes_id AS outer_clothes_id,
+		B.clothes_id AS
+		top_clothes_id,
+		C.clothes_id AS bottom_clothes_id,
+		#{fitting_name}
+		fitting_name,
+		#{outer_clothes_photo} fitting_image,
+		#{fitting_info}
+		fitting_info,
+		#{fitting_open_range} fitting_open_range,
+		#{fitting_season} fitting_season,
+		(A.clothes_purchase_price +
+		B.clothes_purchase_price + C.clothes_purchase_price) AS price,
+		#{member_id} member_id
+		FROM
+		(SELECT clothes_id, clothes_purchase_price
+		FROM closet
+		WHERE
+		member_id =#{member_id} AND clothes_photo LIKE
+		#{outer_clothes_photo}) A
+		JOIN
+		(SELECT clothes_id,
+		clothes_purchase_price
+		FROM closet
+		WHERE
+		member_id =#{member_id} AND
+		clothes_photo LIKE #{top_clothes_photo}) B
+		JOIN
+		(SELECT clothes_id,
+		clothes_purchase_price
+		FROM closet
+		WHERE
+		member_id =#{member_id} AND
+		clothes_photo LIKE #{bottom_clothes_photo}) C
+	</update>
+	<!-- <selectKey resultType="hashmap" keyColumn="outer_clothes_id,top_clothes_id,bottom_clothes_id,price" 
+		keyProperty="outer_clothes_id,top_clothes_id,bottom_clothes_id,price" order="BEFORE"> 
+		SELECT A.clothes_id AS outer_clothes_id, B.clothes_id AS top_clothes_id, 
+		C.clothes_id AS bottom_clothes_id, (A.clothes_purchase_price + B.clothes_purchase_price 
+		+ C.clothes_purchase_price) AS price FROM (SELECT clothes_id, clothes_purchase_price 
+		FROM closet WHERE member_id = #{member_id} and clothes_photo = #{outer_clothes_photo}) 
+		A JOIN (SELECT clothes_id, clothes_purchase_price FROM closet WHERE member_id 
+		= #{member_id} and clothes_photo =#{top_clothes_photo}) B JOIN (SELECT clothes_id, 
+		clothes_purchase_price FROM closet WHERE member_id = #{member_id} and clothes_photo 
+		= #{bottom_clothes_photo}) C </selectKey> insert into fitting( outer_clothes_id, 
+		top_clothes_id, bottom_clothes_id, fitting_name, fitting_image, fitting_info, 
+		fitting_open_range, fitting_season, fitting_price, member_id ) values( #{outer_clothes_id}, 
+		#{top_clothes_id}, #{bottom_clothes_id}, #{fitting_name}, #{top_clothes_id}, 
+		#{fitting_info}, #{fitting_open_range}, #{fitting_season}, #{price}, #{member_id} 
 		) -->
-			
-		
+
+
 
 
 	<!-- 옷 리스트 -->
@@ -120,43 +109,104 @@
 	</select>
 
 	<!-- 옷 보기 -->
-	<select id="view" resultType="com.mycloset.closet.vo.ClosetVO">
-		select
-		clothes_id, clothes_type,
-		clothes_name, clothes_info, clothes_size,
-		clothes_photo,
-		clothes_purchase_year, clothes_purchase_price,
-		clothes_season
-		from
-		closet
-		where #{clothes_id} = clothes_id and #{member_id} = member_id
+	<select id="view" resultType="com.mycloset.fitting.vo.FittingVO">
+		SELECT
+		fitting_id,
+		outer_clothes_id,
+		top_clothes_id,
+		bottom_clothes_id,
+		fitting_name,
+		fitting_image,
+		fitting_info,
+		fitting_open_range,
+		fitting_season,
+		fitting_price,
+		outer_clothes_photo,
+		top_clothes_photo,
+		bottom_clothes_photo
+
+		FROM
+		(
+		SELECT
+		*
+		FROM
+		(SELECT clothes_photo AS outer_clothes_photo
+		FROM
+		closet,
+		(SELECT
+		*
+		FROM
+		fitting
+		WHERE
+		fitting_id =#{fitting_id} ) AA
+		WHERE
+		closet.member_id =#{member_id} AND 
+		clothes_id = AA.outer_clothes_id) A
+		
+		JOIN
+		
+		(SELECT
+		clothes_photo AS top_clothes_photo
+		FROM closet,
+		(SELECT
+		*
+		FROM
+		fitting
+		WHERE
+		fitting_id =#{fitting_id} ) BB
+		WHERE
+		closet.member_id =#{member_id} AND
+		clothes_id =BB.top_clothes_id) B
+		
+		JOIN
+		
+		(SELECT clothes_photo AS
+		bottom_clothes_photo
+		FROM closet,
+		(SELECT
+		*
+		FROM
+		fitting
+		WHERE
+		fitting_id
+		=#{fitting_id} ) CC
+		WHERE
+		closet.member_id =#{member_id} AND clothes_id
+		=CC.bottom_clothes_id) C
+		
+		JOIN
+		
+		(SELECT
+		*
+		FROM
+		fitting
+		WHERE
+		fitting_id
+		=#{fitting_id} ) D
+		) E
+
+		WHERE
+		#{fitting_id} = fitting_id
+		AND
+		E.member_id = #{member_id}
 	</select>
 
 	<!-- 옷 수정 -->
 	<update id="update">
-		update closet
+		update fitting
 		set
-		clothes_type = #{clothes_type},
-		clothes_name =
-		#{clothes_name},
-		clothes_info = #{clothes_info},
-		clothes_size =
-		#{clothes_size},
-		<!-- <![CDATA[ -->
-		<!-- <if test="clothes_photo neq '\\upload\\closet\\'"> -->
-		<if test="clothes_photo != null">
-			clothes_photo = #{clothes_photo},
+		outer_clothes_photo =#{outer_clothes_photo},
+		top_clothes_photo =#{top_clothes_photo},
+		bottom_clothes_photo =#{bottom_clothes_photo},
+		fitting_name =#{fitting_name},
+		fitting_info = #{fitting_info},
+		fitting_open_range =#{fitting_open_range},
+		<if test="fitting_image != null">
+			fitting_image =#{fitting_image},
 		</if>
-		<!-- ]]> -->
-
-		<!-- <if test="clothes_purchase_year neq STR_TO_DATE(#{clothes_purchase_year}, 
-			'%Y-%m-%d')"> -->
-		clothes_purchase_year = #{clothes_purchase_year},
-		<!-- </if> -->
-		clothes_purchase_price = #{clothes_purchase_price},
-		clothes_season =
-		#{clothes_season}
-		where clothes_id = #{clothes_id}
+		fitting_season =#{fitting_season},
+		fitting_price =#{fitting_price},
+		where fitting_id = #{fitting_id}
 		<!-- where member_id= #{member_id} -->
 	</update>
 
