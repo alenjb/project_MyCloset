@@ -72,11 +72,7 @@
 <script type="text/javascript">
 	$(function() {
 		$("#updateBtn").click(function() {
-			location = "update?clothes_id=" + $
-			{
-				vo.clothes_id
-			}
-			;
+			location = "update?clothes_id=" + ${vo.clothes_id};
 		});
 	});
 </script>
@@ -277,7 +273,7 @@
 											<div
 												class="d-flex align-items-start align-items-sm-center gap-4">
 												<img src="${vo. clothes_photo}" alt="user-avatar"
-													class="d-block rounded" height="100" width="100"
+													class="d-block rounded" height="250" width="250"
 													id="uploadedAvatar" />
 											</div>
 										</div>
@@ -390,17 +386,17 @@
 											</div>
 
 										</div>
+									</form>
+								</div>
 										<div class="mt-2">
 											<!--                           <a href="/member/myPage"><button type="submit" class="btn btn-primary me-2" >수정완료</button></a> -->
-											<button type="button" class="btn btn-primary"
+											<button type="button" class="btn btn-primary me-1"
 												onclick="location.href='list'">리스트</button>
-											<button type="button" class="btn btn-secondary me-2"
+											<button type="button" class="btn btn-secondary me-1"
 												id="updateBtn">수정</button>
 											<button type="button" class="btn btn-success"
 												onclick="location.href='delete?clothes_id=${vo.clothes_id}'">삭제</button>
 										</div>
-									</form>
-								</div>
 								<%--                       </c:forEach> --%>
 							</div>
 						</div>

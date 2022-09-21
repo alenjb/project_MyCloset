@@ -77,6 +77,10 @@ $(function () {
 			var src= e.target.getAttribute('src')
 			var outer = document.getElementById("selectedOuter")
 			outer.value = src
+			
+			//일단 피팅 이미지를 아우터 이미지로 설정
+			var image = document.getElementById("fitting_image")
+			image.value=src
 			$("#collapseExample").collapse('toggle')
 			//update 화면에서 수정된 사진 바로바로 보이기
 			var outerPic = document.getElementById("uploadOuter")
@@ -372,10 +376,10 @@ $(function () {
 
 										<!-- Account -->
 										
-											<input id="selectedOuter" name="outer_clothes_photo" hidden="hidden" accept="image/png, image/jpeg, image/jpg, image/gif"> 
-											<input id="selectedTop" name="top_clothes_photo" hidden="hidden" accept="image/png, image/jpeg, image/jpg, image/gif"> 
-											<input id="selectedBottom" name="bottom_clothes_photo" hidden="hidden" accept="image/png, image/jpeg, image/jpg, image/gif">
-
+											<input id="selectedOuter" name="outer_clothes_photo" hidden="hidden" accept="image/png, image/jpeg, image/jpg, image/gif" value="${vo.outer_clothes_photo}"> 
+											<input id="selectedTop" name="top_clothes_photo" hidden="hidden" accept="image/png, image/jpeg, image/jpg, image/gif" value="${vo.top_clothes_photo}"> 
+											<input id="selectedBottom" name="bottom_clothes_photo" hidden="hidden" accept="image/png, image/jpeg, image/jpg, image/gif" value="${vo.bottom_clothes_photo}">
+											<input id="fitting_image" name="fitting_image" hidden="hidden" accept="image/png, image/jpeg, image/jpg, image/gif" value="${vo.outer_clothes_photo}">
 											<hr>
 											<div class="row justify-content-center">
 												<label for="fitting_name" class="form-label col-md-4">피팅

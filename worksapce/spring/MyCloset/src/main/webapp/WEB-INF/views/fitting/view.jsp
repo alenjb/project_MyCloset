@@ -98,7 +98,9 @@ $(function () {
 			$("#collapseExample3").collapse('toggle')
 
 		});
-		
+	$("#updateBtn").click(function() {
+		location = "update?fitting_id=" + ${vo.fitting_id} ;
+	});		
 // //버튼 누르면 닫기로 닫기
 // 	$(".collapseBtn").click(
 // 		function (e) {
@@ -119,7 +121,6 @@ $(function () {
 //  				}
 //  			}
 // 		});
-	
 
 });
 </script>
@@ -168,10 +169,10 @@ $(function () {
 							<div>마이페이지</div>
 					</a></li>
 
-					<!-- 내 피팅장 -->
+					<!-- 내 옷장 -->
 					<li class="menu-item"><a href="/closet/list" class="menu-link">
 							<i class="menu-icon tf-icons bx bx-cube-alt"></i>
-							<div>내 피팅장</div>
+							<div>내 옷장</div>
 					</a></li>
 
 					<!-- 피팅룸 -->
@@ -300,20 +301,6 @@ $(function () {
 
 						<div class="row">
 							<div class="col-md-12">
-								<ul class="nav nav-pills flex-column flex-md-row mb-3">
-									<li class="nav-item"><a class="nav-link active"
-										href="javascript:void(0);"><i class="bx bx-user me-1"></i>
-											Account</a></li>
-									<li class="nav-item"><a class="nav-link"
-										href="pages-account-settings-notifications.html"><i
-											class="bx bx-bell me-1"></i> Notifications</a></li>
-									<li class="nav-item"><a class="nav-link"
-										href="pages-account-settings-connections.html"><i
-											class="bx bx-link-alt me-1"></i> Connections</a></li>
-								</ul>
-
-
-
 								<div class="card mb-4">
 									<h5 class="card-header">피팅 이미지</h5>
 									<div class="card-body">
@@ -328,25 +315,22 @@ $(function () {
 											<div class="align-items-sm-center">
 												<img src="${vo.outer_clothes_photo}" alt="이미지"
 													class="d-block rounded me-0 mb-sm-0 mb-2" height="125"
-													width="125" id="outer_clothes_photo"
+													width="125" id="outer_clothes_photo" name="outer_clothes_photo"
 													style="cursor: pointer;" />
-												<p style="text-align: center">
-													아우터</p>
+												<p style="text-align: center">아우터</p>
 											</div>
 											<div class="align-items-sm-center">
 												<img src="${vo.top_clothes_photo}" alt="이미지"
 													class="d-block rounded me-0 mb-sm-0 mb-2" height="125"
-													width="125" id="top_clothes_photo"
-													style="cursor: pointer;" />
-												<p style="text-align: center">
-													상의</p>
-											</div><div class="align-items-sm-center">
+													width="125" id="top_clothes_photo" name="top_clothes_photo" style="cursor: pointer;" />
+												<p style="text-align: center">상의</p>
+											</div>
+											<div class="align-items-sm-center">
 												<img src="${vo.bottom_clothes_photo}" alt="이미지"
 													class="d-block rounded me-0 mb-sm-0 mb-2" height="125"
-													width="125" id="bottom_clothes_photo"
+													width="125" id="bottom_clothes_photo" name="bottom_clothes_photo"
 													style="cursor: pointer;" />
-												<p style="text-align: center">
-													하의</p>
+												<p style="text-align: center">하의</p>
 											</div>
 										</div>
 									</div>
@@ -423,7 +407,11 @@ $(function () {
 								</div>
 								<div class="mt-2">
 									<!--                           <a href="/member/myPage"><button type="submit" class="btn btn-primary me-2" >수정완료</button></a> -->
-									<button type="submit" class="btn btn-primary me-2">등록</button>
+									<button type="button" class="btn btn-primary me-2" onclick="location.href='list'">리스트</button>
+									<button type="button" class="btn btn-secondary me-2"
+										id="updateBtn">수정</button>
+									<button type="button" class="btn btn-success"
+										onclick="location.href='delete?fitting_id=${vo.fitting_id}'">삭제</button>
 								</div>
 							</div>
 						</div>

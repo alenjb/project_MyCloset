@@ -6,45 +6,45 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="/resources/"/>
+		<item key="selection" value="delete"/>
 		<list key="findhistory">
-			<item value="../"/>
-			<item value="list"/>
-			<item value="enroll"/>
+			<item value="delete"/>
+			<item value="옷"/>
+			<item value="fitting_price"/>
 			<item value="fitting_image"/>
-			<item value="fitting_photo_file"/>
-			<item value="member_id"/>
-			<item value="myba"/>
+			<item value="image"/>
 			<item value="top_clothes_photo"/>
-			<item value="collapse"/>
-			<item value="uploadedPhoto"/>
-			<item value="imgSelect2"/>
-			<item value="card-body"/>
-			<item value="ㅊㅁㄱㅇ-ㅠㅐ요"/>
-			<item value="d-none d-sm-block"/>
-			<item value="clothes_photo_file3"/>
+			<item value="selectedBottom"/>
+			<item value="outer_clothes_photo"/>
+			<item value="fitting"/>
+			<item value="fitting_id"/>
+			<item value="uploadOuter"/>
+			<item value="clothes_photo"/>
+			<item value="selectedOuter"/>
+			<item value="clothes_photo_file"/>
+			<item value="photo_fi"/>
 		</list>
 		<list key="replacehistory">
+			<item value="피팅"/>
+			<item value=""/>
+			<item value="옷장"/>
+			<item value="fitting"/>
 			<item value="/resources/"/>
 			<item value="clothes_photo"/>
 			<item value="perPageNum"/>
 			<item value="PageNum"/>
 			<item value="ClosetVO"/>
-			<item value=""/>
 			<item value="memberVO."/>
 			<item value="/resources"/>
 			<item value="myPage"/>
 			<item value="findId"/>
 			<item value="/"/>
 			<item value="../../resources/assets/"/>
-			<item value="grade"/>
-			<item value="member_birthday"/>
-			<item value="\\"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="497"/>
-		<item key="DIALOG_Y_ORIGIN" value="294"/>
+		<item key="DIALOG_X_ORIGIN" value="39"/>
+		<item key="DIALOG_Y_ORIGIN" value="535"/>
 		<item key="DIALOG_WIDTH" value="317"/>
 		<item key="DIALOG_HEIGHT" value="449"/>
 		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>

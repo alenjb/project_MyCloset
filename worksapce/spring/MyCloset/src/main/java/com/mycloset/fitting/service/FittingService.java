@@ -1,6 +1,9 @@
 package com.mycloset.fitting.service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -39,6 +42,11 @@ public class FittingService {
 	public int update(FittingVO vo)throws Exception{
 		return mapper.update(vo);
 	}
+//	5. 피팅 삭제
+	public int delete(FittingVO vo) throws Exception{
+			System.out.println(vo);
+			return mapper.delete(vo);
+	}
 //페이징을 적용해 리스트 가져오기
 	public List<FittingVO> getListWithPaging(@Param("cri")Critera cri, @Param("limitMax")int limitMax) throws Exception{
 		int pageNum = cri.getPageNum();
@@ -49,5 +57,9 @@ public class FittingService {
 	//총 피팅 개수 세기
 	public int getTotalNum() throws Exception {
 		return mapper.getTotalNum();
+	}
+	//옷 아이디 가져오기
+	public HashMap<String, String> getClothesIdAndPrice(String member_id, String outer_clothes_photo, String top_clothes_photo, String bottom_clothes_photo) throws Exception{
+		return mapper.getClothesIdAndPrice(member_id, outer_clothes_photo, top_clothes_photo, bottom_clothes_photo);
 	}
 }
