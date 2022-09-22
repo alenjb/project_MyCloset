@@ -1,13 +1,10 @@
 package com.mycloset.fitting.mapper;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
-import com.mycloset.closet.vo.ClosetVO;
 import com.mycloset.fitting.vo.FittingVO;
 import com.mycloset.fitting.vo.ImageVO;
 import com.mycloset.util.Critera;

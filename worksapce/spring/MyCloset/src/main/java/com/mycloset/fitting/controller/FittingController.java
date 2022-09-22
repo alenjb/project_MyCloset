@@ -1,11 +1,7 @@
 package com.mycloset.fitting.controller;
 
-import java.io.File;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -17,9 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
-import com.mycloset.closet.vo.ClosetVO;
 import com.mycloset.fitting.service.FittingService;
 import com.mycloset.fitting.vo.FittingVO;
 import com.mycloset.fitting.vo.ImageVO;
@@ -87,10 +81,8 @@ public class FittingController {
 		// 아이디 추출
 		String memberId = loginVO.getMember_id();
 		// 옷 리스트 가져오는 작업을 통해 closets에 리스트 형태로 저장(일단 임시로 0을 보냄)
-		// 0 자리는 아무 값이나 보내면 되서 0을 보냄
+			// 0 자리는 아무 값이나 보내면 되서 0을 보냄
 		List<FittingVO> fittings = service.getListWithPaging(cri, 0);
-//		closets.forEach(b -> log.info(b));
-//		log.info(closets);
 		// 경로를 jsp에서 인식할 수 있게 백슬래시를 수정
 		for (int i = 0; i < fittings.size(); i++) {
 			String fitting_image = fittings.get(i).getFitting_image().replace("\\\\\\", "\\");

@@ -6,8 +6,11 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="delete"/>
+		<item key="selection" value="class=&quot;nav nav-pills flex-column flex-md-row mb-3&quot;"/>
 		<list key="findhistory">
+			<item value="class=&quot;nav nav-pills flex-column flex-md-row mb-3&quot;"/>
+			<item value="등록"/>
+			<item value="enroll"/>
 			<item value="delete"/>
 			<item value="옷"/>
 			<item value="fitting_price"/>
@@ -20,9 +23,6 @@
 			<item value="fitting_id"/>
 			<item value="uploadOuter"/>
 			<item value="clothes_photo"/>
-			<item value="selectedOuter"/>
-			<item value="clothes_photo_file"/>
-			<item value="photo_fi"/>
 		</list>
 		<list key="replacehistory">
 			<item value="피팅"/>

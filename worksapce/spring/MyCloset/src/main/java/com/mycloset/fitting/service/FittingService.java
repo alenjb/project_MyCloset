@@ -1,16 +1,13 @@
 package com.mycloset.fitting.service;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.inject.Inject;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
-import com.mycloset.closet.vo.ClosetVO;
 import com.mycloset.fitting.mapper.FittingMapper;
 import com.mycloset.fitting.vo.FittingVO;
 import com.mycloset.fitting.vo.ImageVO;
