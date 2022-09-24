@@ -6,10 +6,12 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="class=&quot;nav nav-pills flex-column flex-md-row mb-3&quot;"/>
+		<item key="selection" value="SELECT"/>
 		<list key="findhistory">
-			<item value="class=&quot;nav nav-pills flex-column flex-md-row mb-3&quot;"/>
+			<item value="select"/>
 			<item value="등록"/>
+			<item value="grad"/>
+			<item value="class=&quot;nav nav-pills flex-column flex-md-row mb-3&quot;"/>
 			<item value="enroll"/>
 			<item value="delete"/>
 			<item value="옷"/>
@@ -21,10 +23,9 @@
 			<item value="outer_clothes_photo"/>
 			<item value="fitting"/>
 			<item value="fitting_id"/>
-			<item value="uploadOuter"/>
-			<item value="clothes_photo"/>
 		</list>
 		<list key="replacehistory">
+			<item value="SELECT"/>
 			<item value="피팅"/>
 			<item value=""/>
 			<item value="옷장"/>
@@ -39,7 +40,6 @@
 			<item value="myPage"/>
 			<item value="findId"/>
 			<item value="/"/>
-			<item value="../../resources/assets/"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
