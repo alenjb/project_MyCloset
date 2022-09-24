@@ -124,6 +124,7 @@
 	//session.getAttribute()는 object테이터타입이기에 명시적형변환으로 (String)을 해줘야한다.
 	String id = value.getMember_id();
 	String grade = value.getMember_grade();
+	pageContext.setAttribute("grade",grade);
 	%>
 
 	<!-- Layout wrapper -->
@@ -153,7 +154,14 @@
 							<i class="menu-icon tf-icons bx bx-detail"></i>
 							<div>공지사항</div>
 					</a></li>
-
+					<!-- 회원관리페이지 -->
+					<c:if test="${grade eq '관리자'}">
+						<li class="menu-item"><a href="/admin/list"
+							class="menu-link"> <i
+								class="menu-icon tf-icons bx bx-dock-top"></i>
+								<div>회원관리</div>
+						</a></li>											
+					</c:if>
 					<!-- 마이페이지 -->
 					<li class="menu-item"><a href="/member/myPage"
 						class="menu-link"> <i

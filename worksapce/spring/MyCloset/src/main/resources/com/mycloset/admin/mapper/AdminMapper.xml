@@ -19,7 +19,8 @@
 			member_shoes_size, 
 			member_face, 
 			member_reg_date, 
-			member_grade
+			member_grade,
+			member_status
 			FROM member
 			WHERE (@rownum:=0)=0
 			limit 0, #{limitMax}
@@ -42,7 +43,8 @@
 	member_shoes_size, 
 	member_face, 
 	member_reg_date, 
-	member_grade
+	member_grade,
+	member_status
 	FROM member
 	WHERE #{member_id} = member_id
 	</select>
@@ -50,4 +52,28 @@
 	<select id="getTotalNum" resultType="Integer">
 	SELECT count(member_id) FROM member
 	</select>
+	
+<!-- 회원등급변경 -->
+	<update id="changeGrade">
+	UPDATE member
+	SET
+	member_grade = #{grade}
+	WHERE member_id = #{member_id}
+	</update>
+	
+<!-- 회원상태변경 -->
+	<update id="changeStatus">
+	UPDATE member
+	SET
+	member_status = #{status}
+	WHERE member_id = #{member_id}
+	</update>
+	
+<!-- 회원강퇴 -->
+	<delete id="delete">
+	DELETE
+	FROM member
+	WHERE
+	member_id =#{member_id}
+	</delete>
 </mapper>

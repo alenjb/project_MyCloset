@@ -69,6 +69,13 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
 	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
 	crossorigin="anonymous"></script>
+<script type="text/javascript">
+	$(function() {
+		$("#changeGradeBtn").click(function() {
+			location = "changeGrade?member_id=" + "${vo.member_id}";
+		});
+	});
+</script>
 </head>
 
 <body>
@@ -77,6 +84,7 @@
 	//session.getAttribute()는 object테이터타입이기에 명시적형변환으로 (String)을 해줘야한다.
 	String id = value.getMember_id();
 	String grade = value.getMember_grade();
+	pageContext.setAttribute("grade",grade);
 	%>
 	<!-- Layout wrapper -->
 	<div class="layout-wrapper layout-content-navbar">
@@ -105,6 +113,14 @@
 							<i class="menu-icon tf-icons bx bx-detail"></i>
 							<div>공지사항</div>
 					</a></li>
+					<!-- 회원관리페이지 -->
+					<c:if test="${grade eq '관리자'}">
+						<li class="menu-item"><a href="/admin/list"
+							class="menu-link"> <i
+								class="menu-icon tf-icons bx bx-dock-top"></i>
+								<div>회원관리</div>
+						</a></li>											
+					</c:if>
 
 					<!-- 마이페이지 -->
 					<li class="menu-item"><a href="/member/myPage"
@@ -290,20 +306,66 @@
 												</div>
 
 
-												<label for="clothes_name" class="form-label col-md-4">이메일</label>
+												<label for="member_email" class="form-label col-md-4">이메일</label>
 												<div class="mb-3 col-md-8"
 													style="float: none; margin: 0 auto;">
 													${vo.member_email}</div>
+												<label for="member_grade" class="form-label col-md-4">회원등급</label>
+												<div class="mb-3 col-md-8"
+													style="float: none; margin: 0 auto;">
+													${vo.member_grade}
+													<div class="btn-group">
+														<button type="button"
+															class="btn btn-primary dropdown-toggle hide-arrow"
+															data-bs-toggle="dropdown" aria-expanded="false">
+															변경
+														</button>
+														<ul class="dropdown-menu dropdown-menu-end">
+															<li><a class="dropdown-item"
+																href="changeGrade?member_id=${vo.member_id}&grade=general">일반회원</a></li>
+															<li><a class="dropdown-item"
+																href="changeGrade?member_id=${vo.member_id}&grade=elite">우수회원</a></li>
+															<li>
+																<hr class="dropdown-divider" />
+															</li>
+															<li><a class="dropdown-item"
+																href="changeGrade?member_id=${vo.member_id}&grade=admin">관리자</a></li>
+														</ul>
+													</div>
 
-<!-- 												<label for="clothes_purchase_year" -->
-<!-- 													class="form-label col-md-4">생년월일</label> -->
-<!-- 												<div class="mb-3 col-md-8"> -->
-<%-- 													<fmt:formatDate value="${vo.clothes_purchase_year}" --%>
-<%-- 														pattern="yyyy-MM-dd" /> --%>
-<!-- 												</div> -->
+												</div>
+												<!-- Icon Dropdown -->
+<!-- 												<small class="text-light fw-semibold">Icon Dropdown</small> -->
+												<!--/ Icon Dropdown -->
+												<label for="member_status" class="form-label col-md-4">회원상태</label>
+												<div class="mb-3 col-md-8"
+													style="float: none; margin: 0 auto;">
+													${vo.member_status}
+													<div class="btn-group">
+														<button type="button"
+															class="btn btn-primary dropdown-toggle hide-arrow"
+															data-bs-toggle="dropdown" aria-expanded="false">
+															변경
+														</button>
+														<ul class="dropdown-menu dropdown-menu-end">
+															<li><a class="dropdown-item"
+																href="changeStatus?member_id=${vo.member_id}&status=active">활동회원</a></li>
+															<li><a class="dropdown-item"
+																href="changeStatus?member_id=${vo.member_id}&status=inactive">휴면회원</a></li>
+														</ul>
+													</div>
+													
+													</div>
 
-												<label for="member_reg_date"
-													class="form-label col-md-4">가입일</label>
+
+												<!-- 												<label for="clothes_purchase_year" -->
+												<!-- 													class="form-label col-md-4">생년월일</label> -->
+												<!-- 												<div class="mb-3 col-md-8"> -->
+												<%-- 													<fmt:formatDate value="${vo.clothes_purchase_year}" --%>
+												<%-- 														pattern="yyyy-MM-dd" /> --%>
+												<!-- 												</div> -->
+
+												<label for="member_reg_date" class="form-label col-md-4">가입일</label>
 												<div class="mb-3 col-md-8">
 													<fmt:formatDate value="${vo.member_reg_date}"
 														pattern="yyyy-MM-dd" />
@@ -313,13 +375,13 @@
 										</div>
 									</form>
 								</div>
-										<div class="mt-2">
-											<!--                           <a href="/member/myPage"><button type="submit" class="btn btn-primary me-2" >수정완료</button></a> -->
-											<button type="button" class="btn btn-primary me-1"
-												onclick="location.href='list'">리스트</button>
-											<button type="button" class="btn btn-success"
-												onclick="location.href='delete?member_id=${vo.member_id}'">강제탈퇴</button>
-										</div>
+								<div class="mt-2">
+									<!--                           <a href="/member/myPage"><button type="submit" class="btn btn-primary me-2" >수정완료</button></a> -->
+									<button type="button" class="btn btn-primary me-1"
+										onclick="location.href='list'">리스트</button>
+									<button type="button" class="btn btn-success"
+										onclick="location.href='delete?member_id=${vo.member_id}'">강제탈퇴</button>
+								</div>
 								<%--                       </c:forEach> --%>
 							</div>
 						</div>

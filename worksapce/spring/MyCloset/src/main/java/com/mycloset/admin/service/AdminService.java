@@ -36,4 +36,17 @@ public class AdminService {
 	public int getTotalNum() throws Exception {
 		return mapper.getTotalNum();
 	}
+	
+	//등급 변경
+	public void changeGrade(String member_id, String grade)throws Exception{
+		mapper.changeGrade(member_id, grade);
+	}
+	//상태 변경
+	public void changeStatus(String member_id, String status)throws Exception{
+		mapper.changeStatus(member_id, status);
+	}
+	//회원 강퇴
+	public int delete(AdminVO vo) throws Exception{
+		return mapper.delete(vo);
+	}
 }
