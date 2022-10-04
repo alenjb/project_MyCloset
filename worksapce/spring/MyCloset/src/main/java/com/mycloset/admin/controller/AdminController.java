@@ -42,13 +42,13 @@ public class AdminController {
 		String memberGrade = loginVO.getMember_grade();
 			//관리자인지 확인
 		if(memberGrade.equals("관리자")) {
+			// 전체 개수 세기
+			int totalNum = service.getTotalNum(cri);
+			// 페이지 관련 정보 담기
+			model.addAttribute("pageMaker", new PageDTO(cri, totalNum));
 			// 리스트 가져오기
 			List<AdminVO> lists = service.getListWithPaging(cri, 0);
 			model.addAttribute("lists", lists);
-			// 전체 개수 세기
-			int totalNum = service.getTotalNum();
-			// 페이지 관련 정보 담기
-			model.addAttribute("pageMaker", new PageDTO(cri, totalNum));
 			return "admin/list";			
 		}
 		else {

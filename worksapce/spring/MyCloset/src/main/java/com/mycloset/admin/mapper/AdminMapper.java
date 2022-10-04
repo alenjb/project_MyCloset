@@ -13,7 +13,7 @@ public interface AdminMapper {
 	//멤버 상세 보기
 	public AdminVO view(@Param("member_id")String id) throws Exception;	
 	//총 개수 세기
-	public int getTotalNum() throws Exception;
+	public int getTotalNum(@Param("cri")Critera cri) throws Exception;
 	//회원 등급 변경
 	public void changeGrade(@Param("member_id")String member_id, @Param("grade")String grade)throws Exception;
 	//회원 상태 변경

@@ -19,8 +19,7 @@ public class AdminService {
 	private AdminMapper mapper;
 
 	// 페이징을 적용해 리스트 가져오기
-	public List<AdminVO> getListWithPaging(@Param("cri") Critera cri, @Param("limitMax") int limitMax)
-			throws Exception {
+	public List<AdminVO> getListWithPaging(Critera cri, int limitMax) throws Exception {
 		int pageNum = cri.getPageNum();
 		int amount = cri.getAmount();
 		limitMax = pageNum * amount;
@@ -33,8 +32,8 @@ public class AdminService {
 	}
 	
 	// 총 개수 세기
-	public int getTotalNum() throws Exception {
-		return mapper.getTotalNum();
+	public int getTotalNum(Critera cri) throws Exception {
+		return mapper.getTotalNum(cri);
 	}
 	
 	//등급 변경

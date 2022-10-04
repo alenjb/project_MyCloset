@@ -16,7 +16,7 @@ public interface ClosetMapper {
 	public List<ClosetVO> list(String id) throws Exception;
 
 	//페이지 처리와 함께 리스트를 가져오기
-	public List<ClosetVO> getListWithPaging(@Param("cri")Critera cri, @Param("limitMax")int limitMax);
+	public List<ClosetVO> getListWithPaging(@Param("cri")Critera cri, @Param("limitMax")int limitMax );
 	
 	//옷 수정
 	public int update(ClosetVO vo) throws Exception;

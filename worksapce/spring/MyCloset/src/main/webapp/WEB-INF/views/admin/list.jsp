@@ -86,21 +86,19 @@
 
 <script type="text/javascript">
 	$(function() {
-		$(".dataRow")
-				.click(
-						function() {
-// 							var no = $(this).find(".no").text();
-							location = "view?member_id="+$(this).find(".id").text();
-// 									+ "&inc=1"
-// 									+ "&page=${pageObject.page}&perPageNum=${pageObject.perPageNum}&key=${pageObject.key}&word=${pageObject.word}&period=${pageObject.period}";
+		$(".dataRow").click(function() {
+			// 							var no = $(this).find(".no").text();
+			location = "view?member_id=" + $(this).find(".id").text();
+			// 									+ "&inc=1"
+			// 									+ "&page=${pageObject.page}&perPageNum=${pageObject.perPageNum}&key=${pageObject.key}&word=${pageObject.word}&period=${pageObject.period}";
 
-						});
+		});
 
-// 		//perPageNum 데이터의 변경 이벤트 처리 ->jQuery에 대한 이벤트
-// 		$("#perPageNumSelect").change(function() {
-// 			// 			alert("값 변경");	
-// 			$("#perPageNumForm").submit();
-// 		});
+		// 		//perPageNum 데이터의 변경 이벤트 처리 ->jQuery에 대한 이벤트
+		// 		$("#perPageNumSelect").change(function() {
+		// 			// 			alert("값 변경");	
+		// 			$("#perPageNumForm").submit();
+		// 		});
 
 		var actionForm = $("#actionForm");
 		$(".page-link").on("click", function(e) {
@@ -113,6 +111,24 @@
 			//form 전송
 			actionForm.submit();
 		});
+		
+		//검색 버튼
+		var searchForm = $("#searchForm");
+		$("#searchBtn").on("click", function(e) {
+			if(!searchForm.find("option:selected").val()){
+				alert("검색 종류를 입력하세요");
+				return false;
+			}
+			if(!searchForm.find("input[name='keyword']").val()){
+				alert("키워드를 입력하세요");
+				return false;
+			}
+			
+			searchForm.find("input[name='pageNum']").val("1");
+			e.preventDefault();
+			
+			searchForm.submit();
+		});
 
 	});
 </script>
@@ -124,7 +140,7 @@
 	//session.getAttribute()는 object테이터타입이기에 명시적형변환으로 (String)을 해줘야한다.
 	String id = value.getMember_id();
 	String grade = value.getMember_grade();
-	pageContext.setAttribute("grade",grade);
+	pageContext.setAttribute("grade", grade);
 	%>
 
 	<!-- Layout wrapper -->
@@ -156,11 +172,10 @@
 					</a></li>
 					<!-- 회원관리페이지 -->
 					<c:if test="${grade eq '관리자'}">
-						<li class="menu-item"><a href="/admin/list"
-							class="menu-link"> <i
-								class="menu-icon tf-icons bx bx-dock-top"></i>
+						<li class="menu-item"><a href="/admin/list" class="menu-link">
+								<i class="menu-icon tf-icons bx bx-dock-top"></i>
 								<div>회원관리</div>
-						</a></li>											
+						</a></li>
 					</c:if>
 					<!-- 마이페이지 -->
 					<li class="menu-item"><a href="/member/myPage"
@@ -209,30 +224,48 @@
 						<!-- Search -->
 						<div class="navbar-nav align-items-center">
 							<div class="nav-item d-flex align-items-center">
-								<div>
-									<form>
-										<select name="key" id="key" class="form-select form-select-sm">
-											<option value="t" ${(pageObject.key =="t") ? "seleted":""}>제목</option>
-											<option value="c" ${(pageObject.key =="c") ? "seleted":""}>내용</option>
-											<option value="w" ${(pageObject.key =="w") ? "seleted":""}>작성자</option>
-											<option value="tc" ${(pageObject.key =="tc") ? "seleted":""}>제목/내용</option>
-											<option value="tcw"
-												${(pageObject.key =="tcw") ? "seleted":""}>전체</option>
-										</select>
+								<div class="row">
+									<form id="searchForm" action="/admin/list" method="get"
+										class="row">
+										<div class="col-sm-6">
+											<select name="type" class="form-select form-select-sm col-6">
+											<option value=""
+													<c:out value="${pageMaker.cri.type ==null?'selected':''}"/>>--</option>
+												<option value="I"
+													<c:out value="${pageMaker.cri.type eq 'I'?'selected':''}"/>>아이디</option>
+												<option value="N"
+													<c:out value="${pageMaker.cri.type eq 'N'?'selected':''}"/>>이름</option>
+												<option value="G"
+													<c:out value="${pageMaker.cri.type eq 'G'?'selected':''}"/>>회원등급</option>
+												<option value="IN"
+													<c:out value="${pageMaker.cri.type eq 'IN'?'selected':''}"/>>아이디/이름</option>
+												<option value="ING"
+													<c:out value="${pageMaker.cri.type eq 'ING'?'selected':''}"/>>전체</option>
+											</select>
+										</div>
+										<div class="col-sm-6">
+											<!-- 페이지에 관한 정보 클릭한 링크로 날리기 -->
+<!-- 											<input type="text" class="form-control border-0 shadow-none col-6" -->
+<!-- 												placeholder="검색" name="keyword" />  -->
+												<input type="hidden" name="type" value='<c:out value="${pageMaker.cri.type}"/>'> 												
+												<input type="text" class="form-control border-0 shadow-none" placeholder="검색" name="keyword"/>											
+												<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}"> 
+												<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
+										</div>
+									</form>
 								</div>
 								<!--검색 창 -->
 								<div class="row">
-									<div class="col-9">
-										<input type="text" class="form-control border-0 shadow-none"
-											placeholder="검색" name="word" value="${pageObject.word }" />
-									</div>
+									<!-- 									<div class="col-9"> -->
+									<!-- 									<form> -->
+									<!-- 									</form> -->
+									<!-- 									</div> -->
 									<div class="input-group-btn col-3">
-										<button class="btn btn-default" type="submit">
+										<button class="btn btn-default" id="searchBtn" type="submit">
 											<i class="bx bx-search fs-4 lh-0"></i>
 										</button>
 									</div>
 								</div>
-								</form>
 							</div>
 						</div>
 						<!-- /Search -->
@@ -317,8 +350,7 @@
 												<td>${list.member_name}</td>
 												<td>${list.member_sex}</td>
 												<td>${list.member_email}</td>
-												<td><fmt:formatDate
-														value="${list.member_reg_date}"
+												<td><fmt:formatDate value="${list.member_reg_date}"
 														pattern="yyyy-MM-dd" /></td>
 												<td>${list.member_grade}</td>
 												<td>${list.member_status}</td>
@@ -360,19 +392,17 @@
 								</ul>
 							</nav>
 						</div>
-
-
-						<!-- 페이지에 관한 정보 클릭한 링크로 날리기 -->
-						<form id='actionForm' action="/admin/list" method="get">
-							<input type="hidden" name="pageNum"
-								value="${pageMaker.cri.pageNum}"> <input type="hidden"
-								name="amount" value="${pageMaker.cri.amount}">
-						</form>
-
 						<!--/ Basic Pagination -->
 						<hr class="my-5" />
-
-
+						<form id="actionForm" action="/admin/list" method="get">
+							<input type="hidden" name="pageNum"
+								value="${pageMaker.cri.pageNum}"> <input type="hidden"
+								name="amount" value="${pageMaker.cri.amount}"> <input
+								type="hidden" name="type"
+								value='<c:out value="${pageMaker.cri.type}"/>'> <input
+								type="hidden" name="keyword"
+								value='<c:out value="${pageMaker.cri.keyword}"/>'>
+						</form>
 					</div>
 					<!-- / Content -->
 					<div class="content-backdrop fade"></div>

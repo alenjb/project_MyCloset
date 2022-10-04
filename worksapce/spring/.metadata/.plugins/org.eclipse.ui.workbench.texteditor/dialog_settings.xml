@@ -6,23 +6,23 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="SELECT"/>
+		<item key="selection" value="type"/>
 		<list key="findhistory">
-			<item value="select"/>
+			<item value="type"/>
+			<item value="글쓰기"/>
 			<item value="등록"/>
+			<item value="Icon Dropdown"/>
+			<item value="옷 종류"/>
+			<item value="옷종류"/>
+			<item value="여저"/>
+			<item value="sex"/>
+			<item value="face"/>
+			<item value="select"/>
 			<item value="grad"/>
 			<item value="class=&quot;nav nav-pills flex-column flex-md-row mb-3&quot;"/>
 			<item value="enroll"/>
 			<item value="delete"/>
 			<item value="옷"/>
-			<item value="fitting_price"/>
-			<item value="fitting_image"/>
-			<item value="image"/>
-			<item value="top_clothes_photo"/>
-			<item value="selectedBottom"/>
-			<item value="outer_clothes_photo"/>
-			<item value="fitting"/>
-			<item value="fitting_id"/>
 		</list>
 		<list key="replacehistory">
 			<item value="SELECT"/>

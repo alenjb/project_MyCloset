@@ -8,6 +8,9 @@ public class Critera {
 	private int pageNum;
 	private int amount;
 	
+	private String type;
+	private String keyword;
+	
 	public Critera() {
 		this(1, 10);
 	}
@@ -17,6 +20,11 @@ public class Critera {
 		this.amount = amount;
 	}
 	
+	public String[] getTypeArr() {
+		System.out.println("getTypeArr");
+		return type == null? new String[] {}: type.split("");
+		
+	}
 	
 	
 }

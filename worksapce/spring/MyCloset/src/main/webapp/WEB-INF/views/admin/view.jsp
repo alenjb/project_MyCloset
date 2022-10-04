@@ -170,8 +170,8 @@
 						<div class="navbar-nav align-items-center">
 							<div class="nav-item d-flex align-items-center">
 								<div>
-									<form>
-										<select name="key" id="key" class="form-select form-select-sm">
+									<form id="searchForm" action="" method="get">
+										<select name="type" id="key" class="form-select form-select-sm">
 											<option value="t" ${(pageObject.key =="t") ? "seleted":""}>제목</option>
 											<option value="c" ${(pageObject.key =="c") ? "seleted":""}>내용</option>
 											<option value="w" ${(pageObject.key =="w") ? "seleted":""}>작성자</option>
