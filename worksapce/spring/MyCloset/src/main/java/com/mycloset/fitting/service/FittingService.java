@@ -52,8 +52,8 @@ public class FittingService {
 		return mapper.getListWithPaging(cri, limitMax);
 	}
 	//총 피팅 개수 세기
-	public int getTotalNum() throws Exception {
-		return mapper.getTotalNum();
+	public int getTotalNum(Critera cri) throws Exception {
+		return mapper.getTotalNum(cri);
 	}
 	//옷 아이디 가져오기
 	public HashMap<String, String> getClothesIdAndPrice(String member_id, String outer_clothes_photo, String top_clothes_photo, String bottom_clothes_photo) throws Exception{

@@ -22,13 +22,21 @@
 <!-- 페이지 네이션을 적용한 리스트 가져오기 -->
 <select id="getListWithPaging" resultType="com.mycloset.closet.vo.ClosetVO">
 	<![CDATA[
-		select 
-		@rownum:= @rownum +1 rownum, clothes_id, clothes_type, clothes_name, clothes_info, clothes_size, clothes_photo, clothes_purchase_year, clothes_purchase_price, clothes_season
-		from closet
-		where (@rownum:=0)=0
+		SELECT 
+		@rownum:= @rownum +1 rownum, 
+		clothes_id, 
+		clothes_type, 
+		clothes_name, 
+		clothes_info, 
+		clothes_size, 
+		clothes_photo, 
+		clothes_purchase_year, 
+		clothes_purchase_price, 
+		clothes_season
+		FROM closet
+		WHERE]]>
+		<include refid="criteria"/> <![CDATA[(@rownum:=0)=0]]>
 		limit 0, #{limitMax}
-
-		]]>
 <!-- 		limit (#{pageNum}-1) * #{amount}, #{pageNum} * #{amount} -->
 </select>
 
@@ -59,7 +67,27 @@
 			clothes_season = #{clothes_season}
 		where member_id= #{member_id}
 	</update>
-
+<!-- 검색 -->
+	<sql id="criteria">
+		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
+			<foreach item="type" collection="cri.typeArr">
+				<trim prefix="OR">
+					<choose>
+						<when test="type == 'T'.toString()">
+							clothes_type LIKE CONCAT('%', #{cri.keyword}, '%')
+						</when>
+						<when test="type == 'N'.toString()">
+							clothes_name LIKE CONCAT('%', #{cri.keyword}, '%')
+						</when>
+						<when test="type == 'S'.toString()">
+							clothes_season LIKE CONCAT('%', #{cri.keyword}, '%')
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
+	
 <!-- 옷 삭제 -->
 	<delete id="delete">
 		delete from closet
@@ -68,6 +96,9 @@
 	
 <!-- 옷 총 개수 세기 -->
 	<select id="getTotalNum" resultType="Integer">
-	select count(clothes_id) from closet
+	SELECT 
+	count(*) 
+	FROM closet
+	WHERE <include refid="criteria"/>1=1 
 	</select>
 </mapper>

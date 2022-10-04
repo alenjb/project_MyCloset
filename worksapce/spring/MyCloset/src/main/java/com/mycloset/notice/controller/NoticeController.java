@@ -42,7 +42,7 @@ public class NoticeController {
 		//모델에 공지 리스트 담기
 		model.addAttribute("list", notices);
 		//옷 총 개수 세기
-		int totalNum= service.getTotalNum();
+		int totalNum= service.getTotalNum(cri);
 		//페이지 관련 정보 담기
 		model.addAttribute("pageMaker", new PageDTO(cri, totalNum));
 
@@ -63,13 +63,14 @@ public class NoticeController {
 //	}
 
 	@GetMapping("/view")
-	public String view(long no, Model model) throws Exception {
+	public String view(long no, Critera cri, Model model) throws Exception {
 		System.out.println("NoticeController.view()");
 		NoticeVO vo = service.view(no);
 		System.out.println(vo.getContent() + "vo.getContent()");
 		// 줄바꿈 처리
 		vo.setContent(vo.getContent().replace("\n", "<br>"));
 		model.addAttribute("vo", vo);
+		model.addAttribute("cri",cri);
 		return "notice/view";
 	}
 	// 3.글쓰기(write)

@@ -30,7 +30,7 @@ public interface FittingMapper {
 	public List<FittingVO> getListWithPaging(@Param("cri") Critera cri, @Param("limitMax") int limitMax);
 
 	// 총 피팅 개수 세기
-	public int getTotalNum() throws Exception;
+	public int getTotalNum(@Param("cri")Critera cri) throws Exception;
 
 	// 옷 아이디 가져오기
 	public HashMap<String, String> getClothesIdAndPrice(@Param("member_id")String member_id, @Param("outer_clothes_photo")String outer_clothes_photo, @Param("top_clothes_photo")String top_clothes_photo, @Param("bottom_clothes_photo")String bottom_clothes_photo) throws Exception;

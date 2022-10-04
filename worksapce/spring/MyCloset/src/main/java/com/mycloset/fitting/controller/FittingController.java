@@ -92,14 +92,14 @@ public class FittingController {
 		// 모델에 피팅 리스트 담기
 		model.addAttribute("fittings", fittings);
 		// 옷 피팅 개수 세기
-		int totalNum = service.getTotalNum();
+		int totalNum = service.getTotalNum(cri);
 		// 페이지 관련 정보 담기
 		model.addAttribute("pageMaker", new PageDTO(cri, totalNum));
 	}
 
 	// 3. 피팅 세부 보기
 	@GetMapping("/view")
-	public String view(HttpServletRequest request, Model model, @RequestParam("fitting_id") String fitting_id)
+	public String view(HttpServletRequest request, Model model, Critera cri, @RequestParam("fitting_id") String fitting_id)
 			throws Exception {
 		// 로그인 정보를 받기
 		HttpSession session = request.getSession();
@@ -108,6 +108,7 @@ public class FittingController {
 		String memberId = loginVO.getMember_id();
 		// 모델에 피팅 아이디 추가
 		model.addAttribute("fitting_id", fitting_id);
+		model.addAttribute("cri",cri);
 		int fId = Integer.parseInt(fitting_id);
 		// 서비스에서 view 메서드 호출
 		FittingVO vo = service.view(memberId, fId);

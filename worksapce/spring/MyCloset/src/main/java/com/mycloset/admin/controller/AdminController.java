@@ -58,7 +58,7 @@ public class AdminController {
 	}
 	// 회원정보보기 / 내정보보기
 	@GetMapping("/view")
-	public String view(HttpServletRequest request, Model model, @RequestParam("member_id")String member_id) throws Exception{
+	public String view(HttpServletRequest request, Critera cri, Model model, @RequestParam("member_id")String member_id) throws Exception{
 		//로그인 정보를 받기
 		HttpSession session = request.getSession();
 		LoginVO loginVO = (LoginVO)session.getAttribute("login");
@@ -66,6 +66,7 @@ public class AdminController {
 		String loginId= loginVO.getMember_id();
 		//모델에 조회할 회원 아이디 추가
 		model.addAttribute("member_id", member_id);
+		model.addAttribute("cri",cri);
 		//서비스에서 view 메서드 호출
 		AdminVO vo= service.view(member_id);
 		model.addAttribute("vo", vo);

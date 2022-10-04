@@ -72,7 +72,8 @@
 <script type="text/javascript">
 	$(function() {
 		$(".fittingOverView").click(function() {
-			location = "view?fitting_id=" + $(this).find(".fitting_id").text();
+			location = "view?fitting_id=" + $(this).find(".fitting_id").text()+"&type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}";
+
 
 		});
 
@@ -87,6 +88,24 @@
 			//form 전송
 			actionForm.submit();
 		});
+		//검색 버튼
+		var searchForm = $("#searchForm");
+		$("#searchBtn").on("click", function(e) {
+			if(!searchForm.find("option:selected").val()){
+				alert("검색 종류를 입력하세요");
+				return false;
+			}
+			if(!searchForm.find("input[name='keyword']").val()){
+				alert("키워드를 입력하세요");
+				return false;
+			}
+			
+			searchForm.find("input[name='pageNum']").val("1");
+			e.preventDefault();
+			
+			searchForm.submit();
+		});
+		
 		// public 안보이게 클릭
 		$("#flexSwitchCheckChecked1").click(function() {
 			//체크 되면 public 보임
@@ -194,30 +213,41 @@
 						<!-- Search -->
 						<div class="navbar-nav align-items-center">
 							<div class="nav-item d-flex align-items-center">
-								<div>
-									<form>
-										<select name="key" id="key" class="form-select form-select-sm">
-											<option value="t" ${(pageObject.key =="t") ? "seleted":""}>제목</option>
-											<option value="c" ${(pageObject.key =="c") ? "seleted":""}>내용</option>
-											<option value="w" ${(pageObject.key =="w") ? "seleted":""}>작성자</option>
-											<option value="tc" ${(pageObject.key =="tc") ? "seleted":""}>제목/내용</option>
-											<option value="tcw"
-												${(pageObject.key =="tcw") ? "seleted":""}>전체</option>
-										</select>
+								<div class="row">
+									<form id="searchForm" action="/fitting/list" method="get"
+										class="row">
+										<div class="col-sm-6">
+											<select name="type" class="form-select form-select-sm col-6">
+												<option value="NS"
+													<c:out value="${pageMaker.cri.type eq 'NS'?'selected':''}"/>>전체</option>
+												<option value="N"
+													<c:out value="${pageMaker.cri.type eq 'N'?'selected':''}"/>>이름</option>
+												<option value="S"
+													<c:out value="${pageMaker.cri.type eq 'S'?'selected':''}"/>>계절</option>
+											</select>
+										</div>
+										<div class="col-sm-6">
+											<!-- 페이지에 관한 정보 클릭한 링크로 날리기 -->
+<!-- 											<input type="text" class="form-control border-0 shadow-none col-6" -->
+<!-- 												placeholder="검색" name="keyword" />  -->
+												<input type="text" class="form-control border-0 shadow-none" placeholder="검색" name="keyword"/>											
+												<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}"> 
+												<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
+										</div>
+									</form>
 								</div>
 								<!--검색 창 -->
 								<div class="row">
-									<div class="col-9">
-										<input type="text" class="form-control border-0 shadow-none"
-											placeholder="검색" name="word" value="${pageObject.word }" />
-									</div>
+									<!-- 									<div class="col-9"> -->
+									<!-- 									<form> -->
+									<!-- 									</form> -->
+									<!-- 									</div> -->
 									<div class="input-group-btn col-3">
-										<button class="btn btn-default" type="submit">
+										<button class="btn btn-default" id="searchBtn" type="submit">
 											<i class="bx bx-search fs-4 lh-0"></i>
 										</button>
 									</div>
 								</div>
-								</form>
 							</div>
 						</div>
 						<!-- /Search -->
@@ -355,7 +385,11 @@
 						<form id='actionForm' action="/fitting/list" method="get">
 							<input type="hidden" name="pageNum"
 								value="${pageMaker.cri.pageNum}"> <input type="hidden"
-								name="amount" value="${pageMaker.cri.amount}">
+								name="amount" value="${pageMaker.cri.amount}"> <input
+								type="hidden" name="type"
+								value='<c:out value="${pageMaker.cri.type}"/>'> <input
+								type="hidden" name="keyword"
+								value='<c:out value="${pageMaker.cri.keyword}"/>'>
 						</form>
 						<div class="content-backdrop fade"></div>
 					</div>

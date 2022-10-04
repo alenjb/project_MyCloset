@@ -3,20 +3,36 @@
 <mapper namespace="com.mycloset.notice.mapper.NoticeMapper">
 	<!-- 1.리스트(list) -->
 
-	<select id="getListWithPaging" resultType="com.mycloset.notice.vo.NoticeVO">
-		select no, title, writer, writeDate, endDate
-		from(
-		select (@ROWNUM:=@ROWNUM+1) AS RNUM, no, title, writer, writeDate, endDate
-		from(
-		select no, title, writer, writeDate, endDate
-		from notice
-		where 1=1
-<!-- 		<include refid="search" /> -->
-		order by writeDate desc
+	<select id="getListWithPaging"
+		resultType="com.mycloset.notice.vo.NoticeVO">
+		<![CDATA[
+		SELECT 
+		no, 
+		title, 
+		writer, 
+		writeDate, 
+		endDate
+		FROM(
+			SELECT 
+			(@ROWNUM:=@ROWNUM+1) AS RNUM, 
+			no, 
+			title, 
+			writer, 
+			writeDate, 
+			endDate
+			FROM(
+				SELECT 
+				no, 
+				title, 
+				writer, 
+				writeDate, 
+				endDate
+				FROM notice
+		ORDER BY writeDate DESC
 		) AS A, (SELECT @ROWNUM:=0) AS B
-
 		) AS C
-		where (@ROWNUM:=0)=0
+		WHERE]]>
+		<include refid="criteria" /> <![CDATA[(@rownum:=0)=0]]>
 		limit 0, #{limitMax}
 	</select>
 
@@ -43,34 +59,37 @@
 
 
 	<!-- 검색 처리 태그 -->
-	<sql id="search">
-		<if test="word !=null and word!= ''.toString()">
-			and (
-			<if test="key == 't'.toString()">
-				title like CONCAT('%', #{word}, '%')
-			</if>
-			<if test="key == 'c'.toString()">
-				content like CONCAT('%', #{word}, '%')
-			</if>
-			<if test="key == 'tc'.toString()">
-				title like CONCAT('%', #{word}, '%')
-
-				or
-				content like CONCAT('%', #{word}, '%')
-			</if>
-			)
-		</if>
+	<sql id="criteria">
+		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
+			<foreach item="type" collection="cri.typeArr">
+				<trim prefix="OR">
+					<choose>
+						<when test="type == 'T'.toString()">
+							title LIKE CONCAT('%', #{cri.keyword}, '%')
+						</when>
+						<when test="type == 'C'.toString()">
+							content LIKE CONCAT('%', #{cri.keyword}, '%')
+						</when>
+						<when test="type == 'W'.toString()">
+							writer LIKE CONCAT('%', #{cri.keyword}, '%')
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
 	</sql>
 
 
 	<!-- 총 게시물 개수 세기 -->
 	<select id="getTotalNum" resultType="Integer">
-		select count(title) from notice
+	SELECT count(*) FROM notice
+	WHERE <include refid="criteria"/>1=1 
 	</select>
 
 	<!-- 2.글보기(view) -->
 	<select id="view" resultType="com.mycloset.notice.vo.NoticeVO">
-		select no, title,content, writer, writeDate, endDate
+		select no, title,content, writer,
+		writeDate, endDate
 		from notice
 		where no =
 		#{no}
@@ -78,14 +97,17 @@
 
 	<!-- 3.글쓰기(write) -->
 	<insert id="write">
-		insert into notice(title, content, writer, writeDate, endDate)
+		insert into notice(title, content, writer, writeDate,
+		endDate)
 		values(#{title}, #{content}, #{writer}, CURDATE(), #{endDate})
 	</insert>
 	<!-- 4. 수정(update) -->
 	<update id="update">
-		update notice set title=#{title}, content=#{content}, writer=#{writer},
+		update notice set title=#{title}, content=#{content},
+		writer=#{writer},
 		writeDate=CURDATE(), endDate=#{endDate}
-		where no = #{no}
+		where no =
+		#{no}
 	</update>
 	<!-- 5. 삭제(delete) -->
 	<delete id="delete">

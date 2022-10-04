@@ -57,7 +57,7 @@ public class ClosetService {
 	
 	
 	//총 옷 개수 세기
-	public int getTotalNum() throws Exception {
-		return mapper.getTotalNum();
+	public int getTotalNum(Critera cri) throws Exception {
+		return mapper.getTotalNum(cri);
 	}
 }

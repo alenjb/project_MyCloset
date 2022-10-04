@@ -88,9 +88,7 @@
 	$(function() {
 		$(".dataRow").click(function() {
 			// 							var no = $(this).find(".no").text();
-			location = "view?member_id=" + $(this).find(".id").text();
-			// 									+ "&inc=1"
-			// 									+ "&page=${pageObject.page}&perPageNum=${pageObject.perPageNum}&key=${pageObject.key}&word=${pageObject.word}&period=${pageObject.period}";
+			location = "view?member_id=" + $(this).find(".id").text() +"&type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}";
 
 		});
 
@@ -229,8 +227,8 @@
 										class="row">
 										<div class="col-sm-6">
 											<select name="type" class="form-select form-select-sm col-6">
-											<option value=""
-													<c:out value="${pageMaker.cri.type ==null?'selected':''}"/>>--</option>
+												<option value="ING"
+													<c:out value="${pageMaker.cri.type eq 'ING'?'selected':''}"/>>전체</option>
 												<option value="I"
 													<c:out value="${pageMaker.cri.type eq 'I'?'selected':''}"/>>아이디</option>
 												<option value="N"
@@ -239,15 +237,12 @@
 													<c:out value="${pageMaker.cri.type eq 'G'?'selected':''}"/>>회원등급</option>
 												<option value="IN"
 													<c:out value="${pageMaker.cri.type eq 'IN'?'selected':''}"/>>아이디/이름</option>
-												<option value="ING"
-													<c:out value="${pageMaker.cri.type eq 'ING'?'selected':''}"/>>전체</option>
 											</select>
 										</div>
 										<div class="col-sm-6">
 											<!-- 페이지에 관한 정보 클릭한 링크로 날리기 -->
 <!-- 											<input type="text" class="form-control border-0 shadow-none col-6" -->
 <!-- 												placeholder="검색" name="keyword" />  -->
-												<input type="hidden" name="type" value='<c:out value="${pageMaker.cri.type}"/>'> 												
 												<input type="text" class="form-control border-0 shadow-none" placeholder="검색" name="keyword"/>											
 												<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}"> 
 												<input type="hidden" name="amount" value="${pageMaker.cri.amount}">

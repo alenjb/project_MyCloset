@@ -55,8 +55,8 @@ public class NoticeService {
 		return mapper.delete(no);
 	}
 	//6. 총 게시물 개수 세기
-	public int getTotalNum() throws Exception {
-		return mapper.getTotalNum();
+	public int getTotalNum(Critera cri) throws Exception {
+		return mapper.getTotalNum(cri);
 	}
 
 }

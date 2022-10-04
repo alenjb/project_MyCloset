@@ -28,5 +28,5 @@ public interface ClosetMapper {
 	public int delete(ClosetVO vo) throws Exception;
 	
 	//총 옷 개수 세기
-	public int getTotalNum() throws Exception;
+	public int getTotalNum(@Param("cri")Critera cri) throws Exception;
 }

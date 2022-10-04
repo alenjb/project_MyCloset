@@ -100,7 +100,24 @@ $(function () {
 		});
 	$("#updateBtn").click(function() {
 		location = "update?fitting_id=" + ${vo.fitting_id} ;
-	});		
+	});
+	//검색 버튼
+	var searchForm = $("#searchForm");
+	$("#searchBtn").on("click", function(e) {
+		if(!searchForm.find("option:selected").val()){
+			alert("검색 종류를 입력하세요");
+			return false;
+		}
+		if(!searchForm.find("input[name='keyword']").val()){
+			alert("키워드를 입력하세요");
+			return false;
+		}
+		
+		searchForm.find("input[name='pageNum']").val("1");
+		e.preventDefault();
+		
+		searchForm.submit();
+	});
 // //버튼 누르면 닫기로 닫기
 // 	$(".collapseBtn").click(
 // 		function (e) {
@@ -192,7 +209,7 @@ $(function () {
 
 			<!-- Layout container -->
 			<div class="layout-page">
-				<!-- Navbar -->
+<!-- Navbar -->
 
 				<nav
 					class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
@@ -209,28 +226,37 @@ $(function () {
 						<!-- Search -->
 						<div class="navbar-nav align-items-center">
 							<div class="nav-item d-flex align-items-center">
-								<div>
-									<form>
-										<select name="key" id="key" class="form-select form-select-sm">
-											<option value="t" ${(pageObject.key =="t") ? "seleted":""}>제목</option>
-											<option value="c" ${(pageObject.key =="c") ? "seleted":""}>내용</option>
-											<option value="w" ${(pageObject.key =="w") ? "seleted":""}>작성자</option>
-											<option value="tc" ${(pageObject.key =="tc") ? "seleted":""}>제목/내용</option>
-											<option value="tcw"
-												${(pageObject.key =="tcw") ? "seleted":""}>전체</option>
-										</select>
+								<div class="row">
+									<form id="searchForm" action="/fitting/list" method="get"
+										class="row">
+										<div class="col-sm-6">
+											<select name="type" class="form-select form-select-sm col-6">
+												<option value="NS"
+													<c:out value="${pageMaker.cri.type eq 'NS'?'selected':''}"/>>전체</option>
+												<option value="N"
+													<c:out value="${pageMaker.cri.type eq 'N'?'selected':''}"/>>이름</option>
+												<option value="S"
+													<c:out value="${pageMaker.cri.type eq 'S'?'selected':''}"/>>계절</option>
+											</select>
+										</div>
+										<div class="col-sm-6">
+											<!-- 페이지에 관한 정보 클릭한 링크로 날리기 -->
+<!-- 											<input type="text" class="form-control border-0 shadow-none col-6" -->
+<!-- 												placeholder="검색" name="keyword" />  -->
+												<input type="text" class="form-control border-0 shadow-none" placeholder="검색" name="keyword"/>											
+												<input type="hidden" name="pageNum" value="${cri.pageNum}"> 
+												<input type="hidden" name="amount" value="${cri.amount}">
+										</div>
 									</form>
 								</div>
 								<!--검색 창 -->
 								<div class="row">
-									<div class="col-9">
-										<form>
-											<input type="text" class="form-control border-0 shadow-none"
-												placeholder="검색" name="word" value="${pageObject.word }" />
-										</form>
-									</div>
+									<!-- 									<div class="col-9"> -->
+									<!-- 									<form> -->
+									<!-- 									</form> -->
+									<!-- 									</div> -->
 									<div class="input-group-btn col-3">
-										<button class="btn btn-default" type="submit">
+										<button class="btn btn-default" id="searchBtn" type="submit">
 											<i class="bx bx-search fs-4 lh-0"></i>
 										</button>
 									</div>
@@ -246,7 +272,7 @@ $(function () {
 								<a class="nav-link dropdown-toggle hide-arrow"
 								href="javascript:void(0);" data-bs-toggle="dropdown">
 									<div class="avatar avatar-online">
-										<img src="/resources/assets/img/avatars/1.png" alt="이미지"
+										<img src="/resources/assets/img/avatars/1.png" alt
 											class="w-px-40 h-auto rounded-circle" />
 									</div>
 							</a>
@@ -407,7 +433,8 @@ $(function () {
 								</div>
 								<div class="mt-2">
 									<!--                           <a href="/member/myPage"><button type="submit" class="btn btn-primary me-2" >수정완료</button></a> -->
-									<button type="button" class="btn btn-primary me-2" onclick="location.href='list'">리스트</button>
+									<button type="button" class="btn btn-primary me-2" 
+									onclick="location.href='list?type=${cri.type}&keyword=${cri.keyword}&pageNum=${cri.pageNum}&amount=${cri.amount}'">리스트</button>
 									<button type="button" class="btn btn-secondary me-2"
 										id="updateBtn">수정</button>
 									<button type="button" class="btn btn-success"

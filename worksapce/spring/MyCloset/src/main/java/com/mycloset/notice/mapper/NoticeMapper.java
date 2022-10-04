@@ -18,7 +18,7 @@ public interface NoticeMapper {
 //	public List<NoticeVO> list(Critera cri) throws Exception;
 
 	// 총 게시물 개수 세기
-	public int getTotalNum() throws Exception;
+	public int getTotalNum(@Param("cri")Critera cri) throws Exception;
 
 	// 2.글보기(view)
 	public NoticeVO view(long no) throws Exception;

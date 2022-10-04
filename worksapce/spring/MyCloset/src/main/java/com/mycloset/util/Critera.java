@@ -21,7 +21,6 @@ public class Critera {
 	}
 	
 	public String[] getTypeArr() {
-		System.out.println("getTypeArr");
 		return type == null? new String[] {}: type.split("");
 		
 	}

@@ -95,8 +95,7 @@
 							var no = $(this).find(".no").text();
 							location = "view?no="
 									+ no
-									+ "&inc=1"
-									+ "&page=${pageObject.page}&perPageNum=${pageObject.perPageNum}&key=${pageObject.key}&word=${pageObject.word}&period=${pageObject.period}";
+									+"&type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}";
 
 						});
 
@@ -116,6 +115,23 @@
 			actionForm.find("input[name='pageNum']").val(targetPage);
 			//form 전송
 			actionForm.submit();
+		});
+		//검색 버튼
+		var searchForm = $("#searchForm");
+		$("#searchBtn").on("click", function(e) {
+			if(!searchForm.find("option:selected").val()){
+				alert("검색 종류를 입력하세요");
+				return false;
+			}
+			if(!searchForm.find("input[name='keyword']").val()){
+				alert("키워드를 입력하세요");
+				return false;
+			}
+			
+			searchForm.find("input[name='pageNum']").val("1");
+			e.preventDefault();
+			
+			searchForm.submit();
 		});
 
 	});
@@ -207,36 +223,51 @@
 							class="bx bx-menu bx-sm"></i>
 						</a>
 					</div>
-
+					<!-- 맨 위 navbar -->
 					<div class="navbar-nav-right d-flex align-items-center"
 						id="navbar-collapse">
 						<!-- Search -->
 						<div class="navbar-nav align-items-center">
 							<div class="nav-item d-flex align-items-center">
-								<div>
-									<form>
-										<select name="key" id="key" class="form-select form-select-sm">
-											<option value="t" ${(pageObject.key =="t") ? "seleted":""}>제목</option>
-											<option value="c" ${(pageObject.key =="c") ? "seleted":""}>내용</option>
-											<option value="w" ${(pageObject.key =="w") ? "seleted":""}>작성자</option>
-											<option value="tc" ${(pageObject.key =="tc") ? "seleted":""}>제목/내용</option>
-											<option value="tcw"
-												${(pageObject.key =="tcw") ? "seleted":""}>전체</option>
-										</select>
-								</div>
-								<!--                   검색 창 -->
 								<div class="row">
-									<div class="col-9">
-										<input type="text" class="form-control border-0 shadow-none"
-											placeholder="검색" name="word" value="${pageObject.word }" />
-									</div>
+									<form id="searchForm" action="/notice/list" method="get"
+										class="row">
+										<div class="col-sm-6">
+											<select name="type" class="form-select form-select-sm col-6">
+												<option value="TCW"
+													<c:out value="${pageMaker.cri.type eq 'TCW'?'selected':''}"/>>전체</option>
+												<option value="T"
+													<c:out value="${pageMaker.cri.type eq 'T'?'selected':''}"/>>제목</option>
+												<option value="C"
+													<c:out value="${pageMaker.cri.type eq 'C'?'selected':''}"/>>내용</option>
+												<option value="W"
+													<c:out value="${pageMaker.cri.type eq 'W'?'selected':''}"/>>작성자</option>
+												<option value="TC"
+													<c:out value="${pageMaker.cri.type eq 'TC'?'selected':''}"/>>제목/내용</option>
+											</select>
+										</div>
+										<div class="col-sm-6">
+											<!-- 페이지에 관한 정보 클릭한 링크로 날리기 -->
+<!-- 											<input type="text" class="form-control border-0 shadow-none col-6" -->
+<!-- 												placeholder="검색" name="keyword" />  -->
+												<input type="text" class="form-control border-0 shadow-none" placeholder="검색" name="keyword"/>											
+												<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}"> 
+												<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
+										</div>
+									</form>
+								</div>
+								<!--검색 창 -->
+								<div class="row">
+									<!-- 									<div class="col-9"> -->
+									<!-- 									<form> -->
+									<!-- 									</form> -->
+									<!-- 									</div> -->
 									<div class="input-group-btn col-3">
-										<button class="btn btn-default" type="submit">
+										<button class="btn btn-default" id="searchBtn" type="submit">
 											<i class="bx bx-search fs-4 lh-0"></i>
 										</button>
 									</div>
 								</div>
-								</form>
 							</div>
 						</div>
 						<!-- /Search -->
@@ -271,18 +302,17 @@
 										<div class="dropdown-divider"></div>
 									</li>
 									<li><a class="dropdown-item" href="/member/myPage"> <i
-											class="bx bx-user me-2"></i> <span class="align-middle">My
-												Profile</span>
+											class="bx bx-user me-2"></i> <span class="align-middle">내
+												프로필</span>
 									</a></li>
 									<li><a class="dropdown-item" href="setting"> <i
-											class="bx bx-cog me-2"></i> <span class="align-middle">Settings</span>
+											class="bx bx-cog me-2"></i> <span class="align-middle">환경설정</span>
 									</a></li>
 									<li>
 										<div class="dropdown-divider"></div>
 									</li>
 									<li><a class="dropdown-item" href="/member/login"> <i
-											class="bx bx-power-off me-2"></i> <span class="align-middle">Log
-												Out</span>
+											class="bx bx-power-off me-2"></i> <span class="align-middle">로그아웃</span>
 									</a></li>
 								</ul>
 							</li>
@@ -388,10 +418,15 @@
 						</div>
 						
 						<!-- 페이지에 관한 정보 클릭한 링크로 날리기 -->
-						<form id='actionForm' action="/closet/list" method="get">
+						<hr class="my-5" />
+						<form id="actionForm" action="/notice/list" method="get">
 							<input type="hidden" name="pageNum"
 								value="${pageMaker.cri.pageNum}"> <input type="hidden"
-								name="amount" value="${pageMaker.cri.amount}">
+								name="amount" value="${pageMaker.cri.amount}"> <input
+								type="hidden" name="type"
+								value='<c:out value="${pageMaker.cri.type}"/>'> <input
+								type="hidden" name="keyword"
+								value='<c:out value="${pageMaker.cri.keyword}"/>'>
 						</form>
 
 						<!--/ Basic Pagination -->
