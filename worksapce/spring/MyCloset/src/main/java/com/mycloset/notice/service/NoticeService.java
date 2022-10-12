@@ -22,12 +22,13 @@ public class NoticeService {
 	private NoticeMapper mapper;
 
 	// 페이징을 적용해 리스트 가져오기
-	public List<NoticeVO> getListWithPaging(@Param("cri") Critera cri, @Param("limitMax") int limitMax)
+	public List<NoticeVO> getListWithPaging(Critera cri, int limitMax)
 			throws Exception {
 		int pageNum = cri.getPageNum();
 		int amount = cri.getAmount();
 		limitMax = pageNum * amount;
-		return mapper.getListWithPaging(cri, limitMax);
+		int startNum = limitMax - cri.getAmount() +1;
+		return mapper.getListWithPaging(cri, startNum);
 	}
 
 	// 2.글보기(view)

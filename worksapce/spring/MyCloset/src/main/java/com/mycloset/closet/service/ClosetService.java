@@ -33,7 +33,8 @@ public class ClosetService {
 		int pageNum = cri.getPageNum();
 		int amount = cri.getAmount();
 		limitMax= pageNum * amount; 
-		return mapper.getListWithPaging(cri, limitMax);
+		int startNum = limitMax - cri.getAmount() +1;
+		return mapper.getListWithPaging(cri, startNum);
 	}
 	
 	

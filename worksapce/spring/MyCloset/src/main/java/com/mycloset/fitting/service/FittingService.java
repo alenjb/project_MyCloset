@@ -49,7 +49,8 @@ public class FittingService {
 		int pageNum = cri.getPageNum();
 		int amount = cri.getAmount();
 		limitMax= pageNum * amount; 
-		return mapper.getListWithPaging(cri, limitMax);
+		int startNum = limitMax - cri.getAmount() +1;
+		return mapper.getListWithPaging(cri, startNum);
 	}
 	//총 피팅 개수 세기
 	public int getTotalNum(Critera cri) throws Exception {

@@ -84,9 +84,10 @@
 		fitting_season,
 		fitting_price
 		FROM fitting
-		WHERE]]>
-		<include refid="criteria" /> <![CDATA[(@rownum:=0)=0]]>
-		limit 0, #{limitMax}
+		WHERE 1=1 ]]>
+		<include refid="criteria" /> 
+<!-- 		<![CDATA[(@rownum:=0)=0]]> -->
+		LIMIT #{startNum}, #{cri.amount}
 		<!-- limit (#{pageNum}-1) * #{amount}, #{pageNum} * #{amount} -->
 	</select>
 	<!-- 검색 -->

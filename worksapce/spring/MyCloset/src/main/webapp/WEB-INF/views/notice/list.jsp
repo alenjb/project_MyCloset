@@ -333,7 +333,7 @@
 						<c:if test="${grade eq '관리자'}">
 						<div class="demo-inline-spacing">
 							<button type="button" class="btn btn-primary"
-								onclick="location.href='write?perPageNum=${pageObject.perPageNum }'">글쓰기</button>
+								onclick="location.href='write?type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}'">글쓰기</button>
 						</div>
 						</c:if>
 						<!-- 		!글쓰기 버튼 -->
@@ -372,7 +372,7 @@
 														</button>
 														<div class="dropdown-menu">
 															<a class="dropdown-item"
-																href="update?no=${vo.no }&inc=0&page=${param.page}&perPageNum=${param.perPageNum}&key=${param.key}&word=${param.word}"><i
+																href="update?no=${vo.no}&type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}"><i
 																class="bx bx-edit-alt me-1"></i> 수정</a> <a
 																class="dropdown-item" href="javascript:void(0);"><i
 																class="bx bx-trash me-1"></i> 삭제</a>
@@ -402,7 +402,7 @@
 									<c:forEach var="num" begin="${pageMaker.startPage}"
 										end="${pageMaker.endPage}">
 										<li class="page-item ${pageMaker.cri.pageNum== num ? "active":""}">
-											<a class="page-link" href="list?page=${num}">${num}</a>
+											<a class="page-link" href="${num}">${num}</a>
 										</li>
 									</c:forEach>
 									<c:if test="${pageMaker.next }">

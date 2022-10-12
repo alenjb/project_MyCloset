@@ -34,6 +34,6 @@ public interface NoticeMapper {
 	public int delete(long no) throws Exception;
 
 	// 6. 페이지 처리와 함께 리스트를 가져오기
-	public List<NoticeVO> getListWithPaging(@Param("cri") Critera cri, @Param("limitMax") int limitMax);
+	public List<NoticeVO> getListWithPaging(@Param("cri") Critera cri, @Param("startNum")int startNum);
 
 }

@@ -31,9 +31,10 @@
 		ORDER BY writeDate DESC
 		) AS A, (SELECT @ROWNUM:=0) AS B
 		) AS C
-		WHERE]]>
-		<include refid="criteria" /> <![CDATA[(@rownum:=0)=0]]>
-		limit 0, #{limitMax}
+		WHERE 1=1]]>
+		<include refid="criteria" /> 
+<!-- 		<![CDATA[(@rownum:=0)=0]]> -->
+		LIMIT #{startNum}, #{cri.amount}
 	</select>
 
 	<!-- <select id="list" resultType="com.mycloset.notice.vo.NoticeVO"> -->

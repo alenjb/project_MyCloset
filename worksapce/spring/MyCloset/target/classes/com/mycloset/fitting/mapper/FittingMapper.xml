@@ -17,7 +17,8 @@
 		member_id
 		) SELECT
 		A.clothes_id AS outer_clothes_id,
-		B.clothes_id AS top_clothes_id,
+		B.clothes_id AS
+		top_clothes_id,
 		C.clothes_id AS bottom_clothes_id,
 		#{fitting_name}
 		fitting_name,
@@ -36,7 +37,8 @@
 		FROM closet
 		WHERE
 		member_id =#{member_id} AND
-		clothes_photo LIKE #{top_clothes_photo}) B
+		clothes_photo LIKE
+		#{top_clothes_photo}) B
 		JOIN
 		(SELECT clothes_id, clothes_purchase_price
 		FROM closet
@@ -69,7 +71,7 @@
 	<select id="getListWithPaging"
 		resultType="com.mycloset.fitting.vo.FittingVO">
 	<![CDATA[
-		select 
+		SELECT
 		@rownum:= @rownum +1 rownum, 
 		fitting_id,	
 		outer_clothes_id,
@@ -81,14 +83,31 @@
 		fitting_open_range,
 		fitting_season,
 		fitting_price
-		from fitting
-		where (@rownum:=0)=0
-		limit 0, #{limitMax}
-
-		]]>
+		FROM fitting
+		WHERE 1=1 ]]>
+		<include refid="criteria" /> 
+<!-- 		<![CDATA[(@rownum:=0)=0]]> -->
+		LIMIT #{startNum}, #{cri.amount}
 		<!-- limit (#{pageNum}-1) * #{amount}, #{pageNum} * #{amount} -->
 	</select>
-
+	<!-- 검색 -->
+	<sql id="criteria">
+		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
+			<foreach item="type" collection="cri.typeArr">
+				<trim prefix="OR">
+					<choose>
+						<when test="type == 'S'.toString()">
+							fitting_season LIKE CONCAT('%', #{cri.keyword},
+							'%')
+						</when>
+						<when test="type == 'N'.toString()">
+							fitting_name LIKE CONCAT('%', #{cri.keyword}, '%')
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
 	<!-- 피팅 보기 -->
 	<select id="view" resultType="com.mycloset.fitting.vo.FittingVO">
 		SELECT
@@ -111,7 +130,7 @@
 		SELECT
 		*
 		FROM
-		
+
 		(SELECT
 		clothes_photo AS top_clothes_photo
 		FROM closet,
@@ -122,11 +141,15 @@
 		WHERE
 		fitting_id =#{fitting_id} ) BB
 		WHERE
-		closet.member_id =#{member_id} AND
+		closet.member_id
+		=#{member_id}
+		AND
 		clothes_id =BB.top_clothes_id) B
 
 		JOIN
-		(SELECT clothes_photo AS outer_clothes_photo
+		(SELECT
+		clothes_photo AS
+		outer_clothes_photo
 		FROM
 		closet,
 		(SELECT
@@ -134,12 +157,14 @@
 		FROM
 		fitting
 		WHERE
-		fitting_id =#{fitting_id} ) AA
+		fitting_id
+		=#{fitting_id} ) AA
 		WHERE
-		closet.member_id =#{member_id} AND 
+		closet.member_id =#{member_id}
+		AND
 		clothes_id = AA.outer_clothes_id) A
-		
-		JOIN		
+
+		JOIN
 		(SELECT clothes_photo AS
 		bottom_clothes_photo
 		FROM closet,
@@ -151,11 +176,12 @@
 		fitting_id
 		=#{fitting_id} ) CC
 		WHERE
-		closet.member_id =#{member_id} AND clothes_id
+		closet.member_id =#{member_id}
+		AND clothes_id
 		=CC.bottom_clothes_id) C
-		
+
 		JOIN
-		
+
 		(SELECT
 		*
 		FROM
@@ -166,31 +192,34 @@
 		) E
 
 		WHERE
-		#{fitting_id} = fitting_id
+		#{fitting_id} =
+		fitting_id
 		AND
-		E.member_id = #{member_id}
+		E.member_id =
+		#{member_id}
 	</select>
 
 	<!-- 피팅 수정 -->
 	<update id="update">
 		update fitting
 		set
-			outer_clothes_id =#{outer_clothes_id},
-			top_clothes_id =#{top_clothes_id},
-			bottom_clothes_id =#{bottom_clothes_id},
-			fitting_name =#{fitting_name},
-			fitting_info = #{fitting_info},
-			fitting_open_range =#{fitting_open_range},
-			<if test="fitting_image != null">
-				fitting_image =#{fitting_image},
-			</if>
-			fitting_season =#{fitting_season},
-			fitting_price =#{fitting_price}
+		outer_clothes_id =#{outer_clothes_id},
+		top_clothes_id
+		=#{top_clothes_id},
+		bottom_clothes_id =#{bottom_clothes_id},
+		fitting_name =#{fitting_name},
+		fitting_info = #{fitting_info},
+		fitting_open_range =#{fitting_open_range},
+		<if test="fitting_image != null">
+			fitting_image =#{fitting_image},
+		</if>
+		fitting_season =#{fitting_season},
+		fitting_price =#{fitting_price}
 		where fitting_id = #{fitting_id}
 		<!-- where member_id= #{member_id} -->
 	</update>
 
-	<!--  삭제 -->
+	<!-- 삭제 -->
 	<delete id="delete">
 		delete from fitting
 		where fitting_id = #{fitting_id}
@@ -207,41 +236,52 @@
 
 	<!-- 피팅 총 개수 세기 -->
 	<select id="getTotalNum" resultType="Integer">
-		select count(clothes_id)
-		from closet
+		SELECT count(*) FROM fitting
+		WHERE
+		<include refid="criteria" />
+		1=1
 	</select>
 	<select id="getClothesIdAndPrice" resultType="hashmap">
 		SELECT
 		<if test="outer_clothes_photo != null">
-		outer_clothes_id, 
+			outer_clothes_id,
 		</if>
 		top_clothes_id, bottom_clothes_id, (
 		<if test="outer_clothes_photo != null">
-		outer_price + 
-		</if>		
+			outer_price +
+		</if>
 		top_price + bottom_price) AS price
 		FROM
-		(SELECT 
-		clothes_id AS top_clothes_id, clothes_purchase_price AS top_price
-		FROM 
+		(SELECT
+		clothes_id AS
+		top_clothes_id, clothes_purchase_price AS top_price
+		FROM
 		closet
-		WHERE member_id =#{member_id} AND clothes_photo = #{top_clothes_photo}) B
+		WHERE
+		member_id =#{member_id} AND clothes_photo =
+		#{top_clothes_photo}) B
 
 		<if test="outer_clothes_photo != null">
+			JOIN
+			(SELECT
+			clothes_id AS outer_clothes_id,
+			clothes_purchase_price AS outer_price
+			FROM
+			closet
+			WHERE member_id
+			=#{member_id} AND clothes_photo = #{outer_clothes_photo})
+			A
+		</if>
+
 		JOIN
 		(SELECT
-		clothes_id AS outer_clothes_id, clothes_purchase_price AS outer_price
-		FROM 
+		clothes_id AS bottom_clothes_id, clothes_purchase_price AS
+		bottom_price
+		FROM
 		closet
-		WHERE member_id =#{member_id} AND clothes_photo = #{outer_clothes_photo}) A
-		</if>
-		
-		JOIN
-		(SELECT 
-		clothes_id AS bottom_clothes_id, clothes_purchase_price AS bottom_price
-		FROM 
-		closet
-		WHERE member_id =#{member_id} AND clothes_photo = #{bottom_clothes_photo}) C
+		WHERE member_id =#{member_id} AND clothes_photo
+		=
+		#{bottom_clothes_photo}) C
 	</select>
-	
+
 </mapper>

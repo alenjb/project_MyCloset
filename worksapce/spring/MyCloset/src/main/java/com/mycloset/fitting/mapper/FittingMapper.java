@@ -27,7 +27,7 @@ public interface FittingMapper {
 	public int delete(FittingVO vo) throws Exception;
 	
 	// 페이지 처리와 함께 리스트를 가져오기
-	public List<FittingVO> getListWithPaging(@Param("cri") Critera cri, @Param("limitMax") int limitMax);
+	public List<FittingVO> getListWithPaging(@Param("cri") Critera cri, @Param("startNum")int startNum);
 
 	// 총 피팅 개수 세기
 	public int getTotalNum(@Param("cri")Critera cri) throws Exception;
