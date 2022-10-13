@@ -1,3 +1,4 @@
+<%@page import="com.mycloset.member.vo.LoginVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -68,9 +69,15 @@
   </head>
 
   <body>
-    <!-- Layout wrapper -->
-    <div class="layout-wrapper layout-content-navbar">
-      <div class="layout-container">
+  <%
+	LoginVO value = (LoginVO) session.getAttribute("login");
+	//session.getAttribute()는 object테이터타입이기에 명시적형변환으로 (String)을 해줘야한다.
+	String id = value.getMember_id();
+	String grade = value.getMember_grade();
+	%>
+	<!-- Layout wrapper -->
+	<div class="layout-wrapper layout-content-navbar">
+		<div class="layout-container">
 			<!-- Menu -->
 
 			<aside id="layout-menu"
@@ -97,11 +104,10 @@
 					</a></li>
 					<!-- 회원관리페이지 -->
 					<c:if test="${grade eq '관리자'}">
-						<li class="menu-item"><a href="/admin/list"
-							class="menu-link"> <i
-								class="menu-icon tf-icons bx bx-dock-top"></i>
+						<li class="menu-item"><a href="/admin/list" class="menu-link">
+								<i class="menu-icon tf-icons bx bx-dock-top"></i>
 								<div>회원관리</div>
-						</a></li>											
+						</a></li>
 					</c:if>
 					<!-- 마이페이지 -->
 					<li class="menu-item"><a href="/member/myPage"
@@ -131,7 +137,7 @@
 			</aside>
 			<!-- / Menu -->
 
-        <!-- Layout container -->
+			<!-- Layout container -->
         <div class="layout-page">
 
 
@@ -144,21 +150,6 @@
 
               <div class="row">
                 <div class="col-md-12">
-                  <ul class="nav nav-pills flex-column flex-md-row mb-3">
-                    <li class="nav-item">
-                      <a class="nav-link active" href="javascript:void(0);"><i class="bx bx-user me-1"></i> Account</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="pages-account-settings-notifications.html"
-                        ><i class="bx bx-bell me-1"></i> Notifications</a
-                      >
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="pages-account-settings-connections.html"
-                        ><i class="bx bx-link-alt me-1"></i> Connections</a
-                      >
-                    </li>
-                  </ul>
                   <div class="card mb-4">
                     <h5 class="card-header">회원정보</h5>
 <%--                     </c:forEach> --%>

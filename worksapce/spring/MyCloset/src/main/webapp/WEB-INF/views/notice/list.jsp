@@ -93,8 +93,7 @@
 				.click(
 						function() {
 							var no = $(this).find(".no").text();
-							location = "view?no="
-									+ no
+							location = "view?no=" + no
 									+"&type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}";
 
 						});

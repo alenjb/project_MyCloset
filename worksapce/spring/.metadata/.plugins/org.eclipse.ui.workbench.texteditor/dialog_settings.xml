@@ -6,8 +6,10 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="글쓰기"/>
+		<item key="selection" value="title"/>
 		<list key="findhistory">
+			<item value="title="/>
+			<item value="title"/>
 			<item value="글쓰기"/>
 			<item value="par"/>
 			<item value="inc"/>
@@ -21,8 +23,6 @@
 			<item value="여저"/>
 			<item value="sex"/>
 			<item value="face"/>
-			<item value="select"/>
-			<item value="grad"/>
 		</list>
 		<list key="replacehistory">
 			<item value="&gt;&lt;"/>

@@ -1,6 +1,5 @@
 package com.mycloset.notice.controller;
 
-import java.net.URLEncoder;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -13,13 +12,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.mycloset.closet.vo.ClosetVO;
-import com.mycloset.member.vo.LoginVO;
 import com.mycloset.notice.service.NoticeService;
 import com.mycloset.notice.vo.NoticeVO;
 import com.mycloset.util.Critera;
 import com.mycloset.util.PageDTO;
-import com.webjjang.util.PageObject;
 
 import lombok.extern.log4j.Log4j;
 
@@ -84,10 +80,10 @@ public class NoticeController {
 
 	// 3-2 write
 	@PostMapping("/write")
-	public String write(NoticeVO vo, PageObject pageObject, HttpServletResponse response) throws Exception {
+	public String write(NoticeVO vo, Critera cri, HttpServletResponse response) throws Exception {
 		System.out.println("NoticeController.write().vo - " + vo);
 		service.write(vo);
-		return "redirect:list?page=1&perPageNum=" + pageObject.getPerPageNum();
+		return "redirect:list?pageNum="+cri.getPageNum()+"&amount="+cri.getAmount();
 	}
 
 	// 4. 수정(update)
@@ -97,24 +93,23 @@ public class NoticeController {
 	public String updateForm(long no, Model model) throws Exception {
 		System.out.println("updateForm().no-" + no);
 		model.addAttribute("vo", service.view(no));
-		return "notice/update";
+		return "notice/update?type="+cri.getType()+"&keyword="+cri.getKeyword()+"&pageNum="+cri.getPageNum()+"&amount="+cri.getAmount();
 	}
 
 	// 4-2 update
 	@PostMapping("/update")
-	public String update(NoticeVO vo, PageObject pageObject, HttpServletResponse response) throws Exception {
+	public String update(NoticeVO vo, Critera cri, HttpServletResponse response) throws Exception {
 		System.out.println("NoticeController.update().vo - " + vo);
 		service.update(vo);
-		return "redirect:list?page=" + pageObject.getPage() + "&perPageNum=" + pageObject.getPerPageNum() + "&key="
-				+ pageObject.getKey() + "&word=" + URLEncoder.encode(pageObject.getKey(), "utf-8");
-	}
+		return "redirect:list?type="+cri.getType()+"&keyword="+cri.getKeyword()+"&pageNum="+cri.getPageNum()+"&amount="+cri.getAmount();
+		}
 
 	// 5. 삭제(delete)
 	@GetMapping("/delete")
-	public String delete(long no, PageObject pageObject) throws Exception {
+	public String delete(long no, Critera cri) throws Exception {
 		System.out.println("delete().no-" + no);
 		service.delete(no);
-		return "redirect:list?page=1&perPageNum=" + pageObject.getPerPageNum();
+		return "redirect:list?pageNum="+cri.getPageNum()+"&amount="+cri.getAmount();
 	}
 
 //	//1.리스트(list)

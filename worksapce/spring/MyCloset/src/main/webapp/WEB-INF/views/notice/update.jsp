@@ -281,7 +281,12 @@
                             />
                           </div>
                         </div>
-
+						<input
+                              id="no"
+                              name="no"
+                              value="${vo.no}"
+                              hidden="hidden"
+                            />
                         <div class="row justify-content-end">
                           <div class="col-sm-10">
                             <button type="submit" class="btn btn-primary">수정</button>

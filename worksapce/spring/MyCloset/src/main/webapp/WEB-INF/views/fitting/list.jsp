@@ -165,7 +165,13 @@
 							<i class="menu-icon tf-icons bx bx-detail"></i>
 							<div>공지사항</div>
 					</a></li>
-
+					<!-- 회원관리페이지 -->
+					<c:if test="${grade eq '관리자'}">
+						<li class="menu-item"><a href="/admin/list" class="menu-link">
+								<i class="menu-icon tf-icons bx bx-dock-top"></i>
+								<div>회원관리</div>
+						</a></li>
+					</c:if>
 					<!-- 마이페이지 -->
 					<li class="menu-item"><a href="/member/myPage"
 						class="menu-link"> <i
@@ -180,8 +186,8 @@
 					</a></li>
 
 					<!-- 피팅룸 -->
-					<li class="menu-item"><a href=/fitting/list
-						" class="menu-link"> <i class="menu-icon tf-icons bx bx-crown"></i>
+					<li class="menu-item"><a href=/fitting/list" class="menu-link"> 
+					<i class="menu-icon tf-icons bx bx-crown"></i>
 							<div>피팅룸</div>
 					</a></li>
 
