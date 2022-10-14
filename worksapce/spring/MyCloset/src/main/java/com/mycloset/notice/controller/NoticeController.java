@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mycloset.notice.service.NoticeService;
 import com.mycloset.notice.vo.NoticeVO;
@@ -90,10 +91,10 @@ public class NoticeController {
 
 	// 4-1 updateForm2
 	@GetMapping("/update")
-	public String updateForm(long no, Model model) throws Exception {
+	public String updateForm(@RequestParam("no")long no, Model model, Critera cri) throws Exception {
 		System.out.println("updateForm().no-" + no);
 		model.addAttribute("vo", service.view(no));
-		return "notice/update?type="+cri.getType()+"&keyword="+cri.getKeyword()+"&pageNum="+cri.getPageNum()+"&amount="+cri.getAmount();
+		return "notice/update";
 	}
 
 	// 4-2 update
