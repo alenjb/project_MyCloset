@@ -28,7 +28,7 @@
 				writeDate, 
 				endDate
 				FROM notice
-		ORDER BY writeDate DESC
+		ORDER BY no DESC
 		) AS A, (SELECT @ROWNUM:=0) AS B
 		) AS C
 		WHERE 1=1]]>

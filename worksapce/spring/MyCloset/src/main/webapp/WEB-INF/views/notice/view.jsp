@@ -336,7 +336,7 @@
                   <button type="button" class="btn btn-primary me-1"
 										onclick="location.href='list?type=${cri.type}&keyword=${cri.keyword}&pageNum=${cri.pageNum}&amount=${cri.amount}'">리스트</button>
                   <button type="button" class="btn btn-secondary" 
-                  onclick="location.href='update?no=${vo.no }&type=${cri.type}&keyword=${cri.keyword}&pageNum=${cri.pageNum}&amount=${cri.amount}'">수정</button>
+                  onclick="location.href='update?no=${vo.no}&type=${cri.type}&keyword=${cri.keyword}&pageNum=${cri.pageNum}&amount=${cri.amount}'">수정</button>
                   <button type="button" class="btn btn-success" onclick="location.href='delete?no=${vo.no }&type=${cri.type}&keyword=${cri.keyword}&pageNum=${cri.pageNum}&amount=${cri.amount}'">삭제</button>
               </div>
               <!--/ Hoverable Table rows -->

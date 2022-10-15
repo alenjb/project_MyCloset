@@ -2,7 +2,7 @@ package com.mycloset.notice.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -43,7 +43,7 @@ public class NoticeController {
 		//페이지 관련 정보 담기
 		model.addAttribute("pageMaker", new PageDTO(cri, totalNum));
 
-		System.out.println(model);
+		/* System.out.println(model); */
 		return "notice/list";
 	}
 
@@ -81,7 +81,7 @@ public class NoticeController {
 
 	// 3-2 write
 	@PostMapping("/write")
-	public String write(NoticeVO vo, Critera cri, HttpServletResponse response) throws Exception {
+	public String write(NoticeVO vo, Critera cri, HttpServletRequest request) throws Exception {
 		System.out.println("NoticeController.write().vo - " + vo);
 		service.write(vo);
 		return "redirect:list?pageNum="+cri.getPageNum()+"&amount="+cri.getAmount();
@@ -94,12 +94,14 @@ public class NoticeController {
 	public String updateForm(@RequestParam("no")long no, Model model, Critera cri) throws Exception {
 		System.out.println("updateForm().no-" + no);
 		model.addAttribute("vo", service.view(no));
+		System.out.println("여기까지 실행");
 		return "notice/update";
 	}
 
 	// 4-2 update
 	@PostMapping("/update")
-	public String update(NoticeVO vo, Critera cri, HttpServletResponse response) throws Exception {
+	public String update(NoticeVO vo, Critera cri, HttpServletRequest request) throws Exception {
+		System.out.println("여기는?");
 		System.out.println("NoticeController.update().vo - " + vo);
 		service.update(vo);
 		return "redirect:list?type="+cri.getType()+"&keyword="+cri.getKeyword()+"&pageNum="+cri.getPageNum()+"&amount="+cri.getAmount();

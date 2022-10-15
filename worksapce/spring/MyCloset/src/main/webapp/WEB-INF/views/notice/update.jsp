@@ -262,7 +262,7 @@
                   <div class="card mb-4">
 
                     <div class="card-body">
-                      <form>
+                      <form method="post">
                         <div class="row mb-3">
                           <label class="col-sm-2 col-form-label" for="title">제목</label>
                           <div class="col-sm-10">
@@ -281,12 +281,10 @@
                             />
                           </div>
                         </div>
-						<input
-                              id="no"
-                              name="no"
-                              value="${vo.no}"
-                              hidden="hidden"
-                            />
+						<input id="no" name="no" value="${vo.no}" hidden="hidden"/>
+						<input id="writer" name="writer" value="${vo.writer}" hidden="hidden"/>
+						<input id="endDate" name="endDate" value="<fmt:formatDate value="${vo.endDate}" pattern="yyyy-MM-dd"/>" hidden="hidden"/>
+
                         <div class="row justify-content-end">
                           <div class="col-sm-10">
                             <button type="submit" class="btn btn-primary">수정</button>

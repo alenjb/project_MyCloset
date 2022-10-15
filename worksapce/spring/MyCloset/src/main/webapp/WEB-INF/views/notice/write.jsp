@@ -1,3 +1,4 @@
+<%@page import="com.mycloset.member.vo.LoginVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -79,6 +80,12 @@
   </head>
 
   <body>
+  <%
+	LoginVO value = (LoginVO) session.getAttribute("login");
+	//session.getAttribute()는 object테이터타입이기에 명시적형변환으로 (String)을 해줘야한다.
+	String id = value.getMember_id();
+	String grade = value.getMember_grade();
+	%>
     <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar">
       <div class="layout-container">
@@ -286,7 +293,7 @@
                           />
                         </div>
                       </div>
-						<input type="hidden" name="writer" value="${vo.writer }">
+						<input type="hidden" name="writer" value="<%=id%>">
                         <div class="row justify-content-end">
                           <div class="col-sm-10">
                             <button class="btn btn-primary">등록</button>

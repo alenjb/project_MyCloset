@@ -33,7 +33,6 @@ public class NoticeService {
 
 	// 2.글보기(view)
 	public NoticeVO view(long no) throws Exception {
-		System.out.println("NoticeService.view().no, inc - " + no);
 		return mapper.view(no);
 
 	}
