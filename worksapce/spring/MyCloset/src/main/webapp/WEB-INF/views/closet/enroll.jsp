@@ -76,6 +76,7 @@
 	//session.getAttribute()는 object테이터타입이기에 명시적형변환으로 (String)을 해줘야한다.
 	String id = value.getMember_id();
 	String grade = value.getMember_grade();
+	pageContext.setAttribute("grade", grade);
 	%>
 	
 	<!-- Layout wrapper -->
@@ -94,7 +95,7 @@
 				<ul class="menu-inner py-1 ps ps--active-y">
 					<!-- 홈 -->
 					<!--      	li 태그에 active 붙여주면 그 메뉴가 선택된 것으로 나옴  -->
-					<li class="menu-item"><a href="/mycloset/home"
+					<li class="menu-item"><a href="/member/home"
 						class="menu-link"> <i
 							class="menu-icon tf-icons bx bx-home-circle"></i>
 							<div>홈</div>

@@ -162,7 +162,7 @@
 				<ul class="menu-inner py-1 ps ps--active-y">
 					<!-- 홈 -->
 					<!--      	li 태그에 active 붙여주면 그 메뉴가 선택된 것으로 나옴  -->
-					<li class="menu-item"><a href="/mycloset/home"
+					<li class="menu-item"><a href="/member/home"
 						class="menu-link"> <i
 							class="menu-icon tf-icons bx bx-home-circle"></i>
 							<div>홈</div>
