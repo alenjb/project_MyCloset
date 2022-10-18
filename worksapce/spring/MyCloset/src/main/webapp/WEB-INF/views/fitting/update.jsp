@@ -126,167 +126,14 @@ $(function () {
 	String grade = value.getMember_grade();
 	pageContext.setAttribute("grade", grade);
 	%>
-
-	<!-- Layout wrapper -->
+<!-- Layout wrapper -->
 	<div class="layout-wrapper layout-content-navbar">
+		<!-- Layout container -->
 		<div class="layout-container">
-			<!-- Menu -->
-
-			<aside id="layout-menu"
-				class="layout-menu menu-vertical menu bg-menu-theme">
-				<div class="app-brand demo">
-					<a href="/mycloset/home" class="app-brand-link"> <span
-						class="app-brand-text demo menu-text fw-bolder ms-2">MyCloset</span>
-					</a>
-				</div>
-				<!-- 		메뉴 리스트 -->
-				<ul class="menu-inner py-1 ps ps--active-y">
-					<<!-- 홈 -->
-					<!--      	li 태그에 active 붙여주면 그 메뉴가 선택된 것으로 나옴  -->
-					<li class="menu-item"><a href="/member/home"
-						class="menu-link"> <i
-							class="menu-icon tf-icons bx bx-home-circle"></i>
-							<div>홈</div>
-					</a></li>
-
-					<!-- 공지사항 -->
-					<li class="menu-item"><a href="/notice/list" class="menu-link">
-							<i class="menu-icon tf-icons bx bx-detail"></i>
-							<div>공지사항</div>
-					</a></li>
-					<!-- 회원관리페이지 -->
-					<c:if test="${grade eq '관리자'}">
-						<li class="menu-item"><a href="/admin/list" class="menu-link">
-								<i class="menu-icon tf-icons bx bx-dock-top"></i>
-								<div>회원관리</div>
-						</a></li>
-					</c:if>
-					<!-- 마이페이지 -->
-					<li class="menu-item"><a href="/member/myPage"
-						class="menu-link"> <i
-							class="menu-icon tf-icons bx bx-dock-top"></i>
-							<div>마이페이지</div>
-					</a></li>
-
-					<!-- 내 옷장 -->
-					<li class="menu-item"><a href="/closet/list" class="menu-link">
-							<i class="menu-icon tf-icons bx bx-cube-alt"></i>
-							<div>내 옷장</div>
-					</a></li>
-
-					<!-- 피팅룸 -->
-					<li class="menu-item"><a href=/fitting/list
-						" class="menu-link"> <i class="menu-icon tf-icons bx bx-crown"></i>
-							<div>피팅룸</div>
-					</a></li>
-
-					<!-- QnA -->
-					<li class="menu-item"><a href="/qna/list;" class="menu-link">
-							<i class="menu-icon tf-icons bx bx-support"></i>
-							<div>QnA</div>
-					</a></li>
-				</ul>
-			</aside>
-			<!-- / Menu -->
-
-			<!-- Layout container -->
+			<%@ include file="/resources/js/navBar.jsp" %>
+			<!-- Layout Page -->
 			<div class="layout-page">
-				<!-- Navbar -->
-
-				<nav
-					class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
-					id="layout-navbar">
-					<div
-						class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
-						<a class="nav-item nav-link px-0 me-xl-4" href="/kkk"> <i
-							class="bx bx-menu bx-sm"></i>
-						</a>
-					</div>
-					<!-- 맨 위 navbar -->
-					<div class="navbar-nav-right d-flex align-items-center"
-						id="navbar-collapse">
-						<!-- Search -->
-						<div class="navbar-nav align-items-center">
-							<div class="nav-item d-flex align-items-center">
-								<div>
-									<form>
-										<select name="key" id="key" class="form-select form-select-sm">
-											<option value="t" ${(pageObject.key =="t") ? "seleted":""}>제목</option>
-											<option value="c" ${(pageObject.key =="c") ? "seleted":""}>내용</option>
-											<option value="w" ${(pageObject.key =="w") ? "seleted":""}>작성자</option>
-											<option value="tc" ${(pageObject.key =="tc") ? "seleted":""}>제목/내용</option>
-											<option value="tcw"
-												${(pageObject.key =="tcw") ? "seleted":""}>전체</option>
-										</select>
-								</div>
-								<!--검색 창 -->
-								<div class="row">
-									<div class="col-9">
-										<input type="text" class="form-control border-0 shadow-none"
-											placeholder="검색" name="word" value="${pageObject.word }" />
-									</div>
-									<div class="input-group-btn col-3">
-										<button class="btn btn-default" type="submit">
-											<i class="bx bx-search fs-4 lh-0"></i>
-										</button>
-									</div>
-								</div>
-								</form>
-							</div>
-						</div>
-						<!-- /Search -->
-
-						<ul class="navbar-nav flex-row align-items-center ms-auto">
-							<!-- Place this tag where you want the button to render. -->
-							<!-- User(내정보 보기) -->
-							<li class="nav-item navbar-dropdown dropdown-user dropdown">
-								<a class="nav-link dropdown-toggle hide-arrow"
-								href="javascript:void(0);" data-bs-toggle="dropdown">
-									<div class="avatar avatar-online">
-										<img src="/resources/assets/img/avatars/1.png" alt="이미지"
-											class="w-px-40 h-auto rounded-circle" />
-									</div>
-							</a>
-								<ul class="dropdown-menu dropdown-menu-end">
-									<li><a class="dropdown-item" href="#">
-											<div class="d-flex">
-												<div class="flex-shrink-0 me-3">
-													<div class="avatar avatar-online">
-														<img src="/resources/assets/img/avatars/1.png" alt
-															class="w-px-40 h-auto rounded-circle" />
-													</div>
-												</div>
-												<div class="flex-grow-1">
-													<span class="fw-semibold d-block"><%=id%></span> <small
-														class="text-muted"><%=grade%></small>
-												</div>
-											</div>
-									</a></li>
-									<li>
-										<div class="dropdown-divider"></div>
-									</li>
-									<li><a class="dropdown-item" href="/member/myPage"> <i
-											class="bx bx-user me-2"></i> <span class="align-middle">내
-												프로필</span>
-									</a></li>
-									<li><a class="dropdown-item" href="setting"> <i
-											class="bx bx-cog me-2"></i> <span class="align-middle">환경설정</span>
-									</a></li>
-									<li>
-										<div class="dropdown-divider"></div>
-									</li>
-									<li><a class="dropdown-item" href="/member/login"> <i
-											class="bx bx-power-off me-2"></i> <span class="align-middle">로그아웃</span>
-									</a></li>
-								</ul>
-							</li>
-							<!--/ User -->
-						</ul>
-					</div>
-				</nav>
-
-				<!-- / Navbar -->
-
+			<%@ include file="/resources/js/searchBar_fitting.jsp" %>
 				<!-- Content wrapper -->
 				<div class="content-wrapper">
 					<!-- Content -->
@@ -487,24 +334,16 @@ $(function () {
 									</div>
 								</div>
 							</div>
-							
 						</div>
-
 					</div>
+					<!-- Content -->
 				</div>
+				<!-- Content wrapper -->
 			</div>
-			<!-- / Content -->
-
-
-			<div class="content-backdrop fade"></div>
-		</div>
+			<!-- Layout Page -->
 		<!-- Content wrapper -->
-	</div>
-	<!-- / Layout page -->
-	</div>
-
-	<!-- Overlay -->
-	<div class="layout-overlay layout-menu-toggle"></div>
+		</div>
+		<!-- Layout container -->
 	</div>
 	<!-- / Layout wrapper -->
 

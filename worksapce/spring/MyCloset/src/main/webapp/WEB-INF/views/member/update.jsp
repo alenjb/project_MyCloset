@@ -125,13 +125,13 @@
 					</a></li>
 
 					<!-- 피팅룸 -->
-					<li class="menu-item"><a href=/fitting/list
+					<li class="menu-item"><a href="/fitting/list"
 						" class="menu-link"> <i class="menu-icon tf-icons bx bx-crown"></i>
 							<div>피팅룸</div>
 					</a></li>
 
 					<!-- QnA -->
-					<li class="menu-item"><a href="/qna/list;" class="menu-link">
+					<li class="menu-item"><a href="/qna/list" class="menu-link">
 							<i class="menu-icon tf-icons bx bx-support"></i>
 							<div>QnA</div>
 					</a></li>
