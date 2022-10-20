@@ -1,5 +1,6 @@
 package com.mycloset.member.controller;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.mycloset.member.service.MemberService;
 import com.mycloset.member.vo.LoginVO;
@@ -171,7 +173,38 @@ public class MemberController {
 
 	@PostMapping("/myPage/update")
 	public String myPageUpdate(MemberVO vo, HttpServletRequest request) throws Exception {
+		HttpSession session = request.getSession();
+		System.out.println(session.getAttribute("login"));
+		System.out.println("멤버VO: "+vo);
+		MultipartFile file = vo.getMember_faceFile();
+		log.info(vo.getMember_faceFile().getOriginalFilename());
+		if(!vo.getMember_faceFile().getOriginalFilename().equals("")) {
+			String uploadFolder = "D:\\jeongbin\\worksapce\\spring\\MyCloset\\src\\main\\webapp\\upload\\member";
+			File saveFile = new File(uploadFolder, file.getOriginalFilename());
+			try {
+				file.transferTo(saveFile);
+			} catch (Exception e) {
+				log.error(e.getMessage());
+			}
+			vo.setMember_face("\\upload\\member\\" + file.getOriginalFilename());			
+		}
+		else {
+			
+		}
 		service.update(vo);
+		//멤버 업데이트를 했기 때문에 로그인세션을 수정
+//		LoginVO LVO = new LoginVO();
+		LoginVO LVO = (LoginVO)session.getAttribute("login");
+		LVO.setMember_id(vo.getMember_id());
+		LVO.setMember_name(vo.getMember_name());
+		LVO.setMember_grade(vo.getMember_grade());
+		if(vo.getMember_face() != null) {
+			LVO.setMember_face(vo.getMember_face());			
+		}
+//		session.removeAttribute("login");
+//		session.setAttribute("login", service.login(LVO));
+		System.out.println("LVO: "+LVO);
+		
 		return "member/myPage";
 	}
 
