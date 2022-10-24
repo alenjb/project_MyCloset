@@ -27,7 +27,8 @@ public class NoticeService {
 		int pageNum = cri.getPageNum();
 		int amount = cri.getAmount();
 		limitMax = pageNum * amount;
-		int startNum = limitMax - cri.getAmount() +1;
+		int startNum = limitMax - cri.getAmount();
+		System.out.println("시작: "+startNum);
 		return mapper.getListWithPaging(cri, startNum);
 	}
 

@@ -72,7 +72,7 @@
 		resultType="com.mycloset.fitting.vo.FittingVO">
 	<![CDATA[
 		SELECT
-		@rownum:= @rownum +1 rownum, 
+		@rownum:= @rownum +1 rownum, ]]>
 		fitting_id,	
 		outer_clothes_id,
 		top_clothes_id,
@@ -84,8 +84,9 @@
 		fitting_season,
 		fitting_price
 		FROM fitting
-		WHERE 1=1 ]]>
+		WHERE 
 		<include refid="criteria" /> 
+		1=1 
 <!-- 		<![CDATA[(@rownum:=0)=0]]> -->
 		LIMIT #{startNum}, #{cri.amount}
 		<!-- limit (#{pageNum}-1) * #{amount}, #{pageNum} * #{amount} -->

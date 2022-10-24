@@ -20,7 +20,7 @@
 						<div class="navbar-nav align-items-center">
 							<div class="nav-item d-flex align-items-center">
 								<div class="row">
-									<form id="searchForm" action="/admin/list" method="get"
+									<form id="searchForm" action="/closet/list" method="get"
 										class="row">
 										<div class="col-sm-6">
 											<select name="type" class="form-select form-select-sm col-6">

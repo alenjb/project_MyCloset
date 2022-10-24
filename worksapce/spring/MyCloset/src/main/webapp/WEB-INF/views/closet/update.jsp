@@ -102,7 +102,6 @@
 							<span class="text-muted fw-light">내 옷장 /</span>
 							옷 정보
 						</h4>
-						<h4>${vo.member_id } </h4>
 						<div class="row">
 							<div class="col-md-12">
 								<div class="card mb-4">

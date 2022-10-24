@@ -28,36 +28,14 @@
 				writeDate, 
 				endDate
 				FROM notice
-		ORDER BY no DESC
-		) AS A, (SELECT @ROWNUM:=0) AS B
+		) AS A, (SELECT @ROWNUM:=0) AS B]]>
 		) AS C
-		WHERE 1=1]]>
+		WHERE 
 		<include refid="criteria" /> 
-<!-- 		<![CDATA[(@rownum:=0)=0]]> -->
+		1=1
+		ORDER BY no DESC
 		LIMIT #{startNum}, #{cri.amount}
 	</select>
-
-	<!-- <select id="list" resultType="com.mycloset.notice.vo.NoticeVO"> -->
-	<!-- <![CDATA[ -->
-	<!-- select no, title, writer, writeDate, endDate -->
-	<!-- from( -->
-	<!-- select (@ROWNUM:=@ROWNUM+1) AS RNUM, no, title, writer, writeDate, 
-		endDate -->
-	<!-- from( -->
-	<!-- select no, title, writer, writeDate, endDate -->
-	<!-- from notice -->
-	<!-- where 1=1]]> -->
-	<!-- <include refid="search"/> -->
-	<!-- <![CDATA[ -->
-	<!-- order by writeDate desc -->
-	<!-- ) AS A, (SELECT @ROWNUM:=0) AS B -->
-
-	<!-- ) AS C -->
-	<!-- WHERE C.RNUM <= #{pageNum} * #{amount} AND C.RNUM > (#{pageNum} - 1) 
-		* #{amount} -->
-	<!-- ]]> -->
-	<!-- </select> -->
-
 
 	<!-- 검색 처리 태그 -->
 	<sql id="criteria">

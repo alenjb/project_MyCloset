@@ -205,7 +205,7 @@ public class MemberController {
 //		session.setAttribute("login", service.login(LVO));
 		System.out.println("LVO: "+LVO);
 		
-		return "member/myPage";
+		return "redirect:/member/myPage";
 	}
 
 	@GetMapping("/myPage/delete")

@@ -7,7 +7,7 @@
 	<select id="getListWithPaging" resultType="com.mycloset.admin.vo.AdminVO">
 		<![CDATA[
 			SELECT 
-			@rownum:= @rownum +1 rownum, 
+			@rownum:= @rownum +1 rownum, ]]>
 			member_id, 
 			member_name, 
 			member_sex, 
@@ -22,9 +22,9 @@
 			member_grade,
 			member_status
 			FROM member
-			WHERE 1=1 
-			]]>
+			WHERE 
 			<include refid="criteria"/> 
+			1=1 
 <!-- 			<![CDATA[(@rownum:=0)=0]]> -->
 			ORDER BY member_reg_date DESC
 			LIMIT #{startNum}, #{cri.amount}

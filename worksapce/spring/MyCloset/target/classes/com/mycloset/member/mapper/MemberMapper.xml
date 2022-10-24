@@ -19,7 +19,7 @@
 
 <!-- 로그인 -->
 	<select id="login" resultType="com.mycloset.member.vo.LoginVO">
-		select member_id, member_name, member_grade
+		select member_id, member_name, member_grade, member_face
 		from member
 		where member_id = #{member_id} and member_password= #{member_password}
 	</select>
@@ -77,7 +77,10 @@
 		member_height=#{member_height}, 
 		member_top_size=#{member_top_size}, 
 		member_bottom_size=#{member_bottom_size},
-		member_shoes_size=#{member_shoes_size}
+		member_shoes_size=#{member_shoes_size},
+		<if test='#{member_face} !=null'>
+		member_face = #{member_face}
+		</if>
 		where member_id = #{member_id}
 	</update>
 <!-- 회원탈퇴 -->

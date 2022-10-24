@@ -157,7 +157,7 @@
 					<!-- Content -->
 
 					<div class="container-xxl flex-grow-1 container-p-y">
-						<h4 class="fw-bold py-3 mb-4">공지사항</h4>
+						<h4 class="fw-bold">공지사항</h4>
 						<!-- 		글쓰기 버튼 -->
 						<c:if test="${grade eq '관리자'}">
 						<div class="demo-inline-spacing">
