@@ -71,6 +71,8 @@
 </style>
 <script type="text/javascript">
 	$(function() {
+		var fit= "1";
+		var fit2="2";
 		$(".fittingOverView").click(function() {
 			location = "view?fitting_id=" + $(this).find(".fitting_id").text()+"&type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}";
 
@@ -106,28 +108,95 @@
 			searchForm.submit();
 		});
 		
-		// public 안보이게 클릭
-		$("#flexSwitchCheckChecked1").click(function() {
+		// public 버튼 클릭시
+		$("#flexSwitchCheckChecked1").on("click", function(e) {
 			//체크 되면 public 보임
 			var checked = $("#flexSwitchCheckChecked1").is(':checked');
-			//public을 안보겠다고 하면
-			// 			if (!checked){
-
-			// 				var result = new Array();
-			// 				<c:forEach items="${fittings}" var="vo">
-			// 					var json = new Object();
-			// 					json.name="${vo.fitting_name}";
-			// 					result.push(json);
-
-			// 				</c:forEach>
-			// 				console.log(JSON.stringify(result));
-
-			// 				 if ($('.fitting_open_range').text() =="public"){
-			// 					 console.log("zzz");
-			// 					 var div = document.getElementById('fittingDiv').style="display:none";
-			// 					 }
-			// 				}
+			var result = new Array();
+			<c:forEach items="${fittings}" var="vo">
+				var json = new Object();
+				json.name="${vo.fitting_name}";
+				result.push(json);
+			</c:forEach>
+						//public을 안보겠다고 하면
+						if (!checked){
+							//vo에서 하나씩 꺼내서
+								//해당 div 찾기
+								var div = document.getElementsByClassName("fittingOverView");
+							<c:forEach var="vo" items="${fittings}" begin="0" varStatus="status">
+								//만약 private이면
+								if("${vo.fitting_open_range}"=="public"){
+										console.log("${vo.fitting_id}");
+										console.log(${status.index});
+// 										//div 속성 보이게 하기
+										div[${status.index}].style.display="none";
+										console.log(div[${status.index}]);
+									}
+							</c:forEach>
+							}
+						//public을 보겠다고 하면
+						if (checked){
+							//vo에서 하나씩 꺼내서
+								//해당 div 찾기
+								var div = document.getElementsByClassName("fittingOverView");
+							<c:forEach var="vo" items="${fittings}" begin="0" varStatus="status">
+								//만약 private이면
+								if("${vo.fitting_open_range}"=="public"){
+										console.log("${vo.fitting_id}");
+										console.log(${status.index});
+// 										//div 속성 보이게 하기
+										div[${status.index}].style.display="block";
+										console.log(div[${status.index}]);
+									}
+							</c:forEach>
+							}
 		});
+		
+		// private 버튼 클릭시
+		$("#flexSwitchCheckChecked2").on("click", function(e) {
+			//체크 되면 private 보임
+			var checked = $("#flexSwitchCheckChecked2").is(':checked');
+			var result = new Array();
+			<c:forEach items="${fittings}" var="vo">
+				var json = new Object();
+				json.name="${vo.fitting_name}";
+				result.push(json);
+			</c:forEach>
+						//private을 안보겠다고 하면
+						if (!checked){
+							//vo에서 하나씩 꺼내서
+								//해당 div 찾기
+								var div = document.getElementsByClassName("fittingOverView");
+							<c:forEach var="vo" items="${fittings}" begin="0" varStatus="status">
+								//만약 private이면
+								if("${vo.fitting_open_range}"=="private"){
+										console.log("${vo.fitting_id}");
+										console.log(${status.index});
+// 										//div 속성 보이게 하기
+										div[${status.index}].style.display="none";
+										console.log(div[${status.index}]);
+									}
+							</c:forEach>
+							}
+						//private을 보겠다고 하면
+						if (checked){
+							//vo에서 하나씩 꺼내서
+								//해당 div 찾기
+								var div = document.getElementsByClassName("fittingOverView");
+							<c:forEach var="vo" items="${fittings}" begin="0" varStatus="status">
+								//만약 private이면
+								if("${vo.fitting_open_range}"=="private"){
+										console.log("${vo.fitting_id}");
+										console.log(${status.index});
+// 										//div 속성 보이게 하기
+										div[${status.index}].style.display="block";
+										console.log(div[${status.index}]);
+									}
+							</c:forEach>
+							}
+		});
+
+		
 	});
 </script>
 </head>
