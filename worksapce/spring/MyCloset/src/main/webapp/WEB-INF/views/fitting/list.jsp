@@ -113,6 +113,35 @@
 			//체크 되면 public 보임
 			var checked = $("#flexSwitchCheckChecked1").is(':checked');
 			var result = new Array();
+			
+			
+			
+			
+			
+			//ajax 기본 틀
+			
+// 			$.ajax({
+// 				url: '/qna/listAll',
+// 				type: 'GET',
+				
+// 				data: {
+					
+// 				},
+// 				beforeSend: function() {
+					
+// 				},
+// 				success: function(res) {
+// 					console.log(res);
+// 				},
+// 				error: function() {
+				
+// 				},
+// 				complate: function() {
+					
+// 				}
+// 			});
+			
+			
 			<c:forEach items="${fittings}" var="vo">
 				var json = new Object();
 				json.name="${vo.fitting_name}";

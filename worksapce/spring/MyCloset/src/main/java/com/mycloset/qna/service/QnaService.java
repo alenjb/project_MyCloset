@@ -7,7 +7,6 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
-import com.mycloset.notice.vo.NoticeVO;
 import com.mycloset.qna.mapper.QnaMapper;
 import com.mycloset.qna.vo.QnaVO;
 import com.mycloset.util.Critera;
@@ -39,20 +38,33 @@ public class QnaService {
 	}
 
 	// 3.글쓰기(write)
-	public int write(NoticeVO vo) throws Exception {
-		System.out.println("NoticeService.write().vo - " + vo);
+	public int write(QnaVO vo) throws Exception {
+		System.out.println("QnaService.write().vo - " + vo);
 		return mapper.write(vo);
 	}
+	// 3-1 답변쓰기(writeAnswer)
+	public int writeAnswer(QnaVO vo) throws Exception {
+		System.out.println("QnaService.write().vo - " + vo);
+		return mapper.writeAnswer(vo);
+	}
+
 
 	// 4. 수정(update)
-	public int update(NoticeVO vo) throws Exception {
-		System.out.println("NoticeService.update().vo - " + vo);
+	public int update(QnaVO vo) throws Exception {
+		System.out.println("QnaService.update().vo - " + vo);
 		return mapper.update(vo);
 	}
 
+	// 4-1. 답변수정(updateAnswer)
+	public int updateAnswer(QnaVO vo) throws Exception {
+		System.out.println("QnaService.update().vo - " + vo);
+		return mapper.updateAnswer(vo);
+	}
+
+
 	// 5. 삭제(delete)
 	public int delete(long no) throws Exception {
-		System.out.println("NoticeService.delte().no-" + no);
+		System.out.println("QnaService.delte().no-" + no);
 		return mapper.delete(no);
 	}
 	//6. 총 게시물 개수 세기

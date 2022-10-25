@@ -151,13 +151,13 @@
 		<div class="layout-container">
 			<%@ include file="/resources/js/navBar.jsp" %>
 			<div class="layout-page">
-			<%@ include file="/resources/js/searchBar_notice.jsp" %>
+			<%@ include file="/resources/js/searchBar_qna.jsp" %>
 				<!-- Content wrapper -->
 				<div class="content-wrapper">
 					<!-- Content -->
 
 					<div class="container-xxl flex-grow-1 container-p-y">
-						<h4 class="fw-bold">QNA</h4>
+						<h4 class="fw-bold">QnA</h4>
 						<!-- 		글쓰기 버튼 -->
 						<c:if test="${grade eq '관리자'}">
 						<div class="demo-inline-spacing">
@@ -245,11 +245,6 @@
 								type="hidden" name="keyword"
 								value='<c:out value="${pageMaker.cri.keyword}"/>'>
 						</form>
-
-						<!--/ Basic Pagination -->
-						<hr class="my-5" />
-
-
 					</div>
 					<!-- / Content -->
 				</div>

@@ -62,13 +62,13 @@
 				<trim prefix="OR">
 					<choose>
 						<when test="type == 'T'.toString()">
-							title LIKE CONCAT('%', #{cri.keyword}, '%')
+							qna_question_title LIKE CONCAT('%', #{cri.keyword}, '%')
 						</when>
 						<when test="type == 'C'.toString()">
-							content LIKE CONCAT('%', #{cri.keyword}, '%')
+							qna_question_content LIKE CONCAT('%', #{cri.keyword}, '%')
 						</when>
 						<when test="type == 'W'.toString()">
-							writer LIKE CONCAT('%', #{cri.keyword}, '%')
+							qna_question_writer LIKE CONCAT('%', #{cri.keyword}, '%')
 						</when>
 					</choose>
 				</trim>
@@ -103,21 +103,55 @@
 
 	<!-- 3.글쓰기(write) -->
 	<insert id="write">
-		insert into notice(title, content, writer, writeDate,
-		endDate)
-		values(#{title}, #{content}, #{writer}, CURDATE(), #{endDate})
+		INSERT INTO qna(
+			qna_question_title, 
+			qna_question_content, 
+			qna_question_writer, 
+			qna_question_date,
+			qna_question_image)
+		VALUES(
+			#{qTitle},
+			#{qContent},
+			#{qWriter},
+			CURDATE(),
+			#{qImage})
 	</insert>
+	
+	<!-- 3-1.답변쓰기(writeAnswer) -->
+	<update id="writeAnswer">
+		UPDATE qna
+		SET qna_answer_title =#{aTitle},
+			qna_answer_content =#{aContent},
+			qna_answer_writer =#{aWriter},
+			qna_answer_date =CURDATE(),
+			qna_answer_image =#{aImage}
+		WHERE qna_no =#{no}
+	</update>
+	
 	<!-- 4. 수정(update) -->
 	<update id="update">
-		update notice set title=#{title}, content=#{content},
-		writer=#{writer},
-		writeDate=CURDATE(), endDate=#{endDate}
-		where no =
-		#{no}
+		UPDATE qna 
+		SET qna_question_title =#{qTitle}, 
+			qna_question_content =#{qContent}, 
+			qna_question_writer =#{qWriter}, 
+			qna_question_date =CURDATE(),
+			qna_question_image =#{qImage}
+		WHERE qna_no =#{no}
+	</update>
+	<!-- 4-1. 답변수정(updateAnswer) -->
+	<update id="updateAnswer">
+		UPDATE qna 
+		SET qna_answer_title =#{aTitle}, 
+			qna_answer_content =#{aContent}, 
+			qna_answer_writer =#{aWriter}, 
+			qna_answer_date =CURDATE(),
+			qna_answer_image =#{aImage}
+		WHERE qna_no =#{no}
 	</update>
 	<!-- 5. 삭제(delete) -->
 	<delete id="delete">
-		delete from notice
-		where no =#{no}
+		DELETE 
+		FROM qna
+		WHERE qna_no =#{no}
 	</delete>
 </mapper>

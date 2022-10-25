@@ -107,7 +107,7 @@
 		<div class="layout-container">
 			<%@ include file="/resources/js/navBar.jsp" %>
 			<div class="layout-page">
-			<%@ include file="/resources/js/searchBar_notice.jsp" %>
+			<%@ include file="/resources/js/searchBar_qna.jsp" %>
           <!-- Content wrapper -->
           <div class="content-wrapper">
             <!-- Content -->
@@ -116,6 +116,7 @@
 
 
               <!-- Hoverable Table rows -->
+              <h4 class="fw-bold">질문</h4>
               <div class="card">
                 <div class="table-responsive text-nowrap">
                   <table class="table">
@@ -150,45 +151,94 @@
                         <td>
                         </td>
                       </tr>
+                      <tr>
+                        <td>
+                          <strong>첨부파일</strong>
+                        </td>
+                        <td><img src="${vo.QImage}"></td>
+                        <td>
+                        </td>
+                      </tr>
                     </tbody>
                   </table>
                 </div>
               </div>
+              <c:if test="${vo.ATitle ne null}">
+	              <hr class="my-5">
+	              <h4 class="fw-bold">답변</h4>
+	              <div class="card">
+	                <div class="table-responsive text-nowrap">
+	                  <table class="table">
+	                    <tbody class="table-border-bottom-0">
+	                      <tr>
+	                        <td><strong>제목</strong></td>
+	                        <td>${vo.ATitle}</td>
+	                        <td>
+	                        </td>
+	                      </tr>
+	                      <tr>
+	                        <td><strong>번호</strong></td>
+	                        <td>${vo.no}</td>
+	                      </tr>
+	                      <tr>
+	                        <td> <strong>작성일</strong></td>
+	                        <td><fmt:formatDate value="${vo.ADate}" pattern="yyyy-MM-dd"/></td>
+	                        <td>
+	                        </td>
+	                      </tr>
+	                      <tr>
+	                        <td> <strong>작성자</strong></td>
+	                        <td>${vo.AWriter}</td>
+	                        <td>
+	                        </td>
+	                      </tr>
+	                      <tr>
+	                        <td>
+	                          <strong>내용</strong>
+	                        </td>
+	                        <td>${vo.AContent}</td>
+	                        <td>
+	                        </td>
+	                      </tr>
+	                      <tr>
+	                        <td>
+	                          <strong>첨부파일</strong>
+	                        </td>
+	                        <td><img src="${vo.AImage}"></td>
+	                        <td>
+	                        </td>
+	                      </tr>                     
+	                    </tbody>
+	                  </table>
+	                </div>
+	              </div>
+              </c:if>
               
-              <div class="card-body">
+              <div class="mt-2">
                   <button type="button" class="btn btn-primary me-1"
 										onclick="location.href='list?type=${cri.type}&keyword=${cri.keyword}&pageNum=${cri.pageNum}&amount=${cri.amount}'">리스트</button>
-                  <button type="button" class="btn btn-secondary" 
+				  <!-- 질문에 답변이 달리면 수정할 수 없음 -->
+                  <c:if test="${vo.AContent eq null and grade ne '관리자'}">
+                  <button type="button" class="btn btn-secondary me-1" 
                   onclick="location.href='update?no=${vo.no}&type=${cri.type}&keyword=${cri.keyword}&pageNum=${cri.pageNum}&amount=${cri.amount}'">수정</button>
+                  </c:if>
+                  
+                  <c:if test="${grade eq '관리자' and vo.AContent eq null}">
+                  <button type="button" class="btn btn-secondary me-1" 
+                  onclick="location.href='writeAnswer?no=${vo.no}&type=${cri.type}&keyword=${cri.keyword}&pageNum=${cri.pageNum}&amount=${cri.amount}'">답변등록</button>
+                  </c:if>
+                  <c:if test="${grade eq '관리자' and vo.AContent ne null}">
+                  <button type="button" class="btn btn-secondary me-1" 
+                  onclick="location.href='updateAnswer?no=${vo.no}&type=${cri.type}&keyword=${cri.keyword}&pageNum=${cri.pageNum}&amount=${cri.amount}'">답변수정</button>
+                  </c:if>
+                  
+                  
                   <button type="button" class="btn btn-success" onclick="location.href='delete?no=${vo.no }&type=${cri.type}&keyword=${cri.keyword}&pageNum=${cri.pageNum}&amount=${cri.amount}'">삭제</button>
               </div>
               <!--/ Hoverable Table rows -->
 
             </div>
             <!-- / Content -->
-
-            <!-- Footer -->
-            <footer class="content-footer footer bg-footer-theme">
-              <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
-                <div>
-                  <a href="https://themeselection.com/license/" class="footer-link me-4" target="_blank">License</a>
-                  <a href="https://themeselection.com/" target="_blank" class="footer-link me-4">More Themes</a>
-
-                  <a href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/"
-                    target="_blank"
-                    class="footer-link me-4">Documentation</a>
-
-                  <a
-                    href="https://github.com/themeselection/sneat-html-admin-template-free/issues"
-                    target="_blank"
-                    class="footer-link me-4"
-                    >Support</a
-                  >
-                </div>
-              </div>
-            </footer>
-            <!-- / Footer -->
-
             <div class="content-backdrop fade"></div>
           </div>
           <!-- Content wrapper -->

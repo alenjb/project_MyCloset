@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-import com.mycloset.notice.vo.NoticeVO;
 import com.mycloset.qna.vo.QnaVO;
 import com.mycloset.util.Critera;
 import com.webjjang.util.PageObject;
@@ -13,10 +12,10 @@ public interface QnaMapper {
 
 	// pageObject 버전
 	// 1.리스트(list)
-	public List<NoticeVO> list(PageObject pageObject) throws Exception;
+	public List<QnaVO> list(PageObject pageObject) throws Exception;
 
 //	//1.리스트(list)
-//	public List<NoticeVO> list(Critera cri) throws Exception;
+//	public List<QnaVO> list(Critera cri) throws Exception;
 
 	// 총 게시물 개수 세기
 	public int getTotalNum(@Param("cri")Critera cri) throws Exception;
@@ -25,10 +24,16 @@ public interface QnaMapper {
 	public QnaVO view(long no) throws Exception;
 
 	// 3.글쓰기(write)
-	public int write(NoticeVO vo) throws Exception;
-
+	public int write(QnaVO vo) throws Exception;
+	
+	// 3-1.답변쓰기(writeAnswer)
+	public int writeAnswer(QnaVO vo) throws Exception;
+	
 	// 4. 수정(update)
-	public int update(NoticeVO vo) throws Exception;
+	public int update(QnaVO vo) throws Exception;
+	
+	// 4. 답변수정(update)
+	public int updateAnswer(QnaVO vo) throws Exception;
 
 	// 5. 삭제(delete)
 
