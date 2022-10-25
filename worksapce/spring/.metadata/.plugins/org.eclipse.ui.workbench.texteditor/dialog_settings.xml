@@ -6,25 +6,27 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="member_id"/>
+		<item key="selection" value="notice"/>
 		<list key="findhistory">
+			<item value="notice"/>
+			<item value="title"/>
+			<item value="질문"/>
+			<item value="공지"/>
+			<item value="c:set"/>
+			<item value="flexSwitchCheckChecked2"/>
 			<item value="member_id"/>
 			<item value="clothes_photo"/>
 			<item value="Layout page"/>
 			<item value="body&gt;"/>
 			<item value="title="/>
-			<item value="title"/>
 			<item value="글쓰기"/>
 			<item value="par"/>
 			<item value="inc"/>
 			<item value="&gt;--&lt;"/>
-			<item value="--"/>
-			<item value="type"/>
-			<item value="등록"/>
-			<item value="Icon Dropdown"/>
-			<item value="옷 종류"/>
 		</list>
 		<list key="replacehistory">
+			<item value="답변"/>
+			<item value="질문"/>
 			<item value="&gt;&lt;"/>
 			<item value="SELECT"/>
 			<item value="피팅"/>
@@ -38,13 +40,11 @@
 			<item value="ClosetVO"/>
 			<item value="memberVO."/>
 			<item value="/resources"/>
-			<item value="myPage"/>
-			<item value="findId"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="1240"/>
-		<item key="DIALOG_Y_ORIGIN" value="324"/>
+		<item key="DIALOG_X_ORIGIN" value="1202"/>
+		<item key="DIALOG_Y_ORIGIN" value="391"/>
 		<item key="DIALOG_WIDTH" value="317"/>
 		<item key="DIALOG_HEIGHT" value="441"/>
 		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>

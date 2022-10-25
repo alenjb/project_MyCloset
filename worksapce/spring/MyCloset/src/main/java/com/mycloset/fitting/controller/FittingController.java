@@ -112,7 +112,7 @@ public class FittingController {
 		int fId = Integer.parseInt(fitting_id);
 		// 서비스에서 view 메서드 호출
 		FittingVO vo = service.view(memberId, fId);
-
+		System.out.println("view 시 vo "+vo);
 		// 사진 주소 형식들 바꿔주기
 		String fittingImage = vo.getFitting_image().replace("\\\\\\", "\\");
 		String outerImage = vo.getOuter_clothes_photo().replace("\\\\\\", "\\");

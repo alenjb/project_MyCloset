@@ -158,7 +158,7 @@
 					<!-- Content -->
 
 					<div class="container-xxl flex-grow-1 container-p-y">
-						<h4 class="fw-bold py-3 mb-4">내 옷장</h4>
+						<h4 class="fw-bold">내 옷장</h4>
 						<!-- 		옷 등록 버튼 -->
 						<div class="demo-inline-spacing">
 							<button type="button" class="btn btn-primary"

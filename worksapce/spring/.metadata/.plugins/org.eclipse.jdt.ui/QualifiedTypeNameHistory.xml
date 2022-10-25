@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="java.util.Enumeration"/>
-    <fullyQualifiedTypeName name="com.mycloset.member.mapper.MemberMapper"/>
-    <fullyQualifiedTypeName name="org.springframework.web.servlet.mvc.support.RedirectAttributes"/>
     <fullyQualifiedTypeName name="org.apache.taglibs.standard.lang.jstl.test.beans.PublicBean1"/>
     <fullyQualifiedTypeName name="com.mycloset.notice.service.NoticeService"/>
     <fullyQualifiedTypeName name="com.jb.member.vo.LoginVO"/>
@@ -60,4 +57,7 @@
     <fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
     <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
     <fullyQualifiedTypeName name="com.mycloset.member.vo.LoginVO"/>
+    <fullyQualifiedTypeName name="com.mycloset.qna.service.QnaService"/>
+    <fullyQualifiedTypeName name="com.mycloset.qna.mapper.QnaMapper"/>
+    <fullyQualifiedTypeName name="com.mycloset.qna.vo.QnaVO"/>
 </qualifiedTypeNameHistroy>
