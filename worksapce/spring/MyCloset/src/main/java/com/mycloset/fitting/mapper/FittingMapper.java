@@ -34,4 +34,10 @@ public interface FittingMapper {
 
 	// 옷 아이디 가져오기
 	public HashMap<String, String> getClothesIdAndPrice(@Param("member_id")String member_id, @Param("outer_clothes_photo")String outer_clothes_photo, @Param("top_clothes_photo")String top_clothes_photo, @Param("bottom_clothes_photo")String bottom_clothes_photo) throws Exception;
+	
+	//모든 public 피팅 가져오기
+	public List<FittingVO> getAllPublicFitting() throws Exception;
+	
+	// 모든 피팅 가져오기
+	public List<FittingVO> list(String id)throws Exception;
 }

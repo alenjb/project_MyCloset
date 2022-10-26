@@ -2,6 +2,7 @@ package com.mycloset.member.controller;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -17,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.mycloset.fitting.service.FittingService;
+import com.mycloset.fitting.vo.FittingVO;
 import com.mycloset.member.service.MemberService;
 import com.mycloset.member.vo.LoginVO;
 import com.mycloset.member.vo.MemberVO;
@@ -32,6 +35,8 @@ public class MemberController {
 	// MemberService 주입
 	@Inject
 	private MemberService service;
+	@Inject
+	private FittingService fittingService;
 
 	// 회원가입 폼
 	@GetMapping("/signUp")
@@ -141,8 +146,26 @@ public class MemberController {
 
 	// 홈
 	@GetMapping("/home")
-	public String home(Model model) throws Exception {
-		System.out.println("home model" + model);
+	public String home(Model model, HttpServletRequest request) throws Exception {
+		// 로그인 정보를 받기
+		HttpSession session = request.getSession();
+		LoginVO loginVO = (LoginVO) session.getAttribute("login");
+		// 아이디 추출
+		String memberId = loginVO.getMember_id();
+		//모든 public 피팅 불러오기
+		List<FittingVO> fittings = fittingService.getAllPublicFitting();
+		for (FittingVO vo: fittings){
+			String image = vo.getFitting_image().replace("\\\\\\", "\\");
+			vo.setFitting_image(image);
+		} 
+		List<FittingVO> myFitting = fittingService.list(memberId);
+		for (FittingVO vo: myFitting){
+			String image = vo.getFitting_image().replace("\\\\\\", "\\");
+			vo.setFitting_image(image);
+		} 
+		model.addAttribute("fittings", fittings);
+		model.addAttribute("myFitting",myFitting);
+		System.out.println(myFitting);
 		return "member/home";
 	}
 

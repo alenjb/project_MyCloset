@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import com.mycloset.fitting.vo.FittingVO;
 import com.mycloset.member.mapper.MemberMapper;
 import com.mycloset.member.vo.LoginVO;
 import com.mycloset.member.vo.MemberVO;

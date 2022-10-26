@@ -56,15 +56,21 @@
 
 	<!-- 피팅 리스트 -->
 	<select id="list" resultType="com.mycloset.fitting.vo.FittingVO">
-		select
-		fitting_id, clothes_type,
-		clothes_name, clothes_info, clothes_size,
-		clothes_photo,
-		clothes_purchase_year, clothes_purchase_price,
-		clothes_season
-		from
-		closet
-		where #{id} = member_id
+		SELECT
+			fitting_id,
+			outer_clothes_id,
+			top_clothes_id,
+			bottom_clothes_id,
+			fitting_name,
+			fitting_image,
+			fitting_info,
+			fitting_open_range,
+			fitting_season,
+			fitting_price,
+			member_id
+		FROM
+			fitting
+		WHERE #{id} = member_id
 	</select>
 
 	<!-- 페이지 네이션을 적용한 리스트 가져오기 -->
@@ -290,6 +296,19 @@
 		WHERE member_id =#{member_id} AND clothes_photo
 		=
 		#{bottom_clothes_photo}) C
+	</select>
+	<!-- 모든 public 피팅 가져오기 -->
+	<select id="getAllPublicFitting" resultType="com.mycloset.fitting.vo.FittingVO">
+		SELECT 
+			fitting_id,
+			fitting_name,
+			fitting_image,
+			member_id,
+			fitting_info,
+			fitting_price
+		FROM fitting
+		WHERE
+			fitting_open_range="public"
 	</select>
 
 </mapper>

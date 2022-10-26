@@ -60,4 +60,12 @@ public class FittingService {
 	public HashMap<String, String> getClothesIdAndPrice(String member_id, String outer_clothes_photo, String top_clothes_photo, String bottom_clothes_photo) throws Exception{
 		return mapper.getClothesIdAndPrice(member_id, outer_clothes_photo, top_clothes_photo, bottom_clothes_photo);
 	}
+	//모든 public 피팅 가져오기
+	public List<FittingVO> getAllPublicFitting() throws Exception{
+		return mapper.getAllPublicFitting();
+	}	
+	// 모든 피팅 가져오기
+	public List<FittingVO> list(String id)throws Exception{
+		return mapper.list(id);
+	}
 }

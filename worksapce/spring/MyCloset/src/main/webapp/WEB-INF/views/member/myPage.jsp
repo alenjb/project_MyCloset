@@ -85,6 +85,7 @@
 
 	<!-- Layout container -->
         <div class="layout-page">
+        <%@ include file="/resources/js/searchBar_myPage.jsp" %>
           <!-- Content wrapper -->
           <div class="content-wrapper">
             <!-- Content -->

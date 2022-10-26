@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.mycloset.fitting.vo.FittingVO;
 import com.mycloset.member.vo.LoginVO;
 import com.mycloset.member.vo.MemberVO;
 import com.mycloset.notice.vo.NoticeVO;
@@ -45,5 +46,4 @@ public interface MemberMapper {
 
 	//회원정보 수정(update)
 	public int delete(MemberVO vo) throws Exception;
-
 }
