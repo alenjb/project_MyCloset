@@ -177,7 +177,7 @@
 													${vo.member_grade}
 													<div class="btn-group">
 														<button type="button"
-															class="btn btn-primary dropdown-toggle hide-arrow"
+															class="btn btn-sm btn-primary dropdown-toggle hide-arrow"
 															data-bs-toggle="dropdown" aria-expanded="false">
 															변경
 														</button>
@@ -204,7 +204,7 @@
 													${vo.member_status}
 													<div class="btn-group">
 														<button type="button"
-															class="btn btn-primary dropdown-toggle hide-arrow"
+															class="btn btn-sm btn-primary dropdown-toggle hide-arrow"
 															data-bs-toggle="dropdown" aria-expanded="false">
 															변경
 														</button>

@@ -22,7 +22,7 @@
 								<div class="row">
 									<form id="searchForm" action="/fitting/list" method="get"
 										class="row">
-										<div class="col-sm-6">
+										<div class="col-6">
 											<select name="type" class="form-select form-select-sm col-6">
 												<option value="NS"
 													<c:out value="${pageMaker.cri.type eq 'NS'?'selected':''}"/>>전체</option>
@@ -32,7 +32,7 @@
 													<c:out value="${pageMaker.cri.type eq 'S'?'selected':''}"/>>계절</option>
 											</select>
 										</div>
-										<div class="col-sm-6">
+										<div class="col-6">
 											<!-- 페이지에 관한 정보 클릭한 링크로 날리기 -->
 <!-- 											<input type="text" class="form-control border-0 shadow-none col-6" -->
 <!-- 												placeholder="검색" name="keyword" />  -->

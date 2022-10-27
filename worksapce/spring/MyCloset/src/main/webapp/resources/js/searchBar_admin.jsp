@@ -22,7 +22,7 @@
 								<div class="row">
 									<form id="searchForm" action="/admin/list" method="get"
 										class="row">
-										<div class="col-sm-6">
+										<div class="col-4">
 											<select name="type" class="form-select form-select-sm col-6">
 												<option value="ING"
 													<c:out value="${pageMaker.cri.type eq 'ING'?'selected':''}"/>>전체</option>
@@ -36,7 +36,7 @@
 													<c:out value="${pageMaker.cri.type eq 'IN'?'selected':''}"/>>아이디/이름</option>
 											</select>
 										</div>
-										<div class="col-sm-6">
+										<div class="col-5">
 											<!-- 페이지에 관한 정보 클릭한 링크로 날리기 -->
 <!-- 											<input type="text" class="form-control border-0 shadow-none col-6" -->
 <!-- 												placeholder="검색" name="keyword" />  -->
@@ -47,22 +47,25 @@
 									</form>
 								</div>
 								<!--검색 창 -->
-								<div class="row">
+<!-- 								<div class="row"> -->
 									<!-- 									<div class="col-9"> -->
 									<!-- 									<form> -->
 									<!-- 									</form> -->
 									<!-- 									</div> -->
-									<div class="input-group-btn col-3">
+									<div class="input-group-btn col-2">
 										<button class="btn btn-default" id="searchBtn" type="submit">
 											<i class="bx bx-search fs-4 lh-0"></i>
 										</button>
 									</div>
-								</div>
+									<div class="col-1">
+									
+									</div>
+<!-- 								</div> -->
 							</div>
 						</div>
 						<!-- /Search -->
 
-						<ul class="navbar-nav flex-row align-items-center ms-auto">
+						<ul class="navbar-nav flex-row align-items-center ms-auto">						
 							<!-- Place this tag where you want the button to render. -->
 							<!-- User(내정보 보기) -->
 							<li class="nav-item navbar-dropdown dropdown-user dropdown">
@@ -108,6 +111,7 @@
 							</li>
 							<!--/ User -->
 						</ul>
+						
 					</div>
 				</nav>
 

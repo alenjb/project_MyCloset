@@ -204,27 +204,26 @@
 						<div class="col mt-3">
 							<nav aria-label="Page navigation">
 								<ul class="pagination justify-content-center">
-									<li class="page-item first"><a class="page-link"
-										href="list?page=1"><i
+									<li class="page-item first"><a class="page-link" href="1"><i
 											class="tf-icon bx bx-chevrons-left"></i></a></li>
 									<c:if test="${pageMaker.prev}">
 										<li class="page-item prev"><a class="page-link"
-											href="list?page=${pageMaker.startPage -1} ;"><i
+											href="${pageMaker.startPage -1} ;"><i
 												class="tf-icon bx bx-chevron-left"></i></a></li>
 									</c:if>
 									<c:forEach var="num" begin="${pageMaker.startPage}"
 										end="${pageMaker.endPage}">
-										<li class="page-item ${pageMaker.cri.pageNum== num ? "active":""}">
+										<li class="page-item ${pageMaker.cri.pageNum == num ? "active":""} ">
 											<a class="page-link" href="${num}">${num}</a>
 										</li>
 									</c:forEach>
 									<c:if test="${pageMaker.next }">
 										<li class="page-item next"><a class="page-link"
-											href="list?page=${pageMaker.endPage +1 }"><i
+											href="${pageMaker.endPage +1 }"><i
 												class="tf-icon bx bx-chevron-right"></i></a></li>
 									</c:if>
 									<li class="page-item last"><a class="page-link"
-										href="list?page=${pageMaker.endPage}"><i
+										href="${pageMaker.endPage}"><i
 											class="tf-icon bx bx-chevrons-right"></i></a></li>
 								</ul>
 							</nav>
