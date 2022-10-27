@@ -82,6 +82,16 @@
 .demo-inline-spacing {
 	margin-bottom: 5px;
 }
+#searchBtn{
+	padding:0px 0px 0px 0px;
+}
+#seachKeyBox{
+	padding:4px 0px 0px 0px;
+}
+#pageTitle{
+	padding-top:0px;
+}
+
 </style>
 
 <script type="text/javascript">
@@ -152,7 +162,7 @@
 					<!-- Content -->
 
 					<div class="container-xxl flex-grow-1 container-p-y">
-						<h4 class="fw-bold py-3 mb-4">회원 목록</h4>
+						<h4 class="fw-bold py-3 mb-4" id="pageTitle">회원 목록</h4>
 						<!-- 내 옷장 리스트 -->
 						<div class="card">
 							<div class="table-responsive text-nowrap">

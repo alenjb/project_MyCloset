@@ -68,6 +68,13 @@
 .enrollBtn {
 	margin-bottom: 10px;
 }
+
+#searchBtn{
+	padding:0px 0px 0px 0px;
+}
+#seachKeyBox{
+	padding:4px 0px 0px 0px;
+}
 </style>
 <script type="text/javascript">
 	$(function() {

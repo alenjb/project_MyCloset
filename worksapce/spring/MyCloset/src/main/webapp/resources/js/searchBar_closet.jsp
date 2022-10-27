@@ -9,7 +9,7 @@
 					id="layout-navbar">
 					<div
 						class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
-						<a class="nav-item nav-link px-0 me-xl-4" href="/kkk"> <i
+						<a class="nav-item nav-link px-0 me-xl-4"> <i
 							class="bx bx-menu bx-sm"></i>
 						</a>
 					</div>
@@ -34,13 +34,14 @@
 													<c:out value="${pageMaker.cri.type eq 'S'?'selected':''}"/>>계절</option>
 												<option value="NT"
 													<c:out value="${pageMaker.cri.type eq 'NT'?'selected':''}"/>>이름/종류</option>
+
 											</select>
 										</div>
 										<div class="col-6">
 											<!-- 페이지에 관한 정보 클릭한 링크로 날리기 -->
 <!-- 											<input type="text" class="form-control border-0 shadow-none col-6" -->
 <!-- 												placeholder="검색" name="keyword" />  -->
-												<input type="text" class="form-control border-0 shadow-none" placeholder="검색" name="keyword"/>											
+												<input type="text" class="form-control border-0 shadow-none" placeholder="검색" name="keyword" id="seachKeyBox"/>											
 												<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}"> 
 												<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
 										</div>
@@ -52,7 +53,7 @@
 									<!-- 									<form> -->
 									<!-- 									</form> -->
 									<!-- 									</div> -->
-									<div class="input-group-btn col-3">
+									<div class="input-group-btn col-3" id="searchBtnDiv">
 										<button class="btn btn-default" id="searchBtn" type="submit">
 											<i class="bx bx-search fs-4 lh-0"></i>
 										</button>
@@ -69,16 +70,16 @@
 								<a class="nav-link dropdown-toggle hide-arrow"
 								href="javascript:void(0);" data-bs-toggle="dropdown">
 									<div class="avatar avatar-online">
-										<img src="/resources/assets/img/avatars/1.png" alt
+										<img src="/resources/assets/img/avatars/basicUserImage.png"
 											class="w-px-40 h-auto rounded-circle" />
 									</div>
 							</a>
 								<ul class="dropdown-menu dropdown-menu-end">
-									<li><a class="dropdown-item" href="#">
+									<li><a class="dropdown-item" href="/member/myPage">
 											<div class="d-flex">
 												<div class="flex-shrink-0 me-3">
 													<div class="avatar avatar-online">
-														<img src="/resources/assets/img/avatars/1.png" alt
+														<img src="/resources/assets/img/avatars/basicUserImage.png" alt
 															class="w-px-40 h-auto rounded-circle" />
 													</div>
 												</div>

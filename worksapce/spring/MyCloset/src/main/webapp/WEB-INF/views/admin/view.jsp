@@ -94,6 +94,15 @@
 		
 	});
 </script>
+<style type="text/css">
+
+#searchBtn{
+	padding:0px 0px 0px 0px;
+}
+#seachKeyBox{
+	padding:4px 0px 0px 0px;
+}
+</style>
 </head>
 
 <body>

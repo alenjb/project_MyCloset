@@ -22,7 +22,7 @@
 								<div class="row">
 									<form id="searchForm" action="/admin/list" method="get"
 										class="row">
-										<div class="col-4">
+										<div class="col-6">
 											<select name="type" class="form-select form-select-sm col-6">
 												<option value="ING"
 													<c:out value="${pageMaker.cri.type eq 'ING'?'selected':''}"/>>전체</option>
@@ -36,52 +36,49 @@
 													<c:out value="${pageMaker.cri.type eq 'IN'?'selected':''}"/>>아이디/이름</option>
 											</select>
 										</div>
-										<div class="col-5">
+										<div class="col-6">
 											<!-- 페이지에 관한 정보 클릭한 링크로 날리기 -->
 <!-- 											<input type="text" class="form-control border-0 shadow-none col-6" -->
 <!-- 												placeholder="검색" name="keyword" />  -->
-												<input type="text" class="form-control border-0 shadow-none" placeholder="검색" name="keyword"/>											
+												<input type="text" class="form-control border-0 shadow-none" placeholder="검색" name="keyword" id="seachKeyBox"/>											
 												<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}"> 
 												<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
 										</div>
 									</form>
 								</div>
 								<!--검색 창 -->
-<!-- 								<div class="row"> -->
+								<div class="row">
 									<!-- 									<div class="col-9"> -->
 									<!-- 									<form> -->
 									<!-- 									</form> -->
 									<!-- 									</div> -->
-									<div class="input-group-btn col-2">
+									<div class="input-group-btn col-3" id="searchBtnDiv">
 										<button class="btn btn-default" id="searchBtn" type="submit">
 											<i class="bx bx-search fs-4 lh-0"></i>
 										</button>
 									</div>
-									<div class="col-1">
-									
-									</div>
-<!-- 								</div> -->
+								</div>
 							</div>
 						</div>
 						<!-- /Search -->
 
-						<ul class="navbar-nav flex-row align-items-center ms-auto">						
+						<ul class="navbar-nav flex-row align-items-center ms-auto">
 							<!-- Place this tag where you want the button to render. -->
 							<!-- User(내정보 보기) -->
 							<li class="nav-item navbar-dropdown dropdown-user dropdown">
 								<a class="nav-link dropdown-toggle hide-arrow"
 								href="javascript:void(0);" data-bs-toggle="dropdown">
 									<div class="avatar avatar-online">
-										<img src="/resources/assets/img/avatars/1.png" alt
+										<img src="/resources/assets/img/avatars/basicUserImage.png"
 											class="w-px-40 h-auto rounded-circle" />
 									</div>
 							</a>
 								<ul class="dropdown-menu dropdown-menu-end">
-									<li><a class="dropdown-item" href="#">
+									<li><a class="dropdown-item" href="/member/myPage">
 											<div class="d-flex">
 												<div class="flex-shrink-0 me-3">
 													<div class="avatar avatar-online">
-														<img src="/resources/assets/img/avatars/1.png" alt
+														<img src="/resources/assets/img/avatars/basicUserImage.png" alt
 															class="w-px-40 h-auto rounded-circle" />
 													</div>
 												</div>
@@ -111,7 +108,6 @@
 							</li>
 							<!--/ User -->
 						</ul>
-						
 					</div>
 				</nav>
 
