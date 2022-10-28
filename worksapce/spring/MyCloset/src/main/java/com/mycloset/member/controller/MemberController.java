@@ -6,7 +6,9 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -66,22 +68,41 @@ public class MemberController {
 
 	// 로그인
 	@PostMapping("/login")
-	public String login(LoginVO vo, HttpSession session, Model model) throws Exception {
-		if (service.login(vo) != null) {
-			session.setAttribute("login", service.login(vo));
-			log.info("로그인처리  vo: " + service.login(vo));
-			model.addAttribute("vo", service.login(vo));
+	public String login(LoginVO vo, HttpSession session, HttpServletResponse response, Model model, boolean rememberId) throws Exception {
+		LoginVO loginVO = service.login(vo);
+		if (loginVO != null) {
+			session.setAttribute("login", loginVO);
+			log.info("로그인처리  vo: " + loginVO);
+			model.addAttribute("vo", loginVO);
+		//아이디 기억하기
+			//아이디 기억하기 체크했으면	
+			if(rememberId(rememberId)) {
+				Cookie cookie = new Cookie("id", loginVO.getMember_id());
+				response.addCookie(cookie);
+			}
+			//아이디 기억하기 체크안했으면	
+			else {
+				Cookie cookie = new Cookie("id", loginVO.getMember_id());
+				cookie.setMaxAge(0);
+				response.addCookie(cookie);
+			}
+			
 			return "redirect:/member/home";
 		} else {
 			log.info("로그인 할 수 없음");
 			return "redirect:/member/login";
 		}
 	}
+	//아이디 기억하기
+	private boolean rememberId(boolean rememberId) {
+		return rememberId;
+	}
 
 	// 로그아웃
 	@GetMapping("/logut")
 	public String logut(LoginVO vo, HttpSession session) throws Exception {
-		session.removeAttribute("login");
+//		session.removeAttribute("login");
+		session.invalidate();
 		log.info("로그아웃처리  vo: " + service.login(vo));
 		return "member/login";
 	}
@@ -165,7 +186,6 @@ public class MemberController {
 		} 
 		model.addAttribute("fittings", fittings);
 		model.addAttribute("myFitting",myFitting);
-		System.out.println(myFitting);
 		return "member/home";
 	}
 

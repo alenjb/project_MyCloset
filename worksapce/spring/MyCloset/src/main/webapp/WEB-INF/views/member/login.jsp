@@ -171,6 +171,7 @@
                     id="id"
                     name="member_id"
                     placeholder="아이디를 입력하세요"
+                    value="${cookie.id.value}"
                     autofocus
                   />
                 </div>
@@ -195,8 +196,8 @@
                 </div>
                 <div class="mb-3">
                   <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="remember-me" />
-                    <label class="form-check-label" for="remember-me"> 아이디 기억하기 </label>
+                    <input class="form-check-input" type="checkbox" ${empty cookie.id.value ? "":"checked" } id="rememberId" name="rememberId" />
+                    <label class="form-check-label" for="rememberId"> 아이디 기억하기 </label>
                   </div>
                 </div>
                 <div class="mb-3">
