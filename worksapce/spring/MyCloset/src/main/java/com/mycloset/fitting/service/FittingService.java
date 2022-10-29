@@ -68,4 +68,13 @@ public class FittingService {
 	public List<FittingVO> list(String id)throws Exception{
 		return mapper.list(id);
 	}
+	
+	//범위조건과 페이징을 적용해 리스트 가져오기
+	public List<FittingVO> getRangeListWithPaging(@Param("cri")Critera cri, @Param("limitMax")int limitMax, @Param("openRange")String openRange) throws Exception{
+		int pageNum = cri.getPageNum();
+		int amount = cri.getAmount();
+		limitMax= pageNum * amount; 
+		int startNum = limitMax - cri.getAmount() +1;
+		return mapper.getRangeListWithPaging(cri, startNum, openRange);
+	}
 }

@@ -29,6 +29,10 @@ public interface FittingMapper {
 	// 페이지 처리와 함께 리스트를 가져오기
 	public List<FittingVO> getListWithPaging(@Param("cri") Critera cri, @Param("startNum")int startNum);
 
+	// 범위조건과 페이징 처리를 적용한 리스트를 가져오기
+	public List<FittingVO> getRangeListWithPaging(@Param("cri") Critera cri, @Param("startNum")int startNum, @Param("openRange")String openRange);
+
+	
 	// 총 피팅 개수 세기
 	public int getTotalNum(@Param("cri")Critera cri) throws Exception;
 

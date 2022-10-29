@@ -311,4 +311,30 @@
 			fitting_open_range="public"
 	</select>
 
+	<!-- 페이지 네이션과 범위 조건을 적용한 리스트 가져오기 -->
+	<select id="getRangeListWithPaging"
+		resultType="com.mycloset.fitting.vo.FittingVO">
+	<![CDATA[
+		SELECT
+		@rownum:= @rownum +1 rownum, ]]>
+		fitting_id,	
+		outer_clothes_id,
+		top_clothes_id,
+		bottom_clothes_id,
+		fitting_name,
+		fitting_image,
+		fitting_info,
+		fitting_open_range,
+		fitting_season,
+		fitting_price
+		FROM fitting
+		WHERE 
+		<include refid="criteria" /> 
+		1=1 
+		AND
+		fitting_open_range =#{openRange}
+<!-- 		<![CDATA[(@rownum:=0)=0]]> -->
+		LIMIT #{startNum}, #{cri.amount}
+		<!-- limit (#{pageNum}-1) * #{amount}, #{pageNum} * #{amount} -->
+	</select>
 </mapper>

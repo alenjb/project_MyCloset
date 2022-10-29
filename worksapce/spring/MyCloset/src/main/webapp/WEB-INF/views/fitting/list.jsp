@@ -122,28 +122,28 @@
 			var result = new Array();
 			
 			
+					
 			
-			
-			
-			//ajax 기본 틀
-			
+// 			//ajax 기본 틀
 // 			$.ajax({
-// 				url: '/qna/listAll',
+// 				url: '/fitting/Private',
 // 				type: 'GET',
 				
-// 				data: {
-					
+// 				data: { 
+// 					"fitting_open_range":fitting_open_range
 // 				},
 // 				beforeSend: function() {
 					
 // 				},
 // 				success: function(res) {
 // 					console.log(res);
+// 					var jstr = res;
+					
 // 				},
 // 				error: function() {
 				
 // 				},
-// 				complate: function() {
+// 				complete: function() {
 					
 // 				}
 // 			});
@@ -156,19 +156,70 @@
 			</c:forEach>
 						//public을 안보겠다고 하면
 						if (!checked){
+							
+							//만약 private 버튼도 안눌려 있으면
+							if ($("#flexSwitchCheckChecked2").is(':checked') == false){
+								var fitting_open_range = "none";
+							}else{//private 버튼이 눌려 있으면
+								var fitting_open_range = "private" 
+							}
+							
+							//ajax 기본 틀
+							$.ajax({
+								url: '/fitting/listOpenRange',
+								type: 'GET',
+								
+								data: { 
+									"fitting_open_range":fitting_open_range
+								},
+								beforeSend: function() {
+									
+								},
+								success: function(res) {
+									console.log(res[1].fitting_id);
+									var jstr = res;
+									
+									//vo에서 하나씩 꺼내서
+									//해당 div 찾기
+		 							var div = document.getElementsByClassName("fittingOverView");
+		 						<c:forEach var="vo" items="${fittings}" begin="0" varStatus="status">
+		 						console.log(div[${status.index}].innerHtml);
+		 						div[${status.index}].innerHtml=${jstr}[${status.index}];
+		 							console.log(div[${status.index}].innerHtml);
+		 						</c:forEach>
+									
+									
+								},
+								error: function() {
+								
+								},
+								complete: function() {
+									
+								}
+							});
+							
 							//vo에서 하나씩 꺼내서
-								//해당 div 찾기
-								var div = document.getElementsByClassName("fittingOverView");
-							<c:forEach var="vo" items="${fittings}" begin="0" varStatus="status">
-								//만약 private이면
-								if("${vo.fitting_open_range}"=="public"){
-										console.log("${vo.fitting_id}");
-										console.log(${status.index});
-// 										//div 속성 보이게 하기
-										div[${status.index}].style.display="none";
-										console.log(div[${status.index}]);
-									}
-							</c:forEach>
+							//해당 div 찾기
+// 							var div = document.getElementsByClassName("fittingOverView");
+// 						<c:forEach var="vo" items="${fittings}" begin="0" varStatus="status">
+// 							div[${status.index}].outerText = "안녕";
+// 						</c:forEach>
+							
+							
+							
+// 							//vo에서 하나씩 꺼내서
+// 								//해당 div 찾기
+// 								var div = document.getElementsByClassName("fittingOverView");
+// 							<c:forEach var="vo" items="${fittings}" begin="0" varStatus="status">
+// 								//만약 private이면
+// 								if("${vo.fitting_open_range}"=="public"){
+// // 										console.log("${vo.fitting_id}");
+// // 										console.log(${status.index});
+// // 										//div 속성 보이게 하기
+// 										div[${status.index}].style.display="none";
+// // 										console.log(div[${status.index}]);
+// 									}
+// 							</c:forEach>
 							}
 						//public을 보겠다고 하면
 						if (checked){
@@ -178,11 +229,11 @@
 							<c:forEach var="vo" items="${fittings}" begin="0" varStatus="status">
 								//만약 private이면
 								if("${vo.fitting_open_range}"=="public"){
-										console.log("${vo.fitting_id}");
-										console.log(${status.index});
+// 										console.log("${vo.fitting_id}");
+// 										console.log(${status.index});
 // 										//div 속성 보이게 하기
 										div[${status.index}].style.display="block";
-										console.log(div[${status.index}]);
+// 										console.log(div[${status.index}]);
 									}
 							</c:forEach>
 							}

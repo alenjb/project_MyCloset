@@ -2,6 +2,7 @@ package com.mycloset.fitting.controller;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mycloset.fitting.service.FittingService;
 import com.mycloset.fitting.vo.FittingVO;
@@ -96,7 +98,18 @@ public class FittingController {
 		// 페이지 관련 정보 담기
 		model.addAttribute("pageMaker", new PageDTO(cri, totalNum));
 	}
-
+	
+	@GetMapping("/listOpenRange")
+	@ResponseBody
+	public Object listOpenRange(@RequestParam Map<String, String> param, Critera cri) throws Exception{
+		String openRange= param.get("fitting_open_range");
+		
+		if (openRange.equals("private")) {
+			System.out.println("성공: "+cri);
+			return service.getRangeListWithPaging(cri, 0, openRange);
+		}
+		return "";
+	}
 	// 3. 피팅 세부 보기
 	@GetMapping("/view")
 	public String view(HttpServletRequest request, Model model, Critera cri, @RequestParam("fitting_id") String fitting_id)
