@@ -78,8 +78,19 @@
 </style>
 <script type="text/javascript">
 	$(function() {
-		var fit= "1";
-		var fit2="2";
+		
+		
+		//버튼들이 체크안돼있었으면 체크해제하기
+		<%boolean publicCheck = Boolean.parseBoolean(request.getParameter("publicCheck"));%>
+		<%boolean privateCheck = Boolean.parseBoolean(request.getParameter("privateCheck"));%>
+		if(<%=publicCheck%>==false){
+			$("#flexSwitchCheckChecked1").prop('checked', false);
+		}
+		if(<%=privateCheck%>==false){
+			$("#flexSwitchCheckChecked2").prop('checked', false);
+		}
+		
+		
 		$(".fittingOverView").click(function() {
 			location = "view?fitting_id=" + $(this).find(".fitting_id").text()+"&type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}";
 
@@ -121,34 +132,6 @@
 			var checked = $("#flexSwitchCheckChecked1").is(':checked');
 			var result = new Array();
 			
-			
-					
-			
-// 			//ajax 기본 틀
-// 			$.ajax({
-// 				url: '/fitting/Private',
-// 				type: 'GET',
-				
-// 				data: { 
-// 					"fitting_open_range":fitting_open_range
-// 				},
-// 				beforeSend: function() {
-					
-// 				},
-// 				success: function(res) {
-// 					console.log(res);
-// 					var jstr = res;
-					
-// 				},
-// 				error: function() {
-				
-// 				},
-// 				complete: function() {
-					
-// 				}
-// 			});
-			
-			
 			<c:forEach items="${fittings}" var="vo">
 				var json = new Object();
 				json.name="${vo.fitting_name}";
@@ -159,35 +142,58 @@
 							
 							//만약 private 버튼도 안눌려 있으면
 							if ($("#flexSwitchCheckChecked2").is(':checked') == false){
+								//publicCheck 값을 false로 변경
+								$("#publicCheck").val(false);
+								//privateCheck 값을 false로 변경
+								$("#privateCheck").val(false);
+
 								var fitting_open_range = "none";
-							}else{//private 버튼이 눌려 있으면
-								var fitting_open_range = "private" 
-							}
-							
-							//ajax 기본 틀
+									$('#fitting_main').empty();
+									console.log(fitting_open_range);
+							}else{//private 버튼이 눌려 있으면(private만 보이게)
+								//publicCheck 값을 false로 변경
+								$("#publicCheck").val(false);
+								//privateCheck 값을 true로 변경
+								$("#privateCheck").val(true);
+
+								var fitting_open_range = "private" ;
+															
+							//ajax
 							$.ajax({
 								url: '/fitting/listOpenRange',
 								type: 'GET',
 								
 								data: { 
-									"fitting_open_range":fitting_open_range
+									"fitting_open_range":fitting_open_range,
+									"pageNum":${pageMaker.cri.pageNum},
+									"amount":${pageMaker.cri.amount},
+									"type":('${pageMaker.cri.type}'!=null) ? '${pageMaker.cri.type}': null,
+									"keyword":('${pageMaker.cri.keyword}'!=null) ? '${pageMaker.cri.keyword}': null
 								},
 								beforeSend: function() {
 									
 								},
 								success: function(res) {
-									console.log(res[1].fitting_id);
-									var jstr = res;
-									
-									//vo에서 하나씩 꺼내서
-									//해당 div 찾기
-		 							var div = document.getElementsByClassName("fittingOverView");
-		 						<c:forEach var="vo" items="${fittings}" begin="0" varStatus="status">
-		 						console.log(div[${status.index}].innerHtml);
-		 						div[${status.index}].innerHtml=${jstr}[${status.index}];
-		 							console.log(div[${status.index}].innerHtml);
-		 						</c:forEach>
-									
+									//현재 있는 피팅 비우기
+									$('#fitting_main').empty();
+									//div 안에 ajax로 가져온 내용 채우기
+									for(var i=0;i<res.length;i++) {
+										let html = '';
+											html += '<div class="col" id="fittingDiv">';
+											html += '	<div class="card h-100 fittingOverView">';
+											html += '		<img class="card-img-top" src="'+res[i].fitting_image+'"';
+											html += '			alt="Card image cap" />';
+											html += '		<div class="card-body">';
+											html += '			<h5 class="card-title">'+res[i].fitting_name+'</h5>';
+											html += '			<p class="card-text">'+res[i].fitting_info+'</p>';
+											html += '			<p class="fitting_id" hidden="hidden">'+res[i].fitting_id+'</p>';
+											html += '			<p class="fitting_open_range" hidden="hidden">'+res[i].fitting_open_range+'</p>';
+											html += '		</div>';
+											html += '	</div>';
+											html += '</div>';
+										$('#fitting_main').append(html);
+									}
+																		
 									
 								},
 								error: function() {
@@ -197,46 +203,121 @@
 									
 								}
 							});
-							
-							//vo에서 하나씩 꺼내서
-							//해당 div 찾기
-// 							var div = document.getElementsByClassName("fittingOverView");
-// 						<c:forEach var="vo" items="${fittings}" begin="0" varStatus="status">
-// 							div[${status.index}].outerText = "안녕";
-// 						</c:forEach>
-							
-							
-							
-// 							//vo에서 하나씩 꺼내서
-// 								//해당 div 찾기
-// 								var div = document.getElementsByClassName("fittingOverView");
-// 							<c:forEach var="vo" items="${fittings}" begin="0" varStatus="status">
-// 								//만약 private이면
-// 								if("${vo.fitting_open_range}"=="public"){
-// // 										console.log("${vo.fitting_id}");
-// // 										console.log(${status.index});
-// // 										//div 속성 보이게 하기
-// 										div[${status.index}].style.display="none";
-// // 										console.log(div[${status.index}]);
-// 									}
-// 							</c:forEach>
-							}
+						}//else
+					}//if (!checked)
+						
 						//public을 보겠다고 하면
 						if (checked){
-							//vo에서 하나씩 꺼내서
-								//해당 div 찾기
-								var div = document.getElementsByClassName("fittingOverView");
-							<c:forEach var="vo" items="${fittings}" begin="0" varStatus="status">
-								//만약 private이면
-								if("${vo.fitting_open_range}"=="public"){
-// 										console.log("${vo.fitting_id}");
-// 										console.log(${status.index});
-// 										//div 속성 보이게 하기
-										div[${status.index}].style.display="block";
-// 										console.log(div[${status.index}]);
+							//publicCheck 값을 true로 변경
+							$("#publicCheck").val(true);
+							//만약 private 버튼이 안눌려 있으면(public만 보이게)
+							if ($("#flexSwitchCheckChecked2").is(':checked') == false){
+								//publicCheck 값을 false로 변경
+								$("#publicCheck").val(true);
+								//privateCheck 값을 false로 변경
+								$("#privateCheck").val(false);
+
+								
+								var fitting_open_range = "public";
+								//ajax
+								$.ajax({
+									url: '/fitting/listOpenRange',
+									type: 'GET',
+									
+									data: { 
+										"fitting_open_range":fitting_open_range,
+										"pageNum":${pageMaker.cri.pageNum},
+										"amount":${pageMaker.cri.amount},
+										"type":('${pageMaker.cri.type}'!=null) ? '${pageMaker.cri.type}': null,
+										"keyword":('${pageMaker.cri.keyword}'!=null) ? '${pageMaker.cri.keyword}': null
+									},
+									beforeSend: function() {
+										
+									},
+									success: function(res) {
+										//현재 있는 피팅 비우기
+										$('#fitting_main').empty();
+										//div 안에 ajax로 가져온 내용 채우기
+										for(var i=0;i<res.length;i++) {
+											let html = '';
+												html += '<div class="col" id="fittingDiv">';
+												html += '	<div class="card h-100 fittingOverView">';
+												html += '		<img class="card-img-top" src="'+res[i].fitting_image+'"';
+												html += '			alt="Card image cap" />';
+												html += '		<div class="card-body">';
+												html += '			<h5 class="card-title">'+res[i].fitting_name+'</h5>';
+												html += '			<p class="card-text">'+res[i].fitting_info+'</p>';
+												html += '			<p class="fitting_id" hidden="hidden">'+res[i].fitting_id+'</p>';
+												html += '			<p class="fitting_open_range" hidden="hidden">'+res[i].fitting_open_range+'</p>';
+												html += '		</div>';
+												html += '	</div>';
+												html += '</div>';
+											$('#fitting_main').append(html);
+										}
+																			
+										
+									},
+									error: function() {
+									
+									},
+									complete: function() {
+										
 									}
-							</c:forEach>
-							}
+								});
+							}else{//만약 private 버튼이 눌려 있으면(다 보이게)
+								//publicCheck 값을 true로 변경
+								$("#publicCheck").val(true);
+								//privateCheck 값을 true로 변경
+								$("#privateCheck").val(true);
+
+								var fitting_open_range = "all";
+							//ajax
+							$.ajax({
+								url: '/fitting/listOpenRange',
+								type: 'GET',
+								
+								data: { 
+									"fitting_open_range":fitting_open_range,
+									"pageNum":${pageMaker.cri.pageNum},
+									"amount":${pageMaker.cri.amount},
+									"type":('${pageMaker.cri.type}'!=null) ? '${pageMaker.cri.type}': null,
+									"keyword":('${pageMaker.cri.keyword}'!=null) ? '${pageMaker.cri.keyword}': null
+								},
+								beforeSend: function() {
+									
+								},
+								success: function(res) {
+									//현재 있는 피팅 비우기
+									$('#fitting_main').empty();
+									//div 안에 ajax로 가져온 내용 채우기
+									for(var i=0;i<res.length;i++) {
+										let html = '';
+											html += '<div class="col" id="fittingDiv">';
+											html += '	<div class="card h-100 fittingOverView">';
+											html += '		<img class="card-img-top" src="'+res[i].fitting_image+'"';
+											html += '			alt="Card image cap" />';
+											html += '		<div class="card-body">';
+											html += '			<h5 class="card-title">'+res[i].fitting_name+'</h5>';
+											html += '			<p class="card-text">'+res[i].fitting_info+'</p>';
+											html += '			<p class="fitting_id" hidden="hidden">'+res[i].fitting_id+'</p>';
+											html += '			<p class="fitting_open_range" hidden="hidden">'+res[i].fitting_open_range+'</p>';
+											html += '		</div>';
+											html += '	</div>';
+											html += '</div>';
+										$('#fitting_main').append(html);
+									}
+																		
+									
+								},
+								error: function() {
+								
+								},
+								complete: function() {
+									
+								}
+							});
+							}//else
+						}//if(checked)
 		});
 		
 		// private 버튼 클릭시
@@ -249,38 +330,188 @@
 				json.name="${vo.fitting_name}";
 				result.push(json);
 			</c:forEach>
-						//private을 안보겠다고 하면
-						if (!checked){
-							//vo에서 하나씩 꺼내서
-								//해당 div 찾기
-								var div = document.getElementsByClassName("fittingOverView");
-							<c:forEach var="vo" items="${fittings}" begin="0" varStatus="status">
-								//만약 private이면
-								if("${vo.fitting_open_range}"=="private"){
-										console.log("${vo.fitting_id}");
-										console.log(${status.index});
-// 										//div 속성 보이게 하기
-										div[${status.index}].style.display="none";
-										console.log(div[${status.index}]);
-									}
-							</c:forEach>
+			//private을 안보겠다고 하면
+			if (!checked){
+				//privateCheck 값을 false로 변경
+				$("#privateCheck").val(false);
+				
+				//만약 public 버튼도 안눌려 있으면(아무것도 안보이게)
+				if ($("#flexSwitchCheckChecked1").is(':checked') == false){
+					//publicCheck 값을 false로 변경
+					$("#publicCheck").val(false);
+					//privateCheck 값을 false로 변경
+					$("#privateCheck").val(false);
+
+					var fitting_open_range = "none";
+						$('#fitting_main').empty();
+				}else{//public 버튼이 눌려 있으면(public만 보이게)
+					//publicCheck 값을 true로 변경
+					$("#publicCheck").val(true);
+					//privateCheck 값을 false로 변경
+					$("#privateCheck").val(false);
+
+					var fitting_open_range = "public" 
+				}
+				
+				//ajax
+				$.ajax({
+					url: '/fitting/listOpenRange',
+					type: 'GET',
+					
+					data: { 
+						"fitting_open_range":fitting_open_range,
+						"pageNum":${pageMaker.cri.pageNum},
+						"amount":${pageMaker.cri.amount},
+						"type":('${pageMaker.cri.type}'!=null) ? '${pageMaker.cri.type}': null,
+						"keyword":('${pageMaker.cri.keyword}'!=null) ? '${pageMaker.cri.keyword}': null
+					},
+					beforeSend: function() {
+						
+					},
+					success: function(res) {
+						//현재 있는 피팅 비우기
+						$('#fitting_main').empty();
+						//div 안에 ajax로 가져온 내용 채우기
+						for(var i=0;i<res.length;i++) {
+							let html = '';
+								html += '<div class="col" id="fittingDiv">';
+								html += '	<div class="card h-100 fittingOverView">';
+								html += '		<img class="card-img-top" src="'+res[i].fitting_image+'"';
+								html += '			alt="Card image cap" />';
+								html += '		<div class="card-body">';
+								html += '			<h5 class="card-title">'+res[i].fitting_name+'</h5>';
+								html += '			<p class="card-text">'+res[i].fitting_info+'</p>';
+								html += '			<p class="fitting_id" hidden="hidden">'+res[i].fitting_id+'</p>';
+								html += '			<p class="fitting_open_range" hidden="hidden">'+res[i].fitting_open_range+'</p>';
+								html += '		</div>';
+								html += '	</div>';
+								html += '</div>';
+							$('#fitting_main').append(html);
+						}
+															
+						
+					},
+					error: function() {
+					
+					},
+					complete: function() {
+						
+					}
+				});
+			}//if (!checked)
+			
+			//private을 보겠다고 하면
+			if (checked){
+				//privateCheck 값을 true로 변경
+				$("#privateCheck").val(true);
+
+				//만약 public 버튼이 안눌려 있으면(private만 보이게)
+				if ($("#flexSwitchCheckChecked1").is(':checked') == false){
+					//publicCheck 값을 false로 변경
+					$("#publicCheck").val(false);
+					//privateCheck 값을 true로 변경
+					$("#privateCheck").val(true);
+
+					var fitting_open_range = "private"
+					//ajax
+					$.ajax({
+						url: '/fitting/listOpenRange',
+						type: 'GET',
+						
+						data: { 
+							"fitting_open_range":fitting_open_range,
+							"pageNum":${pageMaker.cri.pageNum},
+							"amount":${pageMaker.cri.amount},
+							"type":('${pageMaker.cri.type}'!=null) ? '${pageMaker.cri.type}': null,
+							"keyword":('${pageMaker.cri.keyword}'!=null) ? '${pageMaker.cri.keyword}': null
+						},
+						beforeSend: function() {
+							
+						},
+						success: function(res) {
+							//현재 있는 피팅 비우기
+							$('#fitting_main').empty();
+							//div 안에 ajax로 가져온 내용 채우기
+							for(var i=0;i<res.length;i++) {
+								let html = '';
+									html += '<div class="col" id="fittingDiv">';
+									html += '	<div class="card h-100 fittingOverView">';
+									html += '		<img class="card-img-top" src="'+res[i].fitting_image+'"';
+									html += '			alt="Card image cap" />';
+									html += '		<div class="card-body">';
+									html += '			<h5 class="card-title">'+res[i].fitting_name+'</h5>';
+									html += '			<p class="card-text">'+res[i].fitting_info+'</p>';
+									html += '			<p class="fitting_id" hidden="hidden">'+res[i].fitting_id+'</p>';
+									html += '			<p class="fitting_open_range" hidden="hidden">'+res[i].fitting_open_range+'</p>';
+									html += '		</div>';
+									html += '	</div>';
+									html += '</div>';
+								$('#fitting_main').append(html);
 							}
-						//private을 보겠다고 하면
-						if (checked){
-							//vo에서 하나씩 꺼내서
-								//해당 div 찾기
-								var div = document.getElementsByClassName("fittingOverView");
-							<c:forEach var="vo" items="${fittings}" begin="0" varStatus="status">
-								//만약 private이면
-								if("${vo.fitting_open_range}"=="private"){
-										console.log("${vo.fitting_id}");
-										console.log(${status.index});
-// 										//div 속성 보이게 하기
-										div[${status.index}].style.display="block";
-										console.log(div[${status.index}]);
-									}
-							</c:forEach>
-							}
+																
+							
+						},
+						error: function() {
+						
+						},
+						complete: function() {
+							
+						}
+					});
+				}else{//만약 public 버튼이 눌려 있으면(다 보이게)
+					//publicCheck 값을 true로 변경
+					$("#publicCheck").val(true);
+					//privateCheck 값을 true로 변경
+					$("#privateCheck").val(true);
+
+					var fitting_open_range = "all"
+				//ajax
+				$.ajax({
+					url: '/fitting/listOpenRange',
+					type: 'GET',
+					
+					data: { 
+						"fitting_open_range":fitting_open_range,
+						"pageNum":${pageMaker.cri.pageNum},
+						"amount":${pageMaker.cri.amount},
+						"type":('${pageMaker.cri.type}'!=null) ? '${pageMaker.cri.type}': null,
+						"keyword":('${pageMaker.cri.keyword}'!=null) ? '${pageMaker.cri.keyword}': null
+					},
+					beforeSend: function() {
+						
+					},
+					success: function(res) {
+						//현재 있는 피팅 비우기
+						$('#fitting_main').empty();
+						//div 안에 ajax로 가져온 내용 채우기
+						for(var i=0;i<res.length;i++) {
+							let html = '';
+								html += '<div class="col" id="fittingDiv">';
+								html += '	<div class="card h-100 fittingOverView">';
+								html += '		<img class="card-img-top" src="'+res[i].fitting_image+'"';
+								html += '			alt="Card image cap" />';
+								html += '		<div class="card-body">';
+								html += '			<h5 class="card-title">'+res[i].fitting_name+'</h5>';
+								html += '			<p class="card-text">'+res[i].fitting_info+'</p>';
+								html += '			<p class="fitting_id" hidden="hidden">'+res[i].fitting_id+'</p>';
+								html += '			<p class="fitting_open_range" hidden="hidden">'+res[i].fitting_open_range+'</p>';
+								html += '		</div>';
+								html += '	</div>';
+								html += '</div>';
+							$('#fitting_main').append(html);
+						}
+															
+						
+					},
+					error: function() {
+					
+					},
+					complete: function() {
+						
+					}
+				});
+				}
+			}
 		});
 
 		
@@ -333,7 +564,7 @@
 						<button type="button" class="btn btn-primary enrollBtn"
 							onclick="location.href='enroll'">피팅 만들기</button>
 
-						<div class="row row-cols-1 row-cols-md-3 g-4 mb-5">
+						<div class="row row-cols-1 row-cols-md-3 g-4 mb-5" id="fitting_main">
 							<c:forEach items="${fittings}" var="fitting">
 									<div class="col" id="fittingDiv">
 										<div class="card h-100 fittingOverView">
@@ -348,7 +579,10 @@
 										</div>
 									</div>
 							</c:forEach>
+							
+							
 						</div>
+							
 						<!-- / Content -->
 						<!-- 페이지네이션 -->
 						<div class="col mt-3">
@@ -389,6 +623,8 @@
 								value='<c:out value="${pageMaker.cri.type}"/>'> <input
 								type="hidden" name="keyword"
 								value='<c:out value="${pageMaker.cri.keyword}"/>'>
+								<input id="privateCheck" name="privateCheck" value=<%=privateCheck %> />
+								<input id= "publicCheck" name="publicCheck" value=<%=publicCheck %>  />
 						</form>
 						<div class="content-backdrop fade"></div>
 					</div>

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mycloset.fitting.service.FittingService;
 import com.mycloset.fitting.vo.FittingVO;
 import com.mycloset.fitting.vo.ImageVO;
@@ -101,14 +102,26 @@ public class FittingController {
 	
 	@GetMapping("/listOpenRange")
 	@ResponseBody
-	public Object listOpenRange(@RequestParam Map<String, String> param, Critera cri) throws Exception{
+	public Object listOpenRange(@RequestParam Map<String, String> param) throws Exception{
 		String openRange= param.get("fitting_open_range");
+		int pageNum= Integer.parseInt(param.get("pageNum"));		
+		int amount= Integer.parseInt(param.get("amount"));		
+		String type= param.get("type");		
+		String keyword= param.get("keyword");		
+		Critera cri= new Critera();
+		cri.setPageNum(pageNum);
+		cri.setAmount(amount);
+		cri.setType(type);
+		cri.setKeyword(keyword);
 		
-		if (openRange.equals("private")) {
-			System.out.println("성공: "+cri);
-			return service.getRangeListWithPaging(cri, 0, openRange);
+		System.out.println("성공: "+cri);
+		List<FittingVO> list = service.getRangeListWithPaging(cri, 0, openRange);
+		for(FittingVO vo: list) {
+			String fittingIamge=vo.getFitting_image().replace("\\\\\\", "\\");
+			vo.setFitting_image(fittingIamge);
 		}
-		return "";
+		return list;
+		
 	}
 	// 3. 피팅 세부 보기
 	@GetMapping("/view")
