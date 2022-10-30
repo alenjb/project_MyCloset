@@ -94,6 +94,9 @@ public class FittingController {
 
 		// 모델에 피팅 리스트 담기
 		model.addAttribute("fittings", fittings);
+		model.addAttribute("publicCheck", true);
+		model.addAttribute("privateCheck", true);
+
 		// 옷 피팅 개수 세기
 		int totalNum = service.getTotalNum(cri);
 		// 페이지 관련 정보 담기

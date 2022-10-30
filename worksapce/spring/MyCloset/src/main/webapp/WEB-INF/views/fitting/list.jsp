@@ -78,17 +78,82 @@
 </style>
 <script type="text/javascript">
 	$(function() {
-		
-		
+
 		//버튼들이 체크안돼있었으면 체크해제하기
 		<%boolean publicCheck = Boolean.parseBoolean(request.getParameter("publicCheck"));%>
 		<%boolean privateCheck = Boolean.parseBoolean(request.getParameter("privateCheck"));%>
+		console.log("public"+<%=publicCheck%>);
+		console.log("private"+<%=privateCheck%>);
 		if(<%=publicCheck%>==false){
 			$("#flexSwitchCheckChecked1").prop('checked', false);
+			if(<%=privateCheck%>==false){//none
+				$("#flexSwitchCheckChecked2").prop('checked', false);
+				$('#fitting_main').empty();
+			}else{//private
+				$("#flexSwitchCheckChecked2").prop('checked', true);
+				var fitting_open_range = "private";
+			}
+
+		}else{
+			$("#flexSwitchCheckChecked1").prop('checked', true);
+			if(<%=privateCheck%>==false){//public
+				$("#flexSwitchCheckChecked2").prop('checked', false);
+				var fitting_open_range = "public";
+			}else{//all
+				$("#flexSwitchCheckChecked2").prop('checked', true);
+				var fitting_open_range = "all";
+			}
+
 		}
-		if(<%=privateCheck%>==false){
-			$("#flexSwitchCheckChecked2").prop('checked', false);
+		if(<%=privateCheck%>==true || <%=publicCheck%>==true ){
+			
+		//ajax
+		$.ajax({
+			url: '/fitting/listOpenRange',
+			type: 'GET',
+			
+			data: { 
+				"fitting_open_range":fitting_open_range,
+				"pageNum":${pageMaker.cri.pageNum},
+				"amount":${pageMaker.cri.amount},
+				"type":('${pageMaker.cri.type}'!=null) ? '${pageMaker.cri.type}': null,
+				"keyword":('${pageMaker.cri.keyword}'!=null) ? '${pageMaker.cri.keyword}': null
+			},
+			beforeSend: function() {
+				
+			},
+			success: function(res) {
+				//현재 있는 피팅 비우기
+				$('#fitting_main').empty();
+				//div 안에 ajax로 가져온 내용 채우기
+				for(var i=0;i<res.length;i++) {
+					let html = '';
+						html += '<div class="col" id="fittingDiv">';
+						html += '	<div class="card h-100 fittingOverView">';
+						html += '		<img class="card-img-top" src="'+res[i].fitting_image+'"';
+						html += '			alt="Card image cap" />';
+						html += '		<div class="card-body">';
+						html += '			<h5 class="card-title">'+res[i].fitting_name+'</h5>';
+						html += '			<p class="card-text">'+res[i].fitting_info+'</p>';
+						html += '			<p class="fitting_id" hidden="hidden">'+res[i].fitting_id+'</p>';
+						html += '			<p class="fitting_open_range" hidden="hidden">'+res[i].fitting_open_range+'</p>';
+						html += '		</div>';
+						html += '	</div>';
+						html += '</div>';
+					$('#fitting_main').append(html);
+				}
+													
+				
+			},
+			error: function() {
+			
+			},
+			complete: function() {
+				
+			}
+		});
 		}
+		
 		
 		
 		$(".fittingOverView").click(function() {
@@ -127,7 +192,9 @@
 		});
 		
 		// public 버튼 클릭시
-		$("#flexSwitchCheckChecked1").on("click", function(e) {
+		$("#flexSwitchCheckChecked1").on("change", function(e) {
+			console.log("public 변경");
+
 			//체크 되면 public 보임
 			var checked = $("#flexSwitchCheckChecked1").is(':checked');
 			var result = new Array();
@@ -321,7 +388,8 @@
 		});
 		
 		// private 버튼 클릭시
-		$("#flexSwitchCheckChecked2").on("click", function(e) {
+		$("#flexSwitchCheckChecked2").on("change", function(e) {
+			console.log("private 변경");
 			//체크 되면 private 보임
 			var checked = $("#flexSwitchCheckChecked2").is(':checked');
 			var result = new Array();
@@ -548,12 +616,12 @@
 							<div class="card-body">
 								<div class="form-check form-switch mb-2 form-check-inline">
 									<input class="form-check-input" type="checkbox"
-										id="flexSwitchCheckChecked1" checked /> <label
+										id="flexSwitchCheckChecked1" /> <label
 										class="form-check-label" for="flexSwitchCheckChecked1">public</label>
 								</div>
 								<div class="form-check form-switch mb-2 form-check-inline">
 									<input class="form-check-input" type="checkbox"
-										id="flexSwitchCheckChecked2" checked /> <label
+										id="flexSwitchCheckChecked2" /> <label
 										class="form-check-label" for="flexSwitchCheckChecked2">private</label>
 								</div>
 
@@ -565,22 +633,6 @@
 							onclick="location.href='enroll'">피팅 만들기</button>
 
 						<div class="row row-cols-1 row-cols-md-3 g-4 mb-5" id="fitting_main">
-							<c:forEach items="${fittings}" var="fitting">
-									<div class="col" id="fittingDiv">
-										<div class="card h-100 fittingOverView">
-											<img class="card-img-top" src="${fitting.fitting_image}"
-												alt="Card image cap" />
-											<div class="card-body">
-												<h5 class="card-title">${fitting.fitting_name}</h5>
-												<p class="card-text">${fitting.fitting_info}</p>
-												<p class="fitting_id" hidden="hidden">${fitting.fitting_id}</p>
-												<p class="fitting_open_range" hidden="hidden">${fitting.fitting_open_range}</p>
-											</div>
-										</div>
-									</div>
-							</c:forEach>
-							
-							
 						</div>
 							
 						<!-- / Content -->
