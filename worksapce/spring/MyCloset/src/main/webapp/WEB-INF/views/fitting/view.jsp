@@ -181,38 +181,19 @@ $(function () {
 								<div class="card mb-4">
 									<h5 class="card-header">피팅 이미지</h5>
 									<div class="card-body">
-										<div
-											class="d-flex align-items-start align-items-sm-center gap-4">
-											<div class="align-items-sm-center">
-												<img src="${vo.fitting_image}" alt="이미지"
-													class="d-block rounded me-0 mb-sm-0 mb-2" height="300"
-													width="300" id="uploadedPhoto" style="cursor: pointer;" />
-												<p style="text-align: center">피팅</p>
-											</div>
-											<div class="align-items-sm-center">
-												<img src="${vo.outer_clothes_photo}" alt="이미지"
-													class="d-block rounded me-0 mb-sm-0 mb-2" height="125"
-													width="125" id="outer_clothes_photo" name="outer_clothes_photo"
-													style="cursor: pointer;" />
-												<p style="text-align: center">아우터</p>
-											</div>
-											<div class="align-items-sm-center">
-												<img src="${vo.top_clothes_photo}" alt="이미지"
-													class="d-block rounded me-0 mb-sm-0 mb-2" height="125"
-													width="125" id="top_clothes_photo" name="top_clothes_photo" style="cursor: pointer;" />
-												<p style="text-align: center">상의</p>
-											</div>
-											<div class="align-items-sm-center">
-												<img src="${vo.bottom_clothes_photo}" alt="이미지"
-													class="d-block rounded me-0 mb-sm-0 mb-2" height="125"
-													width="125" id="bottom_clothes_photo" name="bottom_clothes_photo"
-													style="cursor: pointer;" />
-												<p style="text-align: center">하의</p>
-											</div>
-										</div>
-									</div>
-									<hr class="my-0">
-									<div class="card-body">
+									
+						              <div class="row">
+						                <!-- 피팅 이미지 -->
+						                <div class="col-md-4 col-sm-12">
+						                  <div class="card overflow-hidden mb-4"" style="height: 400px">
+						                    <h5 class="card-header text-center">피팅 이미지</h5>
+						                    <div class="card-body" id="both-scrollbars-example">
+						                      	<img src="${vo.fitting_image}" alt="이미지" class="d-block rounded mx-auto mb-sm-0 mb-2" height="300" width="300" id="uploadedPhoto" style="cursor: pointer;" />
+						                    </div>
+						                  </div>
+						                </div>
+						                <div class="col-md-8 col-sm-12">
+						                	<div class="card-body">
 										<div class="row justify-content-center">
 											<label for="fitting_name" class="form-label col-md-4">피팅
 												이름</label>
@@ -238,9 +219,7 @@ $(function () {
 													<input name="fitting_season" class="form-check-input"
 														type="checkbox" value="봄" id="fitting_season1"
 														<c:set var="season" value="${vo.fitting_season}" />
-														<c:if test="${fn:contains(season, '봄')}">
-	                              checked="checked"
-                              </c:if>
+														<c:if test="${fn:contains(season, '봄')}">checked="checked"</c:if>
 														disabled="disabled" /> <label class="form-check-label"
 														for="fitting_season1"> 봄 </label>
 												</div>
@@ -248,9 +227,7 @@ $(function () {
 													<input name="fitting_season" class="form-check-input"
 														type="checkbox" value="여름" id="fitting_season2"
 														<c:set var="season" value="${vo.fitting_season}" />
-														<c:if test="${fn:contains(season, '여름')}">
-	                              checked="checked"
-                              </c:if>
+														<c:if test="${fn:contains(season, '여름')}">checked="checked"</c:if>
 														disabled="disabled" /> <label class="form-check-label"
 														for="fitting_season2"> 여름 </label>
 												</div>
@@ -258,9 +235,7 @@ $(function () {
 													<input name="fitting_season" class="form-check-input"
 														type="checkbox" value="가을" id="fitting_season3"
 														<c:set var="season" value="${vo.fitting_season}" />
-														<c:if test="${fn:contains(season, '가을')}">
-	                              checked="checked"
-                              </c:if>
+														<c:if test="${fn:contains(season, '가을')}">checked="checked"</c:if>
 														disabled="disabled" /> <label class="form-check-label"
 														for="fitting_season3"> 가을 </label>
 												</div>
@@ -269,9 +244,7 @@ $(function () {
 													<input name="fitting_season" class="form-check-input"
 														type="checkbox" value="겨울" id="fitting_season4"
 														<c:set var="season" value="${vo.fitting_season}" />
-														<c:if test="${fn:contains(season, '겨울')}">
-	                              checked="checked"
-                              </c:if>
+														<c:if test="${fn:contains(season, '겨울')}">checked="checked"</c:if>
 														disabled="disabled" /> <label class="form-check-label"
 														for="fitting_season4"> 겨울 </label>
 												</div>
@@ -281,6 +254,45 @@ $(function () {
 											<div class="mb-3 col-md-8">${vo.fitting_open_range }</div>
 										</div>
 									</div>
+						                </div>
+						                <!-- 피팅 이미지 -->
+						                
+						                <!-- 아우터 이미지 -->
+						                <div class="col-md-4 col-sm-12 mb-4">
+						                  <div class="card overflow-hidden" style="height: 300px">
+						                    <h5 class="card-header text-center">아우터 이미지</h5>
+						                    <div class="card-body" id="vertical-example">
+						                     <img src="${vo.outer_clothes_photo}" alt="이미지" class="d-block rounded mx-auto mb-sm-0 mb-2" height="220" width="220" id="outer_clothes_photo" name="outer_clothes_photo" style="cursor: pointer;" />
+						                    </div>
+						                  </div>
+						                </div>
+						                <!-- 아우터 이미지 -->
+						
+						                <!-- 상의 이미지 -->
+						                <div class="col-md-4 col-sm-12 mb-4">
+						                  <div class="card overflow-hidden" style="height: 300px">
+						                    <h5 class="card-header text-center">상의 이미지</h5>
+						                    <div class="card-body" id="horizontal-example">
+						                      <img src="${vo.top_clothes_photo}" alt="이미지" class="d-block rounded mx-auto mb-sm-0 mb-2" height="220" width="220" id="top_clothes_photo" name="top_clothes_photo" style="cursor: pointer;" />
+						                    </div>
+						                  </div>
+						                </div>
+						                 <!-- 상의 이미지 -->
+						                 
+						                <!-- 하의 이미지 -->
+						                <div class="col-md-4 col-sm-12 mb-4">
+						                  <div class="card overflow-hidden" style="height: 300px">
+						                    <h5 class="card-header text-center">하의 이미지</h5>
+						                    <div class="card-body" id="horizontal-example">
+						                      	<img src="${vo.bottom_clothes_photo}" alt="이미지" class="d-block rounded mx-auto mb-sm-0 mb-2" height="220" width="220" id="bottom_clothes_photo" name="bottom_clothes_photo" style="cursor: pointer;" />
+						                    </div>
+						                  </div>
+						                </div>
+										<!-- 하의 이미지 -->
+						
+						              </div>
+									</div>
+									<hr class="my-0">
 								</div>
 								<div class="mt-2">
 									<!--                           <a href="/member/myPage"><button type="submit" class="btn btn-primary me-2" >수정완료</button></a> -->

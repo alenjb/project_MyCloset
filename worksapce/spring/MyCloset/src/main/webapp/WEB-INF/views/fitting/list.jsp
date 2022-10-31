@@ -92,6 +92,10 @@
 			}else{//private
 				$("#flexSwitchCheckChecked2").prop('checked', true);
 				var fitting_open_range = "private";
+				//피팅사진 클릭하면 이동
+				$(".fittingOverView").click(function() {
+					location = "view?fitting_id=" + $(this).find(".fitting_id").text()+"&type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}";
+				});
 			}
 
 		}else{
@@ -99,9 +103,17 @@
 			if(<%=privateCheck%>==false){//public
 				$("#flexSwitchCheckChecked2").prop('checked', false);
 				var fitting_open_range = "public";
+				//피팅사진 클릭하면 이동
+				$(".fittingOverView").click(function() {
+					location = "view?fitting_id=" + $(this).find(".fitting_id").text()+"&type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}";
+				});
 			}else{//all
 				$("#flexSwitchCheckChecked2").prop('checked', true);
 				var fitting_open_range = "all";
+				//피팅사진 클릭하면 이동
+				$(".fittingOverView").click(function() {
+					location = "view?fitting_id=" + $(this).find(".fitting_id").text()+"&type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}";
+				});
 			}
 
 		}
@@ -143,7 +155,10 @@
 					$('#fitting_main').append(html);
 				}
 													
-				
+				//피팅사진 클릭하면 이동
+				$(".fittingOverView").click(function() {
+					location = "view?fitting_id=" + $(this).find(".fitting_id").text()+"&type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}";
+				});
 			},
 			error: function() {
 			
@@ -155,11 +170,9 @@
 		}
 		
 		
-		
+		//피팅사진 클릭하면 이동
 		$(".fittingOverView").click(function() {
 			location = "view?fitting_id=" + $(this).find(".fitting_id").text()+"&type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}";
-
-
 		});
 
 		var actionForm = $("#actionForm");
@@ -261,7 +274,10 @@
 										$('#fitting_main').append(html);
 									}
 																		
-									
+									//피팅사진 클릭하면 이동
+									$(".fittingOverView").click(function() {
+										location = "view?fitting_id=" + $(this).find(".fitting_id").text()+"&type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}";
+									});
 								},
 								error: function() {
 								
@@ -322,7 +338,10 @@
 											$('#fitting_main').append(html);
 										}
 																			
-										
+										//피팅사진 클릭하면 이동
+										$(".fittingOverView").click(function() {
+											location = "view?fitting_id=" + $(this).find(".fitting_id").text()+"&type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}";
+										});
 									},
 									error: function() {
 									
@@ -374,7 +393,10 @@
 										$('#fitting_main').append(html);
 									}
 																		
-									
+									//피팅사진 클릭하면 이동
+									$(".fittingOverView").click(function() {
+										location = "view?fitting_id=" + $(this).find(".fitting_id").text()+"&type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}";
+									});
 								},
 								error: function() {
 								
@@ -457,7 +479,10 @@
 							$('#fitting_main').append(html);
 						}
 															
-						
+						//피팅사진 클릭하면 이동
+						$(".fittingOverView").click(function() {
+							location = "view?fitting_id=" + $(this).find(".fitting_id").text()+"&type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}";
+						});
 					},
 					error: function() {
 					
@@ -517,7 +542,10 @@
 								$('#fitting_main').append(html);
 							}
 																
-							
+							//피팅사진 클릭하면 이동
+							$(".fittingOverView").click(function() {
+								location = "view?fitting_id=" + $(this).find(".fitting_id").text()+"&type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}";
+							});
 						},
 						error: function() {
 						
@@ -569,7 +597,10 @@
 							$('#fitting_main').append(html);
 						}
 															
-						
+						//피팅사진 클릭하면 이동
+						$(".fittingOverView").click(function() {
+							location = "view?fitting_id=" + $(this).find(".fitting_id").text()+"&type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}";
+						});
 					},
 					error: function() {
 					
@@ -675,8 +706,8 @@
 								value='<c:out value="${pageMaker.cri.type}"/>'> <input
 								type="hidden" name="keyword"
 								value='<c:out value="${pageMaker.cri.keyword}"/>'>
-								<input id="privateCheck" name="privateCheck" value=<%=privateCheck %> />
-								<input id= "publicCheck" name="publicCheck" value=<%=publicCheck %>  />
+								<input id="privateCheck" name="privateCheck" value=<%=privateCheck %> hidden="hidden"/>
+								<input id= "publicCheck" name="publicCheck" value=<%=publicCheck %>  hidden="hidden" />
 						</form>
 						<div class="content-backdrop fade"></div>
 					</div>
