@@ -181,7 +181,7 @@
                     title="아이디는 4글자와 20글자 사이만 가능합니다."
                           required="required"
                   />
-                  <button type="button" class="btn btn-primary" id="idCheck">중복확인</button>
+                  <button type="button" class="btn btn-primary btn-sm" id="idCheck">중복확인</button>
                 </div>
                 
 <!--                 이름 -->
@@ -241,8 +241,8 @@
 			</div>
 			<div class="mb-3">
 <!-- 			<label for="sex" class="form-label">gender</label> -->
-				<label class="form-check-label"><input id="sex" type="radio" checked value="남자" required="required" name="member_sex" class="form-check-input">남자</label>
-				<label class="form-check-label"><input  type="radio" value="여자" name="member_sex" class="form-check-input">여자</label>
+				<label class="form-check-label"><input id="sex" type="radio" checked value="남자" required="required" name="member_sex" class="form-check-input"> 남자</label>
+				<label class="form-check-label"><input  type="radio" value="여자" name="member_sex" class="form-check-input"> 여자</label>
 			</div>	
 
                 <div class="mb-3">
@@ -250,7 +250,7 @@
                     <input class="form-check-input" type="checkbox" id="terms-conditions" name="terms" />
                     <label class="form-check-label" for="terms-conditions">
                       
-                      <a href="javascript:void(0);">개인정보처리방침 및 약관</a>에 동의 합니다.
+                      <a href="javascript:void(0);">개인정보처리방침 및 약관</a>에 동의합니다.
                     </label>
                   </div>
                 </div>
@@ -260,7 +260,7 @@
               <p class="text-center">
 <!--                 <span>Already have an account?</span> -->
                 <span>이미 계정이 있으신가요?</span>
-                <a href="/resources/html/auth-login-basic.html">
+                <a href="/member/login">
 <!--                   <span>Sign in instead</span> -->
                   <span>로그인</span>
                 </a>
@@ -271,48 +271,6 @@
         </div>
       </div>
     </div>
-
-
-     <!-- Small Modal -->
-     <div class="modal fade" id="smallModal" tabindex="-1" aria-hidden="true">
-       <div class="modal-dialog modal-sm" role="document">
-         <div class="modal-content">
-           <div class="modal-header">
-             <h5 class="modal-title" id="exampleModalLabel2">Modal title</h5>
-             <button
-               type="button"
-               class="btn-close"
-               data-bs-dismiss="modal"
-               aria-label="Close"
-             ></button>
-           </div>
-           <div class="modal-body">
-             <div class="row">
-               <div class="col mb-3">
-                 <label for="nameSmall" class="form-label">Name</label>
-                 <input type="text" id="nameSmall" class="form-control" placeholder="Enter Name" />
-               </div>
-             </div>
-             <div class="row g-2">
-               <div class="col mb-0">
-                 <label class="form-label" for="emailSmall">Email</label>
-                 <input type="text" class="form-control" id="emailSmall" placeholder="xxxx@xxx.xx" />
-               </div>
-               <div class="col mb-0">
-                 <label for="dobSmall" class="form-label">DOB</label>
-                 <input id="dobSmall" type="text" class="form-control" placeholder="DD / MM / YY" />
-               </div>
-             </div>
-           </div>
-           <div class="modal-footer">
-             <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-               Close
-             </button>
-             <button type="button" class="btn btn-primary">Save changes</button>
-           </div>
-         </div>
-       </div>
-     </div>
     <!-- / Content -->
 
 

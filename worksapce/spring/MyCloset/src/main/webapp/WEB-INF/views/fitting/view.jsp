@@ -149,6 +149,7 @@ $(function () {
 #seachKeyBox{
 	padding:4px 0px 0px 0px;
 }
+
 </style>
 </head>
 
@@ -185,16 +186,16 @@ $(function () {
 						              <div class="row">
 						                <!-- 피팅 이미지 -->
 						                <div class="col-md-4 col-sm-12">
-						                  <div class="card overflow-hidden mb-4"" style="height: 400px">
+						                  <div class="card overflow-hidden mb-4" style="height: 400px">
 						                    <h5 class="card-header text-center">피팅 이미지</h5>
 						                    <div class="card-body" id="both-scrollbars-example">
-						                      	<img src="${vo.fitting_image}" alt="이미지" class="d-block rounded mx-auto mb-sm-0 mb-2" height="300" width="300" id="uploadedPhoto" style="cursor: pointer;" />
+						                      	<img src="${vo.fitting_image}" alt="이미지" class="d-block rounded mx-auto mb-sm-0 mb-2 img-fluid" height="300" width="300" id="uploadedPhoto" style="cursor: pointer;" />
 						                    </div>
 						                  </div>
 						                </div>
 						                <div class="col-md-8 col-sm-12">
 						                	<div class="card-body">
-										<div class="row justify-content-center">
+										<div class="row justify-content-center" style="height: 400px">
 											<label for="fitting_name" class="form-label col-md-4">피팅
 												이름</label>
 											<div class="mb-3 col-md-8"
@@ -262,7 +263,9 @@ $(function () {
 						                  <div class="card overflow-hidden" style="height: 300px">
 						                    <h5 class="card-header text-center">아우터 이미지</h5>
 						                    <div class="card-body" id="vertical-example">
-						                     <img src="${vo.outer_clothes_photo}" alt="이미지" class="d-block rounded mx-auto mb-sm-0 mb-2" height="220" width="220" id="outer_clothes_photo" name="outer_clothes_photo" style="cursor: pointer;" />
+						                     <a href="/closet/view?clothes_id=${vo.outer_clothes_id }">
+							                     <img src="${vo.outer_clothes_photo}" alt="이미지" class="d-block rounded mx-auto mb-sm-0 mb-2 img-fluid img-responsive" height="220" width="220" id="outer_clothes_photo" name="outer_clothes_photo" style="cursor: pointer;" />
+						                     </a>
 						                    </div>
 						                  </div>
 						                </div>
@@ -273,7 +276,9 @@ $(function () {
 						                  <div class="card overflow-hidden" style="height: 300px">
 						                    <h5 class="card-header text-center">상의 이미지</h5>
 						                    <div class="card-body" id="horizontal-example">
-						                      <img src="${vo.top_clothes_photo}" alt="이미지" class="d-block rounded mx-auto mb-sm-0 mb-2" height="220" width="220" id="top_clothes_photo" name="top_clothes_photo" style="cursor: pointer;" />
+							                    <a href="/closet/view?clothes_id=${vo.top_clothes_id }">
+							                      <img src="${vo.top_clothes_photo}" alt="이미지" class="d-block rounded mx-auto mb-sm-0 mb-2 img-responsive" height="220" width="220" id="top_clothes_photo" name="top_clothes_photo" style="cursor: pointer;" />
+							                    </a>
 						                    </div>
 						                  </div>
 						                </div>
@@ -284,7 +289,9 @@ $(function () {
 						                  <div class="card overflow-hidden" style="height: 300px">
 						                    <h5 class="card-header text-center">하의 이미지</h5>
 						                    <div class="card-body" id="horizontal-example">
-						                      	<img src="${vo.bottom_clothes_photo}" alt="이미지" class="d-block rounded mx-auto mb-sm-0 mb-2" height="220" width="220" id="bottom_clothes_photo" name="bottom_clothes_photo" style="cursor: pointer;" />
+							                    <a href="/closet/view?clothes_id=${vo.bottom_clothes_id }">
+							                      	<img src="${vo.bottom_clothes_photo}" alt="이미지" class="d-block rounded mx-auto mb-sm-0 mb-2 img-responsive" height="220" width="220" id="bottom_clothes_photo" name="bottom_clothes_photo" style="cursor: pointer;" />
+							                    </a>
 						                    </div>
 						                  </div>
 						                </div>

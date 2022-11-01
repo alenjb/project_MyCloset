@@ -124,7 +124,7 @@
                               name="firstName"
                               value="${memberVO.member_name}"
                               readonly="readonly"
-                              autofocus
+                              onfocus="this.blur()"
                             />
                           </div>
                             <label for="email" class="form-label col-md-4">이메일</label>
@@ -135,8 +135,9 @@
                               id="email"
                               name="email"
                               value="${memberVO.member_email}"
-                              placeholder="john.doe@example.com"
                               readonly="readonly"
+                              onfocus="this.blur()"
+                              
                             />
                           </div>
                             <label for="organization" class="form-label col-md-4">성별</label>
@@ -148,6 +149,8 @@
                               name="organization"
                               value="${memberVO.member_sex}"
                               readonly="readonly"
+                              onfocus="this.blur()"
+                              
                             />
                           </div>
                             <label class="form-label col-md-4" for="phoneNumber">전화번호</label>
@@ -161,31 +164,32 @@
                                 class="form-control"
                                 value="${memberVO.member_phone}"
                                 readonly="readonly"
+                                onfocus="this.blur()"
                               />
                             </div>
                           </div>
                             <label for="height" class="form-label col-md-4">키</label>
                           <div class="mb-3 col-md-8">
-                            <input class="form-control" type="text" id="height" name="height" placeholder="California" value="${memberVO.member_height}" readonly="readonly" />
+                            <input class="form-control" type="text" id="height" name="height" placeholder="California" value="${memberVO.member_height}" readonly="readonly" onfocus="this.blur()"/>
                           </div>
                             <label for="topSize" class="form-label col-md-4">상체 사이즈</label>
                           <div class="mb-3 col-md-8">
-                            <input class="form-control" type="text" id="topSize" name="topSize" placeholder="California" value="${memberVO.member_top_size}" readonly="readonly" />
+                            <input class="form-control" type="text" id="topSize" name="topSize" placeholder="California" value="${memberVO.member_top_size}" readonly="readonly" onfocus="this.blur()"/>
                           </div>
                             <label for="bottomSize" class="form-label col-md-4">하체 사이즈</label>
                           <div class="mb-3 col-md-8">
-                            <input class="form-control" type="text" id="bottomSize" name="bottomSize" placeholder="California" value="${memberVO.member_bottom_size}" readonly="readonly" />
+                            <input class="form-control" type="text" id="bottomSize" name="bottomSize" placeholder="California" value="${memberVO.member_bottom_size}" readonly="readonly" onfocus="this.blur()"/>
                           </div>
                             <label for="shoesSize" class="form-label col-md-4">신발 사이즈</label>
                           <div class="mb-3 col-md-8">
                           <div class="input-group input-group-merge">
-                            <input class="form-control" type="text" id="shoesSize" name="shoesSize" placeholder="California" value="${memberVO.member_shoes_size}" readonly="readonly" />
+                            <input class="form-control" type="text" id="shoesSize" name="shoesSize" placeholder="California" value="${memberVO.member_shoes_size}" readonly="readonly" onfocus="this.blur()"/>
                             <span class="input-group-text">mm</span>
                             </div>
                           </div>
                             <label for="regDate" class="form-label col-md-4">가입 날짜</label>
                           <div class="mb-3 col-md-8">
-                            <input class="form-control" type="date" id="regDate" name="regDate" placeholder="California" value=<fmt:formatDate value="${memberVO.member_reg_date}" pattern="yyyy-MM-dd"/> readonly="readonly" />
+                            <input class="form-control" type="date" id="regDate" name="regDate" placeholder="California" value=<fmt:formatDate value="${memberVO.member_reg_date}" pattern="yyyy-MM-dd"/> readonly="readonly" onfocus="this.blur()"/>
                           </div>
                           
                         </div>
@@ -206,6 +210,15 @@
                         </div>
                       </div>
                       <form id="formAccountDeactivation" action="myPage/delete">
+                      	<div class="form-check mb-3">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            name="accountActivation"
+                            id="accountActivation"
+                          />
+                          <label class="form-check-label" for="accountActivation">위 조건을 인지하였고 탈퇴하겠습니다.</label>
+                        </div>
                      	<button type="submit" class="btn btn-danger deactivate-account">탈퇴하기</button>
                       </form>
                     </div>
