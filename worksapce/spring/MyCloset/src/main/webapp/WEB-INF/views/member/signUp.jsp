@@ -87,7 +87,18 @@
 				idCheck=false;
 			}
 			
-		}); 		
+		});
+		//개인정보 약관 동의 해야지 회원가입 가능
+		$("#terms-conditions").on("change", function(e) {
+    		var checked = $("#terms-conditions").is(':checked');
+   			var target = document.getElementById('signUpBtn');
+    		if(checked==true){
+    			  target.disabled = false;
+    		}else{
+	  			  target.disabled = true;
+    		}
+			
+		});
  	});
  </script>
   </head>
@@ -254,7 +265,7 @@
                     </label>
                   </div>
                 </div>
-                <button class="btn btn-primary d-grid w-100">회원가입</button>
+                <button class="btn btn-primary d-grid w-100" disabled="disabled" id="signUpBtn">회원가입</button>
               </form>
 
               <p class="text-center">

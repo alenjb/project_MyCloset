@@ -62,10 +62,30 @@
 
     <!-- Helpers -->
     <script src="/resources/assets/vendor/js/helpers.js"></script>
+    <!-- 	jQuery CDN	 -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+	crossorigin="anonymous"></script>
 
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="/resources/assets/js/config.js"></script>
+    <script type="text/javascript">
+    	$(function () {
+    		//탈퇴 동의 해야지 탈퇴 가능
+    		$("#accountActivation").on("change", function(e) {
+	    		var checked = $("#accountActivation").is(':checked');
+    			var target = document.getElementById('deleteBtn');
+	    		if(checked==true){
+	    			  target.disabled = false;
+	    		}else{
+	    			  target.disabled = true;
+	    		}
+    			
+    		});
+    		
+    	});
+    </script>
   </head>
 
   <body>
@@ -219,7 +239,7 @@
                           />
                           <label class="form-check-label" for="accountActivation">위 조건을 인지하였고 탈퇴하겠습니다.</label>
                         </div>
-                     	<button type="submit" class="btn btn-danger deactivate-account">탈퇴하기</button>
+                     	<button type="submit" class="btn btn-danger deactivate-account" id="deleteBtn" disabled="disabled">탈퇴하기</button>
                       </form>
                     </div>
                   </div>
