@@ -27,6 +27,18 @@ public class MemberService {
 	
 	//회원가입
 	
+	//아이디 중복체크
+	public String idCheck(String id) throws Exception{
+		String result= mapper.idCheck(id);
+		//중복된 아이디가 있으면
+		if (result !=null) {
+			return "N";
+		}else {	//중복된 아이디가 없으면
+			return "Y";
+		}
+		
+	}
+	
 	
 	//로그인 
 	public LoginVO login(LoginVO vo) throws Exception{

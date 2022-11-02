@@ -30,7 +30,7 @@
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>Register Basic - Pages | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
+    <title>회원가입</title>
 
     <meta name="description" content="" />
 	
@@ -68,26 +68,43 @@
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="/resources/assets/js/config.js"></script>
 
-<!-- 	jQuery CDN	 -->
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <!-- 	jQuery CDN	 -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+	crossorigin="anonymous"></script>
  
  <script type="text/javascript" >
 
  $(function(){
-	 var idCheck= false;
-// 	 	아이디 중복 확인
-		$("#idCheck").load("/member/idCheck?id="+id, function (result) {
-// 			console.log(result);
-			if(result.indexOf("가능한") > -1){
-				//중복이 되지 않은 경우
-				idCheck=true;
-			} else{
-				//중복된 경우
-				$("#smallModal").modal("show");
-				idCheck=false;
+		//아이디가 중복되었는지 체크: 중복: 0  사용가능: 1
+	 	var check = 0;
+		
+		//아이디 중복검사
+		$("#idCheckBtn").on("click", function idCheckFunc(e){
+			console.log("시작");
+			$.ajax({
+				url: "/member/idCheck",
+				method: "get",			
+				data: { "id" : $('#memberId').val() },
+			success: function(data) {
+				console.log(data);
+				if(data != undefined && data != ''){
+					if(data.result == "Y"){
+						alert("사용 가능한 아이디 입니다");
+						check=1;
+					}else{
+						alert("사용 불가능한 아이디 입니다");
+					}	
+				}
+			},
+			error: function( jqXHR, textStatus ) {
+				alert( "Request failed: " + textStatus );
 			}
-			
+			});
 		});
+		
+		
+
 		//개인정보 약관 동의 해야지 회원가입 가능
 		$("#terms-conditions").on("change", function(e) {
     		var checked = $("#terms-conditions").is(':checked');
@@ -98,6 +115,22 @@
 	  			  target.disabled = true;
     		}
 			
+		});
+		//회원가입 버튼 클릭 시
+		$("#signUpBtn").on("click", function (e) {
+			
+			//아이디 중복체크
+			if(check!=1){//중복되었으면
+				e.preventDefault();
+				alert("아이디가 중복되었습니다");
+			}
+			//비밀번호와 비밀번호 확인이 같은지 체크
+			console.log($("#passwordCheck").val());
+			console.log($("#password").val());
+			if ($("#passwordCheck").val() != $("#password").val()){
+				e.preventDefault();
+				alert("비밀번호와 비밀번호확인이 일치하지 않습니다");
+			}
 		});
  	});
  </script>
@@ -184,7 +217,7 @@
                   <label for="id" class="form-label">ID</label>
                   <input
                     class="form-control"
-                    id="id"
+                    id="memberId"
                     name="member_id"
                     placeholder="아이디"
                     pattern="[A-Za-z0-9]{4,20}"
@@ -192,7 +225,7 @@
                     title="아이디는 4글자와 20글자 사이만 가능합니다."
                           required="required"
                   />
-                  <button type="button" class="btn btn-primary btn-sm" id="idCheck">중복확인</button>
+                  <button type="button" class="btn btn-primary btn-sm" id="idCheckBtn">중복확인</button>
                 </div>
                 
 <!--                 이름 -->

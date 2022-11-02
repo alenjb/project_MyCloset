@@ -55,8 +55,11 @@ public class MemberController {
 
 	// 회원가입 시 아이디 중복체크
 	@GetMapping("/idCheck")
-	public String idCheck(String id, Model model) throws Exception {
-		return "member/idCheck";
+	@ResponseBody
+	public Map<String, String> idCheck(String id) throws Exception {
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("result",service.idCheck(id));
+		return map;
 	}
 
 	// 로그인 폼
@@ -155,13 +158,10 @@ public class MemberController {
 	public Map<String, Object> findPw(String id, String name, String email) throws Exception {
 		Map<String, Object> jsonData = new HashMap<>();
 		String pw = service.findPw(id, name, email);
-		log.info(pw + "이거");
 
 		if (service.findPw(id, name, email) != null) {
-			log.info("비밀번호 찾기 성공");
 			jsonData.put("pw", pw);
 		}
-		log.info(jsonData);
 		return jsonData;
 	}
 

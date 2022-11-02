@@ -211,7 +211,7 @@
                     autofocus
                   />
                 </div>
-                <button class="btn btn-primary d-grid w-100" id="submit-btn" data-bs-toggle="modal" data-bs-target="#basicModal">비밀번호 찾기</button>
+                <button class="btn btn-primary d-grid w-100" id="submit-btn" >아이디 찾기</button>
               </form>
               <div class="text-center">
                 <a href="/member/login" class="d-flex align-items-center justify-content-center">

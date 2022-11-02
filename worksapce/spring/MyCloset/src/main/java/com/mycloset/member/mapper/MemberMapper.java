@@ -29,6 +29,10 @@ public interface MemberMapper {
 	
 	//회원등급변경
 	
+	//아이디 중복체크
+	public String idCheck(String id) throws Exception;
+
+	
 	//전체 데이터 개수
 	public long getTotalRow(PageObject pageObject) throws Exception;
 	
