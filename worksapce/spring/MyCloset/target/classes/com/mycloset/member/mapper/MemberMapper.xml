@@ -3,89 +3,118 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mycloset.member.mapper.MemberMapper">
 
-<!-- 회원가입 처리 -->
-<insert id="signUp">
-	insert into member(
-	member_id, member_password,  member_name, member_sex, member_phone,
-	member_email, member_height, member_top_size, member_bottom_size, member_shoes_size, member_face,
-	member_grade, member_status
-	 )
-	values(
-	#{member_id}, #{member_password}, #{member_name}, #{member_sex}, #{member_phone},
-	#{member_email}, #{member_height}, #{member_top_size}, #{member_bottom_size}, #{member_shoes_size}, #{member_face}, 
-	#{member_grade}, #{member_status}
-	)
-</insert>
+<!-- 1. 회원가입 관련 -->
 
-<!-- 로그인 -->
+	<!-- 1-1. 회원가입 처리 -->
+	<insert id="signUp">
+		INSERT INTO member(
+			member_id, 
+			member_password, 
+			member_name, 
+			member_sex, 
+			member_phone,
+			member_email, 
+			member_height, 
+			member_top_size, 
+			member_bottom_size, 
+			member_shoes_size,
+			 member_face,
+			member_grade, 
+			member_status
+			)
+		values(
+		#{member_id}, 
+		#{member_password}, 
+		#{member_name}, 
+		#{member_sex}, 
+		#{member_phone},
+		#{member_email}, 
+		#{member_height}, 
+		#{member_top_size}, 
+		#{member_bottom_size}, 
+		#{member_shoes_size}, 
+		#{member_face}, 
+		#{member_grade}, 
+		#{member_status}
+		)
+	</insert>
+
+	<!-- 1-2. 아이디 중복체크 -->
+	<select id="idCheck" resultType="String">
+		SELECT member_id 
+		FROM member
+		WHERE member_id = #{id}
+	</select>
+
+<!-- 2. 로그인 -->
 	<select id="login" resultType="com.mycloset.member.vo.LoginVO">
-		select member_id, member_name, member_grade, member_face
-		from member
-		where member_id = #{member_id} and member_password= #{member_password}
-	</select>
-	
-<!-- 전체 데이터 개수 -->
-	<select id="getTotalRow" resultType="long">
-		select count(*) from member
-	</select>
-	
-<!-- 	리스트 가져오기 -->
-	<select id="list" resultType="com.mycloset.member.vo.MemberVO">
-	select member_id, member_name, member_sex, member_phone, member_email, member_height, member_top_size, member_bottom_size,
-		member_shoes_size, member_face, member_reg_date, member_grade
-		from(
-			select (@ROWNUM:=@ROWNUM+1) AS RNUM, member_id, member_name, member_sex, member_phone, member_email, member_height, member_top_size, member_bottom_size,
-				member_shoes_size, member_face, member_reg_date, member_grade
-			from(
-				select member_id, member_name, member_sex, member_phone, member_email, member_height, member_top_size, member_bottom_size,
-				member_shoes_size, member_face, member_reg_date, member_grade
-				from member
-				order by member_id asc
-				)AS A, (SELECT @ROWNUM:=0) AS B
-				)AS C
-				where C.RNUM between #{startRow} and #{endRow}
-		
-	</select>
-	
-<!-- 아이디 찾기 -->
-	<select id="findId" resultType="String">
-		select member_id from member
-		where member_name = #{name} and member_email =#{email} 
-	</select>
-	
-<!-- 비밀번호 찾기 -->
-	<select id="findPw" resultType="String">
-		select member_password from member
-		where member_id = #{id} and member_name = #{name} and member_email =#{email} 
+		SELECT 
+			member_id, 
+			member_name, 
+			member_grade, 
+			member_face
+		FROM member
+		WHERE member_id = #{member_id} AND member_password = #{member_password}
 	</select>
 
-<!-- 회원정보 보여주기 -->
-	<select id="myPage" resultType="com.mycloset.member.vo.MemberVO">
-	select member_id, member_name, member_sex, member_phone, member_email, member_height, member_top_size, member_bottom_size,
-		member_shoes_size, member_face, member_reg_date, member_grade
-		from member
-		where member_id = #{member_id}
+<!-- 3. 아이디찾기 및 비밀번호 찾기 -->
+
+	<!-- 3-1. 아이디 찾기 -->
+	<select id="findId" resultType="String">
+		SELECT member_id 
+		FROM member
+		WHERE member_name = #{name} AND member_email =#{email} 
 	</select>
-<!-- 	회원정보 수정 -->
+	
+
+	<!-- 3-2. 비밀번호 찾기 -->
+	<select id="findPw" resultType="String">
+		SELECT member_password FROM member
+		WHERE member_id = #{id} AND member_name = #{name} AND member_email = #{email} 
+	</select>
+
+<!-- 4. 마이 페이지  -->
+	
+	<!-- 4-1. 마이페이지 개인정보 보여주기(view) -->
+	<select id="myPage" resultType="com.mycloset.member.vo.MemberVO">
+	SELECT 
+		member_id, 
+		member_name, 
+		member_sex, 
+		member_phone, 
+		member_email, 
+		member_height, 
+		member_top_size, 
+		member_bottom_size,
+		member_shoes_size, 
+		member_face, 
+		member_reg_date, 
+		member_grade
+	FROM member
+	WHERE member_id = #{member_id}
+	</select>
+	
+	<!-- 4-2. 마이페이지 개인정보 수정 -->
 	<update id="update">
-		update member 
-		set
-		member_name=#{member_name}, 
-		member_sex=#{member_sex}, 
-		member_phone=#{member_phone}, 
-		member_email=#{member_email}, 
-		member_height=#{member_height}, 
-		member_top_size=#{member_top_size}, 
-		member_bottom_size=#{member_bottom_size},
-		member_shoes_size=#{member_shoes_size},
+		UPDATE member 
+		SET
+		member_name = #{member_name}, 
+		member_sex = #{member_sex}, 
+		member_phone = #{member_phone}, 
+		member_email = #{member_email}, 
+		member_height = #{member_height}, 
+		member_top_size = #{member_top_size}, 
+		member_bottom_size = #{member_bottom_size},
+		member_shoes_size = #{member_shoes_size},
 		<if test='#{member_face} !=null'>
 		member_face = #{member_face}
 		</if>
-		where member_id = #{member_id}
+		WHERE member_id = #{member_id}
 	</update>
-<!-- 회원탈퇴 -->
+	
+	<!-- 4-3. 마이페이지 회원 탈퇴 -->
 	<delete id="delete">
-	delete from member
-	where member_id = #{member_id}
+	DELETE FROM member
+	WHERE member_id = #{member_id}
 	</delete>
 </mapper>

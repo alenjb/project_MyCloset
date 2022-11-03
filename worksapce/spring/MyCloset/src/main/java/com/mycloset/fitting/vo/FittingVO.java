@@ -1,7 +1,6 @@
 package com.mycloset.fitting.vo;
 
 import org.springframework.web.multipart.MultipartFile;
-
 import lombok.Data;
 
 @Data
@@ -9,11 +8,11 @@ public class FittingVO {
 
 	// 	피팅 아이디
 		private String fitting_id;
-//	// 	아우터 옷 아이디
+	// 	아우터 옷 아이디
 		private String outer_clothes_id;
-//	// 	아우터 옷 아이디
+	// 	아우터 옷 아이디
 		private String top_clothes_id;
-//	// 	아우터 옷 아이디
+	// 	아우터 옷 아이디
 		private String bottom_clothes_id;
 	//	피팅 이름
 		private String fitting_name;

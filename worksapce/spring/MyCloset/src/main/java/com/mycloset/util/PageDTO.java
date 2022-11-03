@@ -14,6 +14,7 @@ public class PageDTO {
 	
 	//총 데이터 개수
 	private int total;
+	//검색관련 정보 및 한페이지당 보여줄 개수가 담긴 객체
 	private Critera cri;
 	
 	public PageDTO(Critera cri, int total) {
@@ -29,7 +30,7 @@ public class PageDTO {
 			// 만약 endPage * 한페이지에 보여주는 데이터의 개수 > 실제 데이터의 개수  이면 다시 계산해야함.
 		int realEnd = (int) (Math.ceil((total * 1.0) / cri.getAmount()));
 		
-		//실제 데이터 개수가 endpage보다 모자라면
+		//실제 데이터 개수가 endPage보다 모자라면
 		if(realEnd < this.endPage) {
 			this.endPage = realEnd;
 		}

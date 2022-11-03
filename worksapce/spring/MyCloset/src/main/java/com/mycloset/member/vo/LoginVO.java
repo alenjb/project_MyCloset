@@ -6,14 +6,18 @@ import lombok.Data;
 
 @Data
 public class LoginVO{
-	
+	// 아이디
 	private String member_id;
+	
+	//비밀번호
 	private String member_password;
+	
+	//이름
 	private String member_name;
+	//회원등급
 	private String member_grade;
+	//가입 날짜
 	private Date member_reg_date;
+	//프로필 사진
 	private String member_face;
-	//새로운 메시지를 저장하는 변수 ->서브 쿼리
-	//메시지 시스템에서 새 메시지를 읽으면 세션에 있는 새 메시지 정보를 -1 처리를 해줘한다
-//	private long newMessage;
 }

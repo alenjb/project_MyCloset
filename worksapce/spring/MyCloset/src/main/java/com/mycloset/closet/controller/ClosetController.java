@@ -32,53 +32,13 @@ public class ClosetController {
 	@Inject
 	private ClosetService service;
 
-	//1. 등록
 	
-	//1-1. 옷등록 페이지 폼
-	@GetMapping("/enroll")
-	public String enrollForm() throws Exception {
-		return "closet/enroll";
-	}
-
-	//1-2. 옷등록
-	@PostMapping("/enroll")
-	public String enroll(HttpServletRequest request, ClosetVO vo, Model model) throws Exception {
-		// 로그인 정보를 받기
-		HttpSession session = request.getSession();
-		LoginVO loginVO = (LoginVO) session.getAttribute("login");
-		// 아이디 추출
-		String memberId = loginVO.getMember_id();
-		// 모델에 옷 리스트 담기
-		model.addAttribute("member_id", memberId);
-		//파일 저장
-		MultipartFile file = vo.getClothes_photo_file();
-		String uploadFolder = "D:\\jeongbin\\worksapce\\spring\\MyCloset\\src\\main\\webapp\\upload\\closet";
-		File saveFile = new File(uploadFolder, file.getOriginalFilename());
-		try {
-			file.transferTo(saveFile);
-		} catch (Exception e) {
-			log.error(e.getMessage());
-		}
-		vo.setClothes_photo("\\upload\\closet\\" + file.getOriginalFilename());
-		vo.setMember_id(memberId);
-		// 옷 등록 작업
-		service.enroll(vo);
-		return "redirect:list";
-	}
-	
-	//2. 옷 리스트
+	//1. 옷 리스트
+	//list
 	@GetMapping("/list")
 	public void list(HttpServletRequest request, Critera cri, Model model) throws Exception {
-		// 로그인 정보를 받기
-		HttpSession session = request.getSession();
-		LoginVO loginVO = (LoginVO) session.getAttribute("login");
-		// 아이디 추출
-		String memberId = loginVO.getMember_id();
-		// 옷 리스트 가져오는 작업을 통해 closets에 리스트 형태로 저장(일단 임시로 0을 보냄)
-		// 0 자리는 아무 값이나 보내면 되서 0을 보냄
-		List<ClosetVO> closets = service.getListWithPaging(cri, 0);
-//		closets.forEach(b -> log.info(b));
-//		log.info(closets);
+		// 옷 리스트 가져오는 작업을 통해 closets에 리스트 형태로 저장
+		List<ClosetVO> closets = service.getListWithPaging(cri);
 		// 모델에 옷 리스트 담기
 		model.addAttribute("closets", closets);
 		// 옷 총 개수 세기
@@ -86,12 +46,13 @@ public class ClosetController {
 		// 페이지 관련 정보 담기
 		model.addAttribute("pageMaker", new PageDTO(cri, totalNum));
 	}
-
-	//3. 옷 상세 보기
+	
+	//2. 옷 상세 보기
 	@GetMapping("/view")
 	public String view(HttpServletRequest request, Critera cri ,Model model, @RequestParam("clothes_id")String clothes_id) throws Exception{
 		//로그인 정보를 받기
 		HttpSession session = request.getSession();
+		//로그인VO 추출
 		LoginVO loginVO = (LoginVO)session.getAttribute("login");
 		//아이디 추출
 		String memberId= loginVO.getMember_id();
@@ -104,9 +65,48 @@ public class ClosetController {
 		model.addAttribute("vo", vo);
 		return "closet/view";
 	}
-	
-	//4. 수정
-	
+
+	//3. 옷 등록
+
+	//3-1. 옷등록 페이지 폼
+	@GetMapping("/enroll")
+	public String enrollForm() throws Exception {
+		return "closet/enroll";
+	}
+
+	//3-2. 옷등록
+	@PostMapping("/enroll")
+	public String enroll(HttpServletRequest request, ClosetVO vo, Model model) throws Exception {
+		// 로그인 정보를 받기
+		HttpSession session = request.getSession();
+		LoginVO loginVO = (LoginVO) session.getAttribute("login");
+		// 아이디 추출
+		String memberId = loginVO.getMember_id();
+		// 모델에 옷 리스트 담기
+		model.addAttribute("member_id", memberId);
+		//파일 저장
+		MultipartFile file = vo.getClothes_photo_file();
+		//업로드 폴더 지정
+		String uploadFolder = "D:\\jeongbin\\worksapce\\spring\\MyCloset\\src\\main\\webapp\\upload\\closet";
+		File saveFile = new File(uploadFolder, file.getOriginalFilename());
+		try {
+			file.transferTo(saveFile);
+		} catch (Exception e) {
+			log.error(e.getMessage());
+		}
+		//vo의 사진경로 변경
+		vo.setClothes_photo("\\upload\\closet\\" + file.getOriginalFilename());
+		vo.setMember_id(memberId);
+		// 옷 등록
+		service.enroll(vo);
+		return "redirect:list";
+	}
+
+
+
+
+	//4. 옷 수정
+
 	//4-1. 옷 수정폼
 	@GetMapping("/update")
 	public String UpdateForm(HttpServletRequest request, Model model, @RequestParam("clothes_id")String clothes_id) throws Exception {
@@ -120,10 +120,10 @@ public class ClosetController {
 		int cId = Integer.parseInt(clothes_id);
 		//view로 내용 불러오기
 		ClosetVO vo = service.view(id,cId);
-//		vo.setMember_id(id);
+		//모델에 아이디 추가
 		model.addAttribute("member_id", id);
+		//모델에 vo 추가
 		model.addAttribute("vo", vo);
-		log.info(vo);
 		return "closet/update";
 	}
 	
@@ -131,20 +131,20 @@ public class ClosetController {
 	@PostMapping("/update")
 	public String Update(ClosetVO closetVO) throws Exception {
 		MultipartFile file = closetVO.getClothes_photo_file();
-		log.info(closetVO.getClothes_photo_file().getOriginalFilename());
+		//사진 파일이 바뀌었으면
 		if(!closetVO.getClothes_photo_file().getOriginalFilename().equals("")) {
 			String uploadFolder = "D:\\jeongbin\\worksapce\\spring\\MyCloset\\src\\main\\webapp\\upload\\closet";
+			//새 파일 저장
 			File saveFile = new File(uploadFolder, file.getOriginalFilename());
 			try {
 				file.transferTo(saveFile);
 			} catch (Exception e) {
 				log.error(e.getMessage());
 			}
+			//바뀐 사진 경로 VO에 저장
 			closetVO.setClothes_photo("\\upload\\closet\\" + file.getOriginalFilename());			
 		}
-		else {
-			
-		}
+		// 수정하기
 		service.update(closetVO);
 		return "redirect:list";
 	}
@@ -160,6 +160,7 @@ public class ClosetController {
 		String id = LVO.getMember_id();
 		//vo에 member_id를 입력
 		vo.setMember_id(id);
+		//삭제하기
 		service.delete(vo);
 		return "redirect:list";
 	}

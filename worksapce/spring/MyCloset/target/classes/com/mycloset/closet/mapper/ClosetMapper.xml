@@ -2,28 +2,31 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mycloset.closet.mapper.ClosetMapper">
-<!-- 옷 등록 -->
-<insert id="enroll">
-	insert into closet(
-	clothes_id, clothes_type, clothes_name, clothes_info, clothes_size, clothes_photo, clothes_purchase_year, clothes_purchase_price, clothes_season, member_id
-	 )
-	values(
-	#{clothes_id}, #{clothes_type}, #{clothes_name}, #{clothes_info}, #{clothes_size}, #{clothes_photo}, #{clothes_purchase_year}, #{clothes_purchase_price}, #{clothes_season}, #{member_id}
-	)
-</insert>
-<!-- 옷 리스트 -->
-<select id="list" resultType="com.mycloset.closet.vo.ClosetVO">
-	select 
-	clothes_id, clothes_type, clothes_name, clothes_info, clothes_size, clothes_photo, clothes_purchase_year, clothes_purchase_price, clothes_season
-	from closet
-	where #{id} = member_id
-</select>
 
-<!-- 페이지 네이션을 적용한 리스트 가져오기 -->
-<select id="getListWithPaging" resultType="com.mycloset.closet.vo.ClosetVO">
-	<![CDATA[
-		SELECT 
-		@rownum:= @rownum +1 rownum, ]]>
+	<!-- 1. 페이지 네이션을 적용한 리스트 가져오기 -->
+	<select id="getListWithPaging" resultType="com.mycloset.closet.vo.ClosetVO">
+		<![CDATA[
+			SELECT 
+				@rownum:= @rownum +1 rownum, ]]>
+				clothes_id, 
+				clothes_type, 
+				clothes_name, 
+				clothes_info, 
+				clothes_size, 
+				clothes_photo, 
+				clothes_purchase_year, 
+				clothes_purchase_price, 
+				clothes_season
+			FROM closet
+			WHERE 
+			<include refid="criteria"/> 		
+			1=1
+			LIMIT #{startNum}, #{cri.amount}
+	</select>
+
+	<!-- 2. 옷 보기 -->
+	<select id="view" resultType="com.mycloset.closet.vo.ClosetVO">
+	SELECT
 		clothes_id, 
 		clothes_type, 
 		clothes_name, 
@@ -33,43 +36,67 @@
 		clothes_purchase_year, 
 		clothes_purchase_price, 
 		clothes_season
-		FROM closet
-		WHERE 
-		<include refid="criteria"/> 		
-		1=1
-<!-- 		<![CDATA[(@rownum:=0)=0]]> -->
-		LIMIT #{startNum}, #{cri.amount}
-<!-- 		limit (#{pageNum}-1) * #{amount}, #{pageNum} * #{amount} -->
-</select>
-
-<!-- 옷 보기 -->
-	<select id="view" resultType="com.mycloset.closet.vo.ClosetVO">
-	select
-	clothes_id, clothes_type, clothes_name, clothes_info, clothes_size, clothes_photo, clothes_purchase_year, clothes_purchase_price, clothes_season
-	from closet
-	where #{clothes_id} = clothes_id and #{member_id} = member_id
+	FROM closet
+	WHERE clothes_id= #{clothes_id} and member_id= #{member_id}
 	</select>
 
-<!-- 옷 수정 -->
+	<!-- 3. 옷 등록 -->
+	<insert id="enroll">
+		INSERT INTO closet(
+			clothes_id, 
+			clothes_type, 
+			clothes_name, 
+			clothes_info, 
+			clothes_size, 
+			clothes_photo, 
+			clothes_purchase_year, 
+			clothes_purchase_price, 
+			clothes_season, member_id
+		 )
+		values(
+			#{clothes_id}, 
+			#{clothes_type}, 
+			#{clothes_name}, 
+			#{clothes_info}, 
+			#{clothes_size}, 
+			#{clothes_photo}, 
+			#{clothes_purchase_year}, 
+			#{clothes_purchase_price}, 
+			#{clothes_season}, 
+			#{member_id}
+		)
+	</insert>
+	
+	<!-- 4. 옷 수정 -->
 	<update id="update">
-		update closet
-		set
+		UPDATE closet
+		SET
 			clothes_id = #{clothes_id}, 
 			clothes_type = #{clothes_type}, 
 			clothes_name = #{clothes_name}, 
 			clothes_info = #{clothes_info}, 
 			clothes_size = #{clothes_size},
-<!-- 		<if test="clothes_photo != '\\upload\\closet\\' and clothes_photo != '\upload\closet\'"> -->
 			clothes_photo = #{clothes_photo}, 
-<!-- 		</if> -->
-<!-- 		<if test="clothes_purchase_year != 'STR_TO_DATE(#{clothes_purchase_year}, '%Y,%m,%d);'"> -->
 			clothes_purchase_year = #{clothes_purchase_year}, 
-<!-- 		</if> -->
 			clothes_purchase_price = #{clothes_purchase_price}, 
 			clothes_season = #{clothes_season}
-		where member_id= #{member_id}
+		WHERE member_id= #{member_id}
 	</update>
-<!-- 검색 -->
+		
+	<!-- 5. 옷 삭제 -->
+	<delete id="delete">
+		DELETE FROM closet
+		WHERE clothes_id = #{clothes_id} AND member_id = #{member_id}
+	</delete>
+	
+	<!-- 6. 옷 총 개수 세기 -->
+	<select id="getTotalNum" resultType="Integer">
+	SELECT count(*) 
+	FROM closet
+	WHERE <include refid="criteria"/>1=1 
+	</select>
+
+	<!-- 7. 검색 -->
 	<sql id="criteria">
 		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
 			<foreach item="type" collection="cri.typeArr">
@@ -90,17 +117,20 @@
 		</trim>
 	</sql>
 	
-<!-- 옷 삭제 -->
-	<delete id="delete">
-		delete from closet
-		where clothes_id = #{clothes_id} and member_id = #{member_id}
-	</delete>
-	
-<!-- 옷 총 개수 세기 -->
-	<select id="getTotalNum" resultType="Integer">
-	SELECT 
-	count(*) 
-	FROM closet
-	WHERE <include refid="criteria"/>1=1 
+	<!-- 8. 옷 리스트 -->
+	<select id="list" resultType="com.mycloset.closet.vo.ClosetVO">
+		SELECT 
+			clothes_id, 
+			clothes_type, 
+			clothes_name, 
+			clothes_info, 
+			clothes_size, 
+			clothes_photo, 
+			clothes_purchase_year, 
+			clothes_purchase_price, 
+			clothes_season
+		FROM closet
+		WHERE member_id= #{id} 
 	</select>
+	
 </mapper>

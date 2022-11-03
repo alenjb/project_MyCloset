@@ -8,16 +8,21 @@ import com.mycloset.admin.vo.AdminVO;
 import com.mycloset.util.Critera;
 
 public interface AdminMapper {
-	//페이징을 적용해 리스트 가져오기
+	// 1. 회원목록 리스트(관리자만 볼 수 있음)
 	public List<AdminVO> getListWithPaging(@Param("cri")Critera cri, @Param("startNum")int startNum) throws Exception;
-	//멤버 상세 보기
+
+	// 2. 회원정보보기(관리자 입장에서) / 내정보보기(회원 입장에서)
 	public AdminVO view(@Param("member_id")String id) throws Exception;	
-	//총 개수 세기
-	public int getTotalNum(@Param("cri")Critera cri) throws Exception;
-	//회원 등급 변경
+
+	// 3. 회원등급변경
 	public void changeGrade(@Param("member_id")String member_id, @Param("grade")String grade)throws Exception;
-	//회원 상태 변경
+
+	// 4. 회원 상태 변경
 	public void changeStatus(@Param("member_id")String member_id, @Param("status")String status)throws Exception;
-	//회원 강퇴
+
+	// 5. 회원 강퇴
 	public int delete(AdminVO vo) throws Exception;
+
+	// 6. 총 개수 세기
+	public int getTotalNum(@Param("cri")Critera cri) throws Exception;
 }

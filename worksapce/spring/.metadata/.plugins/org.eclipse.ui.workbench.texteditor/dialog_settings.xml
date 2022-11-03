@@ -6,25 +6,31 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="notice"/>
+		<item key="selection" value="btn btn-primary d-grid w-100"/>
 		<list key="findhistory">
-			<item value="notice"/>
-			<item value="title"/>
-			<item value="질문"/>
-			<item value="공지"/>
-			<item value="c:set"/>
-			<item value="flexSwitchCheckChecked2"/>
-			<item value="member_id"/>
-			<item value="clothes_photo"/>
-			<item value="Layout page"/>
-			<item value="body&gt;"/>
-			<item value="title="/>
-			<item value="글쓰기"/>
-			<item value="par"/>
-			<item value="inc"/>
-			<item value="&gt;--&lt;"/>
+			<item value="btn btn-primary d-grid w-100"/>
+			<item value="accountActivation"/>
+			<item value="form-check mb-3"/>
+			<item value="focus"/>
+			<item value="view"/>
+			<item value="checkbox"/>
+			<item value="&lt;form"/>
+			<item value="fit"/>
+			<item value="fit2"/>
+			<item value="all"/>
+			<item value="All"/>
+			<item value="c:if"/>
+			<item value="ow row-cols-"/>
+			<item value="log"/>
+			<item value="fㅑ"/>
 		</list>
 		<list key="replacehistory">
+			<item value="href=&quot;/member/myPage&quot;"/>
+			<item value="/resources/assets/img/avatars/basicUserImage.png"/>
+			<item value="/resources/"/>
+			<item value="searchBar_qna"/>
+			<item value="Qna"/>
+			<item value="qna"/>
 			<item value="답변"/>
 			<item value="질문"/>
 			<item value="&gt;&lt;"/>
@@ -33,18 +39,12 @@
 			<item value=""/>
 			<item value="옷장"/>
 			<item value="fitting"/>
-			<item value="/resources/"/>
 			<item value="clothes_photo"/>
-			<item value="perPageNum"/>
-			<item value="PageNum"/>
-			<item value="ClosetVO"/>
-			<item value="memberVO."/>
-			<item value="/resources"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="1202"/>
-		<item key="DIALOG_Y_ORIGIN" value="391"/>
+		<item key="DIALOG_X_ORIGIN" value="981"/>
+		<item key="DIALOG_Y_ORIGIN" value="345"/>
 		<item key="DIALOG_WIDTH" value="317"/>
 		<item key="DIALOG_HEIGHT" value="441"/>
 		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>

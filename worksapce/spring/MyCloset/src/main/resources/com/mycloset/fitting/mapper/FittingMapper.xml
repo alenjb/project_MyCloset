@@ -2,59 +2,64 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mycloset.fitting.mapper.FittingMapper">
-	<!-- 피팅 등록 -->
-	<update id="enroll">
-		insert into fitting (
-		outer_clothes_id,
-		top_clothes_id,
-		bottom_clothes_id,
-		fitting_name,
-		fitting_image,
-		fitting_info,
-		fitting_open_range,
-		fitting_season,
-		fitting_price,
-		member_id
-		) SELECT
-		A.clothes_id AS outer_clothes_id,
-		B.clothes_id AS
-		top_clothes_id,
-		C.clothes_id AS bottom_clothes_id,
-		#{fitting_name}
-		fitting_name,
-		#{outer_clothes_photo} fitting_image,
-		#{fitting_info}
-		fitting_info,
-		#{fitting_open_range} fitting_open_range,
-		#{fitting_season} fitting_season,
-		(
-		A.clothes_purchase_price +
-		B.clothes_purchase_price + C.clothes_purchase_price) AS price,
-		#{member_id} member_id
-		FROM
-		(SELECT clothes_id,
-		clothes_purchase_price
-		FROM closet
-		WHERE
-		member_id =#{member_id} AND
-		clothes_photo LIKE
-		#{top_clothes_photo}) B
-		JOIN
-		(SELECT clothes_id, clothes_purchase_price
-		FROM closet
-		WHERE
-		member_id =#{member_id} AND clothes_photo LIKE
-		#{outer_clothes_photo}) A
-		JOIN
-		(SELECT clothes_id,
-		clothes_purchase_price
-		FROM closet
-		WHERE
-		member_id =#{member_id} AND
-		clothes_photo LIKE #{bottom_clothes_photo}) C
-	</update>
 
-	<!-- 피팅 리스트 -->
+	<!-- 1-1. 페이지 네이션을 적용한 리스트 가져오기 -->
+	<select id="getListWithPaging" resultType="com.mycloset.fitting.vo.FittingVO">
+		SELECT
+	<![CDATA[@rownum:= @rownum +1 rownum, ]]>
+			fitting_id,	
+			outer_clothes_id,
+			top_clothes_id,
+			bottom_clothes_id,
+			fitting_name,
+			fitting_image,
+			fitting_info,
+			fitting_open_range,
+			fitting_season,
+			fitting_price
+			FROM fitting
+			WHERE 
+			<include refid="criteria" /> 
+			1=1 
+			LIMIT #{startNum}, #{cri.amount}
+	</select>
+	
+	<!-- 1.2 페이지 네이션과 범위 조건을 적용한 리스트 가져오기 -->
+	<select id="getRangeListWithPaging"
+		resultType="com.mycloset.fitting.vo.FittingVO">
+	
+		SELECT
+	<![CDATA[@rownum:= @rownum +1 rownum, ]]>
+			fitting_id,	
+			outer_clothes_id,
+			top_clothes_id,
+			bottom_clothes_id,
+			fitting_name,
+			fitting_image,
+			fitting_info,
+			fitting_open_range,
+			fitting_season,
+			fitting_price
+			FROM fitting
+		WHERE 
+			<include refid="criteria" /> 
+			1=1 
+			<if test="openRange != 'all'">
+			AND
+			fitting_open_range =#{openRange}
+			</if>
+		LIMIT #{startNum}, #{cri.amount}
+	</select>
+	
+	<!-- 1-3. 피팅 등록폼에 내 옷장에 있는 사진 가져오기 -->
+	<select id="getImages"
+		resultType="com.mycloset.fitting.vo.ImageVO">
+		SELECT clothes_photo
+		FROM closet
+		WHERE member_id = #{member_id}
+	</select>
+	
+	<!-- 1-4. 모든 피팅 가져오기 -->
 	<select id="list" resultType="com.mycloset.fitting.vo.FittingVO">
 		SELECT
 			fitting_id,
@@ -72,50 +77,58 @@
 			fitting
 		WHERE #{id} = member_id
 	</select>
+	
+	<!-- 2. 피팅 등록 -->
+	<update id="enroll">
+		INSERT INTO fitting (
+			outer_clothes_id,
+			top_clothes_id,
+			bottom_clothes_id,
+			fitting_name,
+			fitting_image,
+			fitting_info,
+			fitting_open_range,
+			fitting_season,
+			fitting_price,
+			member_id
+			) 
+			SELECT
+				A.clothes_id AS outer_clothes_id,
+				B.clothes_id AS top_clothes_id,
+				C.clothes_id AS bottom_clothes_id,
+				#{fitting_name} fitting_name,
+				#{outer_clothes_photo} fitting_image,
+				#{fitting_info} fitting_info,
+				#{fitting_open_range} fitting_open_range,
+				#{fitting_season} fitting_season,
+				(A.clothes_purchase_price + 	B.clothes_purchase_price + C.clothes_purchase_price) AS price,
+				#{member_id} member_id
+				FROM
+					<!--B: 상의 아이디와 가격 가져오기-->
+					(SELECT 
+						clothes_id,
+						clothes_purchase_price
+					FROM closet
+					WHERE member_id = #{member_id} AND clothes_photo LIKE #{top_clothes_photo}) B <!-- B -->
 
-	<!-- 페이지 네이션을 적용한 리스트 가져오기 -->
-	<select id="getListWithPaging"
-		resultType="com.mycloset.fitting.vo.FittingVO">
-	<![CDATA[
-		SELECT
-		@rownum:= @rownum +1 rownum, ]]>
-		fitting_id,	
-		outer_clothes_id,
-		top_clothes_id,
-		bottom_clothes_id,
-		fitting_name,
-		fitting_image,
-		fitting_info,
-		fitting_open_range,
-		fitting_season,
-		fitting_price
-		FROM fitting
-		WHERE 
-		<include refid="criteria" /> 
-		1=1 
-<!-- 		<![CDATA[(@rownum:=0)=0]]> -->
-		LIMIT #{startNum}, #{cri.amount}
-		<!-- limit (#{pageNum}-1) * #{amount}, #{pageNum} * #{amount} -->
-	</select>
-	<!-- 검색 -->
-	<sql id="criteria">
-		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
-			<foreach item="type" collection="cri.typeArr">
-				<trim prefix="OR">
-					<choose>
-						<when test="type == 'S'.toString()">
-							fitting_season LIKE CONCAT('%', #{cri.keyword},
-							'%')
-						</when>
-						<when test="type == 'N'.toString()">
-							fitting_name LIKE CONCAT('%', #{cri.keyword}, '%')
-						</when>
-					</choose>
-				</trim>
-			</foreach>
-		</trim>
-	</sql>
-	<!-- 피팅 보기 -->
+					JOIN
+					<!-- A: 아우터 아이디와 가격 가져오기-->
+					(SELECT 
+						clothes_id, 
+						clothes_purchase_price
+					FROM closet
+					WHERE member_id =#{member_id} AND clothes_photo LIKE #{outer_clothes_photo}) A <!-- A -->
+
+					JOIN
+					<!-- C 하의 아이디와 가격 가져오기-->
+					(SELECT 
+						clothes_id,
+						clothes_purchase_price
+					FROM closet
+					WHERE member_id = #{member_id} AND clothes_photo LIKE #{bottom_clothes_photo}) C <!-- C -->
+	</update>
+	
+	<!-- 3. 피팅 보기 -->
 	<select id="view" resultType="com.mycloset.fitting.vo.FittingVO">
 		SELECT
 			fitting_id,
@@ -142,39 +155,24 @@
 			FROM 
 				closet,
 				(<!-- BB 상의 아이디가 같으면 정보 가져오기-->
-				SELECT
-					*
-					FROM
-					fitting
-					WHERE
-					fitting_id =#{fitting_id} ) BB
-					WHERE
-					closet.member_id
-					=#{member_id}
-					AND
-					clothes_id =BB.top_clothes_id) B
+				SELECT * FROM fitting
+					WHERE fitting_id =#{fitting_id} ) BB <!-- BB-->
+					WHERE closet.member_id= #{member_id} AND clothes_id =BB.top_clothes_id) B <!-- B-->
 
 					JOIN
 					(<!-- A 아우터 사진 가져오기-->
 					SELECT
 						clothes_photo AS
 						outer_clothes_photo
-						FROM
-						closet,
+					FROM closet,
 						(<!-- AA 아우터 아이디가 같으면 정보 가져오기-->
 						SELECT
 							*
-							FROM
-							fitting
-							WHERE
-							fitting_id =#{fitting_id} 
-						) AA
-							
-					WHERE
-					closet.member_id =#{member_id}
-					AND
-					clothes_id = AA.outer_clothes_id
-					) A
+							FROM fitting
+							WHERE fitting_id =#{fitting_id} 
+						) AA <!-- AA -->					
+					WHERE closet.member_id =#{member_id} AND clothes_id = AA.outer_clothes_id
+					) A <!-- A-->
 			
 					JOIN
 					(<!-- C 하의 사진 가져오기-->
@@ -183,160 +181,108 @@
 						bottom_clothes_photo
 						FROM closet,
 						(<!-- CC 하의 아이디가 같으면 정보 가져오기-->
-						SELECT
-							*
-							FROM
-							fitting
-							WHERE
-							fitting_id =#{fitting_id} 
-						) CC
-					WHERE
-					closet.member_id =#{member_id}
-					AND clothes_id =CC.bottom_clothes_id
-					) C
+						SELECT *
+						FROM fitting
+						WHERE fitting_id =#{fitting_id} ) CC <!-- CC -->
+					WHERE closet.member_id =#{member_id} AND clothes_id =CC.bottom_clothes_id
+					) C <!-- C -->
 					
 					JOIN
-			
 					(<!-- D 피팅 아이디가 같으면 피팅 정보 모두 가져오기 -->
-					SELECT
-						*
-						FROM
-						fitting
-						WHERE
-						fitting_id =#{fitting_id} 
-					) D
-						) E
-
-		WHERE
-		#{fitting_id} = fitting_id
-		AND
-		E.member_id = #{member_id}
+					SELECT * FROM fitting
+					WHERE fitting_id = #{fitting_id} 
+					) D <!-- D -->
+						) E <!-- E  -->
+		WHERE fitting_id = #{fitting_id} AND E.member_id = #{member_id}
 	</select>
 
-	<!-- 피팅 수정 -->
+	<!-- 4. 피팅 수정 -->
 	<update id="update">
-		update fitting
-		set
-		outer_clothes_id =#{outer_clothes_id},
-		top_clothes_id
-		=#{top_clothes_id},
-		bottom_clothes_id =#{bottom_clothes_id},
-		fitting_name =#{fitting_name},
-		fitting_info = #{fitting_info},
-		fitting_open_range =#{fitting_open_range},
-		<if test="fitting_image != null">
-			fitting_image =#{fitting_image},
-		</if>
-		fitting_season =#{fitting_season},
-		fitting_price =#{fitting_price}
-		where fitting_id = #{fitting_id}
-		<!-- where member_id= #{member_id} -->
+		UPDATE fitting
+		SET
+			outer_clothes_id = #{outer_clothes_id},
+			top_clothes_id = #{top_clothes_id},
+			bottom_clothes_id = #{bottom_clothes_id},
+			fitting_name = #{fitting_name},
+			fitting_info = #{fitting_info},
+			fitting_open_range = #{fitting_open_range},
+			<if test="fitting_image != null">
+				fitting_image = #{fitting_image},
+			</if>
+			fitting_season = #{fitting_season},
+			fitting_price = #{fitting_price}
+		WHERE fitting_id = #{fitting_id}
 	</update>
 
-	<!-- 삭제 -->
+	<!-- 5. 피팅 삭제 -->
 	<delete id="delete">
-		delete from fitting
-		where fitting_id = #{fitting_id}
-		and member_id = #{member_id}
+		DELETE FROM fitting
+		WHERE fitting_id = #{fitting_id} AND member_id = #{member_id}
 	</delete>
-	<!-- 피팅 이미지 가져오기 -->
-	<select id="getImages"
-		resultType="com.mycloset.fitting.vo.ImageVO">
-		select clothes_photo
-		from closet
-		where member_id =
-		#{member_id}
-	</select>
-
-	<!-- 피팅 총 개수 세기 -->
+	
+	<!-- 6. 피팅 총 개수 세기 -->
 	<select id="getTotalNum" resultType="Integer">
 		SELECT count(*) FROM fitting
 		WHERE
 		<include refid="criteria" />
 		1=1
 	</select>
+	
+	<!-- 7. 옷 아이디와 가격 가져오기 -->
 	<select id="getClothesIdAndPrice" resultType="hashmap">
 		SELECT
-		<if test="outer_clothes_photo != null">
-			outer_clothes_id,
-		</if>
-		top_clothes_id, bottom_clothes_id, (
-		<if test="outer_clothes_photo != null">
-			outer_price +
-		</if>
-		top_price + bottom_price) AS price
+			<if test="outer_clothes_photo != null">
+				outer_clothes_id,
+			</if>
+			top_clothes_id, 
+			bottom_clothes_id, 
+			(
+			<if test="outer_clothes_photo != null">
+				outer_price +
+			</if>
+			top_price + bottom_price) AS price
 		FROM
+		<!-- B: 상의 아이디와 가격 가져오기 -->
 		(SELECT
-		clothes_id AS
-		top_clothes_id, clothes_purchase_price AS top_price
-		FROM
-		closet
-		WHERE
-		member_id =#{member_id} AND clothes_photo =
-		#{top_clothes_photo}) B
-
+			clothes_id AS top_clothes_id, 
+			clothes_purchase_price AS top_price
+		FROM closet
+		WHERE member_id = #{member_id} AND clothes_photo = #{top_clothes_photo}) B<!-- B -->
 		<if test="outer_clothes_photo != null">
+		<!-- A: 아우터 아이디와 가격 가져오기 -->
 			JOIN
 			(SELECT
-			clothes_id AS outer_clothes_id,
-			clothes_purchase_price AS outer_price
-			FROM
-			closet
-			WHERE member_id
-			=#{member_id} AND clothes_photo = #{outer_clothes_photo})
-			A
+				clothes_id AS outer_clothes_id,
+				clothes_purchase_price AS outer_price
+			FROM closet
+			WHERE member_id= #{member_id} AND clothes_photo = #{outer_clothes_photo}) A <!-- A -->
 		</if>
 
 		JOIN
+		<!-- C: 하의 아이디와 가격 가져오기 -->
 		(SELECT
-		clothes_id AS bottom_clothes_id, clothes_purchase_price AS
-		bottom_price
-		FROM
-		closet
-		WHERE member_id =#{member_id} AND clothes_photo
-		=
-		#{bottom_clothes_photo}) C
+			clothes_id AS bottom_clothes_id, 
+			clothes_purchase_price AS bottom_price
+		FROM closet
+		WHERE member_id = #{member_id} AND clothes_photo = #{bottom_clothes_photo}) C <!-- C -->
 	</select>
-	<!-- 모든 public 피팅 가져오기 -->
-	<select id="getAllPublicFitting" resultType="com.mycloset.fitting.vo.FittingVO">
-		SELECT 
-			fitting_id,
-			fitting_name,
-			fitting_image,
-			member_id,
-			fitting_info,
-			fitting_price
-		FROM fitting
-		WHERE
-			fitting_open_range="public"
-	</select>
-
-	<!-- 페이지 네이션과 범위 조건을 적용한 리스트 가져오기 -->
-	<select id="getRangeListWithPaging"
-		resultType="com.mycloset.fitting.vo.FittingVO">
-	<![CDATA[
-		SELECT
-		@rownum:= @rownum +1 rownum, ]]>
-		fitting_id,	
-		outer_clothes_id,
-		top_clothes_id,
-		bottom_clothes_id,
-		fitting_name,
-		fitting_image,
-		fitting_info,
-		fitting_open_range,
-		fitting_season,
-		fitting_price
-		FROM fitting
-		WHERE 
-		<include refid="criteria" /> 
-		1=1 
-		<if test="openRange != 'all'">
-		AND
-		fitting_open_range =#{openRange}
-		</if>
-<!-- 		<![CDATA[(@rownum:=0)=0]]> -->
-		LIMIT #{startNum}, #{cri.amount}
-		<!-- limit (#{pageNum}-1) * #{amount}, #{pageNum} * #{amount} -->
-	</select>
+	
+	<!-- 8. 검색 -->
+	<sql id="criteria">
+		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
+			<foreach item="type" collection="cri.typeArr">
+				<trim prefix="OR">
+					<choose>
+						<when test="type == 'S'.toString()">
+							fitting_season LIKE CONCAT('%', #{cri.keyword},
+							'%')
+						</when>
+						<when test="type == 'N'.toString()">
+							fitting_name LIKE CONCAT('%', #{cri.keyword}, '%')
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
 </mapper>

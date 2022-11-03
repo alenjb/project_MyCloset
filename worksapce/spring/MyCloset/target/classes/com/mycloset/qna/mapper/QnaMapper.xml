@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mycloset.qna.mapper.QnaMapper">
+	
 	<!-- 1.리스트(list) -->
-
-	<select id="getListWithPaging"
-		resultType="com.mycloset.qna.vo.QnaVO">
-		<![CDATA[
+	<select id="getListWithPaging" resultType="com.mycloset.qna.vo.QnaVO">	
 		SELECT
 			qna_no AS no,
 			qna_question_title AS qTitle, 
@@ -18,9 +16,9 @@
 			qna_answer_writer AS aWriter, 
 			qna_answer_date AS aDate,
 			qna_answer_image AS aImage
-		FROM(
+		FROM( <!-- C: qna 정보 rownum 적용해서 가져오기 -->
 			SELECT 
-				(@ROWNUM:=@ROWNUM+1) AS RNUM,
+				<![CDATA[(@ROWNUM:=@ROWNUM+1) AS RNUM,]]>
 				qna_no,				
 				qna_question_writer, 
 				qna_question_title, 
@@ -32,7 +30,7 @@
 				qna_answer_content,
 				qna_answer_image,
 				qna_answer_date
-			FROM(
+			FROM( <!-- A: qna 정보 가져오기 -->
 				SELECT
 					qna_no, 
 					qna_question_writer, 
@@ -46,16 +44,97 @@
 					qna_answer_image,
 					qna_answer_date
 				FROM qna
-		) AS A, (SELECT @ROWNUM:=0) AS B]]>
+		) AS A, (SELECT<![CDATA[ @ROWNUM:=0) AS B]]>
 		) AS C
 		WHERE 
 		<include refid="criteria" /> 
 		1=1
-<!-- 		ORDER BY no DESC -->
 		LIMIT #{startNum}, #{cri.amount}
 	</select>
 
-	<!-- 검색 처리 태그 -->
+<!-- 2.글보기(view) -->
+	<select id="view" resultType="com.mycloset.qna.vo.QnaVO">
+		SELECT
+			qna_no AS no,
+			qna_question_title AS qTitle, 
+			qna_question_content AS qContent,
+			qna_question_writer AS qWriter, 
+			qna_question_date AS qDate,
+			qna_question_image AS qImage,
+			qna_answer_title AS aTitle, 
+			qna_answer_content AS aContent,
+			qna_answer_writer AS aWriter, 
+			qna_answer_date AS aDate,
+			qna_answer_image AS aImage
+		FROM qna
+		where qna_no = #{no}
+	</select>
+
+<!-- 3.글쓰기(write) -->
+	
+	<!-- 	3-1. 질문등록 -->
+	<insert id="write">
+		INSERT INTO qna(
+			qna_question_title, 
+			qna_question_content, 
+			qna_question_writer, 
+			qna_question_date,
+			qna_question_image)
+		VALUES(
+			#{qTitle},
+			#{qContent},
+			#{qWriter},
+			CURDATE(),
+			#{qImage})
+	</insert>
+	
+	<!-- 3-1.답변등록(writeAnswer) -->
+	<update id="writeAnswer">
+		UPDATE qna
+		SET qna_answer_title =#{aTitle},
+			qna_answer_content =#{aContent},
+			qna_answer_writer =#{aWriter},
+			qna_answer_date =CURDATE(),
+			qna_answer_image =#{aImage}
+		WHERE qna_no =#{no}
+	</update>
+	
+<!-- 4. 수정 -->
+	<!-- 4-1. 질문수정(update) -->
+	<update id="update">
+		UPDATE qna 
+		SET qna_question_title = #{qTitle}, 
+			qna_question_content = #{qContent}, 
+			qna_question_writer = #{qWriter}, 
+			qna_question_date = CURDATE(),
+			qna_question_image = #{qImage}
+		WHERE qna_no = #{no}
+	</update>
+	<!-- 4-2. 답변수정(updateAnswer) -->
+	<update id="updateAnswer">
+		UPDATE qna 
+		SET qna_answer_title = #{aTitle}, 
+			qna_answer_content = #{aContent}, 
+			qna_answer_writer = #{aWriter}, 
+			qna_answer_date = CURDATE(),
+			qna_answer_image = #{aImage}
+		WHERE qna_no = #{no}
+	</update>
+	
+<!-- 5. 삭제(delete) -->
+	<delete id="delete">
+		DELETE 
+		FROM qna
+		WHERE qna_no = #{no}
+	</delete>
+	
+<!-- 6. 총 게시물 개수 세기 -->
+	<select id="getTotalNum" resultType="Integer">
+	SELECT count(*) FROM qna
+	WHERE <include refid="criteria"/>1=1 
+	</select>
+
+<!-- 7. 검색 처리 태그 -->
 	<sql id="criteria">
 		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
 			<foreach item="type" collection="cri.typeArr">
@@ -75,83 +154,4 @@
 			</foreach>
 		</trim>
 	</sql>
-
-
-	<!-- 총 게시물 개수 세기 -->
-	<select id="getTotalNum" resultType="Integer">
-	SELECT count(*) FROM qna
-	WHERE <include refid="criteria"/>1=1 
-	</select>
-
-	<!-- 2.글보기(view) -->
-	<select id="view" resultType="com.mycloset.qna.vo.QnaVO">
-		SELECT
-			qna_no AS no,
-			qna_question_title AS qTitle, 
-			qna_question_content AS qContent,
-			qna_question_writer AS qWriter, 
-			qna_question_date AS qDate,
-			qna_question_image AS qImage,
-			qna_answer_title AS aTitle, 
-			qna_answer_content AS aContent,
-			qna_answer_writer AS aWriter, 
-			qna_answer_date AS aDate,
-			qna_answer_image AS aImage
-		FROM qna
-		where qna_no = #{no}
-	</select>
-
-	<!-- 3.글쓰기(write) -->
-	<insert id="write">
-		INSERT INTO qna(
-			qna_question_title, 
-			qna_question_content, 
-			qna_question_writer, 
-			qna_question_date,
-			qna_question_image)
-		VALUES(
-			#{qTitle},
-			#{qContent},
-			#{qWriter},
-			CURDATE(),
-			#{qImage})
-	</insert>
-	
-	<!-- 3-1.답변쓰기(writeAnswer) -->
-	<update id="writeAnswer">
-		UPDATE qna
-		SET qna_answer_title =#{aTitle},
-			qna_answer_content =#{aContent},
-			qna_answer_writer =#{aWriter},
-			qna_answer_date =CURDATE(),
-			qna_answer_image =#{aImage}
-		WHERE qna_no =#{no}
-	</update>
-	
-	<!-- 4. 수정(update) -->
-	<update id="update">
-		UPDATE qna 
-		SET qna_question_title =#{qTitle}, 
-			qna_question_content =#{qContent}, 
-			qna_question_writer =#{qWriter}, 
-			qna_question_date =CURDATE(),
-			qna_question_image =#{qImage}
-		WHERE qna_no =#{no}
-	</update>
-	<!-- 4-1. 답변수정(updateAnswer) -->
-	<update id="updateAnswer">
-		UPDATE qna 
-		SET qna_answer_title =#{aTitle}, 
-			qna_answer_content =#{aContent}, 
-			qna_answer_writer =#{aWriter}, 
-			qna_answer_date =CURDATE(),
-			qna_answer_image =#{aImage}
-		WHERE qna_no =#{no}
-	</update>
-	<!-- 5. 삭제(delete) -->
-	<delete id="delete">
-		DELETE 
-		FROM qna
-		WHERE qna_no =#{no}
-	</delete>
 </mapper>

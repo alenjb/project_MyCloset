@@ -9,24 +9,24 @@ import com.mycloset.util.Critera;
 
 public interface ClosetMapper {
 
-	// 옷 등록
+	//1. 페이지 처리와 함께 리스트를 가져오기
+	public List<ClosetVO> getListWithPaging(@Param("cri")Critera cri, @Param("startNum")int startNum);
+
+	//2. 옷 보기
+	public ClosetVO view(@Param("member_id")String id, @Param("clothes_id")int num) throws Exception;
+
+	//3. 옷 등록
 	public int enroll(ClosetVO vo) throws Exception;
 	
-	//옷 리스트
-	public List<ClosetVO> list(String id) throws Exception;
-
-	//페이지 처리와 함께 리스트를 가져오기
-	public List<ClosetVO> getListWithPaging(@Param("cri")Critera cri, @Param("startNum")int startNum);
-	
-	//옷 수정
+	//4. 옷 수정
 	public int update(ClosetVO vo) throws Exception;
 	
-	//옷 보기
-	public ClosetVO view(@Param("member_id")String id, @Param("clothes_id")int num) throws Exception;
-	
-	//옷 삭제
+	//5. 옷 삭제
 	public int delete(ClosetVO vo) throws Exception;
 	
-	//총 옷 개수 세기
+	//6. 총 옷 개수 세기
 	public int getTotalNum(@Param("cri")Critera cri) throws Exception;
+	
+//	//7. 옷 리스트
+//	public List<ClosetVO> list(String id) throws Exception;
 }

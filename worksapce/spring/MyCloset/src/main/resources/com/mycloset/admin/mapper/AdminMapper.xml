@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mycloset.admin.mapper.AdminMapper">
 
-<!-- 페이지 네이션을 적용한 리스트 가져오기 -->
+	<!-- 1. 페이징을 적용한 회원목록 리스트 가져오기(관리자만 볼 수 있음) -->
 	<select id="getListWithPaging" resultType="com.mycloset.admin.vo.AdminVO">
 		<![CDATA[
 			SELECT 
@@ -25,12 +25,59 @@
 			WHERE 
 			<include refid="criteria"/> 
 			1=1 
-<!-- 			<![CDATA[(@rownum:=0)=0]]> -->
 			ORDER BY member_reg_date DESC
-			LIMIT #{startNum}, #{cri.amount}
-	
-	<!-- 		limit (#{pageNum}-1) * #{amount}, #{pageNum} * #{amount} -->
+			LIMIT #{startNum}, #{cri.amount}	
 	</select>
+
+	<!-- 2. 회원정보보기(관리자 입장에서) / 내정보보기(회원 입장에서) -->
+	<select id="view" resultType="com.mycloset.admin.vo.AdminVO">
+	SELECT
+		member_id, 
+		member_name, 
+		member_sex, 
+		member_phone, 
+		member_email, 
+		member_height, 
+		member_top_size, 
+		member_bottom_size,
+		member_shoes_size, 
+		member_face, 
+		member_reg_date, 
+		member_grade,
+		member_status
+	FROM member
+	WHERE member_id = #{member_id}
+	</select>
+	
+	<!-- 3. 회원등급변경 -->
+	<update id="changeGrade">
+	UPDATE member
+	SET member_grade = #{grade}
+	WHERE member_id = #{member_id}
+	</update>
+	
+	<!-- 4. 회원 상태 변경 -->
+	<update id="changeStatus">
+	UPDATE member
+	SET member_status = #{status}
+	WHERE member_id = #{member_id}
+	</update>
+	
+	<!-- 5. 회원 강퇴 -->
+	<delete id="delete">
+	DELETE
+	FROM member
+	WHERE member_id = #{member_id}
+	</delete>
+
+	<!-- 6. 총 개수 세기 -->
+	<select id="getTotalNum" resultType="Integer">
+	SELECT count(*) 
+	FROM member
+	WHERE <include refid="criteria"/>1=1 
+	</select>
+	
+	<!-- 7. 검색 처리 태그 -->
 	<sql id="criteria">
 		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
 			<foreach item="type" collection="cri.typeArr">
@@ -50,53 +97,4 @@
 			</foreach>
 		</trim>
 	</sql>
-
-<!-- 멤버 상세 보기 -->
-	<select id="view" resultType="com.mycloset.admin.vo.AdminVO">
-	SELECT
-	member_id, 
-	member_name, 
-	member_sex, 
-	member_phone, 
-	member_email, 
-	member_height, 
-	member_top_size, 
-	member_bottom_size,
-	member_shoes_size, 
-	member_face, 
-	member_reg_date, 
-	member_grade,
-	member_status
-	FROM member
-	WHERE #{member_id} = member_id
-	</select>
-<!-- 총 개수 세기 -->
-	<select id="getTotalNum" resultType="Integer">
-	SELECT count(*) FROM member
-	WHERE <include refid="criteria"/>1=1 
-	</select>
-	
-<!-- 회원등급변경 -->
-	<update id="changeGrade">
-	UPDATE member
-	SET
-	member_grade = #{grade}
-	WHERE member_id = #{member_id}
-	</update>
-	
-<!-- 회원상태변경 -->
-	<update id="changeStatus">
-	UPDATE member
-	SET
-	member_status = #{status}
-	WHERE member_id = #{member_id}
-	</update>
-	
-<!-- 회원강퇴 -->
-	<delete id="delete">
-	DELETE
-	FROM member
-	WHERE
-	member_id =#{member_id}
-	</delete>
 </mapper>
