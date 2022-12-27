@@ -35,6 +35,8 @@ D:\jeongbin\worksapce\spring\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsear
 \ex00\src\main\java
 D:\jeongbin\worksapce\spring\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\4285406727.index
 \MyCloset\src\main\java
+D:\jeongbin\worksapce\spring\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2656222900.index
+\webproject\src\main\resources
 D:\jeongbin\worksapce\spring\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3144751808.index
 \ex00\src\main\java
 D:\jeongbin\worksapce\spring\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1875555715.index

@@ -6,8 +6,14 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="btn btn-primary d-grid w-100"/>
+		<item key="selection" value=""/>
 		<list key="findhistory">
+			<item value="Sys"/>
+			<item value="getTo"/>
+			<item value="모든"/>
+			<item value="System"/>
+			<item value="list("/>
+			<item value="list"/>
 			<item value="btn btn-primary d-grid w-100"/>
 			<item value="accountActivation"/>
 			<item value="form-check mb-3"/>
@@ -17,12 +23,6 @@
 			<item value="&lt;form"/>
 			<item value="fit"/>
 			<item value="fit2"/>
-			<item value="all"/>
-			<item value="All"/>
-			<item value="c:if"/>
-			<item value="ow row-cols-"/>
-			<item value="log"/>
-			<item value="fㅑ"/>
 		</list>
 		<list key="replacehistory">
 			<item value="href=&quot;/member/myPage&quot;"/>
