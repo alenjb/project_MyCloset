@@ -15,7 +15,7 @@
 		<org.aspectj-version>1.9.0</org.aspectj-version>
 		<org.slf4j-version>1.7.25</org.slf4j-version>
 		<!-- 현재 진행하고 있는 프로젝트의 절대 위치로 변경해서 사용하셔야만 합니다. -->
-		<project.basedir>D:\jeongbin\worksapce\spring\MyCloset</project.basedir>
+<!-- 		<project.basedir>C:\dev\project_MyCloset\worksapce\spring\MyCloset</project.basedir> -->
 	</properties>
 	<dependencies>
 		<dependency>
@@ -100,7 +100,7 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<version>1.18.2</version>
+			<version>1.18.20</version>
 			<scope>provided</scope>
 		</dependency>
 
@@ -197,24 +197,24 @@
 		</dependency>
 
 			<!-- 페이지 처리 -->
-		<dependency>
-			<groupId>com.webjjang</groupId>
-			<artifactId>util.PageObject</artifactId>
-			<version>2.5</version>
-			<scope>system</scope>
+<!-- 		<dependency> -->
+<!-- 			<groupId>com.webjjang</groupId> -->
+<!-- 			<artifactId>util.PageObject</artifactId> -->
+<!-- 			<version>2.5</version> -->
+<!-- 			<scope>system</scope> -->
 			<!-- lombok lib를 설치하면 오류가 난다. 해결 : 프로퍼트 등록 해준다. -->
-			<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/pageObject.jar</systemPath>
-		</dependency>
+<!-- 			<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/pageObject.jar</systemPath> -->
+<!-- 		</dependency> -->
 
 		<!-- 파일 처리 -->
-		<dependency>
-			<groupId>com.webjjang</groupId>
-			<artifactId>util.file.fileUtil</artifactId>
-			<version>1.0</version>
-			<scope>system</scope>
+<!-- 		<dependency> -->
+<!-- 			<groupId>com.webjjang</groupId> -->
+<!-- 			<artifactId>util.file.fileUtil</artifactId> -->
+<!-- 			<version>1.0</version> -->
+<!-- 			<scope>system</scope> -->
 			<!-- lombok lib를 설치하면 오류가 난다. 해결 : 프로퍼트 등록 해준다. -->
-			<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/fileUtil.jar</systemPath>
-		</dependency>
+<!-- 			<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/fileUtil.jar</systemPath> -->
+<!-- 		</dependency> -->
 
 		<dependency>
 			<groupId>commons-fileupload</groupId>
@@ -259,7 +259,7 @@
 		<plugins>
 			<plugin>
 				<artifactId>maven-eclipse-plugin</artifactId>
-				<version>2.9</version>
+				<version>2.10</version>
 				<configuration>
 					<additionalProjectnatures>
 						<projectnature>org.springframework.ide.eclipse.core.springnature</projectnature>
@@ -274,7 +274,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.5.1</version>
+				<version>3.7.0</version>
 				<configuration>
 					<source>1.8</source>
 					<target>1.8</target>
@@ -286,10 +286,15 @@
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>exec-maven-plugin</artifactId>
-				<version>1.2.1</version>
+				<version>1.6.0</version>
 				<configuration>
 					<mainClass>org.test.int1.Main</mainClass>
 				</configuration>
+			</plugin>
+			<plugin>
+			  <groupId>org.apache.maven.plugins</groupId>
+			  <artifactId>maven-war-plugin</artifactId>
+			  <version>3.3.2</version>
 			</plugin>
 		</plugins>
 	</build>

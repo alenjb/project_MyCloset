@@ -68,7 +68,7 @@ public class FittingService {
 //	6. 옷 아이디 가져오기
 	public HashMap<String, String> getClothesIdAndPrice(String member_id, String outer_clothes_photo, String top_clothes_photo, String bottom_clothes_photo) throws Exception{
 		return mapper.getClothesIdAndPrice(member_id, outer_clothes_photo, top_clothes_photo, bottom_clothes_photo);
-	}	
+	}
 
 //	7. 총 피팅 개수 세기
 	public int getTotalNum(Critera cri) throws Exception {

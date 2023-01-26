@@ -87,7 +87,7 @@ public class ClosetController {
 		//파일 저장
 		MultipartFile file = vo.getClothes_photo_file();
 		//업로드 폴더 지정
-		String uploadFolder = "D:\\jeongbin\\worksapce\\spring\\MyCloset\\src\\main\\webapp\\upload\\closet";
+		String uploadFolder = "/home/ubuntu/MyClosetDB/closet";
 		File saveFile = new File(uploadFolder, file.getOriginalFilename());
 		try {
 			file.transferTo(saveFile);
@@ -95,7 +95,7 @@ public class ClosetController {
 			log.error(e.getMessage());
 		}
 		//vo의 사진경로 변경
-		vo.setClothes_photo("\\upload\\closet\\" + file.getOriginalFilename());
+		vo.setClothes_photo("/home/ubuntu/MyClosetDB/closet/" + file.getOriginalFilename());
 		vo.setMember_id(memberId);
 		// 옷 등록
 		service.enroll(vo);
@@ -133,7 +133,7 @@ public class ClosetController {
 		MultipartFile file = closetVO.getClothes_photo_file();
 		//사진 파일이 바뀌었으면
 		if(!closetVO.getClothes_photo_file().getOriginalFilename().equals("")) {
-			String uploadFolder = "D:\\jeongbin\\worksapce\\spring\\MyCloset\\src\\main\\webapp\\upload\\closet";
+			String uploadFolder = "home\\ubuntu\\MyClosetDB\\closet";
 			//새 파일 저장
 			File saveFile = new File(uploadFolder, file.getOriginalFilename());
 			try {
@@ -142,7 +142,7 @@ public class ClosetController {
 				log.error(e.getMessage());
 			}
 			//바뀐 사진 경로 VO에 저장
-			closetVO.setClothes_photo("\\upload\\closet\\" + file.getOriginalFilename());			
+			closetVO.setClothes_photo("\\" + file.getOriginalFilename());			
 		}
 		// 수정하기
 		service.update(closetVO);
