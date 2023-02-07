@@ -22,7 +22,7 @@ public class AdminService {
 		int amount = cri.getAmount();
 		//한 페이지 최대 개수
 		int limitMax = pageNum * amount;
-		int startNum = limitMax - cri.getAmount() +1;
+		int startNum = limitMax - cri.getAmount();
 		return mapper.getListWithPaging(cri, startNum);
 	}
 	

@@ -43,6 +43,7 @@ public class ClosetController {
 		model.addAttribute("closets", closets);
 		// 옷 총 개수 세기
 		int totalNum = service.getTotalNum(cri);
+		System.out.println(totalNum);
 		// 페이지 관련 정보 담기
 		model.addAttribute("pageMaker", new PageDTO(cri, totalNum));
 	}

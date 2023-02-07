@@ -23,7 +23,7 @@ public class FittingService {
 		int amount = cri.getAmount();
 		//한 페이지 최대 개수
 		int limitMax= pageNum * amount; 
-		int startNum = limitMax - cri.getAmount() +1;
+		int startNum = limitMax - cri.getAmount();
 		return mapper.getListWithPaging(cri, startNum);
 	}
 //	1-2. 범위조건과 페이징을 적용해 리스트 가져오기
