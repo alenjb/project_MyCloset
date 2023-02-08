@@ -92,6 +92,7 @@
 			searchForm.submit();
 		});
 	});
+	
 </script>
 <style type="text/css">
 
@@ -194,7 +195,9 @@
 												<label for="clothes_purchase_price"
 													class="form-label col-md-4">구입 가격</label>
 												<div class="mb-3 col-md-8">
-													<span class="">${vo.clothes_purchase_price} 원</span>
+													<span id="clohtes_price"> 
+														<fmt:formatNumber value="${vo.clothes_purchase_price}" pattern="#,###"/> 원
+													</span>
 												</div>
 
 												<label for="clothes_purchase_year"

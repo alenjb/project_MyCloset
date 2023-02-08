@@ -68,6 +68,24 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
 	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
 	crossorigin="anonymous"></script>
+	
+<script type="text/javascript">
+
+// input 입력시 천 단위마다 자동을 컴마 생성 함수
+	function inputNumberFormat(obj) {
+	    obj.value = comma(uncomma(obj.value));
+	}
+	
+	function comma(str) {
+	    str = String(str);
+	    return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+	}
+	
+	function uncomma(str) {
+	    str = String(str);
+	    return str.replace(/[^\d]+/g, '');
+	}
+</script>
 <style type="text/css">
 
 	#searchBtn{
@@ -100,8 +118,8 @@
 
 					<div class="container-xxl flex-grow-1 container-p-y">
 						<h4 class="fw-bold py-3 mb-4">
-							<span class="text-muted fw-light">Account Settings /</span>
-							Account
+							<span class="text-muted fw-light">내 옷장 /</span>
+							옷 등록
 						</h4>
 
 						<div class="row">
@@ -114,7 +132,7 @@
 										<div class="card-body">
 											<div
 												class="d-flex align-items-start align-items-sm-center gap-4">
-												<img src="/resources/assets/img/avatars/1.png"
+												<img src="/resources/assets/img/hanger-purple.png"
 													alt="user-avatar" class="d-block rounded" height="100"
 													width="100" id="uploadedAvatar" />
 												<div class="button-wrapper">
@@ -194,7 +212,7 @@
 													<div class="input-group">
 														<span class="input-group-text">￦</span> <input type="text"
 															class="form-control" id="clothes_purchase_price"
-															name="clothes_purchase_price" />
+															name="clothes_purchase_price" onkeyup="inputNumberFormat(this)" />
 														<span class="input-group-text">원</span>
 													</div>
 												</div>
