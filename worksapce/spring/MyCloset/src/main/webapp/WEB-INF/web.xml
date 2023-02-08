@@ -36,11 +36,12 @@
 
 	<multipart-config>
 		<location>/home/ubuntu/MyClosetDB</location>
-		<max-file-size>20971520</max-file-size><!-- 1024*1024*20 : 파일 한개의 용량 제한 
-			: 20MB -->
-		<max-request-size>209715200</max-request-size> <!-- 전체 파일 사이즈 -->
-		<file-size-threshold>20971520</file-size-threshold><!-- 20M 이하면 메모리 / 초과하면 
-			파일 -->
+		<!-- 파일 한개의 용량 제한 : 20MB  -->
+		<max-file-size>1024 * 1024 * 20</max-file-size>1024*1024*20 : 파일 한개의 용량 제한 
+ 	 <!-- 전체 파일 사이즈 -->
+		<max-request-size>1024 * 1024 * 2000</max-request-size>
+<!-- 		1MB 이하면 메모리에저장 / 초과하면 파일로 저장  -->
+		<file-size-threshold>1024 * 1024* 1</file-size-threshold>
 	</multipart-config>
 
 	<!-- 한글처리 : 카페 - Spring 게시판에서 검색 -->

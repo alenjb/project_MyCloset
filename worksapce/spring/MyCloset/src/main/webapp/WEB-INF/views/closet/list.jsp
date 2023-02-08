@@ -182,7 +182,6 @@
 											<th>사이즈</th>
 											<th>계절</th>
 											<th>구매일</th>
-
 										</tr>
 									</thead>
 									<tbody class="table-border-bottom-0">

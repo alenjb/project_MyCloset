@@ -23,6 +23,7 @@ public class PageDTO {
 		
 		//페이징 끝번호 계산
 		this.endPage = (int) (Math.ceil(cri.getPageNum() / 10.0)) * 10;
+	
 		//페이징 시작번호 계산
 		this.startPage= this.endPage - 9;
 		
@@ -33,6 +34,10 @@ public class PageDTO {
 		//실제 데이터 개수가 endPage보다 모자라면
 		if(realEnd < this.endPage) {
 			this.endPage = realEnd;
+		}
+		//페이지네이션 last 버튼이 작동하려면 end page는 최소한 1 이상 
+		if (this.endPage <= 0) {
+			this.endPage = 1;
 		}
 		
 		//앞으로 갈 수 있는지

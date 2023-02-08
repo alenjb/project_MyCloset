@@ -145,7 +145,7 @@
                     <c:forEach items="${myFitting}" var="myFitting" varStatus="status">
                       <div class="carousel-item <c:if test='${status.first}'>active</c:if>">                      
                     <fmt:parseNumber var = "fittingId" type = "number" value = "${myFitting.fitting_id}" />                  
-                      <a href="/fitting/view?fitting_id='<c:out value="${fittingId}" />'">
+                      <a href="/fitting/view?fitting_id=<c:out value="${fittingId}" />">
                         <img class="d-block w-100" src="${myFitting.fitting_image }" alt="First slide" />
                       </a>
                         <div class="carousel-caption d-none d-md-block">
