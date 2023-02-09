@@ -121,6 +121,10 @@ public class ClosetController {
 		int cId = Integer.parseInt(clothes_id);
 		//view로 내용 불러오기
 		ClosetVO vo = service.view(id,cId);
+		
+		System.out.println("view 한 결과"+ vo);
+		//closetVo에 멤버아이디 추가
+		vo.setMember_id(id);
 		//모델에 아이디 추가
 		model.addAttribute("member_id", id);
 		//모델에 vo 추가
@@ -131,10 +135,11 @@ public class ClosetController {
 	//4-2. 옷 수정 페이지
 	@PostMapping("/update")
 	public String Update(ClosetVO closetVO) throws Exception {
-		MultipartFile file = closetVO.getClothes_photo_file();
+		System.out.println("넘어온 vo"+closetVO);
+		MultipartFile file = closetVO.getClothes_photo_file();		
 		//사진 파일이 바뀌었으면
 		if(!closetVO.getClothes_photo_file().getOriginalFilename().equals("")) {
-			String uploadFolder = "home\\ubuntu\\MyClosetDB\\closet";
+			String uploadFolder = "/home/ubuntu/MyClosetDB/closet";
 			//새 파일 저장
 			File saveFile = new File(uploadFolder, file.getOriginalFilename());
 			try {
@@ -143,10 +148,11 @@ public class ClosetController {
 				log.error(e.getMessage());
 			}
 			//바뀐 사진 경로 VO에 저장
-			closetVO.setClothes_photo("\\" + file.getOriginalFilename());			
+			closetVO.setClothes_photo("/home/ubuntu/MyClosetDB/closet/"+file.getOriginalFilename());			
 		}
 		// 수정하기
 		service.update(closetVO);
+		System.out.println(closetVO);
 		return "redirect:list";
 	}
 	

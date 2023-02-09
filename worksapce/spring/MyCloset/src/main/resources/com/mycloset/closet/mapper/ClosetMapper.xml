@@ -71,7 +71,6 @@
 	<update id="update">
 		UPDATE closet
 		SET
-			clothes_id = #{clothes_id}, 
 			clothes_type = #{clothes_type}, 
 			clothes_name = #{clothes_name}, 
 			clothes_info = #{clothes_info}, 
@@ -80,7 +79,7 @@
 			clothes_purchase_year = #{clothes_purchase_year}, 
 			clothes_purchase_price = #{clothes_purchase_price}, 
 			clothes_season = #{clothes_season}
-		WHERE member_id= #{member_id}
+		WHERE member_id= #{member_id} and member_id= #{member_id}
 	</update>
 		
 	<!-- 5. 옷 삭제 -->
