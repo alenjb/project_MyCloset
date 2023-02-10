@@ -43,7 +43,6 @@ public class ClosetController {
 		model.addAttribute("closets", closets);
 		// 옷 총 개수 세기
 		int totalNum = service.getTotalNum(cri);
-		System.out.println(totalNum);
 		// 페이지 관련 정보 담기
 		model.addAttribute("pageMaker", new PageDTO(cri, totalNum));
 	}
@@ -122,7 +121,6 @@ public class ClosetController {
 		//view로 내용 불러오기
 		ClosetVO vo = service.view(id,cId);
 		
-		System.out.println("view 한 결과"+ vo);
 		//closetVo에 멤버아이디 추가
 		vo.setMember_id(id);
 		//모델에 아이디 추가
@@ -135,7 +133,6 @@ public class ClosetController {
 	//4-2. 옷 수정 페이지
 	@PostMapping("/update")
 	public String Update(ClosetVO closetVO) throws Exception {
-		System.out.println("넘어온 vo"+closetVO);
 		MultipartFile file = closetVO.getClothes_photo_file();		
 		//사진 파일이 바뀌었으면
 		if(!closetVO.getClothes_photo_file().getOriginalFilename().equals("")) {
@@ -152,7 +149,6 @@ public class ClosetController {
 		}
 		// 수정하기
 		service.update(closetVO);
-		System.out.println(closetVO);
 		return "redirect:list";
 	}
 	

@@ -133,7 +133,7 @@
 														name="clothes_photo_file" class="account-file-input"
 														id="clothes_photo_file" hidden="hidden"
 														accept="image/png, image/jpeg, image/jpg, image/gif" />
-													</label> <input id="clothes_photo" type="hidden">
+													</label> <input id="clothes_photo" value="${vo.clothes_photo}" name="clothes_photo" type="hidden">
 
 													<p class="text-muted mb-0">JPG, GIF, JPEG, PNG 등 사진 파일만
 														등록 가능합니다.</p>
