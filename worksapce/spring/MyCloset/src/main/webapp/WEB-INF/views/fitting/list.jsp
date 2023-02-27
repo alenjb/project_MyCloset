@@ -7,15 +7,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>피팅룸</title>
 <head>
 <meta charset="utf-8" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
-
-<title>Cards basic - UI elements | Sneat - Bootstrap 5 HTML
-	Admin Template - Pro</title>
-
 <meta name="description" content="" />
 
 <!-- Favicon -->
@@ -80,11 +76,13 @@
 	$(function() {
 
 		//버튼들이 체크안돼있었으면 체크해제하기
+			
 		<%boolean publicCheck = Boolean.parseBoolean(request.getParameter("publicCheck"));%>
 		<%boolean privateCheck = Boolean.parseBoolean(request.getParameter("privateCheck"));%>
-		console.log("public"+<%=publicCheck%>);
-		console.log("private"+<%=privateCheck%>);
-		if(<%=publicCheck%>==false){
+		console.log("public ON: "+<%=publicCheck%>);
+		console.log("private ON: "+<%=privateCheck%>);
+		
+		if(<%=publicCheck%>==false){// public 버튼이 클릭이 안되어 있으면
 			$("#flexSwitchCheckChecked1").prop('checked', false);
 			if(<%=privateCheck%>==false){//none
 				$("#flexSwitchCheckChecked2").prop('checked', false);
@@ -96,9 +94,9 @@
 				$(".fittingOverView").click(function() {
 					location = "view?fitting_id=" + $(this).find(".fitting_id").text()+"&type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}";
 				});
-			}
+			}//else
 
-		}else{
+		}else{ // public 버튼이 클릭이 되어 있으면
 			$("#flexSwitchCheckChecked1").prop('checked', true);
 			if(<%=privateCheck%>==false){//public
 				$("#flexSwitchCheckChecked2").prop('checked', false);
@@ -114,59 +112,56 @@
 				$(".fittingOverView").click(function() {
 					location = "view?fitting_id=" + $(this).find(".fitting_id").text()+"&type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}";
 				});
-			}
+			}//else
 
-		}
+		}// public 버튼 else 끝
+		
 		if(<%=privateCheck%>==true || <%=publicCheck%>==true ){
 			
-		//ajax
-		$.ajax({
-			url: '/fitting/listOpenRange',
-			type: 'GET',
-			
-			data: { 
-				"fitting_open_range":fitting_open_range,
-				"pageNum":${pageMaker.cri.pageNum},
-				"amount":${pageMaker.cri.amount},
-				"type":('${pageMaker.cri.type}'!=null) ? '${pageMaker.cri.type}': null,
-				"keyword":('${pageMaker.cri.keyword}'!=null) ? '${pageMaker.cri.keyword}': null
-			},
-			beforeSend: function() {
+			//ajax
+			$.ajax({
+				url: '/fitting/listOpenRange',
+				type: 'GET',				
+				data: { 
+					"fitting_open_range":fitting_open_range,
+					"pageNum":${pageMaker.cri.pageNum},
+					"amount":${pageMaker.cri.amount},
+					"type":('${pageMaker.cri.type}'!=null) ? '${pageMaker.cri.type}': null,
+					"keyword":('${pageMaker.cri.keyword}'!=null) ? '${pageMaker.cri.keyword}': null
+				},
+				success: function(res) {
+					//현재 있는 피팅 비우기
+					$('#fitting_main').empty();
+					//div 안에 ajax로 가져온 내용 채우기
+					for(var i=0;i<res.length;i++) {
+						let html = '';
+							html += '<div class="col" id="fittingDiv">';
+							html += '	<div class="card h-100 fittingOverView">';
+							html += '		<img class="card-img-top" src="'+res[i].fitting_image+'"';
+							html += '			alt="Card image cap" />';
+							html += '		<div class="card-body">';
+							html += '			<h5 class="card-title">'+res[i].fitting_name+'</h5>';
+							html += '			<p class="card-text">'+res[i].fitting_info+'</p>';
+							html += '			<p class="fitting_id" hidden="hidden">'+res[i].fitting_id+'</p>';
+							html += '			<p class="fitting_open_range" hidden="hidden">'+res[i].fitting_open_range+'</p>';
+							html += '		</div>';
+							html += '	</div>';
+							html += '</div>';
+						$('#fitting_main').append(html);
+					}
+					alert(res);
+														
+					//피팅사진 클릭하면 이동
+					$(".fittingOverView").click(function() {
+						location = "view?fitting_id=" + $(this).find(".fitting_id").text()+"&type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}";
+					});
+				},
+				error: function() {
 				
-			},
-			success: function(res) {
-				//현재 있는 피팅 비우기
-				$('#fitting_main').empty();
-				//div 안에 ajax로 가져온 내용 채우기
-				for(var i=0;i<res.length;i++) {
-					let html = '';
-						html += '<div class="col" id="fittingDiv">';
-						html += '	<div class="card h-100 fittingOverView">';
-						html += '		<img class="card-img-top" src="'+res[i].fitting_image+'"';
-						html += '			alt="Card image cap" />';
-						html += '		<div class="card-body">';
-						html += '			<h5 class="card-title">'+res[i].fitting_name+'</h5>';
-						html += '			<p class="card-text">'+res[i].fitting_info+'</p>';
-						html += '			<p class="fitting_id" hidden="hidden">'+res[i].fitting_id+'</p>';
-						html += '			<p class="fitting_open_range" hidden="hidden">'+res[i].fitting_open_range+'</p>';
-						html += '		</div>';
-						html += '	</div>';
-						html += '</div>';
-					$('#fitting_main').append(html);
+				},
+				complete: function() {
 				}
-													
-				//피팅사진 클릭하면 이동
-				$(".fittingOverView").click(function() {
-					location = "view?fitting_id=" + $(this).find(".fitting_id").text()+"&type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}";
-				});
-			},
-			error: function() {
-			
-			},
-			complete: function() {
-				
-			}
-		});
+			});//ajax 끝		
 		}
 		
 		
@@ -186,6 +181,7 @@
 			//form 전송
 			actionForm.submit();
 		});
+		
 		//검색 버튼
 		var searchForm = $("#searchForm");
 		$("#searchBtn").on("click", function(e) {
@@ -206,7 +202,6 @@
 		
 		// public 버튼 클릭시
 		$("#flexSwitchCheckChecked1").on("change", function(e) {
-			console.log("public 변경");
 
 			//체크 되면 public 보임
 			var checked = $("#flexSwitchCheckChecked1").is(':checked');
@@ -217,201 +212,203 @@
 				json.name="${vo.fitting_name}";
 				result.push(json);
 			</c:forEach>
-						//public을 안보겠다고 하면
-						if (!checked){
-							
-							//만약 private 버튼도 안눌려 있으면
-							if ($("#flexSwitchCheckChecked2").is(':checked') == false){
-								//publicCheck 값을 false로 변경
-								$("#publicCheck").val(false);
-								//privateCheck 값을 false로 변경
-								$("#privateCheck").val(false);
+			//json 찍어보기
+// 			console.log(json);
+			
+			//result에 피팅 이름 들어가 있는 상태 
+			
+			//public을 안보겠다고 하면
+			if (!checked){
+				//만약 private 버튼도 안눌려 있으면
+				if ($("#flexSwitchCheckChecked2").is(':checked') == false){
+					//publicCheck 값을 false로 변경
+					$("#publicCheck").val(false);
+					//privateCheck 값을 false로 변경
+					$("#privateCheck").val(false);
 
-								var fitting_open_range = "none";
-									$('#fitting_main').empty();
-									console.log(fitting_open_range);
-							}else{//private 버튼이 눌려 있으면(private만 보이게)
-								//publicCheck 값을 false로 변경
-								$("#publicCheck").val(false);
-								//privateCheck 값을 true로 변경
-								$("#privateCheck").val(true);
+					var fitting_open_range = "none";
+						$('#fitting_main').empty();
+				}else{//private 버튼이 눌려 있으면(private만 보이게)
+					//publicCheck 값을 false로 변경
+					$("#publicCheck").val(false);
+					//privateCheck 값을 true로 변경
+					$("#privateCheck").val(true);
 
-								var fitting_open_range = "private" ;
-															
-							//ajax
-							$.ajax({
-								url: '/fitting/listOpenRange',
-								type: 'GET',
-								
-								data: { 
-									"fitting_open_range":fitting_open_range,
-									"pageNum":${pageMaker.cri.pageNum},
-									"amount":${pageMaker.cri.amount},
-									"type":('${pageMaker.cri.type}'!=null) ? '${pageMaker.cri.type}': null,
-									"keyword":('${pageMaker.cri.keyword}'!=null) ? '${pageMaker.cri.keyword}': null
-								},
-								beforeSend: function() {
-									
-								},
-								success: function(res) {
-									//현재 있는 피팅 비우기
-									$('#fitting_main').empty();
-									//div 안에 ajax로 가져온 내용 채우기
-									for(var i=0;i<res.length;i++) {
-										let html = '';
-											html += '<div class="col" id="fittingDiv">';
-											html += '	<div class="card h-100 fittingOverView">';
-											html += '		<img class="card-img-top" src="'+res[i].fitting_image+'"';
-											html += '			alt="Card image cap" />';
-											html += '		<div class="card-body">';
-											html += '			<h5 class="card-title">'+res[i].fitting_name+'</h5>';
-											html += '			<p class="card-text">'+res[i].fitting_info+'</p>';
-											html += '			<p class="fitting_id" hidden="hidden">'+res[i].fitting_id+'</p>';
-											html += '			<p class="fitting_open_range" hidden="hidden">'+res[i].fitting_open_range+'</p>';
-											html += '		</div>';
-											html += '	</div>';
-											html += '</div>';
-										$('#fitting_main').append(html);
-									}
-																		
-									//피팅사진 클릭하면 이동
-									$(".fittingOverView").click(function() {
-										location = "view?fitting_id=" + $(this).find(".fitting_id").text()+"&type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}";
-									});
-								},
-								error: function() {
-								
-								},
-								complete: function() {
-									
-								}
-							});
-						}//else
-					}//if (!checked)
+					var fitting_open_range = "private" ;
+												
+					//ajax
+					$.ajax({
+						url: '/fitting/listOpenRange',
+						type: 'GET',
 						
-						//public을 보겠다고 하면
-						if (checked){
-							//publicCheck 값을 true로 변경
-							$("#publicCheck").val(true);
-							//만약 private 버튼이 안눌려 있으면(public만 보이게)
-							if ($("#flexSwitchCheckChecked2").is(':checked') == false){
-								//publicCheck 값을 false로 변경
-								$("#publicCheck").val(true);
-								//privateCheck 값을 false로 변경
-								$("#privateCheck").val(false);
-
-								
-								var fitting_open_range = "public";
-								//ajax
-								$.ajax({
-									url: '/fitting/listOpenRange',
-									type: 'GET',
-									
-									data: { 
-										"fitting_open_range":fitting_open_range,
-										"pageNum":${pageMaker.cri.pageNum},
-										"amount":${pageMaker.cri.amount},
-										"type":('${pageMaker.cri.type}'!=null) ? '${pageMaker.cri.type}': null,
-										"keyword":('${pageMaker.cri.keyword}'!=null) ? '${pageMaker.cri.keyword}': null
-									},
-									beforeSend: function() {
-										
-									},
-									success: function(res) {
-										//현재 있는 피팅 비우기
-										$('#fitting_main').empty();
-										//div 안에 ajax로 가져온 내용 채우기
-										for(var i=0;i<res.length;i++) {
-											let html = '';
-												html += '<div class="col" id="fittingDiv">';
-												html += '	<div class="card h-100 fittingOverView">';
-												html += '		<img class="card-img-top" src="'+res[i].fitting_image+'"';
-												html += '			alt="Card image cap" />';
-												html += '		<div class="card-body">';
-												html += '			<h5 class="card-title">'+res[i].fitting_name+'</h5>';
-												html += '			<p class="card-text">'+res[i].fitting_info+'</p>';
-												html += '			<p class="fitting_id" hidden="hidden">'+res[i].fitting_id+'</p>';
-												html += '			<p class="fitting_open_range" hidden="hidden">'+res[i].fitting_open_range+'</p>';
-												html += '		</div>';
-												html += '	</div>';
-												html += '</div>';
-											$('#fitting_main').append(html);
-										}
-																			
-										//피팅사진 클릭하면 이동
-										$(".fittingOverView").click(function() {
-											location = "view?fitting_id=" + $(this).find(".fitting_id").text()+"&type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}";
-										});
-									},
-									error: function() {
-									
-									},
-									complete: function() {
-										
-									}
-								});
-							}else{//만약 private 버튼이 눌려 있으면(다 보이게)
-								//publicCheck 값을 true로 변경
-								$("#publicCheck").val(true);
-								//privateCheck 값을 true로 변경
-								$("#privateCheck").val(true);
-
-								var fitting_open_range = "all";
-							//ajax
-							$.ajax({
-								url: '/fitting/listOpenRange',
-								type: 'GET',
-								
-								data: { 
-									"fitting_open_range":fitting_open_range,
-									"pageNum":${pageMaker.cri.pageNum},
-									"amount":${pageMaker.cri.amount},
-									"type":('${pageMaker.cri.type}'!=null) ? '${pageMaker.cri.type}': null,
-									"keyword":('${pageMaker.cri.keyword}'!=null) ? '${pageMaker.cri.keyword}': null
-								},
-								beforeSend: function() {
-									
-								},
-								success: function(res) {
-									//현재 있는 피팅 비우기
-									$('#fitting_main').empty();
-									//div 안에 ajax로 가져온 내용 채우기
-									for(var i=0;i<res.length;i++) {
-										let html = '';
-											html += '<div class="col" id="fittingDiv">';
-											html += '	<div class="card h-100 fittingOverView">';
-											html += '		<img class="card-img-top" src="'+res[i].fitting_image+'"';
-											html += '			alt="Card image cap" />';
-											html += '		<div class="card-body">';
-											html += '			<h5 class="card-title">'+res[i].fitting_name+'</h5>';
-											html += '			<p class="card-text">'+res[i].fitting_info+'</p>';
-											html += '			<p class="fitting_id" hidden="hidden">'+res[i].fitting_id+'</p>';
-											html += '			<p class="fitting_open_range" hidden="hidden">'+res[i].fitting_open_range+'</p>';
-											html += '		</div>';
-											html += '	</div>';
-											html += '</div>';
-										$('#fitting_main').append(html);
-									}
-																		
-									//피팅사진 클릭하면 이동
-									$(".fittingOverView").click(function() {
-										location = "view?fitting_id=" + $(this).find(".fitting_id").text()+"&type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}";
-									});
-								},
-								error: function() {
-								
-								},
-								complete: function() {
-									
-								}
+						data: { 
+							"fitting_open_range":fitting_open_range,
+							"pageNum":${pageMaker.cri.pageNum},
+							"amount":${pageMaker.cri.amount},
+							"type":('${pageMaker.cri.type}'!=null) ? '${pageMaker.cri.type}': null,
+							"keyword":('${pageMaker.cri.keyword}'!=null) ? '${pageMaker.cri.keyword}': null
+						},
+						beforeSend: function() {
+							
+						},
+						success: function(res) {
+							//현재 있는 피팅 비우기
+							$('#fitting_main').empty();
+							//div 안에 ajax로 가져온 내용 채우기
+							for(var i=0;i<res.length;i++) {
+								let html = '';
+									html += '<div class="col" id="fittingDiv">';
+									html += '	<div class="card h-100 fittingOverView">';
+									html += '		<img class="card-img-top" src="'+res[i].fitting_image+'"';
+									html += '			alt="Card image cap" />';
+									html += '		<div class="card-body">';
+									html += '			<h5 class="card-title">'+res[i].fitting_name+'</h5>';
+									html += '			<p class="card-text">'+res[i].fitting_info+'</p>';
+									html += '			<p class="fitting_id" hidden="hidden">'+res[i].fitting_id+'</p>';
+									html += '			<p class="fitting_open_range" hidden="hidden">'+res[i].fitting_open_range+'</p>';
+									html += '		</div>';
+									html += '	</div>';
+									html += '</div>';
+								$('#fitting_main').append(html);
+							}
+																
+							//피팅사진 클릭하면 이동
+							$(".fittingOverView").click(function() {
+								location = "view?fitting_id=" + $(this).find(".fitting_id").text()+"&type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}";
 							});
-							}//else
-						}//if(checked)
+						},
+						error: function() {
+						
+						},
+						complete: function() {
+							
+						}
+					});
+				}//else
+			}//if (!checked)
+						
+			//public을 보겠다고 하면
+			if (checked){
+				//publicCheck 값을 true로 변경
+				$("#publicCheck").val(true);
+				//만약 private 버튼이 안눌려 있으면(public만 보이게)
+				if ($("#flexSwitchCheckChecked2").is(':checked') == false){
+					//publicCheck 값을 false로 변경
+					$("#publicCheck").val(true);
+					//privateCheck 값을 false로 변경
+					$("#privateCheck").val(false);
+
+					
+					var fitting_open_range = "public";
+					//ajax
+					$.ajax({
+						url: '/fitting/listOpenRange',
+						type: 'GET',
+						
+						data: { 
+							"fitting_open_range":fitting_open_range,
+							"pageNum":${pageMaker.cri.pageNum},
+							"amount":${pageMaker.cri.amount},
+							"type":('${pageMaker.cri.type}'!=null) ? '${pageMaker.cri.type}': null,
+							"keyword":('${pageMaker.cri.keyword}'!=null) ? '${pageMaker.cri.keyword}': null
+						},
+						success: function(res) {
+							console.log(res);
+							//현재 있는 피팅 비우기
+							$('#fitting_main').empty();
+							//div 안에 ajax로 가져온 내용 채우기
+							for(var i=0;i<res.length;i++) {
+								let html = '';
+									html += '<div class="col" id="fittingDiv">';
+									html += '	<div class="card h-100 fittingOverView">';
+									html += '		<img class="card-img-top" src="'+res[i].fitting_image+'"';
+									html += '			alt="Card image cap" />';
+									html += '		<div class="card-body">';
+									html += '			<h5 class="card-title">'+res[i].fitting_name+'</h5>';
+									html += '			<p class="card-text">'+res[i].fitting_info+'</p>';
+									html += '			<p class="fitting_id" hidden="hidden">'+res[i].fitting_id+'</p>';
+									html += '			<p class="fitting_open_range" hidden="hidden">'+res[i].fitting_open_range+'</p>';
+									html += '		</div>';
+									html += '	</div>';
+									html += '</div>';
+								$('#fitting_main').append(html);
+							}
+																
+							//피팅사진 클릭하면 이동
+							$(".fittingOverView").click(function() {
+								location = "view?fitting_id=" + $(this).find(".fitting_id").text()+"&type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}";
+							});
+						},
+						error: function() {
+						
+						},
+						complete: function() {
+							
+						}
+					});
+				}else{//만약 private 버튼이 눌려 있으면(다 보이게)
+					//publicCheck 값을 true로 변경
+					$("#publicCheck").val(true);
+					//privateCheck 값을 true로 변경
+					$("#privateCheck").val(true);
+
+					var fitting_open_range = "all";
+				//ajax
+				$.ajax({
+					url: '/fitting/listOpenRange',
+					type: 'GET',
+					
+					data: { 
+						"fitting_open_range":fitting_open_range,
+						"pageNum":${pageMaker.cri.pageNum},
+						"amount":${pageMaker.cri.amount},
+						"type":('${pageMaker.cri.type}'!=null) ? '${pageMaker.cri.type}': null,
+						"keyword":('${pageMaker.cri.keyword}'!=null) ? '${pageMaker.cri.keyword}': null
+					},
+					beforeSend: function() {
+						
+					},
+					success: function(res) {
+						//현재 있는 피팅 비우기
+						$('#fitting_main').empty();
+						//div 안에 ajax로 가져온 내용 채우기
+						for(var i=0;i<res.length;i++) {
+							let html = '';
+								html += '<div class="col" id="fittingDiv">';
+								html += '	<div class="card h-100 fittingOverView">';
+								html += '		<img class="card-img-top" src="'+res[i].fitting_image+'"';
+								html += '			alt="Card image cap" />';
+								html += '		<div class="card-body">';
+								html += '			<h5 class="card-title">'+res[i].fitting_name+'</h5>';
+								html += '			<p class="card-text">'+res[i].fitting_info+'</p>';
+								html += '			<p class="fitting_id" hidden="hidden">'+res[i].fitting_id+'</p>';
+								html += '			<p class="fitting_open_range" hidden="hidden">'+res[i].fitting_open_range+'</p>';
+								html += '		</div>';
+								html += '	</div>';
+								html += '</div>';
+							$('#fitting_main').append(html);
+						}
+															
+						//피팅사진 클릭하면 이동
+						$(".fittingOverView").click(function() {
+							location = "view?fitting_id=" + $(this).find(".fitting_id").text()+"&type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}";
+						});
+					},
+					error: function() {
+					
+					},
+					complete: function() {
+						
+					}
+				});
+				}//else
+			}//if(checked)
 		});
+		
+		
 		
 		// private 버튼 클릭시
 		$("#flexSwitchCheckChecked2").on("change", function(e) {
-			console.log("private 변경");
 			//체크 되면 private 보임
 			var checked = $("#flexSwitchCheckChecked2").is(':checked');
 			var result = new Array();
@@ -420,6 +417,8 @@
 				json.name="${vo.fitting_name}";
 				result.push(json);
 			</c:forEach>
+			
+			
 			//private을 안보겠다고 하면
 			if (!checked){
 				//privateCheck 값을 false로 변경

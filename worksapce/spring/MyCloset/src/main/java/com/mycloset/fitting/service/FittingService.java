@@ -31,7 +31,7 @@ public class FittingService {
 		int pageNum = cri.getPageNum();
 		int amount = cri.getAmount();
 		int limitMax= pageNum * amount; 
-		int startNum = limitMax - cri.getAmount() +1;
+		int startNum = limitMax - cri.getAmount(); //실제 시작 숫자는 +1을 해야하지만 mapper.xml에서 LIMIT을 사용할 것이기 때문에 +1을 하지 않음
 		return mapper.getRangeListWithPaging(cri, startNum, openRange);
 	}
 
