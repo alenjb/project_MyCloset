@@ -74,14 +74,11 @@
 </style>
 <script type="text/javascript">
 	$(function() {
-
 		//버튼들이 체크안돼있었으면 체크해제하기
-			
 		<%boolean publicCheck = Boolean.parseBoolean(request.getParameter("publicCheck"));%>
 		<%boolean privateCheck = Boolean.parseBoolean(request.getParameter("privateCheck"));%>
-		console.log("public ON: "+<%=publicCheck%>);
-		console.log("private ON: "+<%=privateCheck%>);
-		
+<%-- 		console.log("public ON: "+<%=publicCheck%>); --%>
+<%-- 		console.log("private ON: "+<%=privateCheck%>); --%>
 		if(<%=publicCheck%>==false){// public 버튼이 클릭이 안되어 있으면
 			$("#flexSwitchCheckChecked1").prop('checked', false);
 			if(<%=privateCheck%>==false){//none
@@ -149,7 +146,6 @@
 							html += '</div>';
 						$('#fitting_main').append(html);
 					}
-					alert(res);
 														
 					//피팅사진 클릭하면 이동
 					$(".fittingOverView").click(function() {
@@ -313,7 +309,7 @@
 							"keyword":('${pageMaker.cri.keyword}'!=null) ? '${pageMaker.cri.keyword}': null
 						},
 						success: function(res) {
-							console.log(res);
+// 							console.log(res);
 							//현재 있는 피팅 비우기
 							$('#fitting_main').empty();
 							//div 안에 ajax로 가져온 내용 채우기

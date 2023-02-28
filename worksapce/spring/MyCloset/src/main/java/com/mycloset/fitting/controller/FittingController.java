@@ -37,17 +37,29 @@ public class FittingController {
 	public void list(HttpServletRequest request, Critera cri, Model model) throws Exception {
 		// 옷 리스트 가져오는 작업을 통해 리스트 형태로 저장
 		List<FittingVO> fittings = service.getListWithPaging(cri);
+		//버튼 누름 여부 설정
+		boolean publicButton=true, privateButton=true; 
+			//검색을 통해서 유입되어 이미 버튼을 누름 여부가 결정이 되어 있으면 그대로 사용
+		//public 버튼 체크되어 있었으면
+		if (request.getParameter("publicCheck")!=null) {
+			//그대로 사용
+			publicButton = Boolean.parseBoolean(request.getParameter("publicCheck"));
+		}
+		//private 버튼 체크되어 있었으면
+		if (request.getParameter("privateCheck")!=null) {
+			//그대로 사용
+			privateButton = Boolean.parseBoolean(request.getParameter("privateCheck"));
+		}
 		// 경로를 jsp에서 인식할 수 있게 백슬래시를 수정
 		for (int i = 0; i < fittings.size(); i++) {
 			String fitting_image = fittings.get(i).getFitting_image().replace("\\\\\\", "\\");
 			fittings.get(i).setFitting_image(fitting_image);
 		}
-
+		
 		// 모델에 피팅 리스트 담기
 		model.addAttribute("fittings", fittings);
-		model.addAttribute("publicCheck", true);
-		model.addAttribute("privateCheck", true);
-
+		model.addAttribute("publicCheck", publicButton);
+		model.addAttribute("privateCheck", privateButton);
 		// 옷 피팅 개수 세기
 		int totalNum = service.getTotalNum(cri);
 		// 페이지 관련 정보 담기

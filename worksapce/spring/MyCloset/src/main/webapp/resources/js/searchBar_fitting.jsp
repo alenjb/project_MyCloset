@@ -20,8 +20,7 @@
 						<div class="navbar-nav align-items-center">
 							<div class="nav-item d-flex align-items-center">
 								<div class="row">
-									<form id="searchForm" action="/fitting/list" method="get"
-										class="row">
+									<form id="searchForm" action="/fitting/list" method="get" class="row">
 										<div class="col-6">
 											<select name="type" class="form-select form-select-sm col-6">
 												<option value="NS"
@@ -30,7 +29,6 @@
 													<c:out value="${pageMaker.cri.type eq 'N'?'selected':''}"/>>이름</option>
 												<option value="S"
 													<c:out value="${pageMaker.cri.type eq 'S'?'selected':''}"/>>계절</option>
-
 											</select>
 										</div>
 										<div class="col-6">
@@ -40,6 +38,9 @@
 												<input type="text" class="form-control border-0 shadow-none" placeholder="검색" name="keyword" id="seachKeyBox"/>											
 												<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}"> 
 												<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
+<!-- 												버튼이 눌렸는지 여부 넘기기-->
+												<input id="privateCheck" name="privateCheck" value=<%=privateCheck %> hidden="hidden"/>
+												<input id= "publicCheck" name="publicCheck" value=<%=publicCheck %>  hidden="hidden" />
 										</div>
 									</form>
 								</div>
