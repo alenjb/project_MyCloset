@@ -91,6 +91,8 @@
 			
 			searchForm.submit();
 		});
+		
+
 	});
 	
 </script>
@@ -260,7 +262,7 @@
 								</div>
 										<div class="mt-2">
 											<!--                           <a href="/member/myPage"><button type="submit" class="btn btn-primary me-2" >수정완료</button></a> -->
-											<button type="button" class="btn btn-primary me-1"
+											<button type="button" class="btn btn-primary me-1" id="listBtn"
 												onclick="location.href='list?type=${cri.type}&keyword=${cri.keyword}&pageNum=${cri.pageNum}&amount=${cri.amount}'">리스트</button>
 											<button type="button" class="btn btn-secondary me-1"
 												id="updateBtn">수정</button>

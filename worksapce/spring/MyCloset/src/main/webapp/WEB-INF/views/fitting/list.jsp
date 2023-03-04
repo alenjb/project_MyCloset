@@ -74,48 +74,51 @@
 </style>
 <script type="text/javascript">
 	$(function() {
-		//버튼들이 체크안돼있었으면 체크해제하기
-		<%boolean publicCheck = Boolean.parseBoolean(request.getParameter("publicCheck"));%>
-		<%boolean privateCheck = Boolean.parseBoolean(request.getParameter("privateCheck"));%>
-<%-- 		console.log("public ON: "+<%=publicCheck%>); --%>
-<%-- 		console.log("private ON: "+<%=privateCheck%>); --%>
-		if(<%=publicCheck%>==false){// public 버튼이 클릭이 안되어 있으면
-			$("#flexSwitchCheckChecked1").prop('checked', false);
-			if(<%=privateCheck%>==false){//none
-				$("#flexSwitchCheckChecked2").prop('checked', false);
-				$('#fitting_main').empty();
-			}else{//private
-				$("#flexSwitchCheckChecked2").prop('checked', true);
-				var fitting_open_range = "private";
-				//피팅사진 클릭하면 이동
-				$(".fittingOverView").click(function() {
-					location = "view?fitting_id=" + $(this).find(".fitting_id").text()+"&type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}";
-				});
-			}//else
-
-		}else{ // public 버튼이 클릭이 되어 있으면
-			$("#flexSwitchCheckChecked1").prop('checked', true);
-			if(<%=privateCheck%>==false){//public
-				$("#flexSwitchCheckChecked2").prop('checked', false);
-				var fitting_open_range = "public";
-				//피팅사진 클릭하면 이동
-				$(".fittingOverView").click(function() {
-					location = "view?fitting_id=" + $(this).find(".fitting_id").text()+"&type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}";
-				});
-			}else{//all
-				$("#flexSwitchCheckChecked2").prop('checked', true);
-				var fitting_open_range = "all";
-				//피팅사진 클릭하면 이동
-				$(".fittingOverView").click(function() {
-					location = "view?fitting_id=" + $(this).find(".fitting_id").text()+"&type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}";
-				});
-			}//else
-
-		}// public 버튼 else 끝
 		
-		if(<%=privateCheck%>==true || <%=publicCheck%>==true ){
+		//검색 버튼
+		var searchForm = $("#searchForm");
+		$("#searchBtn").on("click", function(e) {
+			if(!searchForm.find("option:selected").val()){
+				alert("검색 종류를 입력하세요");
+				return false;
+			}
+			if(!searchForm.find("input[name='keyword']").val()){
+				alert("키워드를 입력하세요");
+				return false;
+			}
 			
-			//ajax
+			searchForm.find("input[name='pageNum']").val("1");
+			e.preventDefault();
+			
+			searchForm.submit();
+		});
+		
+		// fitting_open_range 업데이트 해주는 함수
+		function updateOpenRange() {
+			// 항상 boolean 형태로 바꿔주기
+			PagePublicBtnCheck = (PagePublicBtnCheck==="true" || PagePublicBtnCheck===true );
+			PagePrivateBtnCheck = (PagePrivateBtnCheck==="true" || PagePrivateBtnCheck===true );
+			
+			if(PagePublicBtnCheck || PagePrivateBtnCheck){ // 만약 public이나 private 둘 중에 활성화 된게 있는 경우
+				if(PagePublicBtnCheck && PagePrivateBtnCheck){ // public과 private 둘 다 활성화된 경우
+					fitting_open_range="all";
+				}else{
+					PagePublicBtnCheck ? fitting_open_range="public" : fitting_open_range="private";  // public이 활성화되면 public 아니면 private
+				}
+			}else{
+				fitting_open_range="none";  // 모두 활성화되지 않은 경우
+			}
+		}
+		
+		//input 태그의 PagePublicBtnCheck 와 PagePrivateBtnCheck 변경 함수
+		function changeInputChecked() {
+			$('input[name=publicBtnCheck]').attr('value',PagePublicBtnCheck);
+			$('input[name=privateBtnCheck]').attr('value',PagePrivateBtnCheck);
+		}
+		
+		
+		//ajax로 fittinglist 가져오기
+		function getFittingList() {
 			$.ajax({
 				url: '/fitting/listOpenRange',
 				type: 'GET',				
@@ -149,467 +152,56 @@
 														
 					//피팅사진 클릭하면 이동
 					$(".fittingOverView").click(function() {
-						location = "view?fitting_id=" + $(this).find(".fitting_id").text()+"&type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}";
-					});
+						location = "view?fitting_id=" + $(this).find(".fitting_id").text()
+								+"&type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}&publicBtnCheck="
+								+PagePublicBtnCheck+"&privateBtnCheck="+PagePrivateBtnCheck;
+					});					
 				},
-				error: function() {
-				
-				},
-				complete: function() {
-				}
-			});//ajax 끝		
+				error: function() {},
+				complete: function() {}
+			});//ajax 끝					
 		}
 		
-		
-		//피팅사진 클릭하면 이동
-		$(".fittingOverView").click(function() {
-			location = "view?fitting_id=" + $(this).find(".fitting_id").text()+"&type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}";
+
+		//cri에 담겨있던 public버튼 활성화 상태: ${publicBtnCheck}
+		//cri에 담겨있던 private버튼 활성화 상태: ${privateBtnCheck}
+		//현재 페이지의 public버튼 활성화 상태
+		var PagePublicBtnCheck ='${publicBtnCheck}'; 
+		//현재 페이지의 private버튼 활성화 상태
+		var PagePrivateBtnCheck ='${privateBtnCheck}';
+		//공개 범위 all, public, private, none
+		var fitting_open_range;
+		// public 버튼 활성화 여부 적용
+		if(PagePublicBtnCheck=="true"){
+			$("#publicCheckbox").prop('checked', true);
+		}else{
+			$("#publicCheckbox").prop('checked', false);
+		}
+		// private 버튼 활성화 여부 적용
+		if(PagePrivateBtnCheck=="true"){
+			$("#privateCheckbox").prop('checked', true);
+		}else{
+			$("#privateCheckbox").prop('checked', false);
+		}
+		updateOpenRange();  // 공개범위 초기 설정
+		getFittingList();  // 공개범위에 따른 리스트 가져오기
+		changeInputChecked();  //input 태그에 담는 check값 변경
+
+		// public 버튼을 눌렀을 때
+		$("#publicCheckbox").on("change", function(e) {
+			PagePublicBtnCheck = !PagePublicBtnCheck;  // public 버튼 상태 변경
+			updateOpenRange();  // 공개범위 업데이트
+			getFittingList();  // 업데이트 된 공개범위에 맞게 리스트 가져오기
+			changeInputChecked();  //input 태그에 담는 check값 변경
 		});
-
-		var actionForm = $("#actionForm");
-		$(".page-link").on("click", function(e) {
-			//페이지네이션 이동을 막음
-			e.preventDefault();
-			//클릭한 페이지의 값을 가져옴
-			var targetPage = $(this).attr("href");
-			//전송도리 form의 pageNum값을 targetPage 값으로 지정
-			actionForm.find("input[name='pageNum']").val(targetPage);
-			//form 전송
-			actionForm.submit();
+		// private 버튼을 눌렀을 때	
+		$("#privateCheckbox").on("change", function(e) {
+			PagePrivateBtnCheck = !PagePrivateBtnCheck;  // private 버튼 상태 변경
+			updateOpenRange();  // 공개범위 업데이트
+			getFittingList();  // 업데이트 된 공개범위에 맞게 리스트 가져오기
+			changeInputChecked();  //input 태그에 담는 check값 변경
 		});
-		
-		//검색 버튼
-		var searchForm = $("#searchForm");
-		$("#searchBtn").on("click", function(e) {
-			if(!searchForm.find("option:selected").val()){
-				alert("검색 종류를 입력하세요");
-				return false;
-			}
-			if(!searchForm.find("input[name='keyword']").val()){
-				alert("키워드를 입력하세요");
-				return false;
-			}
-			
-			searchForm.find("input[name='pageNum']").val("1");
-			e.preventDefault();
-			
-			searchForm.submit();
-		});
-		
-		// public 버튼 클릭시
-		$("#flexSwitchCheckChecked1").on("change", function(e) {
-
-			//체크 되면 public 보임
-			var checked = $("#flexSwitchCheckChecked1").is(':checked');
-			var result = new Array();
-			
-			<c:forEach items="${fittings}" var="vo">
-				var json = new Object();
-				json.name="${vo.fitting_name}";
-				result.push(json);
-			</c:forEach>
-			//json 찍어보기
-// 			console.log(json);
-			
-			//result에 피팅 이름 들어가 있는 상태 
-			
-			//public을 안보겠다고 하면
-			if (!checked){
-				//만약 private 버튼도 안눌려 있으면
-				if ($("#flexSwitchCheckChecked2").is(':checked') == false){
-					//publicCheck 값을 false로 변경
-					$("#publicCheck").val(false);
-					//privateCheck 값을 false로 변경
-					$("#privateCheck").val(false);
-
-					var fitting_open_range = "none";
-						$('#fitting_main').empty();
-				}else{//private 버튼이 눌려 있으면(private만 보이게)
-					//publicCheck 값을 false로 변경
-					$("#publicCheck").val(false);
-					//privateCheck 값을 true로 변경
-					$("#privateCheck").val(true);
-
-					var fitting_open_range = "private" ;
-												
-					//ajax
-					$.ajax({
-						url: '/fitting/listOpenRange',
-						type: 'GET',
-						
-						data: { 
-							"fitting_open_range":fitting_open_range,
-							"pageNum":${pageMaker.cri.pageNum},
-							"amount":${pageMaker.cri.amount},
-							"type":('${pageMaker.cri.type}'!=null) ? '${pageMaker.cri.type}': null,
-							"keyword":('${pageMaker.cri.keyword}'!=null) ? '${pageMaker.cri.keyword}': null
-						},
-						beforeSend: function() {
-							
-						},
-						success: function(res) {
-							//현재 있는 피팅 비우기
-							$('#fitting_main').empty();
-							//div 안에 ajax로 가져온 내용 채우기
-							for(var i=0;i<res.length;i++) {
-								let html = '';
-									html += '<div class="col" id="fittingDiv">';
-									html += '	<div class="card h-100 fittingOverView">';
-									html += '		<img class="card-img-top" src="'+res[i].fitting_image+'"';
-									html += '			alt="Card image cap" />';
-									html += '		<div class="card-body">';
-									html += '			<h5 class="card-title">'+res[i].fitting_name+'</h5>';
-									html += '			<p class="card-text">'+res[i].fitting_info+'</p>';
-									html += '			<p class="fitting_id" hidden="hidden">'+res[i].fitting_id+'</p>';
-									html += '			<p class="fitting_open_range" hidden="hidden">'+res[i].fitting_open_range+'</p>';
-									html += '		</div>';
-									html += '	</div>';
-									html += '</div>';
-								$('#fitting_main').append(html);
-							}
-																
-							//피팅사진 클릭하면 이동
-							$(".fittingOverView").click(function() {
-								location = "view?fitting_id=" + $(this).find(".fitting_id").text()+"&type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}";
-							});
-						},
-						error: function() {
-						
-						},
-						complete: function() {
-							
-						}
-					});
-				}//else
-			}//if (!checked)
-						
-			//public을 보겠다고 하면
-			if (checked){
-				//publicCheck 값을 true로 변경
-				$("#publicCheck").val(true);
-				//만약 private 버튼이 안눌려 있으면(public만 보이게)
-				if ($("#flexSwitchCheckChecked2").is(':checked') == false){
-					//publicCheck 값을 false로 변경
-					$("#publicCheck").val(true);
-					//privateCheck 값을 false로 변경
-					$("#privateCheck").val(false);
-
-					
-					var fitting_open_range = "public";
-					//ajax
-					$.ajax({
-						url: '/fitting/listOpenRange',
-						type: 'GET',
-						
-						data: { 
-							"fitting_open_range":fitting_open_range,
-							"pageNum":${pageMaker.cri.pageNum},
-							"amount":${pageMaker.cri.amount},
-							"type":('${pageMaker.cri.type}'!=null) ? '${pageMaker.cri.type}': null,
-							"keyword":('${pageMaker.cri.keyword}'!=null) ? '${pageMaker.cri.keyword}': null
-						},
-						success: function(res) {
-// 							console.log(res);
-							//현재 있는 피팅 비우기
-							$('#fitting_main').empty();
-							//div 안에 ajax로 가져온 내용 채우기
-							for(var i=0;i<res.length;i++) {
-								let html = '';
-									html += '<div class="col" id="fittingDiv">';
-									html += '	<div class="card h-100 fittingOverView">';
-									html += '		<img class="card-img-top" src="'+res[i].fitting_image+'"';
-									html += '			alt="Card image cap" />';
-									html += '		<div class="card-body">';
-									html += '			<h5 class="card-title">'+res[i].fitting_name+'</h5>';
-									html += '			<p class="card-text">'+res[i].fitting_info+'</p>';
-									html += '			<p class="fitting_id" hidden="hidden">'+res[i].fitting_id+'</p>';
-									html += '			<p class="fitting_open_range" hidden="hidden">'+res[i].fitting_open_range+'</p>';
-									html += '		</div>';
-									html += '	</div>';
-									html += '</div>';
-								$('#fitting_main').append(html);
-							}
-																
-							//피팅사진 클릭하면 이동
-							$(".fittingOverView").click(function() {
-								location = "view?fitting_id=" + $(this).find(".fitting_id").text()+"&type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}";
-							});
-						},
-						error: function() {
-						
-						},
-						complete: function() {
-							
-						}
-					});
-				}else{//만약 private 버튼이 눌려 있으면(다 보이게)
-					//publicCheck 값을 true로 변경
-					$("#publicCheck").val(true);
-					//privateCheck 값을 true로 변경
-					$("#privateCheck").val(true);
-
-					var fitting_open_range = "all";
-				//ajax
-				$.ajax({
-					url: '/fitting/listOpenRange',
-					type: 'GET',
-					
-					data: { 
-						"fitting_open_range":fitting_open_range,
-						"pageNum":${pageMaker.cri.pageNum},
-						"amount":${pageMaker.cri.amount},
-						"type":('${pageMaker.cri.type}'!=null) ? '${pageMaker.cri.type}': null,
-						"keyword":('${pageMaker.cri.keyword}'!=null) ? '${pageMaker.cri.keyword}': null
-					},
-					beforeSend: function() {
-						
-					},
-					success: function(res) {
-						//현재 있는 피팅 비우기
-						$('#fitting_main').empty();
-						//div 안에 ajax로 가져온 내용 채우기
-						for(var i=0;i<res.length;i++) {
-							let html = '';
-								html += '<div class="col" id="fittingDiv">';
-								html += '	<div class="card h-100 fittingOverView">';
-								html += '		<img class="card-img-top" src="'+res[i].fitting_image+'"';
-								html += '			alt="Card image cap" />';
-								html += '		<div class="card-body">';
-								html += '			<h5 class="card-title">'+res[i].fitting_name+'</h5>';
-								html += '			<p class="card-text">'+res[i].fitting_info+'</p>';
-								html += '			<p class="fitting_id" hidden="hidden">'+res[i].fitting_id+'</p>';
-								html += '			<p class="fitting_open_range" hidden="hidden">'+res[i].fitting_open_range+'</p>';
-								html += '		</div>';
-								html += '	</div>';
-								html += '</div>';
-							$('#fitting_main').append(html);
-						}
-															
-						//피팅사진 클릭하면 이동
-						$(".fittingOverView").click(function() {
-							location = "view?fitting_id=" + $(this).find(".fitting_id").text()+"&type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}";
-						});
-					},
-					error: function() {
-					
-					},
-					complete: function() {
-						
-					}
-				});
-				}//else
-			}//if(checked)
-		});
-		
-		
-		
-		// private 버튼 클릭시
-		$("#flexSwitchCheckChecked2").on("change", function(e) {
-			//체크 되면 private 보임
-			var checked = $("#flexSwitchCheckChecked2").is(':checked');
-			var result = new Array();
-			<c:forEach items="${fittings}" var="vo">
-				var json = new Object();
-				json.name="${vo.fitting_name}";
-				result.push(json);
-			</c:forEach>
-			
-			
-			//private을 안보겠다고 하면
-			if (!checked){
-				//privateCheck 값을 false로 변경
-				$("#privateCheck").val(false);
-				
-				//만약 public 버튼도 안눌려 있으면(아무것도 안보이게)
-				if ($("#flexSwitchCheckChecked1").is(':checked') == false){
-					//publicCheck 값을 false로 변경
-					$("#publicCheck").val(false);
-					//privateCheck 값을 false로 변경
-					$("#privateCheck").val(false);
-
-					var fitting_open_range = "none";
-						$('#fitting_main').empty();
-				}else{//public 버튼이 눌려 있으면(public만 보이게)
-					//publicCheck 값을 true로 변경
-					$("#publicCheck").val(true);
-					//privateCheck 값을 false로 변경
-					$("#privateCheck").val(false);
-
-					var fitting_open_range = "public" 
-				}
-				
-				//ajax
-				$.ajax({
-					url: '/fitting/listOpenRange',
-					type: 'GET',
-					
-					data: { 
-						"fitting_open_range":fitting_open_range,
-						"pageNum":${pageMaker.cri.pageNum},
-						"amount":${pageMaker.cri.amount},
-						"type":('${pageMaker.cri.type}'!=null) ? '${pageMaker.cri.type}': null,
-						"keyword":('${pageMaker.cri.keyword}'!=null) ? '${pageMaker.cri.keyword}': null
-					},
-					beforeSend: function() {
-						
-					},
-					success: function(res) {
-						//현재 있는 피팅 비우기
-						$('#fitting_main').empty();
-						//div 안에 ajax로 가져온 내용 채우기
-						for(var i=0;i<res.length;i++) {
-							let html = '';
-								html += '<div class="col" id="fittingDiv">';
-								html += '	<div class="card h-100 fittingOverView">';
-								html += '		<img class="card-img-top" src="'+res[i].fitting_image+'"';
-								html += '			alt="Card image cap" />';
-								html += '		<div class="card-body">';
-								html += '			<h5 class="card-title">'+res[i].fitting_name+'</h5>';
-								html += '			<p class="card-text">'+res[i].fitting_info+'</p>';
-								html += '			<p class="fitting_id" hidden="hidden">'+res[i].fitting_id+'</p>';
-								html += '			<p class="fitting_open_range" hidden="hidden">'+res[i].fitting_open_range+'</p>';
-								html += '		</div>';
-								html += '	</div>';
-								html += '</div>';
-							$('#fitting_main').append(html);
-						}
-															
-						//피팅사진 클릭하면 이동
-						$(".fittingOverView").click(function() {
-							location = "view?fitting_id=" + $(this).find(".fitting_id").text()+"&type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}";
-						});
-					},
-					error: function() {
-					
-					},
-					complete: function() {
-						
-					}
-				});
-			}//if (!checked)
-			
-			//private을 보겠다고 하면
-			if (checked){
-				//privateCheck 값을 true로 변경
-				$("#privateCheck").val(true);
-
-				//만약 public 버튼이 안눌려 있으면(private만 보이게)
-				if ($("#flexSwitchCheckChecked1").is(':checked') == false){
-					//publicCheck 값을 false로 변경
-					$("#publicCheck").val(false);
-					//privateCheck 값을 true로 변경
-					$("#privateCheck").val(true);
-
-					var fitting_open_range = "private"
-					//ajax
-					$.ajax({
-						url: '/fitting/listOpenRange',
-						type: 'GET',
-						
-						data: { 
-							"fitting_open_range":fitting_open_range,
-							"pageNum":${pageMaker.cri.pageNum},
-							"amount":${pageMaker.cri.amount},
-							"type":('${pageMaker.cri.type}'!=null) ? '${pageMaker.cri.type}': null,
-							"keyword":('${pageMaker.cri.keyword}'!=null) ? '${pageMaker.cri.keyword}': null
-						},
-						beforeSend: function() {
-							
-						},
-						success: function(res) {
-							//현재 있는 피팅 비우기
-							$('#fitting_main').empty();
-							//div 안에 ajax로 가져온 내용 채우기
-							for(var i=0;i<res.length;i++) {
-								let html = '';
-									html += '<div class="col" id="fittingDiv">';
-									html += '	<div class="card h-100 fittingOverView">';
-									html += '		<img class="card-img-top" src="'+res[i].fitting_image+'"';
-									html += '			alt="Card image cap" />';
-									html += '		<div class="card-body">';
-									html += '			<h5 class="card-title">'+res[i].fitting_name+'</h5>';
-									html += '			<p class="card-text">'+res[i].fitting_info+'</p>';
-									html += '			<p class="fitting_id" hidden="hidden">'+res[i].fitting_id+'</p>';
-									html += '			<p class="fitting_open_range" hidden="hidden">'+res[i].fitting_open_range+'</p>';
-									html += '		</div>';
-									html += '	</div>';
-									html += '</div>';
-								$('#fitting_main').append(html);
-							}
-																
-							//피팅사진 클릭하면 이동
-							$(".fittingOverView").click(function() {
-								location = "view?fitting_id=" + $(this).find(".fitting_id").text()+"&type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}";
-							});
-						},
-						error: function() {
-						
-						},
-						complete: function() {
-							
-						}
-					});
-				}else{//만약 public 버튼이 눌려 있으면(다 보이게)
-					//publicCheck 값을 true로 변경
-					$("#publicCheck").val(true);
-					//privateCheck 값을 true로 변경
-					$("#privateCheck").val(true);
-
-					var fitting_open_range = "all"
-				//ajax
-				$.ajax({
-					url: '/fitting/listOpenRange',
-					type: 'GET',
-					
-					data: { 
-						"fitting_open_range":fitting_open_range,
-						"pageNum":${pageMaker.cri.pageNum},
-						"amount":${pageMaker.cri.amount},
-						"type":('${pageMaker.cri.type}'!=null) ? '${pageMaker.cri.type}': null,
-						"keyword":('${pageMaker.cri.keyword}'!=null) ? '${pageMaker.cri.keyword}': null
-					},
-					beforeSend: function() {
-						
-					},
-					success: function(res) {
-						//현재 있는 피팅 비우기
-						$('#fitting_main').empty();
-						//div 안에 ajax로 가져온 내용 채우기
-						for(var i=0;i<res.length;i++) {
-							let html = '';
-								html += '<div class="col" id="fittingDiv">';
-								html += '	<div class="card h-100 fittingOverView">';
-								html += '		<img class="card-img-top" src="'+res[i].fitting_image+'"';
-								html += '			alt="Card image cap" />';
-								html += '		<div class="card-body">';
-								html += '			<h5 class="card-title">'+res[i].fitting_name+'</h5>';
-								html += '			<p class="card-text">'+res[i].fitting_info+'</p>';
-								html += '			<p class="fitting_id" hidden="hidden">'+res[i].fitting_id+'</p>';
-								html += '			<p class="fitting_open_range" hidden="hidden">'+res[i].fitting_open_range+'</p>';
-								html += '		</div>';
-								html += '	</div>';
-								html += '</div>';
-							$('#fitting_main').append(html);
-						}
-															
-						//피팅사진 클릭하면 이동
-						$(".fittingOverView").click(function() {
-							location = "view?fitting_id=" + $(this).find(".fitting_id").text()+"&type=${pageMaker.cri.type}&keyword=${pageMaker.cri.keyword}&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}";
-						});
-					},
-					error: function() {
-					
-					},
-					complete: function() {
-						
-					}
-				});
-				}
-			}
-		});
-
-		
-	});
+	}); // $()의 끝
 </script>
 </head>
 <body>
@@ -642,13 +234,13 @@
 							<div class="card-body">
 								<div class="form-check form-switch mb-2 form-check-inline">
 									<input class="form-check-input" type="checkbox"
-										id="flexSwitchCheckChecked1" /> <label
-										class="form-check-label" for="flexSwitchCheckChecked1">public</label>
+										id="publicCheckbox" /> <label
+										class="form-check-label" for="publicCheckbox">public</label>
 								</div>
 								<div class="form-check form-switch mb-2 form-check-inline">
 									<input class="form-check-input" type="checkbox"
-										id="flexSwitchCheckChecked2" /> <label
-										class="form-check-label" for="flexSwitchCheckChecked2">private</label>
+										id="privateCheckbox" /> <label
+										class="form-check-label" for="privateCheckbox">private</label>
 								</div>
 
 
@@ -690,20 +282,6 @@
 								</ul>
 							</nav>
 						</div>
-
-
-						<!-- 페이지에 관한 정보 클릭한 링크로 날리기 -->
-						<form id='actionForm' action="/fitting/list" method="get">
-							<input type="hidden" name="pageNum"
-								value="${pageMaker.cri.pageNum}"> <input type="hidden"
-								name="amount" value="${pageMaker.cri.amount}"> <input
-								type="hidden" name="type"
-								value='<c:out value="${pageMaker.cri.type}"/>'> <input
-								type="hidden" name="keyword"
-								value='<c:out value="${pageMaker.cri.keyword}"/>'>
-								<input id="privateCheck" name="privateCheck" value=<%=privateCheck %> hidden="hidden"/>
-								<input id= "publicCheck" name="publicCheck" value=<%=publicCheck %>  hidden="hidden" />
-						</form>
 						<div class="content-backdrop fade"></div>
 					</div>
 					<!-- Content wrapper -->

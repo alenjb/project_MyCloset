@@ -70,6 +70,10 @@
 	crossorigin="anonymous"></script>
 <script type="text/javascript">
 $(function () {
+	//버튼들이 체크안돼있었으면 체크해제하기
+	<%boolean publicCheck = Boolean.parseBoolean(request.getParameter("publicCheck"));%>
+	<%boolean privateCheck = Boolean.parseBoolean(request.getParameter("privateCheck"));%>
+
 // 	아우터 선택
 	$(".imgSelect").click(
 		function (e) {

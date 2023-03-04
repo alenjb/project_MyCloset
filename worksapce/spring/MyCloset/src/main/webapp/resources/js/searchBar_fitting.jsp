@@ -39,8 +39,8 @@
 												<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}"> 
 												<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
 <!-- 												버튼이 눌렸는지 여부 넘기기-->
-												<input id="privateCheck" name="privateCheck" value=<%=privateCheck %> hidden="hidden"/>
-												<input id= "publicCheck" name="publicCheck" value=<%=publicCheck %>  hidden="hidden" />
+												<input id="publicChecked" name="publicBtnCheck" type="hidden"/>
+												<input id= "privateChecked" name="privateBtnCheck"  type="hidden" />
 										</div>
 									</form>
 								</div>

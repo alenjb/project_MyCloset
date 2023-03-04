@@ -21,6 +21,7 @@ import com.mycloset.fitting.vo.FittingVO;
 import com.mycloset.fitting.vo.ImageVO;
 import com.mycloset.member.vo.LoginVO;
 import com.mycloset.util.Critera;
+import com.mycloset.util.FittingCriteria;
 import com.mycloset.util.PageDTO;
 
 @Controller
@@ -34,22 +35,16 @@ public class FittingController {
 	
 	//1-1 list 보여주기
 	@GetMapping("/list")
-	public void list(HttpServletRequest request, Critera cri, Model model) throws Exception {
+	public void list(HttpServletRequest request, FittingCriteria cri, Model model) throws Exception {
+		/*
+		 FitiingCriteria에는
+		 pageNum(페이지 번호), amount(한 페이지 게시물 개수), type(검색 종류), keyword(검색어) 이외에
+		 publicBtnCheck(public 버튼 활성화 여부), privateBtnCheck(private 버튼 활성화 여부) 가 추가됨
+		 */
+		
 		// 옷 리스트 가져오는 작업을 통해 리스트 형태로 저장
 		List<FittingVO> fittings = service.getListWithPaging(cri);
-		//버튼 누름 여부 설정
-		boolean publicButton=true, privateButton=true; 
-			//검색을 통해서 유입되어 이미 버튼을 누름 여부가 결정이 되어 있으면 그대로 사용
-		//public 버튼 체크되어 있었으면
-		if (request.getParameter("publicCheck")!=null) {
-			//그대로 사용
-			publicButton = Boolean.parseBoolean(request.getParameter("publicCheck"));
-		}
-		//private 버튼 체크되어 있었으면
-		if (request.getParameter("privateCheck")!=null) {
-			//그대로 사용
-			privateButton = Boolean.parseBoolean(request.getParameter("privateCheck"));
-		}
+
 		// 경로를 jsp에서 인식할 수 있게 백슬래시를 수정
 		for (int i = 0; i < fittings.size(); i++) {
 			String fitting_image = fittings.get(i).getFitting_image().replace("\\\\\\", "\\");
@@ -58,8 +53,9 @@ public class FittingController {
 		
 		// 모델에 피팅 리스트 담기
 		model.addAttribute("fittings", fittings);
-		model.addAttribute("publicCheck", publicButton);
-		model.addAttribute("privateCheck", privateButton);
+		model.addAttribute("publicBtnCheck", cri.isPublicBtnCheck());
+		model.addAttribute("privateBtnCheck", cri.isPrivateBtnCheck());
+
 		// 옷 피팅 개수 세기
 		int totalNum = service.getTotalNum(cri);
 		// 페이지 관련 정보 담기
@@ -139,7 +135,7 @@ public class FittingController {
 	
 	// 3. 피팅 세부 보기
 	@GetMapping("/view")
-	public String view(HttpServletRequest request, Model model, Critera cri, @RequestParam("fitting_id") String fitting_id)
+	public String view(HttpServletRequest request, Model model, FittingCriteria cri, @RequestParam("fitting_id") String fitting_id)
 			throws Exception {
 		// 로그인 정보를 받기
 		HttpSession session = request.getSession();

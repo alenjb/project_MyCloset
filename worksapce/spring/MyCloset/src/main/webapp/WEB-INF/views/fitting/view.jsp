@@ -101,6 +101,7 @@ $(function () {
 	$("#updateBtn").click(function() {
 		location = "update?fitting_id=" + ${vo.fitting_id} ;
 	});
+	
 	//검색 버튼
 	var searchForm = $("#searchForm");
 	$("#searchBtn").on("click", function(e) {
@@ -118,7 +119,8 @@ $(function () {
 		
 		searchForm.submit();
 	});
-// //버튼 누르면 닫기로 닫기
+
+	// //버튼 누르면 닫기로 닫기
 // 	$(".collapseBtn").click(
 // 		function (e) {
 //  			var text = e.target.text
@@ -303,8 +305,8 @@ $(function () {
 								</div>
 								<div class="mt-2">
 									<!--                           <a href="/member/myPage"><button type="submit" class="btn btn-primary me-2" >수정완료</button></a> -->
-									<button type="button" class="btn btn-primary me-2" 
-									onclick="location.href='list?type=${cri.type}&keyword=${cri.keyword}&pageNum=${cri.pageNum}&amount=${cri.amount}'">리스트</button>
+									<button type="button" class="btn btn-primary me-2" id="listBtn"
+									onclick="location.href='list?type=${cri.type}&keyword=${cri.keyword}&pageNum=${cri.pageNum}&amount=${cri.amount}&publicBtnCheck=${cri.publicBtnCheck}&privateBtnCheck=${cri.privateBtnCheck}'" >리스트</button>
 									<button type="button" class="btn btn-secondary me-2"
 										id="updateBtn">수정</button>
 									<button type="button" class="btn btn-success"
