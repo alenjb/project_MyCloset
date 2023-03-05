@@ -148,7 +148,7 @@
                       <a href="/fitting/view?fitting_id=<c:out value="${fittingId}" />">
                         <img class="d-block w-100" src="${myFitting.fitting_image }" alt="First slide" />
                       </a>
-                        <div class="carousel-caption d-none d-md-block">
+                        <div class="carousel-caption">
                           <h3>${myFitting.member_id}님</h3>
                           <p>${myFitting.fitting_info}</p>
                           <p>${myFitting.fitting_price}원</p>

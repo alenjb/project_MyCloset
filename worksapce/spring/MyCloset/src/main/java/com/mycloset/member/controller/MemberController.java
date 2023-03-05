@@ -67,6 +67,7 @@ public class MemberController {
 		} 
 		//모델에 모든 public 피팅 추가
 		model.addAttribute("fittings", fittings);
+		System.out.println(fittings);
 		//모델에 모든 피팅 추가
 		model.addAttribute("myFitting",myFitting);
 		return "member/home";
@@ -169,6 +170,7 @@ public class MemberController {
 	@PostMapping("/findId")
 	@ResponseBody
 	public Map<String, Object> findId(String name, String email) throws Exception {
+		
 		Map<String, Object> jsonData = new HashMap<>();
 		//아이디 찾기 실행
 		String id = service.findId(name, email);
@@ -233,7 +235,7 @@ public class MemberController {
 		MultipartFile file = vo.getMember_faceFile();
 		//프로필 사진을 바꿨으면
 		if(!vo.getMember_faceFile().getOriginalFilename().equals("")) {
-			String uploadFolder = "D:\\jeongbin\\worksapce\\spring\\MyCloset\\src\\main\\webapp\\upload\\member";
+			String uploadFolder = "/home/ubuntu/MyClosetDB/member";
 			File saveFile = new File(uploadFolder, file.getOriginalFilename());
 			try {//사진 저장
 				file.transferTo(saveFile);
@@ -241,7 +243,7 @@ public class MemberController {
 				log.error(e.getMessage());
 			}
 			//VO에 바뀐 프로필 사진 적용
-			vo.setMember_face("\\upload\\member\\" + file.getOriginalFilename());			
+			vo.setMember_face("/home/ubuntu/MyClosetDB/member/" + file.getOriginalFilename());			
 		}
 		//수정하기
 		service.update(vo);

@@ -73,9 +73,9 @@
 	<script type="text/javascript">
 	$(function () {
 		$("#submit-btn").click(function () {
-			
 			let email = $('#email').val();
 			let name = $('#name').val();
+			
 	            // ajax 통신
 	          $.ajax({
 	              type : "post",            // HTTP method type(GET, POST) 형식이다.

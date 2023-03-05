@@ -16,7 +16,8 @@
 			fitting_info,
 			fitting_open_range,
 			fitting_season,
-			fitting_price
+			fitting_price,
+			member_id
 			FROM fitting
 			WHERE 
 			<include refid="criteria" /> 
@@ -39,7 +40,8 @@
 			fitting_info,
 			fitting_open_range,
 			fitting_season,
-			fitting_price
+			fitting_price,
+			member_id
 			FROM fitting
 		WHERE 
 			<include refid="criteria" /> 

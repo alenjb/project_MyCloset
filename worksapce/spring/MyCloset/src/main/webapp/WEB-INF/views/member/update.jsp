@@ -119,7 +119,7 @@
                               id="upload"
                               name="member_faceFile"
                               class="account-file-input"
-                              hidden
+                              hidden="hidden"
                               accept="image/png, image/jpeg"
                             />
                           </label>
@@ -130,7 +130,6 @@
                     </div>
                     <hr class="my-0" />
                     <div class="card-body">
-                      <form id="update" method="POST" action="update">
                         <div class="row justify-content-center">
                             <label for="member_name" class="form-label col-md-4">이름</label>
                           <div class="mb-3 col-md-8" style="float: none; margin:0 auto;">
@@ -212,10 +211,12 @@
 <!--                           <a href="/member/myPage"><button type="submit" class="btn btn-primary me-2" >수정완료</button></a> -->
                           <button type="submit" class="btn btn-primary me-2" >수정완료</button>
                         </div>
+                       </div> <!-- 두번째 card-body -->
+                      </div>  <!-- card mb-4 -->
                       </form>
+                      </div>
                     </div>
                   </div>
-                 </form>
                     <!-- /Account -->
                   <div class="card">
                     <h5 class="card-header">Delete Account</h5>

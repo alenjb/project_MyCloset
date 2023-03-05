@@ -298,6 +298,8 @@
                     </label>
                   </div>
                 </div>
+                <input hidden="hidden" name="member_grade" value="일반회원">
+                <input hidden="hidden" name="member_status" value="활동회원">
                 <button class="btn btn-primary d-grid w-100" disabled="disabled" id="signUpBtn">회원가입</button>
               </form>
 

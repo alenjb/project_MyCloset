@@ -95,7 +95,7 @@
 											class="bx bx-user me-2"></i> <span class="align-middle">내
 												프로필</span>
 									</a></li>
-									<li><a class="dropdown-item" href="setting"> <i
+									<li><a class="dropdown-item"> <i
 											class="bx bx-cog me-2"></i> <span class="align-middle">환경설정</span>
 									</a></li>
 									<li>
