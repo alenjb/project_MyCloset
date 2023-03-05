@@ -95,6 +95,20 @@
 
 	});
 	
+	// input 입력시 천 단위마다 자동을 컴마 생성 함수
+	function inputNumberFormat(obj) {
+	    obj.value = comma(uncomma(obj.value));
+	}
+	function comma(str) {
+	    str = String(str);
+	    return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+	}
+	
+	function uncomma(str) {
+	    str = String(str);
+	    return str.replace(/[^\d]+/g, '');
+	}
+// 	 document.getElementById("clothesPrice").val() = uncomma(price);
 </script>
 <style type="text/css">
 

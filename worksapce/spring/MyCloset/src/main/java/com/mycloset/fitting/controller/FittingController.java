@@ -147,6 +147,10 @@ public class FittingController {
 		model.addAttribute("fitting_id", fitting_id);
 		// 모델에 cri 추가
 		model.addAttribute("cri",cri);
+		//모델에 버튼 체크유무 담기
+		model.addAttribute("publicBtnCheck", cri.isPublicBtnCheck());
+		model.addAttribute("privateBtnCheck", cri.isPrivateBtnCheck());
+
 		int fId = Integer.parseInt(fitting_id);
 		// 서비스에서 view 메서드 호출
 		FittingVO vo = service.view(memberId, fId);
@@ -162,6 +166,10 @@ public class FittingController {
 		vo.setBottom_clothes_photo(bottomImage);
 		//모델에 vo 담기
 		model.addAttribute("vo", vo);
+		// 옷 피팅 개수 세기
+		int totalNum = service.getTotalNum(cri);
+		//페이지 관련 정보 담기
+		model.addAttribute("pageMaker", new PageDTO(cri, totalNum));
 		return "fitting/view";
 	}
 

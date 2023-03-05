@@ -119,6 +119,17 @@ $(function () {
 		
 		searchForm.submit();
 	});
+	
+	
+//버튼 관련 설정
+	
+	//현재 페이지의 public버튼 활성화 상태
+	var PagePublicBtnCheck ='${publicBtnCheck}'; 
+	//현재 페이지의 private버튼 활성화 상태
+	var PagePrivateBtnCheck ='${privateBtnCheck}';	
+	//input 태그의 PagePublicBtnCheck 와 PagePrivateBtnCheck 변경
+	$('input[name=publicBtnCheck]').attr('value',PagePublicBtnCheck);
+	$('input[name=privateBtnCheck]').attr('value',PagePrivateBtnCheck);
 
 	// //버튼 누르면 닫기로 닫기
 // 	$(".collapseBtn").click(

@@ -72,19 +72,23 @@
 <script type="text/javascript">
 
 // input 입력시 천 단위마다 자동을 컴마 생성 함수
-	function inputNumberFormat(obj) {
-	    obj.value = comma(uncomma(obj.value));
-	}
+// 	function inputNumberFormat(obj) {
+// 	    obj.value = comma(uncomma(obj.value));
+// 	}
+// 	function comma(str) {
+// 	    str = String(str);
+// 	    return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+// 	}
 	
-	function comma(str) {
-	    str = String(str);
-	    return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
-	}
-	
-	function uncomma(str) {
-	    str = String(str);
-	    return str.replace(/[^\d]+/g, '');
-	}
+// 	function uncomma(str) {
+// 	    str = String(str);
+// 	    return str.replace(/[^\d]+/g, '');
+// 	}
+// 	$('#enrollBtn').click(function() {
+// 		var price = $(clothes_purchase_price).val();
+// 		console.log(price);
+//         $(clothes_purchase_price).val() = uncomma(price);
+//     })
 </script>
 <style type="text/css">
 
@@ -142,8 +146,7 @@
 														class="bx bx-upload d-block d-sm-none"></i> <input
 														type="file" id="clothes_photo_file"
 														name="clothes_photo_file" class="account-file-input"
-														hidden
-														accept="image/png, image/jpeg, image/jpg, image/gif" />
+														hidden="hidden" accept="image/png, image/jpeg, image/jpg, image/gif" />
 													</label>
 
 													<p class="text-muted mb-0">JPG, GIF, JPEG, PNG 등 사진 파일만
@@ -254,8 +257,6 @@
 															겨울 </label>
 													</div>
 
-
-
 												</div>
 											</div>
 
@@ -263,7 +264,7 @@
 										</div>
 										<div class="mt-2">
 											<!--                           <a href="/member/myPage"><button type="submit" class="btn btn-primary me-2" >수정완료</button></a> -->
-											<button type="submit" class="btn btn-primary me-2">등록</button>
+											<button type="submit" id="enrollBtn" class="btn btn-primary me-2">등록</button>
 										</div>
 								</form>
 								</div>

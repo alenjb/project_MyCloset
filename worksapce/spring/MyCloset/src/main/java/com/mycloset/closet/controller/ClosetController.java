@@ -62,6 +62,10 @@ public class ClosetController {
 		int cId = Integer.parseInt(clothes_id);
 		//서비스에서 view 메서드 호출
 		ClosetVO vo= service.view(memberId, cId);
+		// 옷 총 개수 세기
+		int totalNum = service.getTotalNum(cri);
+		// 페이지 관련 정보 담기
+		model.addAttribute("pageMaker", new PageDTO(cri, totalNum));
 		model.addAttribute("vo", vo);
 		return "closet/view";
 	}
@@ -77,6 +81,7 @@ public class ClosetController {
 	//3-2. 옷등록
 	@PostMapping("/enroll")
 	public String enroll(HttpServletRequest request, ClosetVO vo, Model model) throws Exception {
+		
 		// 로그인 정보를 받기
 		HttpSession session = request.getSession();
 		LoginVO loginVO = (LoginVO) session.getAttribute("login");
