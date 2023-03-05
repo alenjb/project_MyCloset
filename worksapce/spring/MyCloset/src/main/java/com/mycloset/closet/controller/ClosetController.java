@@ -37,8 +37,14 @@ public class ClosetController {
 	//list
 	@GetMapping("/list")
 	public void list(HttpServletRequest request, Critera cri, Model model) throws Exception {
+		//로그인 정보를 받기
+		HttpSession session = request.getSession();
+		//로그인VO 추출
+		LoginVO loginVO = (LoginVO)session.getAttribute("login");
+		//아이디 추출
+		String memberId= loginVO.getMember_id();
 		// 옷 리스트 가져오는 작업을 통해 closets에 리스트 형태로 저장
-		List<ClosetVO> closets = service.getListWithPaging(cri);
+		List<ClosetVO> closets = service.getListWithPagingAndId(cri, memberId);
 		// 모델에 옷 리스트 담기
 		model.addAttribute("closets", closets);
 		// 옷 총 개수 세기

@@ -15,6 +15,9 @@ public interface MemberMapper {
 	//1-2. 아이디 중복체크
 	public String idCheck(String id) throws Exception;
 	
+	//1-3. 이메일 중복체크
+	public String emailCheck(String email) throws Exception;
+	
 //2. 로그인 
 	public LoginVO login(LoginVO vo) throws Exception;
 	

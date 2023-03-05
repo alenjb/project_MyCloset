@@ -86,7 +86,7 @@
 	              },            // Json 형식의 데이터이다.
 	              success : function(res){ // 비동기통신의 성공일경우 success콜백으로 들어옵니다. 'res'는 응답받은 데이터이다.
 	                  if(res.id == null){
-	                	  alert("아이디를 찾을 수 없습니다. 이메일과 이름을 다시 확인해 주세요.")
+	                	  alert("아이디를 찾을 수 없습니다. 이메일과 이름을 다시 확인해 주세요.");
 		 	                 location.href="/member/findId";
 	                  }
 	                  else{

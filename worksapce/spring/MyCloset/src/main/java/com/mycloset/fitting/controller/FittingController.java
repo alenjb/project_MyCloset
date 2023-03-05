@@ -42,8 +42,14 @@ public class FittingController {
 		 publicBtnCheck(public 버튼 활성화 여부), privateBtnCheck(private 버튼 활성화 여부) 가 추가됨
 		 */
 		
+		// 로그인 정보를 받기
+		HttpSession session = request.getSession();
+		LoginVO loginVO = (LoginVO) session.getAttribute("login");
+		// 아이디 추출
+		String memberId = loginVO.getMember_id();
+		
 		// 옷 리스트 가져오는 작업을 통해 리스트 형태로 저장
-		List<FittingVO> fittings = service.getListWithPaging(cri);
+		List<FittingVO> fittings = service.getListWithPaging(cri, memberId);
 
 		// 경로를 jsp에서 인식할 수 있게 백슬래시를 수정
 		for (int i = 0; i < fittings.size(); i++) {
@@ -65,7 +71,12 @@ public class FittingController {
 	//1-2 AJAX 리스트 openRange에 따른 결과 전송
 	@GetMapping("/listOpenRange")
 	@ResponseBody
-	public Object listOpenRange(@RequestParam Map<String, String> param) throws Exception{
+	public Object listOpenRange(HttpServletRequest request, @RequestParam Map<String, String> param) throws Exception{
+		// 로그인 정보를 받기
+		HttpSession session = request.getSession();
+		LoginVO loginVO = (LoginVO) session.getAttribute("login");
+		// 아이디 추출
+		String memberId = loginVO.getMember_id();
 		//openRange 추출
 		String openRange= param.get("fitting_open_range");
 		//pageNum 추출
@@ -83,7 +94,7 @@ public class FittingController {
 		cri.setType(type);
 		cri.setKeyword(keyword);
 		//openRange 적용해서 리스트 가져오기
-		List<FittingVO> list = service.getRangeListWithPaging(cri, openRange);
+		List<FittingVO> list = service.getRangeListWithPaging(cri, openRange, memberId);
 		for(FittingVO vo: list) {
 			//이미지 형식 변환
 			String fittingIamge=vo.getFitting_image().replace("\\\\\\", "\\");

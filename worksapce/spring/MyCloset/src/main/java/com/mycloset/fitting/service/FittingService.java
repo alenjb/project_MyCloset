@@ -18,21 +18,29 @@ public class FittingService {
 	FittingMapper mapper;
 
 //	1-1. 페이징을 적용해 리스트 가져오기
-	public List<FittingVO> getListWithPaging(Critera cri) throws Exception{
+	public List<FittingVO> getListWithPaging(Critera cri, String member_id) throws Exception{
 		int pageNum = cri.getPageNum();
 		int amount = cri.getAmount();
 		//한 페이지 최대 개수
 		int limitMax= pageNum * amount; 
 		int startNum = limitMax - cri.getAmount();
-		return mapper.getListWithPaging(cri, startNum);
+		return mapper.getListWithPaging(cri, startNum, member_id);
 	}
 //	1-2. 범위조건과 페이징을 적용해 리스트 가져오기
-	public List<FittingVO> getRangeListWithPaging(Critera cri, String openRange) throws Exception{
+	public List<FittingVO> getRangeListWithPaging(Critera cri, String openRange, String member_id) throws Exception{
 		int pageNum = cri.getPageNum();
 		int amount = cri.getAmount();
 		int limitMax= pageNum * amount; 
 		int startNum = limitMax - cri.getAmount(); //실제 시작 숫자는 +1을 해야하지만 mapper.xml에서 LIMIT을 사용할 것이기 때문에 +1을 하지 않음
-		return mapper.getRangeListWithPaging(cri, startNum, openRange);
+		return mapper.getRangeListWithPaging(cri, startNum, openRange, member_id);
+	}
+//	1-3. 범위조건과 페이징을 적용해 모든리스트 가져오기
+	public List<FittingVO> getRangeAllListWithPaging(Critera cri, String openRange) throws Exception{
+		int pageNum = cri.getPageNum();
+		int amount = cri.getAmount();
+		int limitMax= pageNum * amount; 
+		int startNum = limitMax - cri.getAmount(); //실제 시작 숫자는 +1을 해야하지만 mapper.xml에서 LIMIT을 사용할 것이기 때문에 +1을 하지 않음
+		return mapper.getRangeAllListWithPaging(cri, startNum, openRange);
 	}
 
 //	1-3. 피팅 등록폼에 내 옷장에 있는 사진 가져오기

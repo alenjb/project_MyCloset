@@ -32,6 +32,16 @@ public class MemberService {
 			return "Y";}		
 	}
 	
+	//1-3. 이메일 중복체크
+	public String emailCheck(String email) throws Exception{
+		String result= mapper.emailCheck(email);
+		//중복된 이메일이 있으면
+		if (result !=null) {
+			return "N";
+		}else {	//중복된 이메일이 없으면
+			return "Y";}		
+	}
+	
 //2. 로그인 
 	public LoginVO login(LoginVO vo) throws Exception{
 		return mapper.login(vo);

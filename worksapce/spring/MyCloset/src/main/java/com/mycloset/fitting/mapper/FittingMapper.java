@@ -12,10 +12,13 @@ import com.mycloset.util.Critera;
 public interface FittingMapper {
 
 //	1-1. 페이징을 적용해 리스트 가져오기
-	public List<FittingVO> getListWithPaging(@Param("cri") Critera cri, @Param("startNum")int startNum);
+	public List<FittingVO> getListWithPaging(@Param("cri") Critera cri, @Param("startNum")int startNum, @Param("member_id")String member_id);
 
 // 1-2. 범위조건과 페이징 처리를 적용한 리스트를 가져오기
-	public List<FittingVO> getRangeListWithPaging(@Param("cri") Critera cri, @Param("startNum")int startNum, @Param("openRange")String openRange);
+	public List<FittingVO> getRangeListWithPaging(@Param("cri") Critera cri, @Param("startNum")int startNum, @Param("openRange")String openRange, @Param("member_id")String member_id);
+	
+// 1-3. 범위조건과 페이징 처리를 적용한 모든 리스트를 가져오기
+	public List<FittingVO> getRangeAllListWithPaging(@Param("cri") Critera cri, @Param("startNum")int startNum, @Param("openRange")String openRange);
 
 //	2-1. 피팅 등록
 	public int enroll(FittingVO vo) throws Exception;

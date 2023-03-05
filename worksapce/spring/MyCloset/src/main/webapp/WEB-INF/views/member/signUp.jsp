@@ -77,7 +77,10 @@
 
  $(function(){
 		//아이디가 중복되었는지 체크: 중복: 0  사용가능: 1
-	 	var check = 0;
+	 	var idCheck = 0;
+		//이메일이 중복되었는지 체크: 중복: 0  사용가능: 1
+	 	var emailCheck = 0;
+ 
 		
 		//아이디 중복검사
 		$("#idCheckBtn").on("click", function idCheckFunc(e){
@@ -91,9 +94,33 @@
 				if(data != undefined && data != ''){
 					if(data.result == "Y"){
 						alert("사용 가능한 아이디 입니다");
-						check=1;
+						idCheck=1;
 					}else{
 						alert("사용 불가능한 아이디 입니다");
+					}	
+				}
+			},
+			error: function( jqXHR, textStatus ) {
+				alert( "Request failed: " + textStatus );
+			}
+			});
+		});
+		
+		//이메일 중복검사
+		$("#emailCheckBtn").on("click", function emailCheckFunc(e){
+			console.log("시작");
+			$.ajax({
+				url: "/member/emailCheck",
+				method: "get",			
+				data: { "email" : $('#email').val() },
+			success: function(data) {
+				console.log(data);
+				if(data != undefined && data != ''){
+					if(data.result == "Y"){
+						alert("사용 가능한 이메일 입니다");
+						emailCheck=1;
+					}else{
+						alert("사용 불가능한 이메일 입니다");
 					}	
 				}
 			},
@@ -240,6 +267,7 @@
                 <div class="mb-3">
                   <label for="email" class="form-label">Email</label>
                   <input class="form-control" id="email" name="member_email" placeholder="이메일"  />
+                  <button type="button" class="btn btn-primary btn-sm" id="emailCheckBtn">중복확인</button>
                 </div>
                 
 <!--                 비밀번호 -->

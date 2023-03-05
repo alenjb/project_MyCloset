@@ -11,6 +11,9 @@ public interface ClosetMapper {
 
 	//1. 페이지 처리와 함께 리스트를 가져오기
 	public List<ClosetVO> getListWithPaging(@Param("cri")Critera cri, @Param("startNum")int startNum);
+	
+	//1. 페이지 처리, 아이디와 함께 리스트를 가져오기
+	public List<ClosetVO> getListWithPagingAndId(@Param("cri")Critera cri, @Param("startNum")int startNum, @Param("member_id")String member_id);
 
 	//2. 옷 보기
 	public ClosetVO view(@Param("member_id")String id, @Param("clothes_id")int num) throws Exception;

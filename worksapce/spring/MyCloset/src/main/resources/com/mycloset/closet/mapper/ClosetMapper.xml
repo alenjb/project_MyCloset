@@ -23,6 +23,27 @@
 			1=1
 			LIMIT #{startNum}, #{cri.amount}
 	</select>
+<!-- 	아이디와 페이징을 적용해 리스트 가져오기 -->
+		<select id="getListWithPagingAndId" resultType="com.mycloset.closet.vo.ClosetVO">
+		<![CDATA[
+			SELECT 
+				@rownum:= @rownum +1 rownum, ]]>
+				clothes_id, 
+				clothes_type, 
+				clothes_name, 
+				clothes_info, 
+				clothes_size, 
+				clothes_photo, 
+				clothes_purchase_year, 
+				clothes_purchase_price, 
+				clothes_season
+			FROM closet
+			WHERE
+			member_id= #{member_id} and
+			<include refid="criteria"/> 		
+			1=1
+			LIMIT #{startNum}, #{cri.amount}
+	</select>
 
 	<!-- 2. 옷 보기 -->
 	<select id="view" resultType="com.mycloset.closet.vo.ClosetVO">

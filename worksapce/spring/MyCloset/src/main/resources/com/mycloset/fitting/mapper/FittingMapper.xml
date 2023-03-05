@@ -19,14 +19,46 @@
 			fitting_price,
 			member_id
 			FROM fitting
-			WHERE 
+			WHERE
+			member_id = #{member_id} AND
 			<include refid="criteria" /> 
 			1=1 
 			LIMIT #{startNum}, #{cri.amount}
 	</select>
 	
+	
+	
 	<!-- 1.2 페이지 네이션과 범위 조건을 적용한 리스트 가져오기 -->
 	<select id="getRangeListWithPaging"
+		resultType="com.mycloset.fitting.vo.FittingVO">
+	
+		SELECT
+	<![CDATA[@rownum:= @rownum +1 rownum, ]]>
+			fitting_id,	
+			outer_clothes_id,
+			top_clothes_id,
+			bottom_clothes_id,
+			fitting_name,
+			fitting_image,
+			fitting_info,
+			fitting_open_range,
+			fitting_season,
+			fitting_price,
+			member_id
+			FROM fitting
+		WHERE 
+			member_id = #{member_id} AND
+			<include refid="criteria" /> 
+			1=1 
+			<if test="openRange != 'all'">
+			AND
+			fitting_open_range =#{openRange}
+			</if>
+		LIMIT #{startNum}, #{cri.amount}
+	</select>
+	
+	<!-- 1.3 페이지 네이션과 범위 조건을 적용한 모든 리스트 가져오기 -->
+	<select id="getRangeAllListWithPaging"
 		resultType="com.mycloset.fitting.vo.FittingVO">
 	
 		SELECT

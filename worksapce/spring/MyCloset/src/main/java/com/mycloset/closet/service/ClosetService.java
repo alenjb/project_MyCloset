@@ -28,6 +28,17 @@ public class ClosetService {
 		int startNum = limitMax - cri.getAmount();
 		return mapper.getListWithPaging(cri, startNum);
 	}
+	
+//	1-1. 페이징, 아이디를 적용해 리스트 가져오기(list)
+	public List<ClosetVO> getListWithPagingAndId(Critera cri, String member_id) throws Exception{
+		int pageNum = cri.getPageNum();
+		int amount = cri.getAmount();
+		//한 페이지 최대 개수
+		int limitMax = pageNum * amount; 
+		int startNum = limitMax - cri.getAmount();
+		
+		return mapper.getListWithPagingAndId(cri, startNum, member_id);
+	}
 
 	//2. 옷 상세 보기
 	public ClosetVO view(String id, int num) throws Exception{

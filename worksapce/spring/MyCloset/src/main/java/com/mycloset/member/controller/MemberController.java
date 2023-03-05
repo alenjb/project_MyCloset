@@ -53,7 +53,7 @@ public class MemberController {
 		cri.setAmount(10);
 		cri.setPageNum(1);
 		//모든 public 피팅 불러오기
-		List<FittingVO> fittings = fittingService.getRangeListWithPaging(cri, "public");
+		List<FittingVO> fittings = fittingService.getRangeAllListWithPaging(cri, "public");
 		for (FittingVO vo: fittings){
 			//이미지 주소 형식 변환
 			String image = vo.getFitting_image().replace("\\\\\\", "\\");
@@ -67,7 +67,6 @@ public class MemberController {
 		} 
 		//모델에 모든 public 피팅 추가
 		model.addAttribute("fittings", fittings);
-		System.out.println(fittings);
 		//모델에 모든 피팅 추가
 		model.addAttribute("myFitting",myFitting);
 		return "member/home";
@@ -96,6 +95,19 @@ public class MemberController {
 		HashMap<String, String> map = new HashMap<String, String>();
 		//결과에 id 중복체크한 내용 담기
 		map.put("result",service.idCheck(id));
+		return map;
+	}
+	
+	// 2-3. 회원가입 시 이메일 중복체크(AJAX 사용)
+	@GetMapping("/emailCheck")
+	@ResponseBody
+	public Map<String, String> emailCheck(String email) throws Exception {
+		System.out.println(email);
+		
+		HashMap<String, String> map = new HashMap<String, String>();
+		//결과에 이메일 중복체크한 내용 담기
+		map.put("result",service.emailCheck(email));
+		System.out.println("map: "+map);
 		return map;
 	}
 	
